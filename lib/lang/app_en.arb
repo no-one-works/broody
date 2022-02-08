@@ -1,0 +1,189 @@
+{
+  "backBtn": "back",
+  "yourProjects": "Your Projects",
+  "newClip": "New CLip",
+  "editClip": "Edit Clip",
+  "@@locale": "en",
+  "appName": "Broody",
+  "ok": "Okay",
+  "yes": "Yes",
+  "no": "No",
+  "save": "Save",
+  "cancel": "Cancel",
+  "maybeLater": "Maybe Later",
+  "share": "Share",
+  "delete": "Delete",
+  "keep": "Keep",
+  "continueBtn": "Continue",
+  "record": "Record",
+  "learnMore": "Learn More",
+  "onboardingTitle": "Welcome to Broody",
+  "onboardingLine1": "Your daily video diary.",
+  "onboardingLine2": "Made easy.",
+  "timelineOnboarding": "Drag here to select range",
+  "noVideos": "There are no videos in your gallery for this day.",
+  "tooShortDialogTitle": "Video too short!",
+  "tooShortDialogContent": "The video you have recorded is too short! Should we delete it?",
+  "missingPermissionDialogTitle": "Missing Permissions",
+  "missingGalleryPermissionDialogContent": "We don't have access to your gallery, so we can't load your videos.",
+  "missingPermissionDialogOk": "Change",
+  "missingGalleryPermissionPageContent": "You denied access to your gallery.\nWe encourage being restrictive with app permissions! That's why we created this app and made it so that your files never leave this device.\n\nSince Broody relies on access to your entire gallery to load your videos for your diary, you cannot use the app without it.\n",
+  "missingGalleryPermissionPageOk": "Change Permission",
+  "missingNotificationPermissionDialogContent": "You didn't give us permission to send you notifications. If you want daily reminders, go to your device's settings and change that.",
+  "cuttingVideo": "Storing Memory...",
+  "downloadingVideo": "Loading Video...",
+  "loadingVideoFailed": "Couldn't load video",
+  "createProject": "Create Project",
+  "editProject": "Edit Project",
+  "defaultProjectTitle": "My Year",
+  "laplaceLimit": "λ ≈ 0.66s",
+  "goldenRatio": "Φ ≈ 1.62s",
+  "pi": "π ≈ 3.14s",
+  "exportCompilation": "Watch Compilation",
+  "tip": "Tip",
+  "revealTipText": "Scroll with two fingers at the same time to reveal your memories!",
+  "monthComplete": "{month} Complete!",
+  "@monthComplete": {
+    "placeholders": {
+      "month": {
+        "type": "String"
+      }
+    }
+  },
+  "monthCompleteText": "You've added an entry for each day of the month. Good Job!",
+  "myProjects": "My Projects",
+  "myProjectsSubtitle": "Tap the project you want to open. To edit a project, tap on the pencil icon.",
+  "myProjectsEmpty": "It looks a bit empty in here.\nCreate your first project now!",
+  "activeProjects": "Active",
+  "endedProjects": "Ended",
+  "endProject": "End {project}",
+  "@endProject": {
+    "placeholders": {
+      "project": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteProject": "Delete {project}",
+  "@deleteProject": {
+    "placeholders": {
+      "project": {
+        "type": "String"
+      }
+    }
+  },
+  "monthCompilation": "{project} - {month}",
+  "@monthCompilation": {
+    "placeholders": {
+      "project": {
+        "type": "String"
+      },
+      "month": {
+        "type": "DateTime",
+        "format": "MMMM"
+      }
+    }
+  },
+  "deleteEntryDialogTitle": "Delete Entry",
+  "deleteEntryDialogContent": "Do you want to delete your entry for this day? This can't be undone!",
+  "destructiveProjectEditDialogTitle": "Careful",
+  "destructiveProjectEditDialogContent": "You're about to remove days from your project that contain entries. These entries will be irreversibly deleted if you continue!",
+  "entryWithoutOriginalDialogTitle": "Attention",
+  "entryWithoutOriginalDialogContent": "The original video for the current entry doesn't seem to be in your gallery anymore. If you make a change now, you won't be able to recover that clip.",
+  "deleteProjectDialogTitle": "Delete Project",
+  "deleteProjectDialogContent": "Do you really want to delete {project} now? You wont be able to recover your clips and compilation!",
+  "@deleteProjectDialogContent": {
+    "placeholders": {
+      "project": {
+        "type": "String"
+      }
+    }
+  },
+  "endProjectDialogTitle": "End Project",
+  "endProjectDialogContent": "Do you really want to end the project now?",
+  "end": "End",
+  "title": "Title",
+  "timePeriod": "Time Period",
+  "projectColor": "Project Color",
+  "clipDuration": "Clip Duration",
+  "timePeriodVideos": "You will take {days} clips for a total video duration of {duration}.",
+  "@timePeriodVideos": {
+    "placeholders": {
+      "days": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "reminderBodyForProject": "Don't forget to take a video today!",
+  "reminderBodyForProjectStart": "Your project starts today. Add your first video!",
+  "dailyNotifications": "Daily Reminders",
+  "pickTimeForNotification": "Pick a notification time",
+  "changeNotificationTime": "Change Time",
+  "disable": "Disable",
+  "notificationTime": "You will be reminded daily at {time}",
+  "@notificationTime": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "notifications": "Notifications",
+  "saveToGallery": "Save to Gallery",
+  "saveToGallerySuccess": "Saved compilation to gallery!",
+  "saveToGalleryFailed": "Couldn't save compilation to gallery!",
+  "videoOrientation": "Video Orientation",
+  "landscape": "Landscape",
+  "portrait": "Portrait",
+  "projectNotStartedDescription": "This project starts on {startDate}. \nCome back then to add your videos!",
+  "@projectNotStartedDescription": {
+    "placeholders": {
+      "startDate": {
+        "type": "DateTime",
+        "format": "yMMMEd"
+      }
+    }
+  },
+  "projectNotStartedReminderButton": "Remind Me",
+  "projectNotStartedReminderDescription": "We will remind you at {timeString}.",
+  "@projectNotStartedReminderDescription": {
+    "placeholders": {
+      "timeString": {
+        "type": "String"
+      }
+    }
+  },
+  "projectDoneDescription": "Congratulations, you have completed this project!",
+  "projectEndedDescription": "Your project has ended, but there are still {missingVideos} videos missing. You can still add them, or create your compilation anyway.",
+  "@projectEndedDescription": {
+    "placeholders": {
+      "missingVideos": {
+        "type": "int"
+      }
+    }
+  },
+  "outdatedEntriesTitle": "Entries Outdated",
+  "outdatedEntriesDescription": "We have updated our entry algorithm. \nThis means that {count} of this project's entries are outdated now and have to be regenerated.\n\nThis could take a while, please keep the app open during the process.",
+  "@outdatedEntriesDescription": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "outdatedEntriesOk": "Update Entries",
+  "outdatedEntriesCancel": "Open in Read-Only Mode",
+  "outdatedEntriesRunningDescription": "This could take a while. Please don't close the app until this process is finished!",
+  "updatingEntriesRemaining": "Updating Entries...\n{count} remain",
+  "@updatingEntriesRemaining": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "readOnlyModeDescription": "This project is in read-only mode. Update it's entries to make it editable again."
+}

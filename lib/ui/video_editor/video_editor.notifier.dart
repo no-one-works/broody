@@ -1,0 +1,209 @@
+import 'dart:math';
+
+import 'package:broody/model/common/loading_value/loading_value.dart';
+import 'package:broody/model/entry/entry.dart';
+import 'package:broody/service/providers/project.providers.dart';
+import 'package:broody/service/repositories/entry.repository.dart';
+import 'package:broody/service/repositories/onboarding.repository.dart';
+import 'package:broody/ui/shared/providers/video_player_controller.provider.dart';
+import 'package:broody/ui/shared/providers/video_tile.providers.dart';
+import 'package:broody/ui/video_editor/state/video_editor_state.dart';
+import 'package:flutter/foundation.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:photo_manager/photo_manager.dart';
+import 'package:video_thumbnail/video_thumbnail.dart';
+
+final videoEditorStateProvider = StateNotifierProvider.autoDispose
+    .family<VideoEditorNotifier, VideoEditorState, AssetEntity>(
+        (ref, assetEntity) {
+  final size = ref.watch(assetEntitySizeProvider((assetEntity)));
+  final state = ref.watch(assetEntityFileProvider(assetEntity)).whenOrNull(
+            data: (file) => file == null
+                ? VideoEditorState.failedToLoad(assetEntity: assetEntity)
+                : ref
+                    .watch(loopingFileVideoControllerProvider(file.path))
+                    .whenOrNull(
+                        data: (videoController) => VideoEditorState.editing(
+                              assetEntity: assetEntity,
+                              videoController: videoController,
+                              entry: EditingEntry(
+                                projectId:
+                                    ref.watch(selectedProjectProvider)!.uid,
+                                duration:
+                                    ref.watch(projectClipDurationProvider)!,
+                                videoPath: file.path,
+                                assetEntityId: assetEntity.id,
+                                height: size.height.toInt(),
+                                width: size.width.toInt(),
+                                timestamp: assetEntity.createDateTime,
+                                startPoint: Duration.zero,
+                              ),
+                            )),
+          ) ??
+      VideoEditorState.loadingVideo(assetEntity: assetEntity);
+
+  return VideoEditorNotifier(ref.read, state);
+});
+
+class VideoEditorNotifier extends StateNotifier<VideoEditorState> {
+  VideoEditorNotifier(this.reader, VideoEditorState initialState)
+      : super(initialState) {
+    init();
+  }
+
+  final Reader reader;
+
+  void init() async {
+    final s = state;
+    if (s is VideoEditorEditing) {
+      s.videoController.addListener(_videoControllerListener);
+      s.videoController.setVolume(1);
+    }
+  }
+
+  void pause({bool cancelPreview = false}) {
+    final s = state;
+    if (s is! VideoEditorEditing) return;
+    if (s.previewing && !cancelPreview) return;
+    if (cancelPreview) {
+      s.videoController.setLooping(false);
+    }
+    final onboarding = reader(onboardingRepositoryProvider).onboardingConfig;
+    reader(onboardingRepositoryProvider)
+        .setOnboardingConfig(onboarding.copyWith(
+      knowsTimeline: true,
+    ));
+    s.videoController.pause();
+    state = s.copyWith(
+      isPlaying: false,
+      previewing: false,
+    );
+  }
+
+  void play({bool cancelPreview = false}) {
+    final s = state;
+    if (s is! VideoEditorEditing) return;
+    s.videoController.play();
+    state = s.copyWith(
+      isPlaying: true,
+      previewing: cancelPreview ? false : s.previewing,
+    );
+  }
+
+  void seekTo(Duration value) {
+    final s = state;
+    if (s is! VideoEditorEditing || s.previewing) return;
+    s.videoController.seekTo(value);
+    state = s.copyWith(
+      seekPosition: value,
+    );
+  }
+
+  void _loop() async {
+    final s = state;
+    if (s is! VideoEditorEditing || s.previewing) return;
+    await s.videoController.seekTo(s.entry.startPoint);
+    await s.videoController.play();
+    state = s.copyWith(
+      seekPosition: s.entry.startPoint,
+    );
+  }
+
+  void setStartPoint(Duration value) {
+    final s = state;
+    if (s is! VideoEditorEditing || s.previewing) return;
+    s.videoController.seekTo(value);
+    state = s.copyWith(
+      seekPosition: value,
+      entry: s.entry.copyWith(
+        startPoint: value,
+      ),
+    );
+  }
+
+  Future<void> saveClip() async {
+    await _saveClip().forEach((element) {});
+  }
+
+  Stream<void> _saveClip() async* {
+    final s = state;
+    if (s is! VideoEditorEditing) {
+      return;
+    }
+    s.videoController.pause();
+    final newEntry = s.entry.copyWith(
+      thumbnailBytes: await VideoThumbnail.thumbnailData(
+        video: s.entry.videoPath,
+        timeMs: s.entry.startPoint.inMilliseconds,
+        imageFormat: ImageFormat.JPEG,
+        maxHeight: s.entry.height ~/ 2,
+        maxWidth: s.entry.width ~/ 2,
+        quality: 10,
+      ),
+    );
+
+    state = VideoEditorState.exporting(
+      entry: newEntry,
+      exportProgress: const LoadingValue.loading(progress: 0),
+      dismissProgress: state.dismissProgress,
+    );
+    final repo = reader(entryRepositoryProvider);
+
+    final entryProgress = repo.saveEntry(entry: newEntry);
+    await for (final loadingValue in entryProgress) {
+      if (loadingValue is LoadingError) {
+        debugPrint(loadingValue.toString());
+      }
+      state = VideoEditorState.exporting(
+        entry: newEntry,
+        exportProgress: loadingValue,
+        dismissProgress: state.dismissProgress,
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    final s = state;
+    if (s is VideoEditorEditing) {
+      s.videoController.setVolume(0);
+      s.videoController.setLooping(true);
+      if (!s.videoController.value.isPlaying) {
+        s.videoController.play();
+      }
+      s.videoController.removeListener(_videoControllerListener);
+    }
+    super.dispose();
+  }
+
+  void updateDismissProgress(double progress) {
+    state = state.copyWith(dismissProgress: progress);
+    final s = state;
+    if (s is VideoEditorEditing) {
+      s.videoController.setVolume(1 - progress);
+    }
+  }
+
+  void _videoControllerListener() {
+    final s = state;
+    if (s is! VideoEditorEditing) return;
+    final videoPosition = s.videoController.value.position;
+    if (!s.previewing &&
+        videoPosition >= s.entry.startPoint + s.entry.duration) {
+      _loop();
+    } else {
+      final startPoint = Duration(
+        milliseconds: max(
+          (videoPosition - s.entry.duration).inMilliseconds,
+          0,
+        ),
+      );
+      state = s.copyWith(
+        seekPosition: s.videoController.value.position,
+        entry: s.entry.copyWith(
+          startPoint: s.previewing ? startPoint : s.entry.startPoint,
+        ),
+      );
+    }
+  }
+}

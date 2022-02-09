@@ -84,7 +84,7 @@ class VideoEditorPage extends HookConsumerWidget {
       ),
       extendBodyBehindAppBar: true,
       body: GestureDetector(
-        onTapUp: (_) => notifier.play(cancelPreview: true),
+        onTapUp: (_) => notifier.loop(),
         child: CustomDismissible(
           enabled: state.maybeMap(
             exporting: (_) => false,

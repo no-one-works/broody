@@ -3,6 +3,7 @@ import 'package:broody/core/hook/use_theme.hook.dart';
 import 'package:broody/model/entry/entry.dart';
 import 'package:broody/routing/router.dart';
 import 'package:broody/service/providers/project.providers.dart';
+import 'package:broody/service/repositories/entry.repository.dart';
 import 'package:broody/ui/entry/day_page/day_page.widget.dart';
 import 'package:broody/ui/shared/interactive_viewer_plus/widgets/custom_dismissible.widget.dart';
 import 'package:broody/ui/shared/providers/color/color.providers.dart';
@@ -99,6 +100,20 @@ class EntryPage extends HookConsumerWidget {
               icon: const Icon(Icons.close_rounded),
             ),
             actions: [
+              AnimatedSwitcher(
+                duration: kThemeAnimationDuration,
+                child: currentEntry == null || readOnly
+                    ? const SizedBox()
+                    : IconButton(
+                        color: foregroundColor,
+                        onPressed: () async {
+                          ref
+                              .read(entryRepositoryProvider)
+                              .shareEntry(entry: currentEntry);
+                        },
+                        icon: const Icon(Icons.ios_share_rounded),
+                      ),
+              ),
               AnimatedSwitcher(
                 duration: kThemeAnimationDuration,
                 child: currentEntry == null || readOnly

@@ -38,8 +38,8 @@ part 'router.gr.dart';
       initial: true,
       guards: [
         NoProjectsGuard,
-        NoPermissionsGuard,
         NoSelectedProjectGuard,
+        NoPermissionsGuard,
         OutdatedEntriesGuard
       ],
     ),

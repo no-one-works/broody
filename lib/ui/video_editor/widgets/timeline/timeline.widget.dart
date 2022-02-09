@@ -103,12 +103,12 @@ class Timeline extends HookConsumerWidget {
                 GestureDetector(
                   onTapDown: isMinLength
                       ? (_) {
-                          editorNotifier.pause(cancelPreview: true);
+                          editorNotifier.pause();
                           animationController.stop();
                         }
                       : null,
-                  onTapUp: isMinLength ? (_) => editorNotifier.play() : null,
-                  onTapCancel: isMinLength ? () => editorNotifier.play() : null,
+                  onTapUp: isMinLength ? (_) => editorNotifier.loop() : null,
+                  onTapCancel: isMinLength ? () => editorNotifier.loop() : null,
                   child: NotificationListener<ScrollNotification>(
                     onNotification: (n) => state.previewing
                         ? _onScrollNotificationPreview(n, animationController)
@@ -241,7 +241,7 @@ class Timeline extends HookConsumerWidget {
   ) {
     if (notification is ScrollStartNotification &&
         notification.dragDetails != null) {
-      editorNotifier.pause(cancelPreview: true);
+      editorNotifier.pause();
       controller.stop();
     }
     return false;
@@ -253,9 +253,9 @@ class Timeline extends HookConsumerWidget {
     VideoEditorEditing state,
   ) {
     if (notification is ScrollStartNotification) {
-      editorNotifier.pause(cancelPreview: true);
+      editorNotifier.pause();
     } else if (notification is ScrollEndNotification) {
-      editorNotifier.play();
+      editorNotifier.loop();
     } else if (notification is ScrollUpdateNotification) {
       final seekingPointMillis = (state.videoController.value.duration -
                   state.entry.duration)

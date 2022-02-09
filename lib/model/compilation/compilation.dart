@@ -4,16 +4,16 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'compilation.freezed.dart';
 part 'compilation.g.dart';
 
-const compilationAlgorithmVersion = 1;
+const compilationAlgorithmVersion = 2;
 
 @freezed
 class Compilation with _$Compilation {
   const factory Compilation.create({
     required String uid,
-    required String name,
-    required String destination,
     required String projectUid,
+    required String projectTitle,
     int? month,
+    required String destination,
     required List<SavedEntry> usedEntries,
     required double width,
     required double height,

@@ -33,10 +33,10 @@ class _$CompilationTearOff {
 
   CreateCompilation create(
       {required String uid,
-      required String name,
-      required String destination,
       required String projectUid,
+      required String projectTitle,
       int? month,
+      required String destination,
       required List<SavedEntry> usedEntries,
       required double width,
       required double height,
@@ -44,10 +44,10 @@ class _$CompilationTearOff {
       required DateTime created}) {
     return CreateCompilation(
       uid: uid,
-      name: name,
-      destination: destination,
       projectUid: projectUid,
+      projectTitle: projectTitle,
       month: month,
+      destination: destination,
       usedEntries: usedEntries,
       width: width,
       height: height,
@@ -101,10 +101,10 @@ mixin _$Compilation {
   TResult when<TResult extends Object?>({
     required TResult Function(
             String uid,
-            String name,
-            String destination,
             String projectUid,
+            String projectTitle,
             int? month,
+            String destination,
             List<SavedEntry> usedEntries,
             double width,
             double height,
@@ -128,10 +128,10 @@ mixin _$Compilation {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
             String uid,
-            String name,
-            String destination,
             String projectUid,
+            String projectTitle,
             int? month,
+            String destination,
             List<SavedEntry> usedEntries,
             double width,
             double height,
@@ -155,10 +155,10 @@ mixin _$Compilation {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             String uid,
-            String name,
-            String destination,
             String projectUid,
+            String projectTitle,
             int? month,
+            String destination,
             List<SavedEntry> usedEntries,
             double width,
             double height,
@@ -279,10 +279,10 @@ abstract class $CreateCompilationCopyWith<$Res>
   @override
   $Res call(
       {String uid,
-      String name,
-      String destination,
       String projectUid,
+      String projectTitle,
       int? month,
+      String destination,
       List<SavedEntry> usedEntries,
       double width,
       double height,
@@ -304,10 +304,10 @@ class _$CreateCompilationCopyWithImpl<$Res>
   @override
   $Res call({
     Object? uid = freezed,
-    Object? name = freezed,
-    Object? destination = freezed,
     Object? projectUid = freezed,
+    Object? projectTitle = freezed,
     Object? month = freezed,
+    Object? destination = freezed,
     Object? usedEntries = freezed,
     Object? width = freezed,
     Object? height = freezed,
@@ -319,22 +319,22 @@ class _$CreateCompilationCopyWithImpl<$Res>
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      destination: destination == freezed
-          ? _value.destination
-          : destination // ignore: cast_nullable_to_non_nullable
-              as String,
       projectUid: projectUid == freezed
           ? _value.projectUid
           : projectUid // ignore: cast_nullable_to_non_nullable
+              as String,
+      projectTitle: projectTitle == freezed
+          ? _value.projectTitle
+          : projectTitle // ignore: cast_nullable_to_non_nullable
               as String,
       month: month == freezed
           ? _value.month
           : month // ignore: cast_nullable_to_non_nullable
               as int?,
+      destination: destination == freezed
+          ? _value.destination
+          : destination // ignore: cast_nullable_to_non_nullable
+              as String,
       usedEntries: usedEntries == freezed
           ? _value.usedEntries
           : usedEntries // ignore: cast_nullable_to_non_nullable
@@ -364,10 +364,10 @@ class _$CreateCompilationCopyWithImpl<$Res>
 class _$CreateCompilation implements CreateCompilation {
   const _$CreateCompilation(
       {required this.uid,
-      required this.name,
-      required this.destination,
       required this.projectUid,
+      required this.projectTitle,
       this.month,
+      required this.destination,
       required this.usedEntries,
       required this.width,
       required this.height,
@@ -382,13 +382,13 @@ class _$CreateCompilation implements CreateCompilation {
   @override
   final String uid;
   @override
-  final String name;
-  @override
-  final String destination;
-  @override
   final String projectUid;
   @override
+  final String projectTitle;
+  @override
   final int? month;
+  @override
+  final String destination;
   @override
   final List<SavedEntry> usedEntries;
   @override
@@ -405,7 +405,7 @@ class _$CreateCompilation implements CreateCompilation {
 
   @override
   String toString() {
-    return 'Compilation.create(uid: $uid, name: $name, destination: $destination, projectUid: $projectUid, month: $month, usedEntries: $usedEntries, width: $width, height: $height, projectPath: $projectPath, created: $created)';
+    return 'Compilation.create(uid: $uid, projectUid: $projectUid, projectTitle: $projectTitle, month: $month, destination: $destination, usedEntries: $usedEntries, width: $width, height: $height, projectPath: $projectPath, created: $created)';
   }
 
   @override
@@ -414,12 +414,13 @@ class _$CreateCompilation implements CreateCompilation {
         (other.runtimeType == runtimeType &&
             other is CreateCompilation &&
             const DeepCollectionEquality().equals(other.uid, uid) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality()
-                .equals(other.destination, destination) &&
             const DeepCollectionEquality()
                 .equals(other.projectUid, projectUid) &&
+            const DeepCollectionEquality()
+                .equals(other.projectTitle, projectTitle) &&
             const DeepCollectionEquality().equals(other.month, month) &&
+            const DeepCollectionEquality()
+                .equals(other.destination, destination) &&
             const DeepCollectionEquality()
                 .equals(other.usedEntries, usedEntries) &&
             const DeepCollectionEquality().equals(other.width, width) &&
@@ -433,10 +434,10 @@ class _$CreateCompilation implements CreateCompilation {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(uid),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(destination),
       const DeepCollectionEquality().hash(projectUid),
+      const DeepCollectionEquality().hash(projectTitle),
       const DeepCollectionEquality().hash(month),
+      const DeepCollectionEquality().hash(destination),
       const DeepCollectionEquality().hash(usedEntries),
       const DeepCollectionEquality().hash(width),
       const DeepCollectionEquality().hash(height),
@@ -453,10 +454,10 @@ class _$CreateCompilation implements CreateCompilation {
   TResult when<TResult extends Object?>({
     required TResult Function(
             String uid,
-            String name,
-            String destination,
             String projectUid,
+            String projectTitle,
             int? month,
+            String destination,
             List<SavedEntry> usedEntries,
             double width,
             double height,
@@ -475,8 +476,8 @@ class _$CreateCompilation implements CreateCompilation {
             DateTime created)
         saved,
   }) {
-    return create(uid, name, destination, projectUid, month, usedEntries, width,
-        height, projectPath, created);
+    return create(uid, projectUid, projectTitle, month, destination,
+        usedEntries, width, height, projectPath, created);
   }
 
   @override
@@ -484,10 +485,10 @@ class _$CreateCompilation implements CreateCompilation {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
             String uid,
-            String name,
-            String destination,
             String projectUid,
+            String projectTitle,
             int? month,
+            String destination,
             List<SavedEntry> usedEntries,
             double width,
             double height,
@@ -506,8 +507,8 @@ class _$CreateCompilation implements CreateCompilation {
             DateTime created)?
         saved,
   }) {
-    return create?.call(uid, name, destination, projectUid, month, usedEntries,
-        width, height, projectPath, created);
+    return create?.call(uid, projectUid, projectTitle, month, destination,
+        usedEntries, width, height, projectPath, created);
   }
 
   @override
@@ -515,10 +516,10 @@ class _$CreateCompilation implements CreateCompilation {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             String uid,
-            String name,
-            String destination,
             String projectUid,
+            String projectTitle,
             int? month,
+            String destination,
             List<SavedEntry> usedEntries,
             double width,
             double height,
@@ -539,8 +540,8 @@ class _$CreateCompilation implements CreateCompilation {
     required TResult orElse(),
   }) {
     if (create != null) {
-      return create(uid, name, destination, projectUid, month, usedEntries,
-          width, height, projectPath, created);
+      return create(uid, projectUid, projectTitle, month, destination,
+          usedEntries, width, height, projectPath, created);
     }
     return orElse();
   }
@@ -585,10 +586,10 @@ class _$CreateCompilation implements CreateCompilation {
 abstract class CreateCompilation implements Compilation {
   const factory CreateCompilation(
       {required String uid,
-      required String name,
-      required String destination,
       required String projectUid,
+      required String projectTitle,
       int? month,
+      required String destination,
       required List<SavedEntry> usedEntries,
       required double width,
       required double height,
@@ -600,12 +601,12 @@ abstract class CreateCompilation implements Compilation {
 
   @override
   String get uid;
-  String get name;
-  String get destination;
   @override
   String get projectUid;
+  String get projectTitle;
   @override
   int? get month;
+  String get destination;
   @override
   List<SavedEntry> get usedEntries;
   @override
@@ -793,10 +794,10 @@ class _$SavedCompilation implements SavedCompilation {
   TResult when<TResult extends Object?>({
     required TResult Function(
             String uid,
-            String name,
-            String destination,
             String projectUid,
+            String projectTitle,
             int? month,
+            String destination,
             List<SavedEntry> usedEntries,
             double width,
             double height,
@@ -824,10 +825,10 @@ class _$SavedCompilation implements SavedCompilation {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
             String uid,
-            String name,
-            String destination,
             String projectUid,
+            String projectTitle,
             int? month,
+            String destination,
             List<SavedEntry> usedEntries,
             double width,
             double height,
@@ -855,10 +856,10 @@ class _$SavedCompilation implements SavedCompilation {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             String uid,
-            String name,
-            String destination,
             String projectUid,
+            String projectTitle,
             int? month,
+            String destination,
             List<SavedEntry> usedEntries,
             double width,
             double height,

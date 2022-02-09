@@ -16,14 +16,17 @@ import 'package:broody/service/repositories/repository.dart';
 import 'package:dartx/dartx_io.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:photo_manager/photo_manager.dart';
 import 'package:riverpod/riverpod.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 
 abstract class IEntryRepository {
   Stream<LoadingValue<SavedEntry?>> saveEntry({required EditingEntry entry});
 
-  Stream<LoadingValue<SavedEntry?>> updateEntryVersion(
-      {required SavedEntry entry});
+  Stream<LoadingValue<SavedEntry?>> updateEntryVersion({
+    required SavedEntry entry,
+  });
 
   Future<File?> getEntryClip(SavedEntry entry);
 
@@ -36,6 +39,7 @@ abstract class IEntryRepository {
   Stream<List<SavedEntry>> watchEntriesForProject({required String projectId});
 
   Stream<List<SavedEntry>> watchOutdatedEntries({required String projectId});
+  Future<void> shareEntry({required SavedEntry entry});
 
   SavedEntry? getEntry(String projectId, DateTime timestamp);
 }
@@ -143,8 +147,8 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
               error: "Could not export entry successfully: $entry");
           return;
         }
-        final destinationFile =
-            entriesDirectory.file("${entry.day.toIso8601String()}.mp4");
+        final destinationFile = entriesDirectory.file(
+            "${entry.day.toIso8601String()}${loadingValue.value!.extension}");
         try {
           debugPrint("Copying resulting clip to folder...");
           await loadingValue.value!.copy(destinationFile.path);
@@ -178,6 +182,74 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
 
   @override
   Stream<LoadingValue<SavedEntry?>> updateEntryVersion(
+      {required SavedEntry entry}) async* {
+    final assetEntity =
+        await PhotoManager.refreshAssetProperties(entry.assetEntityId);
+    debugPrint("Loading original assetEntity for ${entry.uid}");
+    final originalFile = (await assetEntity?.loadFile());
+    if (originalFile == null) {
+      debugPrint(
+          "Original AssetEntity for ${entry.uid} not found! Falling back to re-encoding clip.");
+      yield* _updateEntryVersionFromClip(entry: entry);
+      return;
+    }
+    debugPrint("Re-encoding original assetEntity for ${entry.uid}");
+    final entriesDirectory =
+        await ref.read(projectDirectoryProvider(entry.projectId).future);
+    await entriesDirectory.create();
+    final project =
+        ref.read(projectRepositoryProvider).getProject(entry.projectId);
+
+    final needsCropping = _entryNeedsCropping(project: project!, entry: entry);
+    final process = ref.read(clipDatasourceProvider).createClip(
+          startPoint: entry.startPoint,
+          duration: entry.duration,
+          videoSource: originalFile,
+          resolution: project.resolution,
+          centerCropping: needsCropping
+              ? _calculateCropping(project: project, entry: entry)
+              : null,
+        );
+
+    await for (final loadingValue in process) {
+      if (loadingValue is Loading<File?>) {
+        yield LoadingValue.loading(progress: loadingValue.progress);
+      } else if (loadingValue is LoadingError<File?>) {
+        yield LoadingValue.error(
+          error: loadingValue.error,
+          stackTrace: loadingValue.stackTrace,
+        );
+        return;
+      } else if (loadingValue is Data<File?>) {
+        if (loadingValue.value == null) {
+          debugPrint("Could not update entry successfully: $entry");
+          yield LoadingValue.error(
+              error: "Could not update entry successfully: $entry");
+          return;
+        }
+        try {
+          debugPrint("Copying resulting clip to folder...");
+          final file = await getEntryClip(entry);
+          await loadingValue.value!.copy(file!.path);
+        } catch (e, s) {
+          yield LoadingValue.error(error: e, stackTrace: s);
+          return;
+        }
+        final updatedEntry = entry.copyWith(
+          exportVersion: entryAlgorithmVersion,
+          changedWhen: DateTime.now(),
+        );
+        debugPrint("Saving Updated Entry to Database...");
+        await ref
+            .read(entryDatasourceProvider(entry.projectId))
+            .setEntry(updatedEntry);
+        yield LoadingValue.data(value: updatedEntry);
+        return;
+      }
+    }
+  }
+
+  Stream<LoadingValue<SavedEntry?>> _updateEntryVersionFromClip(
       {required SavedEntry entry}) async* {
     final clipDatasource = ref.read(clipDatasourceProvider);
     final file = await getEntryClip(entry);
@@ -256,8 +328,13 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
   }
 
   @override
-  bool _entryNeedsCropping(
-      {required Project project, required EditingEntry entry}) {
+  Future<void> shareEntry({required SavedEntry entry}) async {
+    final file = await getEntryClip(entry);
+    if (file == null) return;
+    Share.shareFiles([file.path]);
+  }
+
+  bool _entryNeedsCropping({required Project project, required Entry entry}) {
     final projectAspectRatio =
         project.resolution.width / project.resolution.height;
     final entryAspectRatio = entry.width / entry.height;
@@ -268,9 +345,7 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
     }
   }
 
-  @override
-  Size _calculateCropping(
-      {required Project project, required EditingEntry entry}) {
+  Size _calculateCropping({required Project project, required Entry entry}) {
     final projectAspectRatio =
         project.resolution.width / project.resolution.height;
     final entryAspectRatio = entry.width / entry.height;

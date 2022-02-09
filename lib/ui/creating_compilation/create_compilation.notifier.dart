@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:broody/model/common/loading_value/loading_value.dart';
 import 'package:broody/service/repositories/project.repository.dart';
 import 'package:broody/ui/creating_compilation/state/create_compilation.state.dart';
+import 'package:dartx/dartx_io.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:video_player/video_player.dart';
@@ -82,7 +82,6 @@ class CreateCompilationNotifier extends StateNotifier<CreateCompilationState> {
     if (s is CreateCompilationExportSuccess) {
       Share.shareFiles(
         [s.file.path],
-        subject: s.savedCompilation.filename,
       );
     }
   }

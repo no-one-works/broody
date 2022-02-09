@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:blur/blur.dart';
 import 'package:broody/core/hook/use_l10n.hook.dart';
 import 'package:broody/core/hook/use_theme.hook.dart';
+import 'package:broody/generated/assets.dart';
 import 'package:broody/routing/router.dart';
 import 'package:broody/ui/shared/better_blob_clipper/better_blob_clipper.dart';
 import 'package:broody/ui/shared/providers/blob/blob.provider.dart';
@@ -31,8 +32,8 @@ class OnboardingPage extends HookConsumerWidget {
     final l10n = useL10n();
     final textTheme = useTextTheme();
     final colorScheme = useColorScheme();
-    final videoController = ref.watch(
-        loopingAssetVideoControllerProvider("assets/video/compilation.mp4"));
+    final videoController =
+        ref.watch(loopingAssetVideoControllerProvider(Assets.videoCompilation));
     var autoSizeGroup = useMemoized(() => AutoSizeGroup());
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -46,11 +47,26 @@ class OnboardingPage extends HookConsumerWidget {
         duration: _appearDuration,
         curve: Curves.ease,
         builder: _appearBuilder,
-        child: FloatingActionButton.extended(
-          onPressed: () => context.router.push(ProjectDetailsRoute()),
-          label: Text(
-            l10n.createProject,
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            FloatingActionButton.extended(
+              onPressed: () => context.router.push(ProjectDetailsRoute()),
+              label: Text(
+                l10n.createProject,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: Spacers.x2l, vertical: Spacers.s),
+              child: Text(
+                l10n.storageRequestInfo,
+                style: textTheme.bodyMedium!.copyWith(color: Colors.white60),
+                textAlign: TextAlign.center,
+              ),
+            )
+          ],
         ),
       ),
       backgroundColor: colorScheme.background,
@@ -179,7 +195,8 @@ class OnboardingPage extends HookConsumerWidget {
                               builder: _appearBuilder,
                               child: Text(
                                 l10n.onboardingLine2,
-                                style: textTheme.headline6?.copyWith(color: Colors.white70),
+                                style: textTheme.headline6
+                                    ?.copyWith(color: Colors.white70),
                               ),
                             ),
                           ],

@@ -115,6 +115,7 @@ class NotificationRepository {
 
     final notifications = <NotificationOnDate>[];
     var date = DateTime.now();
+    final now = date;
     if (projectsWithNotification.isEmpty) return;
     for (int i = 0; i < 64 ~/ projectsWithNotification.length; i++) {
       var currentDate = date.add(Duration(days: i));
@@ -124,7 +125,10 @@ class NotificationRepository {
             hour: project.notificationTime!.hour,
             minute: project.notificationTime!.minute,
             second: 0);
-        if (currentDate.isAfter(DateTime.now()) &&
+
+        if (currentDate.isAfter(now) &&
+            (project.startDate.isAfter(now) ||
+                project.startDate.isAtSameDayAs(now)) &&
             !(i == 0 && projectsWithEntryToday.contains(project.uid))) {
           notifications.add(
             NotificationOnDate(

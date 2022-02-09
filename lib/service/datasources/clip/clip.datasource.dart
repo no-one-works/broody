@@ -13,6 +13,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 
 abstract class IClipDatasource {
+  String get fileFormat;
+
   Stream<LoadingValue<File?>> createClip({
     required Duration? startPoint,
     required Duration duration,
@@ -32,6 +34,11 @@ final clipDatasourceProvider =
 
 class ClipDatasource extends IClipDatasource {
   Session? _currentSession;
+
+  @override
+  String get fileFormat => ".mp4";
+
+  final useX265 = true;
 
   @override
   Stream<LoadingValue<File?>> createClip({
@@ -75,15 +82,20 @@ class ClipDatasource extends IClipDatasource {
   }) async* {
     final destinationDir = temporaryDirectory.subdir("export");
     await destinationDir.create(recursive: true);
-    final destinationFile = destinationDir.file("cut.mp4");
+    final destinationFile = destinationDir.file("cut$fileFormat");
     final filters = centerCropping == null
         ? "-vf scale=${resolution.width.toInt()}x${resolution.height.toInt()}"
         : '-vf "crop=iw-${centerCropping.width}:ih-${centerCropping.height}, scale=${resolution.width.toInt()}x${resolution.height.toInt()}"';
     final seek = startPoint == null ? "" : "-ss $startPoint";
     final end = startPoint == null ? "" : "-t $duration";
-    final preset = highQuality ? "veryslow" : "veryfast";
+    final quality = highQuality ? "-crf 20" : "-crf 27";
+    const preset = "-preset ultrafast";
+    const audioSettings = "-c:a aac -ac 2 -ar 44100";
+    const timescale = "-video_track_timescale 30k";
+    final encoder = useX265 ? "-c:v libx265" : "-c:v libx264";
+    final hevcTag = useX265 ? "-tag:v hvc1" : false;
     final command =
-        '-y $seek -i "${videoSource.path}" -f lavfi -i aevalsrc=0 -shortest $end $filters -video_track_timescale 30k -c:v libx264 -c:a aac -ac 2 -ar 44100 -preset $preset -r 30 "${destinationFile.path}"'
+        '-y $seek -i "${videoSource.path}" -f lavfi -i aevalsrc=0 -shortest $end $filters $timescale $encoder $hevcTag $quality $preset -r 30 $audioSettings "${destinationFile.path}"'
             .replaceAll("  ", " ");
     yield* _executeCommand(
       command,

@@ -16,16 +16,16 @@ class _$AppRouter extends RootStackRouter {
   _$AppRouter(
       {GlobalKey<NavigatorState>? navigatorKey,
       required this.noProjectsGuard,
-      required this.noPermissionsGuard,
       required this.noSelectedProjectGuard,
+      required this.noPermissionsGuard,
       required this.outdatedEntriesGuard})
       : super(navigatorKey);
 
   final NoProjectsGuard noProjectsGuard;
 
-  final NoPermissionsGuard noPermissionsGuard;
-
   final NoSelectedProjectGuard noSelectedProjectGuard;
+
+  final NoPermissionsGuard noPermissionsGuard;
 
   final OutdatedEntriesGuard outdatedEntriesGuard;
 
@@ -152,8 +152,8 @@ class _$AppRouter extends RootStackRouter {
   List<RouteConfig> get routes => [
         RouteConfig(HomeRoute.name, path: '/', guards: [
           noProjectsGuard,
-          noPermissionsGuard,
           noSelectedProjectGuard,
+          noPermissionsGuard,
           outdatedEntriesGuard
         ]),
         RouteConfig(ProjectsRoute.name,

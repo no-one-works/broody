@@ -9,10 +9,10 @@ part of 'compilation.dart';
 _$CreateCompilation _$$CreateCompilationFromJson(Map<String, dynamic> json) =>
     _$CreateCompilation(
       uid: json['uid'] as String,
-      name: json['name'] as String,
-      destination: json['destination'] as String,
       projectUid: json['projectUid'] as String,
+      projectTitle: json['projectTitle'] as String,
       month: json['month'] as int?,
+      destination: json['destination'] as String,
       usedEntries: (json['usedEntries'] as List<dynamic>)
           .map((e) => SavedEntry.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -26,10 +26,10 @@ _$CreateCompilation _$$CreateCompilationFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$CreateCompilationToJson(_$CreateCompilation instance) =>
     <String, dynamic>{
       'uid': instance.uid,
-      'name': instance.name,
-      'destination': instance.destination,
       'projectUid': instance.projectUid,
+      'projectTitle': instance.projectTitle,
       'month': instance.month,
+      'destination': instance.destination,
       'usedEntries': instance.usedEntries.map((e) => e.toJson()).toList(),
       'width': instance.width,
       'height': instance.height,

@@ -57,7 +57,11 @@ class CompilationDatasource extends ICompilationDatasource {
   @override
   Stream<LoadingValue<SavedCompilation?>> createCompilation(
       {required CreateCompilation createCompilation}) async* {
-    final outputCompilationName = "${createCompilation.name}.mp4";
+    final extension =
+        File(createCompilation.usedEntries.first.clipFileName).extension;
+    final outputCompilationName = createCompilation.month == null
+        ? "${createCompilation.projectTitle}$extension"
+        : "${createCompilation.projectTitle}-${createCompilation.month}$extension";
     final dir = Directory(createCompilation.destination);
     if (!await dir.exists()) {
       await dir.create(recursive: true);
@@ -66,6 +70,7 @@ class CompilationDatasource extends ICompilationDatasource {
 
     final path = await getTemporaryDirectory();
     debugPrint(path.path);
+    debugPrint(outputPath);
     final videoSourcesStringFile = File("${path.path}/videoSources.txt");
     final videoSourcesString = createCompilation.usedEntries.map(
         (e) => "file '${createCompilation.projectPath}/${e.clipFileName}'");

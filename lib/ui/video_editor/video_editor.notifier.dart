@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:broody/model/common/loading_value/loading_value.dart';
@@ -53,6 +54,8 @@ class VideoEditorNotifier extends StateNotifier<VideoEditorState> {
 
   final Reader reader;
 
+  Timer? _loopTimer;
+
   void init() async {
     final s = state;
     if (s is VideoEditorEditing) {
@@ -61,13 +64,12 @@ class VideoEditorNotifier extends StateNotifier<VideoEditorState> {
     }
   }
 
-  void pause({bool cancelPreview = false}) {
+  void pause() {
+    if (!mounted) return;
     final s = state;
     if (s is! VideoEditorEditing) return;
-    if (s.previewing && !cancelPreview) return;
-    if (cancelPreview) {
-      s.videoController.setLooping(false);
-    }
+    s.videoController.setLooping(false);
+    _loopTimer?.cancel();
     final onboarding = reader(onboardingRepositoryProvider).onboardingConfig;
     reader(onboardingRepositoryProvider)
         .setOnboardingConfig(onboarding.copyWith(
@@ -80,13 +82,19 @@ class VideoEditorNotifier extends StateNotifier<VideoEditorState> {
     );
   }
 
-  void play({bool cancelPreview = false}) {
+  void loop() async {
+    if (!mounted) return;
     final s = state;
     if (s is! VideoEditorEditing) return;
-    s.videoController.play();
+    s.videoController.setLooping(false);
+    _loopTimer?.cancel();
+    await s.videoController.seekTo(s.entry.startPoint);
+    await s.videoController.play();
+    _loopTimer = Timer(s.entry.duration, () => loop());
     state = s.copyWith(
       isPlaying: true,
-      previewing: cancelPreview ? false : s.previewing,
+      seekPosition: s.entry.startPoint,
+      previewing: false,
     );
   }
 
@@ -96,16 +104,6 @@ class VideoEditorNotifier extends StateNotifier<VideoEditorState> {
     s.videoController.seekTo(value);
     state = s.copyWith(
       seekPosition: value,
-    );
-  }
-
-  void _loop() async {
-    final s = state;
-    if (s is! VideoEditorEditing || s.previewing) return;
-    await s.videoController.seekTo(s.entry.startPoint);
-    await s.videoController.play();
-    state = s.copyWith(
-      seekPosition: s.entry.startPoint,
     );
   }
 
@@ -190,7 +188,6 @@ class VideoEditorNotifier extends StateNotifier<VideoEditorState> {
     final videoPosition = s.videoController.value.position;
     if (!s.previewing &&
         videoPosition >= s.entry.startPoint + s.entry.duration) {
-      _loop();
     } else {
       final startPoint = Duration(
         milliseconds: max(

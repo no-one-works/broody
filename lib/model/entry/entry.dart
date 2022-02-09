@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'entry.freezed.dart';
 part 'entry.g.dart';
 
-const int entryAlgorithmVersion = 2;
+const int entryAlgorithmVersion = 4;
 
 @freezed
 class Entry with _$Entry {

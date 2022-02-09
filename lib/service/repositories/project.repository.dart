@@ -203,7 +203,7 @@ class ProjectRepositoryImpl extends ProjectRepository {
 
     final createCompilation = CreateCompilation(
       uid: ref.read(uidProvider),
-      name: month != null ? "compilation" : "compilation-$month",
+      projectTitle: project.title,
       month: month,
       destination: compilationDir.path,
       projectUid: projectUid,

@@ -134,22 +134,23 @@ class ProjectDetailsPage extends HookConsumerWidget {
                             ),
                           ),
                           vSpace(Spacers.xl),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(l10n.clipDuration),
-                              vSpace(Spacers.xs),
-                              SizedBox(
-                                width: double.infinity,
-                                child: ClipDurationSelector(
-                                  selected: state.project.entryDuration,
-                                  onSelect: notifier.setEntryDuration,
+                          if (state is ProjectDetailsCreating)
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(l10n.clipDuration),
+                                vSpace(Spacers.xs),
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: ClipDurationSelector(
+                                    selected: state.project.entryDuration,
+                                    onSelect: notifier.setEntryDuration,
+                                  ),
                                 ),
-                              ),
-                              vSpace(Spacers.xl),
-                            ],
-                          ),
+                                vSpace(Spacers.xl),
+                              ],
+                            ),
                           Text(
                             l10n.timePeriod,
                           ),

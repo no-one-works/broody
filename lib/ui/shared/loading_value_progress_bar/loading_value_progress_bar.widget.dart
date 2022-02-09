@@ -54,29 +54,33 @@ class LoadingValueProgressBar extends StatelessWidget {
         child: loadingValue.when(
           loading: (progress) => progress == 1
               ? const Icon(Icons.check_circle_rounded)
-              : ProgressBuilder(
-                  progress: progress,
-                  builder: (context, value, child) => Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircularProgressIndicator(
-                        value: value,
-                        color: actualColor,
+              : progress == 0
+                  ? CircularProgressIndicator.adaptive(
+                      valueColor: AlwaysStoppedAnimation(color),
+                    )
+                  : ProgressBuilder(
+                      progress: progress,
+                      builder: (context, value, child) => Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CircularProgressIndicator(
+                            value: value > 0 ? value : null,
+                            color: actualColor,
+                          ),
+                          if (child != null) vSpace(Spacers.s),
+                          if (child != null) child,
+                        ],
                       ),
-                      if (child != null) vSpace(Spacers.s),
-                      if (child != null) child,
-                    ],
-                  ),
-                  child: description == null
-                      ? null
-                      : Text(
-                          description!,
-                          textAlign: TextAlign.center,
-                          style: DefaultTextStyle.of(context)
-                              .style
-                              .copyWith(color: actualColor),
-                        ),
-                ),
+                      child: description == null
+                          ? null
+                          : Text(
+                              description!,
+                              textAlign: TextAlign.center,
+                              style: DefaultTextStyle.of(context)
+                                  .style
+                                  .copyWith(color: actualColor),
+                            ),
+                    ),
           data: (_) => const Icon(Icons.check_circle_rounded),
           error: (_, __) => const Icon(Icons.error_rounded),
         ),

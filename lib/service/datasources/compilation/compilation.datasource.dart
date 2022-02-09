@@ -154,9 +154,8 @@ class CompilationDatasource extends ICompilationDatasource {
     final outputCompilationName = compilation.month == null
         ? compilation.projectTitle
         : "${compilation.projectTitle}-${compilation.month}";
-    final filename = outputCompilationName
-        .replaceAll(RegExp(r'[ /\\?%*:|"<>]'), '-')
-        .substring(0, 64);
+    final filename =
+        outputCompilationName.replaceAll(RegExp(r'[ /\\?%*:|"<>]'), '-');
     return filename + extension;
   }
 }

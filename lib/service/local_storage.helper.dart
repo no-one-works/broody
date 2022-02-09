@@ -20,10 +20,12 @@ class LocalStorageHelper {
     await Hive.initFlutter();
     //await Hive.deleteBoxFromDisk(compilationBoxKey);
     //await Hive.deleteBoxFromDisk(onboardingBoxKey);
+    //await Hive.deleteBoxFromDisk(compilationBoxKey);
     Hive.registerAdapter(ProjectAdapter());
     Hive.registerAdapter(EntryAdapter());
     Hive.registerAdapter(SavedCompilationAdapter());
     Hive.registerAdapter(OnboardingAdapter());
+
     await Future.wait([
       Hive.openBox<Project>(projectBoxKey),
       Hive.openBox<SavedCompilation>(compilationBoxKey),

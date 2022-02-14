@@ -2,6 +2,7 @@ import 'package:broody/core/hook/use_l10n.hook.dart';
 import 'package:broody/core/hook/use_state_notifier.hook.dart';
 import 'package:broody/core/hook/use_theme.hook.dart';
 import 'package:broody/service/providers/onboarding.providers.dart';
+import 'package:broody/service/providers/video/video_gallery.providers.dart';
 import 'package:broody/ui/shared/providers/video_tile.providers.dart';
 import 'package:broody/ui/theme/spacing.dart';
 import 'package:broody/ui/video_editor/state/video_editor_state.dart';

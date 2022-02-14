@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:broody/core/constants/box_keys.dart';
 import 'package:broody/model/compilation/compilation.dart';
 import 'package:broody/model/entry/entry.dart';
@@ -14,9 +12,7 @@ import 'package:photo_manager/photo_manager.dart';
 
 class LocalStorageHelper {
   static Future<void> initLocalStorage() async {
-    if (Platform.isAndroid) {
-      PhotoManager.clearFileCache();
-    }
+    await PhotoManager.clearFileCache();
     await Hive.initFlutter();
     //await Hive.deleteBoxFromDisk(compilationBoxKey);
     //await Hive.deleteBoxFromDisk(onboardingBoxKey);

@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:broody/model/common/loading_value/loading_value.dart';
 import 'package:broody/service/repositories/project.repository.dart';
 import 'package:broody/ui/creating_compilation/state/create_compilation.state.dart';
-import 'package:dartx/dartx_io.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:share_plus/share_plus.dart';

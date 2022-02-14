@@ -126,6 +126,7 @@ class ProjectDetailsPage extends HookConsumerWidget {
                           TextField(
                             controller: titleController,
                             onChanged: notifier.setTitle,
+                            maxLength: 32,
                             autofocus: state is ProjectDetailsCreating,
                             textCapitalization: TextCapitalization.words,
                             decoration: InputDecoration(

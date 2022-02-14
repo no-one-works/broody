@@ -7,7 +7,7 @@ import 'package:broody/core/constants/box_type_ids.dart';
 import 'package:broody/core/extensions/hive_box.x.dart';
 import 'package:broody/model/common/loading_value/loading_value.dart';
 import 'package:broody/model/compilation/compilation.dart';
-import 'package:collection/src/iterable_extensions.dart';
+import 'package:collection/collection.dart';
 import 'package:dartx/dartx_io.dart';
 import 'package:ffmpeg_kit_flutter_min_gpl/ffmpeg_kit.dart';
 import 'package:ffmpeg_kit_flutter_min_gpl/ffmpeg_kit_config.dart';
@@ -57,16 +57,12 @@ class CompilationDatasource extends ICompilationDatasource {
   @override
   Stream<LoadingValue<SavedCompilation?>> createCompilation(
       {required CreateCompilation createCompilation}) async* {
-    final extension =
-        File(createCompilation.usedEntries.first.clipFileName).extension;
-    final outputCompilationName = createCompilation.month == null
-        ? "${createCompilation.projectTitle}$extension"
-        : "${createCompilation.projectTitle}-${createCompilation.month}$extension";
     final dir = Directory(createCompilation.destination);
     if (!await dir.exists()) {
       await dir.create(recursive: true);
     }
-    final outputPath = "${dir.path}/$outputCompilationName";
+    final filename = _getFilenameForCompilation(compilation: createCompilation);
+    final outputPath = "${dir.path}/$filename";
 
     final path = await getTemporaryDirectory();
     debugPrint(path.path);
@@ -148,6 +144,19 @@ class CompilationDatasource extends ICompilationDatasource {
     return compilations.firstWhereOrNull(
       (c) => c.projectUid == projectUid && c.month == month,
     );
+  }
+
+  String _getFilenameForCompilation({
+    required CreateCompilation compilation,
+  }) {
+    final extension =
+        File(compilation.usedEntries.first.clipFileName).extension;
+    final outputCompilationName = compilation.month == null
+        ? compilation.projectTitle
+        : "${compilation.projectTitle}-${compilation.month}";
+    final filename =
+        outputCompilationName.replaceAll(RegExp(r'[ /\\?%*:|"<>]'), '-');
+    return filename + extension;
   }
 }
 

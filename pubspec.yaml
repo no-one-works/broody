@@ -1,9 +1,9 @@
 name: broody
-description: Your personal meme diary
+description: Your daily video diary app
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 0.0.1+7
+version: 1.0.0+10
 
 environment:
   sdk: ">=2.14.0 <3.0.0"

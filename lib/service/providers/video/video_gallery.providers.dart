@@ -97,7 +97,7 @@ final galleryVideoIsLocalProvider =
 final assetEntityFileProvider =
     FutureProvider.autoDispose.family<File?, AssetEntity>(
   (ref, AssetEntity entity) async {
-    debugPrint("Obtaining File");
+    debugPrint("Obtaining Converted File");
     File? file = await entity.file;
     if (file == null) {
       debugPrint("Fallback to originFile");

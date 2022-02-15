@@ -41,6 +41,7 @@ class GalleryVideoDatasource implements IGalleryVideoDatasource {
       //onlyAll: true,
       hasAll: true,
       filterOption: FilterOptionGroup(
+        containsLivePhotos: false,
         orders: const [
           OrderOption(type: OrderOptionType.createDate, asc: false)
         ],
@@ -64,7 +65,7 @@ class GalleryVideoDatasource implements IGalleryVideoDatasource {
     required int page,
     required int perPage,
   }) {
-    return pathEntity.getAssetListPaged(page, perPage);
+    return pathEntity.getAssetListPaged(page: page, size: perPage);
   }
 
   @override

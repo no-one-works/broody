@@ -9,7 +9,7 @@ import 'package:broody/routing/router.dart';
 import 'package:broody/service/providers/entry.providers.dart';
 import 'package:broody/service/providers/video/video_gallery.providers.dart';
 import 'package:broody/ui/shared/better_blob_clipper/better_blob_clipper.dart';
-import 'package:broody/ui/shared/gallery_video/video_thumbnail.widget.dart';
+import 'package:broody/ui/shared/gallery_video/vlc_thumbnail.widget.dart';
 import 'package:broody/ui/shared/providers/blob/blob.provider.dart';
 import 'package:broody/ui/shared/providers/blob/request/blob_request.dart';
 import 'package:broody/ui/shared/providers/color/color.providers.dart';
@@ -53,7 +53,7 @@ class DayPage extends HookConsumerWidget {
         (pageOffset == 0 || !Platform.isAndroid && pageOffset.round() == 0);
 
     final videoControllerAsync = entry != null && loadVideoController
-        ? ref.watch(entryVideoControllerProvider(entry!))
+        ? ref.watch(vlcEntryVideoControllerProvider(entry!))
         : null;
 
     final blurHashImage = entry != null ? BlurHashImage(entry!.blurHash) : null;
@@ -68,7 +68,7 @@ class DayPage extends HookConsumerWidget {
 
     useEffect(() {
       if (videoController != null) {
-        videoController.setVolume(Curves.easeIn.transform(videoVolume));
+        videoController.setVolumeRelative(videoVolume);
       }
     }, [videoController, videoVolume]);
 

@@ -7,7 +7,7 @@ import 'package:broody/service/providers/project.providers.dart';
 import 'package:broody/service/providers/video/video_gallery.providers.dart';
 import 'package:broody/service/repositories/entry.repository.dart';
 import 'package:broody/service/repositories/onboarding.repository.dart';
-import 'package:broody/ui/shared/providers/video_player_controller.provider.dart';
+import 'package:broody/ui/shared/providers/video/video_player_controller.provider.dart';
 import 'package:broody/ui/video_editor/state/video_editor_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

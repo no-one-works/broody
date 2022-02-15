@@ -7,7 +7,7 @@ import 'package:broody/routing/router.dart';
 import 'package:broody/ui/shared/better_blob_clipper/better_blob_clipper.dart';
 import 'package:broody/ui/shared/providers/blob/blob.provider.dart';
 import 'package:broody/ui/shared/providers/blob/request/blob_request.dart';
-import 'package:broody/ui/shared/providers/video_player_controller.provider.dart';
+import 'package:broody/ui/shared/providers/video/video_player_controller.provider.dart';
 import 'package:broody/ui/shared/tween_animation_builder_delay/tween_animation_builder_delay.dart';
 import 'package:broody/ui/theme/spacing.dart';
 import 'package:broody/ui/theme/transitions.dart';

@@ -4,7 +4,7 @@ import 'package:broody/core/hook/use_theme.hook.dart';
 import 'package:broody/routing/router.dart';
 import 'package:broody/service/providers/video/video_gallery.providers.dart';
 import 'package:broody/ui/shared/bouncy_pressable/bouncy_pressable.widget.dart';
-import 'package:broody/ui/shared/providers/video_player_controller.provider.dart';
+import 'package:broody/ui/shared/providers/video/video_player_controller.provider.dart';
 import 'package:broody/ui/theme/spacing.dart';
 import 'package:broody/ui/theme/transitions.dart';
 import 'package:flutter/cupertino.dart';

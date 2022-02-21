@@ -84,9 +84,8 @@ final selectedProjectEntriesProvider =
 });
 
 final projectMonthCompleteProvider =
-    Provider.autoDispose.family<ProjectMonth?, int>((ref, month) {
-  assert(month >= 1 && month <= 12);
-  final days = DateTime(2000, month + 1, 0).day;
+    Provider.autoDispose.family<ProjectMonth?, DateTime>((ref, month) {
+  final days = DateTime(month.year, month.month + 1, 0).day;
   final project = ref.watch(selectedProjectProvider);
   if (project == null) return null;
   return ref.watch(selectedProjectEntriesProvider.select(
@@ -94,7 +93,35 @@ final projectMonthCompleteProvider =
       data: (entries) => ProjectMonth._(
         project,
         month,
-        entries.where((entry) => entry.day.month == month).length == days,
+        entries
+                .where((entry) =>
+                    entry.day.year == month.year &&
+                    entry.day.month == month.month)
+                .length ==
+            days,
+      ),
+      orElse: () => null,
+    ),
+  ));
+});
+
+final projectMonthEndedProvider =
+    Provider.autoDispose.family<ProjectMonth?, DateTime>((ref, month) {
+  final lastDay = DateTime(month.year, month.month + 1, 0);
+  final project = ref.watch(selectedProjectProvider);
+  if (project == null) return null;
+  return ref.watch(selectedProjectEntriesProvider.select(
+    (value) => value.maybeWhen(
+      data: (entries) => ProjectMonth._(
+        project,
+        month,
+        entries
+                    .where((entry) =>
+                        entry.day.year == month.year &&
+                        entry.day.month == month.month)
+                    .length >
+                1 &&
+            lastDay.endOfDay().isBefore(DateTime.now()),
       ),
       orElse: () => null,
     ),
@@ -105,6 +132,6 @@ class ProjectMonth {
   ProjectMonth._(this.project, this.month, this.complete);
 
   final Project project;
-  final int month;
+  final DateTime month;
   final bool complete;
 }

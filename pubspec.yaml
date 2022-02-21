@@ -43,10 +43,7 @@ dependencies:
   duration: ^3.0.8
   video_player: ^2.2.18
   ffmpeg_kit_flutter_min_gpl: ^4.5.1
-  photo_manager:
-    git:
-      url: git@github.com:fluttercandies/flutter_photo_manager.git
-      ref: improve-video-export
+  photo_manager: ^2.0.0-dev.11
   sliver_tools: ^0.2.5
   blur: ^3.0.0
   adaptive_dialog: ^1.3.0
@@ -57,10 +54,11 @@ dependencies:
   blobs: ^2.0.0
   material_color_utilities: ^0.1.4
   share_plus: ^3.0.4
-  flutter_local_notifications: ^9.2.0
+  flutter_local_notifications: ^9.3.2
   flutter_native_timezone: ^2.0.0
   auto_size_text: ^3.0.0
   package_info: ^2.0.2
+  wakelock: ^0.6.1+1
 
 dev_dependencies:
   flutter_test:

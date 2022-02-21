@@ -36,7 +36,7 @@ final galleryVideoControllerProvider =
 
 final galleryVideoThumbnailProvider =
     FutureProvider.autoDispose.family((ref, AssetEntity entity) async {
-  final thumb = await entity.thumbData;
+  final thumb = await entity.thumbnailData;
   if (thumb == null) {
     throw Exception("Couldn't retrieve thumbnail for video!");
   }

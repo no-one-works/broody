@@ -1,5 +1,6 @@
 import 'package:broody/core/hook/use_l10n.hook.dart';
 import 'package:broody/core/hook/use_theme.hook.dart';
+import 'package:broody/core/hook/use_wakelock.hook.dart';
 import 'package:broody/model/common/loading_value/loading_value.dart';
 import 'package:broody/model/entry/entry.dart';
 import 'package:broody/model/project/project.dart';
@@ -27,6 +28,7 @@ class UpdateEntriesPage extends HookConsumerWidget {
     final l10n = useL10n();
     final textTheme = useTextTheme();
     final colorScheme = useColorScheme();
+    useWakelock();
     final outdatedEntries =
         ref.watch(projectOutdatedEntriesProvider(project.uid));
 

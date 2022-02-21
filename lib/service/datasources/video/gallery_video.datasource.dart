@@ -31,7 +31,6 @@ class GalleryVideoDatasource implements IGalleryVideoDatasource {
   Future<AssetPathEntity?> getFilteredAlbum(
       {required Duration minDuration, required DateTime date}) async {
     var result = await PhotoManager.requestPermissionExtend();
-    //TODO do something less app killing
     if (!result.isAuth) {
       throw const FileSystemException(
           "Couldn't access gallery since there was no permission!");

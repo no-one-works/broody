@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:broody/core/extensions/date_time.x.dart';
 import 'package:broody/model/notification/notification_on_date.dart';
 import 'package:broody/model/project/project.dart';
-import 'package:dartx/dartx.dart';
+import 'package:dartx/dartx.dart' as x;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -114,22 +115,35 @@ class NotificationRepository {
         projects.where((p) => p.notificationTime != null);
 
     final notifications = <NotificationOnDate>[];
-    var date = DateTime.now();
-    final now = date;
+    final now = DateTime.now();
     if (projectsWithNotification.isEmpty) return;
     for (int i = 0; i < 64 ~/ projectsWithNotification.length; i++) {
-      var currentDate = date.add(Duration(days: i));
+      var currentDate = now.add(Duration(days: i));
       for (var project in projectsWithNotification) {
         final isFirst = currentDate.isAtSameDayAs(project.startDate);
         currentDate = currentDate.copyWith(
-            hour: project.notificationTime!.hour,
-            minute: project.notificationTime!.minute,
-            second: 0);
+          hour: project.notificationTime!.hour,
+          minute: project.notificationTime!.minute,
+          second: 0,
+          millisecond: 0,
+        );
+
+        // Current date is today and project has an entry today
+        final todayAndDone = (currentDate.isSameDayAs(now) &&
+            projectsWithEntryToday.contains(project.uid));
+
+        // Current date is after this project ended
+        final afterEnd =
+            project.endDate.startOfDay().isBefore(currentDate.startOfDay());
+
+        // Current date is still before the project started
+        final beforeStart =
+            project.startDate.startOfDay().isAfter(currentDate.startOfDay());
 
         if (currentDate.isAfter(now) &&
-            (project.startDate.isAfter(now) ||
-                project.startDate.isAtSameDayAs(now)) &&
-            !(i == 0 && projectsWithEntryToday.contains(project.uid))) {
+            !afterEnd &&
+            !beforeStart &&
+            !todayAndDone) {
           notifications.add(
             NotificationOnDate(
               dateTime: currentDate.copyWith(

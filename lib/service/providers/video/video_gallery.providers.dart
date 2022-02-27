@@ -117,6 +117,7 @@ final _assetEntitySizeProvider =
     StreamProvider.autoDispose.family<Size, AssetEntity>(
   (ref, AssetEntity entity) async* {
     yield entity.orientatedSize;
+
     final thumbData = await entity.thumbnailData;
     //TODO load video instead
     if (thumbData == null) return;

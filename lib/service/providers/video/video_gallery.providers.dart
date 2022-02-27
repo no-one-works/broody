@@ -5,6 +5,8 @@ import 'package:broody/core/extensions/image.x.dart';
 import 'package:broody/model/common/loading_value/loading_value.dart';
 import 'package:broody/service/providers/project.providers.dart';
 import 'package:broody/service/repositories/video_gallery.repository.dart';
+import 'package:collection/collection.dart';
+import 'package:ffmpeg_kit_flutter_min_gpl/ffprobe_kit.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -107,28 +109,52 @@ final assetEntityFileProvider =
   },
 );
 
+final assetEntityVideoSizeProvider =
+    FutureProvider.autoDispose.family<Size, AssetEntity>((ref, entity) async {
+  final projectResolution = ref.watch(selectedProjectProvider)!.resolution;
+  final file = await ref.watch(assetEntityFileProvider(entity).future);
+  if (file == null) {
+    return projectResolution;
+  }
+  final session = await FFprobeKit.getMediaInformation(file.path);
+  final information = session.getMediaInformation();
+
+  if (information == null) {
+    return projectResolution;
+  }
+  final stream = information
+      .getStreams()
+      .firstWhereOrNull((s) => s.getWidth() != null && s.getHeight() != null);
+  final width = stream?.getWidth() ?? projectResolution.width;
+  final height = stream?.getHeight() ?? projectResolution.height;
+  return Size(width.toDouble(), height.toDouble());
+});
+
 final assetEntitySizeProvider =
     Provider.autoDispose.family<Size, AssetEntity>((ref, entity) {
-  return ref.watch(_assetEntitySizeProvider(entity)).value ??
-      entity.orientatedSize;
+  final projectResolution = ref.watch(selectedProjectProvider)!.resolution;
+  return ref.watch(_assetEntitySizeProvider(entity)).value ?? projectResolution;
 });
 
 final _assetEntitySizeProvider =
     StreamProvider.autoDispose.family<Size, AssetEntity>(
   (ref, AssetEntity entity) async* {
-    yield entity.orientatedSize;
+    final size = entity.orientatedSize.aspectRatio == 0
+        ? await ref.watch(assetEntityVideoSizeProvider(entity).future)
+        : entity.orientatedSize;
+    yield size;
     final thumbData = await entity.thumbnailData;
-    //TODO load video instead
-    if (thumbData == null) return;
+    if (thumbData == null) {
+      return;
+    }
     final image = await decodeImageOnIsolate(thumbData);
     if (image == null) return;
-    final entityAspect = entity.orientatedSize.aspectRatio;
+    final entityAspect = size.aspectRatio;
     final imageAspect = image.width / image.height;
     final isFlipped =
         (1 / entityAspect - imageAspect).abs() < (entityAspect - imageAspect);
     if (isFlipped) {
-      yield Size(entity.orientatedHeight.toDouble(),
-          entity.orientatedWidth.toDouble());
+      yield Size(size.height.toDouble(), size.width.toDouble());
     }
   },
 );

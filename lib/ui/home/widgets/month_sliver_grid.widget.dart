@@ -29,7 +29,7 @@ class MonthSliverGrid extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final month = dates.first.month;
-    ref.listen<ProjectMonth?>(projectMonthCompleteProvider(month),
+    ref.listen<ProjectMonth?>(projectMonthCompleteProvider(dates.first),
         (previous, next) {
       if (next != null &&
           next.project == previous?.project &&
@@ -48,7 +48,7 @@ class MonthSliverGrid extends HookConsumerWidget {
     final dateFormat = useDateFormat();
     final monthName = dateFormat.dateSymbols.MONTHS[month - 1];
     final selectedProject = ref.watch(selectedProjectProvider)!;
-    final monthComplete = ref.watch(projectMonthCompleteProvider(month));
+    final monthEnded = ref.watch(projectMonthEndedProvider(dates.first));
 
     return SliverStickyHeader.builder(
       builder: (context, state) => Stack(
@@ -88,7 +88,7 @@ class MonthSliverGrid extends HookConsumerWidget {
                               : textTheme.headline5,
                         ),
                       ),
-                      if (monthComplete != null && monthComplete.complete)
+                      if (monthEnded != null && monthEnded.complete)
                         GestureDetector(
                           onTap: () {
                             context.router.navigate(

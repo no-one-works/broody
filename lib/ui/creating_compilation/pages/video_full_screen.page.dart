@@ -27,7 +27,6 @@ class VideoFullScreenPage extends HookConsumerWidget {
 
     final interacting = useState(false);
     final controlsVisible = useValueListenable(timer) != 1 || interacting.value;
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,

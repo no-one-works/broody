@@ -31,7 +31,6 @@ class GalleryVideoDatasource implements IGalleryVideoDatasource {
   Future<AssetPathEntity?> getFilteredAlbum(
       {required Duration minDuration, required DateTime date}) async {
     var result = await PhotoManager.requestPermissionExtend();
-    //TODO do something less app killing
     if (!result.isAuth) {
       throw const FileSystemException(
           "Couldn't access gallery since there was no permission!");
@@ -41,6 +40,7 @@ class GalleryVideoDatasource implements IGalleryVideoDatasource {
       //onlyAll: true,
       hasAll: true,
       filterOption: FilterOptionGroup(
+        containsLivePhotos: false,
         orders: const [
           OrderOption(type: OrderOptionType.createDate, asc: false)
         ],
@@ -64,7 +64,7 @@ class GalleryVideoDatasource implements IGalleryVideoDatasource {
     required int page,
     required int perPage,
   }) {
-    return pathEntity.getAssetListPaged(page, perPage);
+    return pathEntity.getAssetListPaged(page: page, size: perPage);
   }
 
   @override

@@ -38,7 +38,7 @@ class ClipDatasource extends IClipDatasource {
   @override
   String get fileFormat => ".mp4";
 
-  final useX265 = true;
+  final useX265 = !Platform.isAndroid;
 
   @override
   Stream<LoadingValue<File?>> createClip({
@@ -88,14 +88,16 @@ class ClipDatasource extends IClipDatasource {
         : '-vf "crop=iw-${centerCropping.width}:ih-${centerCropping.height}, scale=${resolution.width.toInt()}x${resolution.height.toInt()}"';
     final seek = startPoint == null ? "" : "-ss $startPoint";
     final end = startPoint == null ? "" : "-t $duration";
-    final quality = highQuality ? "-crf 20" : "-crf 27";
+    final quality = highQuality ? "-crf 20" : "-crf 29";
     const preset = "-preset ultrafast";
     const audioSettings = "-c:a aac -ac 2 -ar 44100";
     const timescale = "-video_track_timescale 30k";
     final encoder = useX265 ? "-c:v libx265" : "-c:v libx264";
-    final hevcTag = useX265 ? "-tag:v hvc1" : false;
+    final hevcTag = useX265 ? "-tag:v hvc1" : "";
+    final tune = useX265 ? "-tune zerolatency" : "";
+    const pixelFormat = "-pix_fmt yuv420p";
     final command =
-        '-y $seek -i "${videoSource.path}" -f lavfi -i aevalsrc=0 -shortest $end $filters $timescale $encoder $hevcTag $quality $preset -r 30 $audioSettings "${destinationFile.path}"'
+        '-y $seek -i "${videoSource.path}" -f lavfi -i aevalsrc=0 -shortest $end $filters $timescale $encoder $hevcTag $pixelFormat $quality $preset $tune -r 30 $audioSettings "${destinationFile.path}"'
             .replaceAll("  ", " ");
     yield* _executeCommand(
       command,

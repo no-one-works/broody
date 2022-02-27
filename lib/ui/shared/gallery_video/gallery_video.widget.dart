@@ -1,3 +1,4 @@
+import 'package:broody/service/providers/video/video_gallery.providers.dart';
 import 'package:broody/ui/shared/gallery_video/video_thumbnail.widget.dart';
 import 'package:broody/ui/shared/providers/video_tile.providers.dart';
 import 'package:flutter/material.dart';

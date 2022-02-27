@@ -183,8 +183,7 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
   @override
   Stream<LoadingValue<SavedEntry?>> updateEntryVersion(
       {required SavedEntry entry}) async* {
-    final assetEntity =
-        await PhotoManager.refreshAssetProperties(entry.assetEntityId);
+    final assetEntity = await AssetEntity.fromId(entry.assetEntityId);
     debugPrint("Loading original assetEntity for ${entry.uid}");
     final originalFile = (await assetEntity?.loadFile());
     if (originalFile == null) {

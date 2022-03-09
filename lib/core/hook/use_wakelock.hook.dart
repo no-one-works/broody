@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:wakelock/wakelock.dart';
 
 void useWakelock({bool endWhenCovered = true}) {
-  useTopEffect(
+  useOnTop(
     onBecameTop: () {
       Wakelock.enable().then((value) => debugPrint("Wakelock enabled."));
     },

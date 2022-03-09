@@ -5,10 +5,9 @@ import 'package:broody/core/hook/use_l10n.hook.dart';
 import 'package:broody/core/hook/use_theme.hook.dart';
 import 'package:broody/routing/router.dart';
 import 'package:broody/service/providers/entry.providers.dart';
-import 'package:broody/service/providers/project.providers.dart';
 import 'package:broody/service/providers/video/video_gallery.providers.dart';
-import 'package:broody/service/repositories/video_gallery.repository.dart';
 import 'package:broody/ui/shared/dialogs/dialogs.dart';
+import 'package:broody/ui/shared/record_button/record_button.widget.dart';
 import 'package:broody/ui/theme/spacing.dart';
 import 'package:broody/ui/theme/transitions.dart';
 import 'package:broody/ui/video_picker/widgets/video_tile/video_tile.widget.dart';
@@ -86,13 +85,7 @@ class VideoPickerPage extends HookConsumerWidget {
     }, [entry.value, videos.value]);
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: !date.isToday()
-          ? null
-          : FloatingActionButton.extended(
-              onPressed: () => _record(context, ref),
-              icon: const Icon(Icons.videocam_rounded),
-              label: Text(l10n.record),
-            ),
+      floatingActionButton: !date.isToday() ? null : const RecordButton(),
       appBar: AppBar(
         actions: [
           if (entry.value != null)
@@ -155,19 +148,5 @@ class VideoPickerPage extends HookConsumerWidget {
         ),
       ),
     );
-  }
-
-  Future<void> _record(BuildContext context, WidgetRef ref) async {
-    final assetEntity =
-        await ref.read(videoGalleryRepositoryProvider).recordVideo();
-    final duration = ref.read(projectClipDurationProvider);
-    if (assetEntity == null || duration == null) return;
-    if (assetEntity.videoDuration > duration) {
-      await context.router.push(
-        VideoEditorRoute(assetEntity: assetEntity),
-      );
-    } else {
-      showClipTooShortDialog(context, ref, entity: assetEntity);
-    }
   }
 }

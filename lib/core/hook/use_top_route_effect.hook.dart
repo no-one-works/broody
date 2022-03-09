@@ -7,7 +7,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 /// If [endWhenCovered] is true (default), [onTopEnded] will be called when
 /// another route is pushed on top of the current one. Otherwise it will only
 /// be called when the widget's state is unmounted.
-void useTopEffect({
+bool useOnTop({
   VoidCallback? onBecameTop,
   VoidCallback? onTopEnded,
   bool endWhenCovered = true,
@@ -17,6 +17,7 @@ void useTopEffect({
   final isOnTop = mounted && (!endWhenCovered || routeIsActive);
   useEffect(
     () {
+      print("EFFECT  $isOnTop");
       if (isOnTop) {
         onBecameTop?.call();
         return onTopEnded;
@@ -25,4 +26,5 @@ void useTopEffect({
     },
     [isOnTop],
   );
+  return isOnTop;
 }

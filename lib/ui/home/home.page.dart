@@ -2,17 +2,15 @@ import 'dart:io';
 
 import 'package:broody/core/hook/use_l10n.hook.dart';
 import 'package:broody/core/hook/use_theme.hook.dart';
-import 'package:broody/routing/router.dart';
 import 'package:broody/service/providers/notification.providers.dart';
 import 'package:broody/service/providers/project.providers.dart';
-import 'package:broody/service/repositories/video_gallery.repository.dart';
 import 'package:broody/ui/home/widgets/home_app_bar.widget.dart';
 import 'package:broody/ui/home/widgets/month_sliver_grid.widget.dart';
 import 'package:broody/ui/home/widgets/project_completed_info.widget.dart';
 import 'package:broody/ui/home/widgets/project_not_started.widget.dart';
 import 'package:broody/ui/home/widgets/two_finger_drag.widget.dart';
 import 'package:broody/ui/info/widgets/reveal_info.widget.dart';
-import 'package:broody/ui/shared/dialogs/dialogs.dart';
+import 'package:broody/ui/shared/record_button/record_button.widget.dart';
 import 'package:broody/ui/theme/spacing.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +34,6 @@ class HomePage extends HookConsumerWidget {
     final readOnly = ref.watch(selectedProjectReadOnlyProvider);
     final hasEnded = ref.watch(projectHasEndedProvider(project));
     final isComplete = ref.watch(projectIsCompleteProvider(project));
-
     final datesPerMonth = useMemoized(
       () => groupBy(dates, (DateTime date) => date.month).values.toList(),
       [dates],
@@ -71,13 +68,8 @@ class HomePage extends HookConsumerWidget {
           backgroundColor: colorScheme.background,
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
-          floatingActionButton: hasEnded || dates.isEmpty
-              ? null
-              : FloatingActionButton.extended(
-                  onPressed: () => _record(context, ref),
-                  icon: const Icon(Icons.videocam_rounded),
-                  label: Text(l10n.record),
-                ),
+          floatingActionButton:
+              hasEnded || dates.isEmpty ? null : const RecordButton(),
           body: Scrollbar(
             controller: scrollController,
             child: TwoFingerPointerWidget(
@@ -123,20 +115,5 @@ class HomePage extends HookConsumerWidget {
         const RevealInfo(),
       ],
     );
-  }
-
-  Future<void> _record(BuildContext context, WidgetRef ref) async {
-    final assetEntity =
-        await ref.read(videoGalleryRepositoryProvider).recordVideo();
-    final duration = ref.read(projectClipDurationProvider);
-    if (assetEntity == null || duration == null) return;
-    if (assetEntity.videoDuration > duration) {
-      await context.router.pushAll([
-        VideoPickerRoute(),
-        VideoEditorRoute(assetEntity: assetEntity),
-      ]);
-    } else {
-      showClipTooShortDialog(context, ref, entity: assetEntity);
-    }
   }
 }

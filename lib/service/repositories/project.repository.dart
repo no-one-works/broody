@@ -81,7 +81,7 @@ class ProjectRepositoryImpl extends ProjectRepository {
       projects$.map(_getActiveProjectFromProjects);
 
   Project? _getActiveProjectFromProjects(List<Project> projects) =>
-      projects.firstWhereOrNull((p) => DateTime.now().isBetween(
+      projects.lastWhereOrNull((p) => DateTime.now().isBetween(
             start: p.startDate,
             end: p.endDate,
           ));

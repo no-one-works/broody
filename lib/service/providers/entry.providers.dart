@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:broody/core/extensions/date_time.x.dart';
 import 'package:broody/model/entry/entry.dart';
 import 'package:broody/service/datasources/entry/entry.datasource.dart';
-import 'package:broody/service/providers/project.providers.dart';
+import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/service/repositories/entry.repository.dart';
 import 'package:broody/ui/shared/providers/video_player_controller.provider.dart';
 import 'package:collection/collection.dart';

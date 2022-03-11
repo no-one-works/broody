@@ -5,7 +5,7 @@ import 'package:broody/model/common/loading_value/loading_value.dart';
 import 'package:broody/model/entry/entry.dart';
 import 'package:broody/model/project/project.dart';
 import 'package:broody/routing/router.dart';
-import 'package:broody/service/providers/project.providers.dart';
+import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/service/repositories/project.repository.dart';
 import 'package:broody/ui/shared/bouncy_pressable/bouncy_pressable.widget.dart';
 import 'package:broody/ui/shared/loading_value_progress_bar/loading_value_progress_bar.widget.dart';

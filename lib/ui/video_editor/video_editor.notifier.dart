@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:broody/model/common/loading_value/loading_value.dart';
 import 'package:broody/model/entry/entry.dart';
-import 'package:broody/service/providers/project.providers.dart';
+import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/service/providers/video/video_gallery.providers.dart';
 import 'package:broody/service/repositories/entry.repository.dart';
 import 'package:broody/service/repositories/onboarding.repository.dart';

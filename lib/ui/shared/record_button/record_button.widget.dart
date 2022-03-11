@@ -1,6 +1,6 @@
 import 'package:broody/core/hook/use_l10n.hook.dart';
 import 'package:broody/routing/router.dart';
-import 'package:broody/service/providers/project.providers.dart';
+import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/service/repositories/video_gallery.repository.dart';
 import 'package:broody/ui/shared/dialogs/dialogs.dart';
 import 'package:flutter/material.dart';

@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:broody/core/extensions/image.x.dart';
 import 'package:broody/core/extensions/scheme.x.dart';
-import 'package:broody/service/providers/project.providers.dart';
+import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/ui/shared/providers/color/request/color_scheme_request.dart';
 import 'package:broody/ui/shared/providers/video_tile.providers.dart';
 import 'package:broody/ui/theme/colors.dart';

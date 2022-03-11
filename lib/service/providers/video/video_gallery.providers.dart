@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:broody/core/extensions/image.x.dart';
 import 'package:broody/model/common/loading_value/loading_value.dart';
-import 'package:broody/service/providers/project.providers.dart';
+import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/service/repositories/video_gallery.repository.dart';
 import 'package:collection/collection.dart';
 import 'package:ffmpeg_kit_flutter_min_gpl/ffprobe_kit.dart';

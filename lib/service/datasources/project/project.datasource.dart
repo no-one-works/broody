@@ -7,6 +7,7 @@ import 'package:broody/core/extensions/hive_box.x.dart';
 import 'package:broody/model/project/project.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:rxdart/rxdart.dart';
 
 abstract class IProjectDatasource {
   List<Project> get projects;
@@ -18,6 +19,14 @@ abstract class IProjectDatasource {
   FutureOr<void> deleteProject(String uid);
 
   Project? getProject(String uid);
+
+  Stream<Project?> watchProject(String uid);
+
+  Project? get activeProject;
+
+  Stream<Project?> get activeProject$;
+
+  FutureOr<void> setActiveProject(Project? project);
 }
 
 final projectDatasourceProvider =
@@ -25,6 +34,8 @@ final projectDatasourceProvider =
 
 class ProjectDatasourceImpl implements IProjectDatasource {
   late final Box<Project> _box = Hive.box<Project>(projectBoxKey);
+  late final Box<String> _activeProjectBox =
+      Hive.box<String>(activeProjectBoxKey);
 
   @override
   List<Project> get projects => _box.values.toList();
@@ -45,6 +56,39 @@ class ProjectDatasourceImpl implements IProjectDatasource {
   @override
   Project? getProject(String uid) {
     return _box.get(uid);
+  }
+
+  @override
+  Stream<Project?> watchProject(String uid) {
+    return _box
+        .watch(key: uid)
+        .map((event) => event.value as Project?)
+        .startWith(getProject(uid));
+  }
+
+  @override
+  Project? get activeProject {
+    String? uid = _activeProjectBox.get(activeProjectBoxKey);
+    return uid == null ? null : getProject(uid);
+  }
+
+  @override
+  Stream<Project?> get activeProject$ => _activeProjectBox
+      .watch(key: activeProjectBoxKey)
+      .switchMap(
+        (event) => event.value == null
+            ? Stream.value(null)
+            : watchProject(event.value),
+      )
+      .startWith(activeProject);
+
+  @override
+  FutureOr<void> setActiveProject(Project? project) {
+    if (project == null) {
+      _activeProjectBox.delete(activeProjectBoxKey);
+    } else {
+      _activeProjectBox.put(activeProjectBoxKey, project.uid);
+    }
   }
 }
 

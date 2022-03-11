@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:broody/core/hook/use_l10n.hook.dart';
 import 'package:broody/core/hook/use_theme.hook.dart';
 import 'package:broody/routing/router.dart';
-import 'package:broody/service/providers/project.providers.dart';
+import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/ui/project_details/project_details.notifier.dart';
 import 'package:broody/ui/project_details/state/project_details.state.dart';
 import 'package:broody/ui/project_details/widgets/project_color_picker.widget.dart';

@@ -1,7 +1,7 @@
 import 'package:broody/core/hook/use_l10n.hook.dart';
 import 'package:broody/core/hook/use_theme.hook.dart';
 import 'package:broody/core/hook/use_wakelock.hook.dart';
-import 'package:broody/service/providers/project.providers.dart';
+import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/ui/creating_compilation/create_compilation.notifier.dart';
 import 'package:broody/ui/creating_compilation/state/create_compilation.state.dart';
 import 'package:broody/ui/creating_compilation/widgets/compilation_success.widget.dart';

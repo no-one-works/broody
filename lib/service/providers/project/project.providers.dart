@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:broody/core/extensions/date_time.x.dart';
 import 'package:broody/model/entry/entry.dart';
 import 'package:broody/model/project/project.dart';
+import 'package:broody/service/providers/project/active_project.notifier.dart';
 import 'package:broody/service/repositories/entry.repository.dart';
 import 'package:broody/service/repositories/project.repository.dart';
 import 'package:collection/collection.dart';
@@ -12,7 +13,8 @@ final projectsProvider = StreamProvider.autoDispose(
     (ref) => ref.watch(projectRepositoryProvider).projects$);
 
 final selectedProjectProvider =
-    StateProvider((ref) => ref.watch(projectRepositoryProvider).activeProject);
+    StateNotifierProvider<ActiveProjectNotifier, Project?>(
+        (ref) => ActiveProjectNotifier(ref.watch(projectRepositoryProvider)));
 
 final projectIsCompleteProvider =
     Provider.autoDispose.family<bool, Project?>((ref, project) {

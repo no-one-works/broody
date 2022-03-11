@@ -17,7 +17,6 @@ bool useOnTop({
   final isOnTop = mounted && (!endWhenCovered || routeIsActive);
   useEffect(
     () {
-      print("EFFECT  $isOnTop");
       if (isOnTop) {
         onBecameTop?.call();
         return onTopEnded;

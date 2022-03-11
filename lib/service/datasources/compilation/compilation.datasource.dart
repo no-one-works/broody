@@ -72,6 +72,12 @@ class CompilationDatasource extends ICompilationDatasource {
         (e) => "file '${createCompilation.projectPath}/${e.clipFileName}'");
     await videoSourcesStringFile.writeAsString(videoSourcesString.join("\n"));
 
+    // Delete existing compilation
+    final f = File(outputPath);
+    if (await f.exists()) {
+      debugPrint("Deleted existing compilation.");
+      await f.delete();
+    }
     var command =
         '-y -f concat -safe 0 -i ${videoSourcesStringFile.path} -c copy "$outputPath"';
 
@@ -97,7 +103,7 @@ class CompilationDatasource extends ICompilationDatasource {
       (Log log) => debugPrint(log.getMessage()),
     );
     final file = await completer.future;
-
+    await file?.setLastModified(DateTime.now());
     final savedCompilation = file == null
         ? null
         : SavedCompilation(

@@ -3,7 +3,7 @@ import 'package:broody/core/hook/use_l10n.hook.dart';
 import 'package:broody/core/hook/use_theme.hook.dart';
 import 'package:broody/model/project/project.dart';
 import 'package:broody/routing/router.dart';
-import 'package:broody/service/providers/project.providers.dart';
+import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/ui/shared/providers/color/color.providers.dart';
 import 'package:broody/ui/shared/providers/color/request/color_scheme_request.dart';
 import 'package:broody/ui/theme/spacing.dart';

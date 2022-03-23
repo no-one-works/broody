@@ -1,5 +1,5 @@
 import 'package:broody/core/extensions/date_time.x.dart';
-import 'package:broody/service/providers/project.providers.dart';
+import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/service/repositories/notification.repository.dart';
 import 'package:broody/service/repositories/project.repository.dart';
 import 'package:broody/ui/project_details/state/project_details.state.dart';

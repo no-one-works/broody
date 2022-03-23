@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:broody/core/hook/use_theme.hook.dart';
 import 'package:broody/routing/router.dart';
 import 'package:broody/service/providers/entry.providers.dart';
-import 'package:broody/service/providers/project.providers.dart';
+import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/service/providers/video/video_gallery.providers.dart';
 import 'package:broody/ui/shared/better_blob_clipper/better_blob_clipper.dart';
 import 'package:broody/ui/shared/bouncy_pressable/bouncy_pressable.widget.dart';

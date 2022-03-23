@@ -2,7 +2,7 @@ import 'package:blur/blur.dart';
 import 'package:broody/core/hook/use_l10n.hook.dart';
 import 'package:broody/core/hook/use_theme.hook.dart';
 import 'package:broody/routing/router.dart';
-import 'package:broody/service/providers/project.providers.dart';
+import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/ui/shared/compilation_button/compilation_button.widget.dart';
 import 'package:broody/ui/theme/spacing.dart';
 import 'package:broody/ui/theme/transitions.dart';

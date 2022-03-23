@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:broody/core/hook/use_l10n.hook.dart';
 import 'package:broody/core/hook/use_theme.hook.dart';
 import 'package:broody/service/providers/notification.providers.dart';
-import 'package:broody/service/providers/project.providers.dart';
+import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/ui/home/widgets/home_app_bar.widget.dart';
 import 'package:broody/ui/home/widgets/month_sliver_grid.widget.dart';
 import 'package:broody/ui/home/widgets/project_completed_info.widget.dart';

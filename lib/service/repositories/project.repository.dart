@@ -11,7 +11,7 @@ import 'package:broody/service/datasources/compilation/compilation.datasource.da
 import 'package:broody/service/datasources/entry/entry.datasource.dart';
 import 'package:broody/service/datasources/project/project.datasource.dart';
 import 'package:broody/service/providers/directory.provider.dart';
-import 'package:broody/service/providers/project.providers.dart';
+import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/service/providers/uuid.provider.dart';
 import 'package:broody/service/repositories/entry.repository.dart';
 import 'package:broody/service/repositories/repository.dart';
@@ -27,6 +27,8 @@ abstract class ProjectRepository extends RepositoryBase {
   Project? get activeProject;
 
   Stream<Project?> get activeProject$;
+
+  FutureOr<void> setActiveProject(Project? project);
 
   List<Project> get projects;
 
@@ -74,17 +76,31 @@ class ProjectRepositoryImpl extends ProjectRepository {
   ProjectRepositoryImpl(ProviderRef ref) : super(ref);
 
   @override
-  Project? get activeProject => _getActiveProjectFromProjects(projects);
+  Project? get activeProject =>
+      ref.read(projectDatasourceProvider).activeProject ??
+      _getActiveProjectFromProjects(projects);
 
   @override
-  Stream<Project?> get activeProject$ =>
-      projects$.map(_getActiveProjectFromProjects);
+  Stream<Project?> get activeProject$ => ref
+      .read(projectDatasourceProvider)
+      .activeProject$
+      .map((p) => p ?? _getActiveProjectFromProjects(projects));
 
   Project? _getActiveProjectFromProjects(List<Project> projects) =>
-      projects.firstWhereOrNull((p) => DateTime.now().isBetween(
+      projects.lastWhereOrNull((p) => DateTime.now().isBetween(
             start: p.startDate,
             end: p.endDate,
           ));
+
+  @override
+  FutureOr<void> setActiveProject(Project? project) {
+    // Only store if the project is active
+    if (project == null ||
+        DateTime.now()
+            .isBetween(start: project.startDate, end: project.endDate)) {
+      ref.read(projectDatasourceProvider).setActiveProject(project);
+    }
+  }
 
   @override
   FutureOr<void> deleteProject(Project project) async {

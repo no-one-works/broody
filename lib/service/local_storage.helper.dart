@@ -24,6 +24,7 @@ class LocalStorageHelper {
 
     await Future.wait([
       Hive.openBox<Project>(projectBoxKey),
+      Hive.openBox<String>(activeProjectBoxKey),
       Hive.openBox<SavedCompilation>(compilationBoxKey),
       Hive.openBox<Onboarding>(onboardingBoxKey),
     ]);

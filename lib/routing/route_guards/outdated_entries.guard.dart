@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:broody/routing/router.dart';
-import 'package:broody/service/providers/project.providers.dart';
+import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class OutdatedEntriesGuard extends AutoRouteGuard {

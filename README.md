@@ -1,7 +1,13 @@
+![Broody Banner](./banner.png)
+
 # Broody
 
 An app that helps you create a video diary with ease.
 Record a clip each day, and Broody will cut together all your memories.
+
+## Download
+[App Store](https://apps.apple.com/de/app/broody-daily-video-diary/id1608589705)
+[Google Play](https://play.google.com/store/apps/details?id=works.noone.broody)
 
 ## Privacy
 This app was created because other apps like it require accounts, accepting privacy policies, or uploading your private 

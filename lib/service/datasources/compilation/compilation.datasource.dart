@@ -5,7 +5,6 @@ import 'dart:io';
 import 'package:broody/core/constants/box_keys.dart';
 import 'package:broody/core/constants/box_type_ids.dart';
 import 'package:broody/core/extensions/hive_box.x.dart';
-import 'package:broody/model/common/loading_value/loading_value.dart';
 import 'package:broody/model/compilation/compilation.dart';
 import 'package:collection/collection.dart';
 import 'package:dartx/dartx_io.dart';
@@ -16,6 +15,7 @@ import 'package:ffmpeg_kit_flutter_min_gpl/return_code.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:loading_value/loading_value.dart';
 import 'package:path_provider/path_provider.dart';
 
 abstract class ICompilationDatasource {
@@ -120,7 +120,7 @@ class CompilationDatasource extends ICompilationDatasource {
     if (savedCompilation != null) {
       setCompilation(savedCompilation);
     }
-    yield LoadingValue.data(value: savedCompilation);
+    yield LoadingValue.data(savedCompilation);
   }
 
   @override

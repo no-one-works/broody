@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:broody/model/common/loading_value/loading_value.dart';
 import 'package:dartx/dartx_io.dart';
 import 'package:ffmpeg_kit_flutter_min_gpl/ffmpeg_kit.dart';
 import 'package:ffmpeg_kit_flutter_min_gpl/return_code.dart';
@@ -10,6 +9,7 @@ import 'package:ffmpeg_kit_flutter_min_gpl/session_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:loading_value/loading_value.dart';
 import 'package:path_provider/path_provider.dart';
 
 abstract class IClipDatasource {
@@ -61,8 +61,8 @@ class ClipDatasource extends IClipDatasource {
     );
     debugPrint("Exporting ${videoSource.path}...");
     await for (final cutLoadingValue in cuttingProcess) {
-      if (cutLoadingValue is Loading<File?>) {
-        yield LoadingValue.loading(progress: cutLoadingValue.progress);
+      if (cutLoadingValue is ValueLoading<File?>) {
+        yield LoadingValue.loading(cutLoadingValue.progress);
       } else {
         debugPrint(cutLoadingValue.toString());
         yield cutLoadingValue;
@@ -150,17 +150,15 @@ class ClipDatasource extends IClipDatasource {
       debugPrint(log.getMessage());
     }, (stats) {
       controller.add(
-        LoadingValue.loading(
-          progress: stats.getTime() / totalDuration.inMilliseconds,
-        ),
+        LoadingValue.loading(stats.getTime() / totalDuration.inMilliseconds),
       );
     });
     yield* controller.stream;
     try {
       final success = await completer.future;
-      yield LoadingValue.data(value: success ? successResult : null);
+      yield LoadingValue.data(success ? successResult : null);
     } catch (e, s) {
-      yield LoadingValue.error(error: e, stackTrace: s);
+      yield LoadingValue.error(e, stackTrace: s);
     }
   }
 

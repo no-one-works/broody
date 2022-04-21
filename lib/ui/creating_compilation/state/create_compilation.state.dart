@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:broody/model/common/loading_value/loading_value.dart';
+import 'package:loading_value/loading_value.dart';
 import 'package:broody/model/compilation/compilation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:video_player/video_player.dart';

@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:broody/core/extensions/image.x.dart';
-import 'package:broody/model/common/loading_value/loading_value.dart';
 import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/service/repositories/video_gallery.repository.dart';
 import 'package:collection/collection.dart';
@@ -10,6 +9,7 @@ import 'package:ffmpeg_kit_flutter_min_gpl/ffprobe_kit.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:loading_value/loading_value.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 final videosChangedProvider = StreamProvider.autoDispose<int>((ref) {
@@ -86,8 +86,8 @@ final pickedVideoProvider = Provider.autoDispose
   final asyncValue = ref.watch(_pickedVideoStreamProvider(assetEntity));
   return asyncValue.when(
     data: (v) => v,
-    error: (e, s) => LoadingValue.error(error: e, stackTrace: s),
-    loading: () => const LoadingValue.loading(progress: 0),
+    error: (e, s) => LoadingValue.error(e, stackTrace: s),
+    loading: () => const LoadingValue.loading(0),
   );
 });
 

@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:broody/model/common/loading_value/loading_value.dart';
 import 'package:broody/service/datasources/video/gallery_video.datasource.dart';
 import 'package:broody/service/repositories/repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:loading_value/loading_value.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:riverpod/src/provider.dart';
 
@@ -73,7 +73,7 @@ class GalleryClipRepository extends VideoGalleryRepository {
     if (isLocal) {
       final file = await entity.file;
       if (file != null) {
-        yield LoadingValue.data(value: file);
+        yield LoadingValue.data(file);
         return;
       }
     }
@@ -83,13 +83,13 @@ class GalleryClipRepository extends VideoGalleryRepository {
       if (progressValue.state == PMRequestState.success) {
         break;
       }
-      yield LoadingValue.loading(progress: progressValue.progress);
+      yield LoadingValue.loading(progressValue.progress);
     }
     final file = await fileAsync;
     if (file == null) {
       throw Exception("Failed to load video!");
     }
-    yield LoadingValue.data(value: file);
+    yield LoadingValue.data(file);
     return;
   }
 

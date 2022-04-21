@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:broody/core/hook/use_l10n.hook.dart';
 import 'package:broody/core/hook/use_theme.hook.dart';
-import 'package:broody/model/common/loading_value/loading_value.dart';
+import 'package:loading_value/loading_value.dart';
 import 'package:broody/routing/router.dart';
 import 'package:broody/service/providers/video/video_gallery.providers.dart';
 import 'package:broody/ui/shared/gallery_video/gallery_video.widget.dart';

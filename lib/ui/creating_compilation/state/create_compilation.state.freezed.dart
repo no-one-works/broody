@@ -393,8 +393,6 @@ abstract class $CreateCompilationExportingCopyWith<$Res>
   @override
   $Res call(
       {String projectUid, int? month, LoadingValue<dynamic> exportProgress});
-
-  $LoadingValueCopyWith<dynamic, $Res> get exportProgress;
 }
 
 /// @nodoc
@@ -429,13 +427,6 @@ class _$CreateCompilationExportingCopyWithImpl<$Res>
           : exportProgress // ignore: cast_nullable_to_non_nullable
               as LoadingValue<dynamic>,
     ));
-  }
-
-  @override
-  $LoadingValueCopyWith<dynamic, $Res> get exportProgress {
-    return $LoadingValueCopyWith<dynamic, $Res>(_value.exportProgress, (value) {
-      return _then(_value.copyWith(exportProgress: value));
-    });
   }
 }
 

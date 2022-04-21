@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:broody/model/common/loading_value/loading_value.dart';
 import 'package:broody/service/repositories/project.repository.dart';
 import 'package:broody/ui/creating_compilation/state/create_compilation.state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:loading_value/loading_value.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:video_player/video_player.dart';
 
@@ -32,7 +32,7 @@ class CreateCompilationNotifier extends StateNotifier<CreateCompilationState> {
       state = CreateCompilationState.exporting(
         projectUid: state.projectUid,
         month: state.month,
-        exportProgress: const LoadingValue.loading(progress: 0),
+        exportProgress: const LoadingValue.loading(0),
       );
       _saveCompilation();
     } else {

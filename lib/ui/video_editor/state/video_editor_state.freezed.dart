@@ -941,8 +941,6 @@ abstract class $VideoEditorExportingCopyWith<$Res>
       {EditingEntry entry,
       LoadingValue<dynamic> exportProgress,
       double dismissProgress});
-
-  $LoadingValueCopyWith<dynamic, $Res> get exportProgress;
 }
 
 /// @nodoc
@@ -976,13 +974,6 @@ class _$VideoEditorExportingCopyWithImpl<$Res>
           : dismissProgress // ignore: cast_nullable_to_non_nullable
               as double,
     ));
-  }
-
-  @override
-  $LoadingValueCopyWith<dynamic, $Res> get exportProgress {
-    return $LoadingValueCopyWith<dynamic, $Res>(_value.exportProgress, (value) {
-      return _then(_value.copyWith(exportProgress: value));
-    });
   }
 }
 

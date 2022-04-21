@@ -1,4 +1,4 @@
-import 'package:broody/model/common/loading_value/loading_value.dart';
+import 'package:loading_value/loading_value.dart';
 import 'package:broody/ui/theme/spacing.dart';
 import 'package:broody/ui/theme/transitions.dart';
 import 'package:flutter/material.dart';

@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:broody/core/constants/clip_durations.dart';
 import 'package:broody/core/extensions/date_time.x.dart';
-import 'package:broody/model/common/loading_value/loading_value.dart';
 import 'package:broody/model/compilation/compilation.dart';
 import 'package:broody/model/entry/entry.dart';
 import 'package:broody/model/project/project.dart';
@@ -19,6 +18,7 @@ import 'package:collection/src/iterable_extensions.dart';
 import 'package:dartx/dartx.dart' show IterableExcept;
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:loading_value/loading_value.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 abstract class ProjectRepository extends RepositoryBase {
@@ -158,14 +158,14 @@ class ProjectRepositoryImpl extends ProjectRepository {
       final process =
           ref.read(entryRepositoryProvider).updateEntryVersion(entry: entry);
       await for (final loadingValue in process) {
-        if (loadingValue is Loading<SavedEntry?>) {
+        if (loadingValue is ValueLoading<SavedEntry?>) {
           final progress =
               (updated.length + failed.length + loadingValue.progress) /
                   outdated.length;
-          yield LoadingValue.loading(progress: progress);
+          yield LoadingValue.loading(progress);
         } else if (loadingValue is LoadingError<SavedEntry?>) {
           failed.add(entry);
-        } else if (loadingValue is Data<SavedEntry?>) {
+        } else if (loadingValue is LoadedData<SavedEntry?>) {
           if (loadingValue.value == null) {
             failed.add(entry);
             continue;
@@ -176,9 +176,9 @@ class ProjectRepositoryImpl extends ProjectRepository {
     }
     if (failed.isNotEmpty) {
       yield LoadingValue.error(
-          error: Exception("${failed.length} entries failed to export!"));
+          Exception("${failed.length} entries failed to export!"));
     } else {
-      yield LoadingValue.data(value: updated);
+      yield LoadingValue.data(updated);
     }
   }
 
@@ -199,10 +199,10 @@ class ProjectRepositoryImpl extends ProjectRepository {
   }) async* {
     final project = getProject(projectUid);
     if (project == null) {
-      yield const LoadingValue.data(value: null);
+      yield const LoadingValue.data(null);
       return;
     }
-    yield const LoadingValue.loading(progress: 0);
+    yield const LoadingValue.loading(0);
     final compilationDatasource = ref.read(compilationDatasourceProvider);
     final entriesForProject =
         await ref.read(projectEntriesProvider(projectUid).future);

@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:broody/model/common/loading_value/loading_value.dart';
 import 'package:broody/model/entry/entry.dart';
 import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/service/providers/video/video_gallery.providers.dart';
@@ -11,6 +10,7 @@ import 'package:broody/ui/shared/providers/video_player_controller.provider.dart
 import 'package:broody/ui/video_editor/state/video_editor_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:loading_value/loading_value.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 
@@ -142,7 +142,7 @@ class VideoEditorNotifier extends StateNotifier<VideoEditorState> {
 
     state = VideoEditorState.exporting(
       entry: newEntry,
-      exportProgress: const LoadingValue.loading(progress: 0),
+      exportProgress: const LoadingValue.loading(0),
       dismissProgress: state.dismissProgress,
     );
     final repo = reader(entryRepositoryProvider);

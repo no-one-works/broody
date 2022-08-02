@@ -6,7 +6,7 @@ import 'package:photo_manager/photo_manager.dart';
 
 final galleryVideoControllerProviderOld =
     FutureProvider.autoDispose.family((ref, AssetEntity entity) async {
-  final isLocallyAvailable = await entity.isLocallyAvailable;
+  final isLocallyAvailable = await entity.isLocallyAvailable();
   if (!isLocallyAvailable) {
     return null;
   }
@@ -21,7 +21,7 @@ final galleryVideoControllerProviderOld =
 
 final galleryVideoControllerProvider =
     FutureProvider.autoDispose.family((ref, AssetEntity entity) async {
-  final isLocallyAvailable = await entity.isLocallyAvailable;
+  final isLocallyAvailable = await entity.isLocallyAvailable();
   if (!isLocallyAvailable) {
     return null;
   }

@@ -74,6 +74,7 @@ class VideoTile extends HookConsumerWidget {
                     child: Material(
                       animationDuration: Duration.zero,
                       elevation: 24 - distanceFromCenterAbs * 24,
+                      shadowColor: colorScheme.shadow,
                       color: colorScheme.background,
                       clipBehavior: Clip.antiAlias,
                       shape: RoundedRectangleBorder(

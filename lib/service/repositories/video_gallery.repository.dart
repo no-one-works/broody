@@ -69,7 +69,7 @@ class GalleryClipRepository extends VideoGalleryRepository {
 
   @override
   Stream<LoadingValue<File>> pickVideo(AssetEntity entity) async* {
-    final isLocal = await entity.isLocallyAvailable;
+    final isLocal = await entity.isLocallyAvailable();
     if (isLocal) {
       final file = await entity.file;
       if (file != null) {

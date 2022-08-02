@@ -93,7 +93,7 @@ final pickedVideoProvider = Provider.autoDispose
 
 final galleryVideoIsLocalProvider =
     FutureProvider.autoDispose.family((ref, AssetEntity entity) async {
-  return await entity.isLocallyAvailable;
+  return await entity.isLocallyAvailable();
 });
 
 final assetEntityFileProvider =

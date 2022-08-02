@@ -259,7 +259,7 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
           "This entry can't be regenerated because its file wasn't found!");
     }
     final process = clipDatasource.createClip(
-      startPoint: null,
+      startPoint: Duration.zero,
       duration: entry.duration,
       videoSource: file,
       resolution: Size(entry.width.toDouble(), entry.height.toDouble()),

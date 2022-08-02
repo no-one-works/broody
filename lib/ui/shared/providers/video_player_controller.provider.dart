@@ -16,7 +16,7 @@ final fileVideoControllerProvider =
     ),
   );
   ref.onDispose(() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       controller.dispose();
       debugPrint("Video Player Disposed: $path");
     });
@@ -41,7 +41,7 @@ final loopingAssetVideoControllerProvider =
   );
   debugPrint("Video Player Created: $path");
   ref.onDispose(() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       controller.dispose();
       debugPrint("Video Player Disposed: $path");
     });
@@ -68,7 +68,7 @@ final loopingFileVideoControllerProvider =
   );
   debugPrint("Video Player Created: $path");
   ref.onDispose(() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       controller.dispose();
       debugPrint("Video Player Disposed: $path");
     });

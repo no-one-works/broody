@@ -72,7 +72,7 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
       {required String projectId}) async* {
     await for (final entries in watchEntriesForProject(projectId: projectId)) {
       yield entries
-          .where((e) => e.exportVersion < entryAlgorithmVersion)
+          .where((e) => e.exportVersion != entryAlgorithmVersion)
           .toList();
     }
   }

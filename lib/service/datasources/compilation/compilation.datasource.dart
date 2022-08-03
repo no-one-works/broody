@@ -6,6 +6,7 @@ import 'package:broody/core/constants/box_keys.dart';
 import 'package:broody/core/constants/box_type_ids.dart';
 import 'package:broody/core/extensions/hive_box.x.dart';
 import 'package:broody/model/compilation/compilation.dart';
+import 'package:broody/service/datasources/compilation/broody_compilation.datasource.dart';
 import 'package:collection/collection.dart';
 import 'package:dartx/dartx_io.dart';
 import 'package:ffmpeg_kit_flutter_min_gpl/ffmpeg_kit.dart';
@@ -36,8 +37,8 @@ abstract class ICompilationDatasource {
   Future<File?> loadCompilation({required File file});
 }
 
-final compilationDatasourceProvider =
-    Provider<ICompilationDatasource>((ref) => CompilationDatasource());
+final compilationDatasourceProvider = Provider<ICompilationDatasource>((ref) =>
+    Platform.isIOS ? BroodyCompilationDatasource() : CompilationDatasource());
 
 class CompilationDatasource extends ICompilationDatasource {
   late final Box<SavedCompilation> _box =

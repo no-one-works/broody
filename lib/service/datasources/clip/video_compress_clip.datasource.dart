@@ -4,7 +4,7 @@ import 'dart:ui';
 
 import 'package:broody/core/constants/video_resolutions.dart';
 import 'package:broody/service/datasources/clip/clip.datasource.dart';
-import 'package:broody_video/video_compress.dart';
+import 'package:broody_video/broody_video.dart';
 import 'package:flutter/foundation.dart';
 import 'package:loading_value/loading_value.dart';
 
@@ -28,33 +28,20 @@ class VideoCompressClipDatasource extends IClipDatasource {
       throw UnimplementedError("Only 1080p supported so far");
     }
 
-    StreamController<LoadingValue<File?>> _progress$ = StreamController();
-    final subscription = VideoCompress.compressProgress$.subscribe((event) {
-      _progress$.add(LoadingValue.loading(event / 100));
-    }, onError: (e) {
-      debugPrint(e);
-    });
-
-    final future = VideoCompress.compressVideo(
-      videoSource.path,
-      includeAudio: true,
-      startTime: startPoint.inMilliseconds / 1000,
-      duration: duration.inMilliseconds / 1000,
-      quality: VideoQuality.Res1920x1080Quality,
+    final process = BroodyVideo.instance.processClip(
+      sourceFile: videoSource,
+      start: startPoint,
+      duration: duration,
+      targetSize: resolution,
     );
 
-    future.then((_) => _progress$.close());
-
-    await for (final p in _progress$.stream) {
+    await for (final p in process) {
       debugPrint(p.toString());
-      yield p;
-    }
-    subscription.unsubscribe();
-    try {
-      final info = await future;
-      yield LoadingValue.data(info?.file);
-    } catch (e, s) {
-      yield LoadingValue.error(e, stackTrace: s);
+      yield p.when(
+        data: (data) => LoadingValue.data(data?.file),
+        error: (e, s) => LoadingValue.error(e, stackTrace: s),
+        loading: (p) => LoadingValue.loading(p),
+      );
     }
   }
 

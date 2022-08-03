@@ -25,9 +25,7 @@ class GalleryVideo extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final videoControllerAsync = loadVideo
-        ? ref.watch(
-            galleryVideoControllerProvider(assetEntity),
-          )
+        ? ref.watch(galleryVideoControllerProvider(assetEntity))
         : null;
     final thumbnailImageAsync =
         ref.watch(galleryVideoThumbnailProvider(assetEntity));

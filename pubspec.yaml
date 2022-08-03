@@ -58,7 +58,7 @@ dependencies:
   auto_size_text: ^3.0.0
   package_info: ^2.0.2
   wakelock: ^0.6.2
-  loading_value: ^0.0.1
+  loading_value: ^0.0.2
   broody_video:
     path: ../broody_video
 

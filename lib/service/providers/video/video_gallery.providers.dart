@@ -86,7 +86,8 @@ final pickedVideoProvider = Provider.autoDispose
   final asyncValue = ref.watch(_pickedVideoStreamProvider(assetEntity));
   return asyncValue.when(
     data: (v) {
-      v.whenOrNull(data: (f) {
+      v.whenOrNull(data: (f) async {
+        await Future.delayed(Duration(milliseconds: 500));
         ref.refresh(galleryVideoIsLocalProvider(assetEntity));
         ref.refresh(assetEntityFileProvider(assetEntity));
       });

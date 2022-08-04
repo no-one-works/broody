@@ -1,9 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:broody/model/entry/entry.dart';
-import 'package:broody/model/project/project.dart';
 import 'package:broody/routing/route_guards/no_permissions.guard.dart';
 import 'package:broody/routing/route_guards/no_selected_project.guard.dart';
 import 'package:broody/routing/route_guards/outdated_entries.guard.dart';
+import 'package:broody/routing/router.gr.dart';
 import 'package:broody/ui/creating_compilation/create_compilation.page.dart';
 import 'package:broody/ui/creating_compilation/pages/video_full_screen.page.dart';
 import 'package:broody/ui/entry/entry.page.dart';
@@ -20,14 +19,12 @@ import 'package:broody/ui/video_editor/video_editor.page.dart';
 import 'package:broody/ui/video_picker/video_picker.page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:photo_manager/photo_manager.dart';
-import 'package:video_player/video_player.dart';
 
 import 'route_guards/no_projects.guard.dart';
 
 export 'package:auto_route/auto_route.dart';
 
-part 'router.gr.dart';
+export 'router.gr.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -119,8 +116,8 @@ part 'router.gr.dart';
     ),
   ],
 )
-class AppRouter extends _$AppRouter {
-  AppRouter(Reader reader)
+class $AppRouter extends AppRouter {
+  $AppRouter(Reader reader)
       : super(
           noProjectsGuard: NoProjectsGuard(reader),
           noSelectedProjectGuard: NoSelectedProjectGuard(reader),
@@ -129,7 +126,7 @@ class AppRouter extends _$AppRouter {
         );
 }
 
-final routerProvider = Provider((ref) => AppRouter(ref.read));
+final routerProvider = Provider((ref) => $AppRouter(ref.read));
 
 class DebugRouteObserver extends AutoRouterObserver {
   @override

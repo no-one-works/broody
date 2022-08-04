@@ -215,6 +215,7 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
       if (loadingValue is ValueLoading<File?>) {
         yield LoadingValue.loading(loadingValue.progress);
       } else if (loadingValue is LoadingError<File?>) {
+        print(loadingValue);
         yield LoadingValue.error(
           loadingValue.error,
           stackTrace: loadingValue.stackTrace,

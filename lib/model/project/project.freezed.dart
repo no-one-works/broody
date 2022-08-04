@@ -12,54 +12,11 @@ part of 'project.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Project _$ProjectFromJson(Map<String, dynamic> json) {
   return _Project.fromJson(json);
 }
-
-/// @nodoc
-class _$ProjectTearOff {
-  const _$ProjectTearOff();
-
-  _Project call(
-      {required String uid,
-      String title = "",
-      required DateTime startDate,
-      required DateTime endDate,
-      required Duration entryDuration,
-      required String? thumbnailPath,
-      required DateTime? notificationTime,
-      @SizeConverter() Size landScapeResolution = resolution1080Landscape,
-      bool portrait = true,
-      int? color,
-      dynamic isHardcoreMode = false,
-      List<String> compilationAssetIds = const [],
-      String? exportedPath}) {
-    return _Project(
-      uid: uid,
-      title: title,
-      startDate: startDate,
-      endDate: endDate,
-      entryDuration: entryDuration,
-      thumbnailPath: thumbnailPath,
-      notificationTime: notificationTime,
-      landScapeResolution: landScapeResolution,
-      portrait: portrait,
-      color: color,
-      isHardcoreMode: isHardcoreMode,
-      compilationAssetIds: compilationAssetIds,
-      exportedPath: exportedPath,
-    );
-  }
-
-  Project fromJson(Map<String, Object?> json) {
-    return Project.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Project = _$ProjectTearOff();
 
 /// @nodoc
 mixin _$Project {
@@ -185,9 +142,10 @@ class _$ProjectCopyWithImpl<$Res> implements $ProjectCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
-  factory _$ProjectCopyWith(_Project value, $Res Function(_Project) then) =
-      __$ProjectCopyWithImpl<$Res>;
+abstract class _$$_ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
+  factory _$$_ProjectCopyWith(
+          _$_Project value, $Res Function(_$_Project) then) =
+      __$$_ProjectCopyWithImpl<$Res>;
   @override
   $Res call(
       {String uid,
@@ -206,13 +164,13 @@ abstract class _$ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$ProjectCopyWithImpl<$Res> extends _$ProjectCopyWithImpl<$Res>
-    implements _$ProjectCopyWith<$Res> {
-  __$ProjectCopyWithImpl(_Project _value, $Res Function(_Project) _then)
-      : super(_value, (v) => _then(v as _Project));
+class __$$_ProjectCopyWithImpl<$Res> extends _$ProjectCopyWithImpl<$Res>
+    implements _$$_ProjectCopyWith<$Res> {
+  __$$_ProjectCopyWithImpl(_$_Project _value, $Res Function(_$_Project) _then)
+      : super(_value, (v) => _then(v as _$_Project));
 
   @override
-  _Project get _value => super._value as _Project;
+  _$_Project get _value => super._value as _$_Project;
 
   @override
   $Res call({
@@ -230,7 +188,7 @@ class __$ProjectCopyWithImpl<$Res> extends _$ProjectCopyWithImpl<$Res>
     Object? compilationAssetIds = freezed,
     Object? exportedPath = freezed,
   }) {
-    return _then(_Project(
+    return _then(_$_Project(
       uid: uid == freezed
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
@@ -274,7 +232,7 @@ class __$ProjectCopyWithImpl<$Res> extends _$ProjectCopyWithImpl<$Res>
       isHardcoreMode:
           isHardcoreMode == freezed ? _value.isHardcoreMode : isHardcoreMode,
       compilationAssetIds: compilationAssetIds == freezed
-          ? _value.compilationAssetIds
+          ? _value._compilationAssetIds
           : compilationAssetIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
       exportedPath: exportedPath == freezed
@@ -300,17 +258,18 @@ class _$_Project extends _Project {
       this.portrait = true,
       this.color,
       this.isHardcoreMode = false,
-      this.compilationAssetIds = const [],
+      final List<String> compilationAssetIds = const [],
       this.exportedPath})
-      : super._();
+      : _compilationAssetIds = compilationAssetIds,
+        super._();
 
   factory _$_Project.fromJson(Map<String, dynamic> json) =>
       _$$_ProjectFromJson(json);
 
   @override
   final String uid;
-  @JsonKey()
   @override
+  @JsonKey()
   final String title;
   @override
   final DateTime startDate;
@@ -322,21 +281,26 @@ class _$_Project extends _Project {
   final String? thumbnailPath;
   @override
   final DateTime? notificationTime;
-  @JsonKey()
   @override
+  @JsonKey()
   @SizeConverter()
   final Size landScapeResolution;
-  @JsonKey()
   @override
+  @JsonKey()
   final bool portrait;
   @override
   final int? color;
-  @JsonKey()
   @override
+  @JsonKey()
   final dynamic isHardcoreMode;
-  @JsonKey()
+  final List<String> _compilationAssetIds;
   @override
-  final List<String> compilationAssetIds;
+  @JsonKey()
+  List<String> get compilationAssetIds {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_compilationAssetIds);
+  }
+
   @override
   final String? exportedPath;
 
@@ -349,7 +313,7 @@ class _$_Project extends _Project {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Project &&
+            other is _$_Project &&
             const DeepCollectionEquality().equals(other.uid, uid) &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.startDate, startDate) &&
@@ -367,11 +331,12 @@ class _$_Project extends _Project {
             const DeepCollectionEquality()
                 .equals(other.isHardcoreMode, isHardcoreMode) &&
             const DeepCollectionEquality()
-                .equals(other.compilationAssetIds, compilationAssetIds) &&
+                .equals(other._compilationAssetIds, _compilationAssetIds) &&
             const DeepCollectionEquality()
                 .equals(other.exportedPath, exportedPath));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -386,35 +351,37 @@ class _$_Project extends _Project {
       const DeepCollectionEquality().hash(portrait),
       const DeepCollectionEquality().hash(color),
       const DeepCollectionEquality().hash(isHardcoreMode),
-      const DeepCollectionEquality().hash(compilationAssetIds),
+      const DeepCollectionEquality().hash(_compilationAssetIds),
       const DeepCollectionEquality().hash(exportedPath));
 
   @JsonKey(ignore: true)
   @override
-  _$ProjectCopyWith<_Project> get copyWith =>
-      __$ProjectCopyWithImpl<_Project>(this, _$identity);
+  _$$_ProjectCopyWith<_$_Project> get copyWith =>
+      __$$_ProjectCopyWithImpl<_$_Project>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProjectToJson(this);
+    return _$$_ProjectToJson(
+      this,
+    );
   }
 }
 
 abstract class _Project extends Project {
   factory _Project(
-      {required String uid,
-      String title,
-      required DateTime startDate,
-      required DateTime endDate,
-      required Duration entryDuration,
-      required String? thumbnailPath,
-      required DateTime? notificationTime,
-      @SizeConverter() Size landScapeResolution,
-      bool portrait,
-      int? color,
-      dynamic isHardcoreMode,
-      List<String> compilationAssetIds,
-      String? exportedPath}) = _$_Project;
+      {required final String uid,
+      final String title,
+      required final DateTime startDate,
+      required final DateTime endDate,
+      required final Duration entryDuration,
+      required final String? thumbnailPath,
+      required final DateTime? notificationTime,
+      @SizeConverter() final Size landScapeResolution,
+      final bool portrait,
+      final int? color,
+      final dynamic isHardcoreMode,
+      final List<String> compilationAssetIds,
+      final String? exportedPath}) = _$_Project;
   _Project._() : super._();
 
   factory _Project.fromJson(Map<String, dynamic> json) = _$_Project.fromJson;
@@ -448,6 +415,6 @@ abstract class _Project extends Project {
   String? get exportedPath;
   @override
   @JsonKey(ignore: true)
-  _$ProjectCopyWith<_Project> get copyWith =>
+  _$$_ProjectCopyWith<_$_Project> get copyWith =>
       throw _privateConstructorUsedError;
 }

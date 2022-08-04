@@ -12,74 +12,11 @@ part of 'video_editor_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$VideoEditorStateTearOff {
-  const _$VideoEditorStateTearOff();
-
-  VideoEditorLoadingVideo loadingVideo(
-      {required AssetEntity assetEntity, double dismissProgress = 0.0}) {
-    return VideoEditorLoadingVideo(
-      assetEntity: assetEntity,
-      dismissProgress: dismissProgress,
-    );
-  }
-
-  VideoEditorFailedToLoad failedToLoad(
-      {required AssetEntity assetEntity, double dismissProgress = 0.0}) {
-    return VideoEditorFailedToLoad(
-      assetEntity: assetEntity,
-      dismissProgress: dismissProgress,
-    );
-  }
-
-  VideoEditorEditing editing(
-      {required AssetEntity assetEntity,
-      required VideoPlayerController videoController,
-      required EditingEntry entry,
-      bool isPlaying = true,
-      Duration seekPosition = Duration.zero,
-      double dismissProgress = 0.0,
-      bool previewing = true}) {
-    return VideoEditorEditing(
-      assetEntity: assetEntity,
-      videoController: videoController,
-      entry: entry,
-      isPlaying: isPlaying,
-      seekPosition: seekPosition,
-      dismissProgress: dismissProgress,
-      previewing: previewing,
-    );
-  }
-
-  VideoEditorExporting exporting(
-      {required EditingEntry entry,
-      required LoadingValue<dynamic> exportProgress,
-      double dismissProgress = 0.0}) {
-    return VideoEditorExporting(
-      entry: entry,
-      exportProgress: exportProgress,
-      dismissProgress: dismissProgress,
-    );
-  }
-
-  VideoEditorExportingSuccess exportingSuccess(
-      {required SavedEntry entry, double dismissProgress = 0.0}) {
-    return VideoEditorExportingSuccess(
-      entry: entry,
-      dismissProgress: dismissProgress,
-    );
-  }
-}
-
-/// @nodoc
-const $VideoEditorState = _$VideoEditorStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$VideoEditorState {
   double get dismissProgress => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AssetEntity assetEntity, double dismissProgress)
@@ -213,32 +150,33 @@ class _$VideoEditorStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $VideoEditorLoadingVideoCopyWith<$Res>
+abstract class _$$VideoEditorLoadingVideoCopyWith<$Res>
     implements $VideoEditorStateCopyWith<$Res> {
-  factory $VideoEditorLoadingVideoCopyWith(VideoEditorLoadingVideo value,
-          $Res Function(VideoEditorLoadingVideo) then) =
-      _$VideoEditorLoadingVideoCopyWithImpl<$Res>;
+  factory _$$VideoEditorLoadingVideoCopyWith(_$VideoEditorLoadingVideo value,
+          $Res Function(_$VideoEditorLoadingVideo) then) =
+      __$$VideoEditorLoadingVideoCopyWithImpl<$Res>;
   @override
   $Res call({AssetEntity assetEntity, double dismissProgress});
 }
 
 /// @nodoc
-class _$VideoEditorLoadingVideoCopyWithImpl<$Res>
+class __$$VideoEditorLoadingVideoCopyWithImpl<$Res>
     extends _$VideoEditorStateCopyWithImpl<$Res>
-    implements $VideoEditorLoadingVideoCopyWith<$Res> {
-  _$VideoEditorLoadingVideoCopyWithImpl(VideoEditorLoadingVideo _value,
-      $Res Function(VideoEditorLoadingVideo) _then)
-      : super(_value, (v) => _then(v as VideoEditorLoadingVideo));
+    implements _$$VideoEditorLoadingVideoCopyWith<$Res> {
+  __$$VideoEditorLoadingVideoCopyWithImpl(_$VideoEditorLoadingVideo _value,
+      $Res Function(_$VideoEditorLoadingVideo) _then)
+      : super(_value, (v) => _then(v as _$VideoEditorLoadingVideo));
 
   @override
-  VideoEditorLoadingVideo get _value => super._value as VideoEditorLoadingVideo;
+  _$VideoEditorLoadingVideo get _value =>
+      super._value as _$VideoEditorLoadingVideo;
 
   @override
   $Res call({
     Object? assetEntity = freezed,
     Object? dismissProgress = freezed,
   }) {
-    return _then(VideoEditorLoadingVideo(
+    return _then(_$VideoEditorLoadingVideo(
       assetEntity: assetEntity == freezed
           ? _value.assetEntity
           : assetEntity // ignore: cast_nullable_to_non_nullable
@@ -259,8 +197,8 @@ class _$VideoEditorLoadingVideo implements VideoEditorLoadingVideo {
 
   @override
   final AssetEntity assetEntity;
-  @JsonKey()
   @override
+  @JsonKey()
   final double dismissProgress;
 
   @override
@@ -272,7 +210,7 @@ class _$VideoEditorLoadingVideo implements VideoEditorLoadingVideo {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is VideoEditorLoadingVideo &&
+            other is _$VideoEditorLoadingVideo &&
             const DeepCollectionEquality()
                 .equals(other.assetEntity, assetEntity) &&
             const DeepCollectionEquality()
@@ -287,8 +225,8 @@ class _$VideoEditorLoadingVideo implements VideoEditorLoadingVideo {
 
   @JsonKey(ignore: true)
   @override
-  $VideoEditorLoadingVideoCopyWith<VideoEditorLoadingVideo> get copyWith =>
-      _$VideoEditorLoadingVideoCopyWithImpl<VideoEditorLoadingVideo>(
+  _$$VideoEditorLoadingVideoCopyWith<_$VideoEditorLoadingVideo> get copyWith =>
+      __$$VideoEditorLoadingVideoCopyWithImpl<_$VideoEditorLoadingVideo>(
           this, _$identity);
 
   @override
@@ -414,45 +352,46 @@ class _$VideoEditorLoadingVideo implements VideoEditorLoadingVideo {
 
 abstract class VideoEditorLoadingVideo implements VideoEditorState {
   const factory VideoEditorLoadingVideo(
-      {required AssetEntity assetEntity,
-      double dismissProgress}) = _$VideoEditorLoadingVideo;
+      {required final AssetEntity assetEntity,
+      final double dismissProgress}) = _$VideoEditorLoadingVideo;
 
   AssetEntity get assetEntity;
   @override
   double get dismissProgress;
   @override
   @JsonKey(ignore: true)
-  $VideoEditorLoadingVideoCopyWith<VideoEditorLoadingVideo> get copyWith =>
+  _$$VideoEditorLoadingVideoCopyWith<_$VideoEditorLoadingVideo> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $VideoEditorFailedToLoadCopyWith<$Res>
+abstract class _$$VideoEditorFailedToLoadCopyWith<$Res>
     implements $VideoEditorStateCopyWith<$Res> {
-  factory $VideoEditorFailedToLoadCopyWith(VideoEditorFailedToLoad value,
-          $Res Function(VideoEditorFailedToLoad) then) =
-      _$VideoEditorFailedToLoadCopyWithImpl<$Res>;
+  factory _$$VideoEditorFailedToLoadCopyWith(_$VideoEditorFailedToLoad value,
+          $Res Function(_$VideoEditorFailedToLoad) then) =
+      __$$VideoEditorFailedToLoadCopyWithImpl<$Res>;
   @override
   $Res call({AssetEntity assetEntity, double dismissProgress});
 }
 
 /// @nodoc
-class _$VideoEditorFailedToLoadCopyWithImpl<$Res>
+class __$$VideoEditorFailedToLoadCopyWithImpl<$Res>
     extends _$VideoEditorStateCopyWithImpl<$Res>
-    implements $VideoEditorFailedToLoadCopyWith<$Res> {
-  _$VideoEditorFailedToLoadCopyWithImpl(VideoEditorFailedToLoad _value,
-      $Res Function(VideoEditorFailedToLoad) _then)
-      : super(_value, (v) => _then(v as VideoEditorFailedToLoad));
+    implements _$$VideoEditorFailedToLoadCopyWith<$Res> {
+  __$$VideoEditorFailedToLoadCopyWithImpl(_$VideoEditorFailedToLoad _value,
+      $Res Function(_$VideoEditorFailedToLoad) _then)
+      : super(_value, (v) => _then(v as _$VideoEditorFailedToLoad));
 
   @override
-  VideoEditorFailedToLoad get _value => super._value as VideoEditorFailedToLoad;
+  _$VideoEditorFailedToLoad get _value =>
+      super._value as _$VideoEditorFailedToLoad;
 
   @override
   $Res call({
     Object? assetEntity = freezed,
     Object? dismissProgress = freezed,
   }) {
-    return _then(VideoEditorFailedToLoad(
+    return _then(_$VideoEditorFailedToLoad(
       assetEntity: assetEntity == freezed
           ? _value.assetEntity
           : assetEntity // ignore: cast_nullable_to_non_nullable
@@ -473,8 +412,8 @@ class _$VideoEditorFailedToLoad implements VideoEditorFailedToLoad {
 
   @override
   final AssetEntity assetEntity;
-  @JsonKey()
   @override
+  @JsonKey()
   final double dismissProgress;
 
   @override
@@ -486,7 +425,7 @@ class _$VideoEditorFailedToLoad implements VideoEditorFailedToLoad {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is VideoEditorFailedToLoad &&
+            other is _$VideoEditorFailedToLoad &&
             const DeepCollectionEquality()
                 .equals(other.assetEntity, assetEntity) &&
             const DeepCollectionEquality()
@@ -501,8 +440,8 @@ class _$VideoEditorFailedToLoad implements VideoEditorFailedToLoad {
 
   @JsonKey(ignore: true)
   @override
-  $VideoEditorFailedToLoadCopyWith<VideoEditorFailedToLoad> get copyWith =>
-      _$VideoEditorFailedToLoadCopyWithImpl<VideoEditorFailedToLoad>(
+  _$$VideoEditorFailedToLoadCopyWith<_$VideoEditorFailedToLoad> get copyWith =>
+      __$$VideoEditorFailedToLoadCopyWithImpl<_$VideoEditorFailedToLoad>(
           this, _$identity);
 
   @override
@@ -628,24 +567,24 @@ class _$VideoEditorFailedToLoad implements VideoEditorFailedToLoad {
 
 abstract class VideoEditorFailedToLoad implements VideoEditorState {
   const factory VideoEditorFailedToLoad(
-      {required AssetEntity assetEntity,
-      double dismissProgress}) = _$VideoEditorFailedToLoad;
+      {required final AssetEntity assetEntity,
+      final double dismissProgress}) = _$VideoEditorFailedToLoad;
 
   AssetEntity get assetEntity;
   @override
   double get dismissProgress;
   @override
   @JsonKey(ignore: true)
-  $VideoEditorFailedToLoadCopyWith<VideoEditorFailedToLoad> get copyWith =>
+  _$$VideoEditorFailedToLoadCopyWith<_$VideoEditorFailedToLoad> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $VideoEditorEditingCopyWith<$Res>
+abstract class _$$VideoEditorEditingCopyWith<$Res>
     implements $VideoEditorStateCopyWith<$Res> {
-  factory $VideoEditorEditingCopyWith(
-          VideoEditorEditing value, $Res Function(VideoEditorEditing) then) =
-      _$VideoEditorEditingCopyWithImpl<$Res>;
+  factory _$$VideoEditorEditingCopyWith(_$VideoEditorEditing value,
+          $Res Function(_$VideoEditorEditing) then) =
+      __$$VideoEditorEditingCopyWithImpl<$Res>;
   @override
   $Res call(
       {AssetEntity assetEntity,
@@ -658,15 +597,15 @@ abstract class $VideoEditorEditingCopyWith<$Res>
 }
 
 /// @nodoc
-class _$VideoEditorEditingCopyWithImpl<$Res>
+class __$$VideoEditorEditingCopyWithImpl<$Res>
     extends _$VideoEditorStateCopyWithImpl<$Res>
-    implements $VideoEditorEditingCopyWith<$Res> {
-  _$VideoEditorEditingCopyWithImpl(
-      VideoEditorEditing _value, $Res Function(VideoEditorEditing) _then)
-      : super(_value, (v) => _then(v as VideoEditorEditing));
+    implements _$$VideoEditorEditingCopyWith<$Res> {
+  __$$VideoEditorEditingCopyWithImpl(
+      _$VideoEditorEditing _value, $Res Function(_$VideoEditorEditing) _then)
+      : super(_value, (v) => _then(v as _$VideoEditorEditing));
 
   @override
-  VideoEditorEditing get _value => super._value as VideoEditorEditing;
+  _$VideoEditorEditing get _value => super._value as _$VideoEditorEditing;
 
   @override
   $Res call({
@@ -678,7 +617,7 @@ class _$VideoEditorEditingCopyWithImpl<$Res>
     Object? dismissProgress = freezed,
     Object? previewing = freezed,
   }) {
-    return _then(VideoEditorEditing(
+    return _then(_$VideoEditorEditing(
       assetEntity: assetEntity == freezed
           ? _value.assetEntity
           : assetEntity // ignore: cast_nullable_to_non_nullable
@@ -729,17 +668,17 @@ class _$VideoEditorEditing implements VideoEditorEditing {
   final VideoPlayerController videoController;
   @override
   final EditingEntry entry;
-  @JsonKey()
   @override
+  @JsonKey()
   final bool isPlaying;
-  @JsonKey()
   @override
+  @JsonKey()
   final Duration seekPosition;
-  @JsonKey()
   @override
+  @JsonKey()
   final double dismissProgress;
-  @JsonKey()
   @override
+  @JsonKey()
   final bool previewing;
 
   @override
@@ -751,7 +690,7 @@ class _$VideoEditorEditing implements VideoEditorEditing {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is VideoEditorEditing &&
+            other is _$VideoEditorEditing &&
             const DeepCollectionEquality()
                 .equals(other.assetEntity, assetEntity) &&
             const DeepCollectionEquality()
@@ -779,8 +718,9 @@ class _$VideoEditorEditing implements VideoEditorEditing {
 
   @JsonKey(ignore: true)
   @override
-  $VideoEditorEditingCopyWith<VideoEditorEditing> get copyWith =>
-      _$VideoEditorEditingCopyWithImpl<VideoEditorEditing>(this, _$identity);
+  _$$VideoEditorEditingCopyWith<_$VideoEditorEditing> get copyWith =>
+      __$$VideoEditorEditingCopyWithImpl<_$VideoEditorEditing>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -908,13 +848,13 @@ class _$VideoEditorEditing implements VideoEditorEditing {
 
 abstract class VideoEditorEditing implements VideoEditorState {
   const factory VideoEditorEditing(
-      {required AssetEntity assetEntity,
-      required VideoPlayerController videoController,
-      required EditingEntry entry,
-      bool isPlaying,
-      Duration seekPosition,
-      double dismissProgress,
-      bool previewing}) = _$VideoEditorEditing;
+      {required final AssetEntity assetEntity,
+      required final VideoPlayerController videoController,
+      required final EditingEntry entry,
+      final bool isPlaying,
+      final Duration seekPosition,
+      final double dismissProgress,
+      final bool previewing}) = _$VideoEditorEditing;
 
   AssetEntity get assetEntity;
   VideoPlayerController get videoController;
@@ -926,16 +866,16 @@ abstract class VideoEditorEditing implements VideoEditorState {
   bool get previewing;
   @override
   @JsonKey(ignore: true)
-  $VideoEditorEditingCopyWith<VideoEditorEditing> get copyWith =>
+  _$$VideoEditorEditingCopyWith<_$VideoEditorEditing> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $VideoEditorExportingCopyWith<$Res>
+abstract class _$$VideoEditorExportingCopyWith<$Res>
     implements $VideoEditorStateCopyWith<$Res> {
-  factory $VideoEditorExportingCopyWith(VideoEditorExporting value,
-          $Res Function(VideoEditorExporting) then) =
-      _$VideoEditorExportingCopyWithImpl<$Res>;
+  factory _$$VideoEditorExportingCopyWith(_$VideoEditorExporting value,
+          $Res Function(_$VideoEditorExporting) then) =
+      __$$VideoEditorExportingCopyWithImpl<$Res>;
   @override
   $Res call(
       {EditingEntry entry,
@@ -944,15 +884,15 @@ abstract class $VideoEditorExportingCopyWith<$Res>
 }
 
 /// @nodoc
-class _$VideoEditorExportingCopyWithImpl<$Res>
+class __$$VideoEditorExportingCopyWithImpl<$Res>
     extends _$VideoEditorStateCopyWithImpl<$Res>
-    implements $VideoEditorExportingCopyWith<$Res> {
-  _$VideoEditorExportingCopyWithImpl(
-      VideoEditorExporting _value, $Res Function(VideoEditorExporting) _then)
-      : super(_value, (v) => _then(v as VideoEditorExporting));
+    implements _$$VideoEditorExportingCopyWith<$Res> {
+  __$$VideoEditorExportingCopyWithImpl(_$VideoEditorExporting _value,
+      $Res Function(_$VideoEditorExporting) _then)
+      : super(_value, (v) => _then(v as _$VideoEditorExporting));
 
   @override
-  VideoEditorExporting get _value => super._value as VideoEditorExporting;
+  _$VideoEditorExporting get _value => super._value as _$VideoEditorExporting;
 
   @override
   $Res call({
@@ -960,7 +900,7 @@ class _$VideoEditorExportingCopyWithImpl<$Res>
     Object? exportProgress = freezed,
     Object? dismissProgress = freezed,
   }) {
-    return _then(VideoEditorExporting(
+    return _then(_$VideoEditorExporting(
       entry: entry == freezed
           ? _value.entry
           : entry // ignore: cast_nullable_to_non_nullable
@@ -989,8 +929,8 @@ class _$VideoEditorExporting implements VideoEditorExporting {
   final EditingEntry entry;
   @override
   final LoadingValue<dynamic> exportProgress;
-  @JsonKey()
   @override
+  @JsonKey()
   final double dismissProgress;
 
   @override
@@ -1002,7 +942,7 @@ class _$VideoEditorExporting implements VideoEditorExporting {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is VideoEditorExporting &&
+            other is _$VideoEditorExporting &&
             const DeepCollectionEquality().equals(other.entry, entry) &&
             const DeepCollectionEquality()
                 .equals(other.exportProgress, exportProgress) &&
@@ -1019,8 +959,8 @@ class _$VideoEditorExporting implements VideoEditorExporting {
 
   @JsonKey(ignore: true)
   @override
-  $VideoEditorExportingCopyWith<VideoEditorExporting> get copyWith =>
-      _$VideoEditorExportingCopyWithImpl<VideoEditorExporting>(
+  _$$VideoEditorExportingCopyWith<_$VideoEditorExporting> get copyWith =>
+      __$$VideoEditorExportingCopyWithImpl<_$VideoEditorExporting>(
           this, _$identity);
 
   @override
@@ -1146,9 +1086,9 @@ class _$VideoEditorExporting implements VideoEditorExporting {
 
 abstract class VideoEditorExporting implements VideoEditorState {
   const factory VideoEditorExporting(
-      {required EditingEntry entry,
-      required LoadingValue<dynamic> exportProgress,
-      double dismissProgress}) = _$VideoEditorExporting;
+      {required final EditingEntry entry,
+      required final LoadingValue<dynamic> exportProgress,
+      final double dismissProgress}) = _$VideoEditorExporting;
 
   EditingEntry get entry;
   LoadingValue<dynamic> get exportProgress;
@@ -1156,39 +1096,40 @@ abstract class VideoEditorExporting implements VideoEditorState {
   double get dismissProgress;
   @override
   @JsonKey(ignore: true)
-  $VideoEditorExportingCopyWith<VideoEditorExporting> get copyWith =>
+  _$$VideoEditorExportingCopyWith<_$VideoEditorExporting> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $VideoEditorExportingSuccessCopyWith<$Res>
+abstract class _$$VideoEditorExportingSuccessCopyWith<$Res>
     implements $VideoEditorStateCopyWith<$Res> {
-  factory $VideoEditorExportingSuccessCopyWith(
-          VideoEditorExportingSuccess value,
-          $Res Function(VideoEditorExportingSuccess) then) =
-      _$VideoEditorExportingSuccessCopyWithImpl<$Res>;
+  factory _$$VideoEditorExportingSuccessCopyWith(
+          _$VideoEditorExportingSuccess value,
+          $Res Function(_$VideoEditorExportingSuccess) then) =
+      __$$VideoEditorExportingSuccessCopyWithImpl<$Res>;
   @override
   $Res call({SavedEntry entry, double dismissProgress});
 }
 
 /// @nodoc
-class _$VideoEditorExportingSuccessCopyWithImpl<$Res>
+class __$$VideoEditorExportingSuccessCopyWithImpl<$Res>
     extends _$VideoEditorStateCopyWithImpl<$Res>
-    implements $VideoEditorExportingSuccessCopyWith<$Res> {
-  _$VideoEditorExportingSuccessCopyWithImpl(VideoEditorExportingSuccess _value,
-      $Res Function(VideoEditorExportingSuccess) _then)
-      : super(_value, (v) => _then(v as VideoEditorExportingSuccess));
+    implements _$$VideoEditorExportingSuccessCopyWith<$Res> {
+  __$$VideoEditorExportingSuccessCopyWithImpl(
+      _$VideoEditorExportingSuccess _value,
+      $Res Function(_$VideoEditorExportingSuccess) _then)
+      : super(_value, (v) => _then(v as _$VideoEditorExportingSuccess));
 
   @override
-  VideoEditorExportingSuccess get _value =>
-      super._value as VideoEditorExportingSuccess;
+  _$VideoEditorExportingSuccess get _value =>
+      super._value as _$VideoEditorExportingSuccess;
 
   @override
   $Res call({
     Object? entry = freezed,
     Object? dismissProgress = freezed,
   }) {
-    return _then(VideoEditorExportingSuccess(
+    return _then(_$VideoEditorExportingSuccess(
       entry: entry == freezed
           ? _value.entry
           : entry // ignore: cast_nullable_to_non_nullable
@@ -1209,8 +1150,8 @@ class _$VideoEditorExportingSuccess implements VideoEditorExportingSuccess {
 
   @override
   final SavedEntry entry;
-  @JsonKey()
   @override
+  @JsonKey()
   final double dismissProgress;
 
   @override
@@ -1222,7 +1163,7 @@ class _$VideoEditorExportingSuccess implements VideoEditorExportingSuccess {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is VideoEditorExportingSuccess &&
+            other is _$VideoEditorExportingSuccess &&
             const DeepCollectionEquality().equals(other.entry, entry) &&
             const DeepCollectionEquality()
                 .equals(other.dismissProgress, dismissProgress));
@@ -1236,9 +1177,9 @@ class _$VideoEditorExportingSuccess implements VideoEditorExportingSuccess {
 
   @JsonKey(ignore: true)
   @override
-  $VideoEditorExportingSuccessCopyWith<VideoEditorExportingSuccess>
-      get copyWith => _$VideoEditorExportingSuccessCopyWithImpl<
-          VideoEditorExportingSuccess>(this, _$identity);
+  _$$VideoEditorExportingSuccessCopyWith<_$VideoEditorExportingSuccess>
+      get copyWith => __$$VideoEditorExportingSuccessCopyWithImpl<
+          _$VideoEditorExportingSuccess>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1363,14 +1304,14 @@ class _$VideoEditorExportingSuccess implements VideoEditorExportingSuccess {
 
 abstract class VideoEditorExportingSuccess implements VideoEditorState {
   const factory VideoEditorExportingSuccess(
-      {required SavedEntry entry,
-      double dismissProgress}) = _$VideoEditorExportingSuccess;
+      {required final SavedEntry entry,
+      final double dismissProgress}) = _$VideoEditorExportingSuccess;
 
   SavedEntry get entry;
   @override
   double get dismissProgress;
   @override
   @JsonKey(ignore: true)
-  $VideoEditorExportingSuccessCopyWith<VideoEditorExportingSuccess>
+  _$$VideoEditorExportingSuccessCopyWith<_$VideoEditorExportingSuccess>
       get copyWith => throw _privateConstructorUsedError;
 }

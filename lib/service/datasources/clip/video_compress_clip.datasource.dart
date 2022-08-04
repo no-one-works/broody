@@ -36,7 +36,6 @@ class VideoCompressClipDatasource extends IClipDatasource {
     );
 
     await for (final p in process) {
-      debugPrint(p.toString());
       yield p.when(
         data: (data) => LoadingValue.data(data?.file),
         error: (e, s) => LoadingValue.error(e, stackTrace: s),

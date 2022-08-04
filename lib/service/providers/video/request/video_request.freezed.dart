@@ -12,22 +12,7 @@ part of 'video_request.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$VideoRequestTearOff {
-  const _$VideoRequestTearOff();
-
-  _VideoRequest call({required DateTime date, required int page}) {
-    return _VideoRequest(
-      date: date,
-      page: page,
-    );
-  }
-}
-
-/// @nodoc
-const $VideoRequest = _$VideoRequestTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$VideoRequest {
@@ -74,31 +59,32 @@ class _$VideoRequestCopyWithImpl<$Res> implements $VideoRequestCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$VideoRequestCopyWith<$Res>
+abstract class _$$_VideoRequestCopyWith<$Res>
     implements $VideoRequestCopyWith<$Res> {
-  factory _$VideoRequestCopyWith(
-          _VideoRequest value, $Res Function(_VideoRequest) then) =
-      __$VideoRequestCopyWithImpl<$Res>;
+  factory _$$_VideoRequestCopyWith(
+          _$_VideoRequest value, $Res Function(_$_VideoRequest) then) =
+      __$$_VideoRequestCopyWithImpl<$Res>;
   @override
   $Res call({DateTime date, int page});
 }
 
 /// @nodoc
-class __$VideoRequestCopyWithImpl<$Res> extends _$VideoRequestCopyWithImpl<$Res>
-    implements _$VideoRequestCopyWith<$Res> {
-  __$VideoRequestCopyWithImpl(
-      _VideoRequest _value, $Res Function(_VideoRequest) _then)
-      : super(_value, (v) => _then(v as _VideoRequest));
+class __$$_VideoRequestCopyWithImpl<$Res>
+    extends _$VideoRequestCopyWithImpl<$Res>
+    implements _$$_VideoRequestCopyWith<$Res> {
+  __$$_VideoRequestCopyWithImpl(
+      _$_VideoRequest _value, $Res Function(_$_VideoRequest) _then)
+      : super(_value, (v) => _then(v as _$_VideoRequest));
 
   @override
-  _VideoRequest get _value => super._value as _VideoRequest;
+  _$_VideoRequest get _value => super._value as _$_VideoRequest;
 
   @override
   $Res call({
     Object? date = freezed,
     Object? page = freezed,
   }) {
-    return _then(_VideoRequest(
+    return _then(_$_VideoRequest(
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -130,7 +116,7 @@ class _$_VideoRequest implements _VideoRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _VideoRequest &&
+            other is _$_VideoRequest &&
             const DeepCollectionEquality().equals(other.date, date) &&
             const DeepCollectionEquality().equals(other.page, page));
   }
@@ -143,13 +129,14 @@ class _$_VideoRequest implements _VideoRequest {
 
   @JsonKey(ignore: true)
   @override
-  _$VideoRequestCopyWith<_VideoRequest> get copyWith =>
-      __$VideoRequestCopyWithImpl<_VideoRequest>(this, _$identity);
+  _$$_VideoRequestCopyWith<_$_VideoRequest> get copyWith =>
+      __$$_VideoRequestCopyWithImpl<_$_VideoRequest>(this, _$identity);
 }
 
 abstract class _VideoRequest implements VideoRequest {
-  const factory _VideoRequest({required DateTime date, required int page}) =
-      _$_VideoRequest;
+  const factory _VideoRequest(
+      {required final DateTime date,
+      required final int page}) = _$_VideoRequest;
 
   @override
   DateTime get date;
@@ -157,6 +144,6 @@ abstract class _VideoRequest implements VideoRequest {
   int get page;
   @override
   @JsonKey(ignore: true)
-  _$VideoRequestCopyWith<_VideoRequest> get copyWith =>
+  _$$_VideoRequestCopyWith<_$_VideoRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }

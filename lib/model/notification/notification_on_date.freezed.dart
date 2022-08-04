@@ -12,26 +12,7 @@ part of 'notification_on_date.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$NotificationOnDateTearOff {
-  const _$NotificationOnDateTearOff();
-
-  _NotificationOnDate call(
-      {required DateTime dateTime,
-      required String title,
-      required String body}) {
-    return _NotificationOnDate(
-      dateTime: dateTime,
-      title: title,
-      body: body,
-    );
-  }
-}
-
-/// @nodoc
-const $NotificationOnDate = _$NotificationOnDateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$NotificationOnDate {
@@ -85,25 +66,25 @@ class _$NotificationOnDateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$NotificationOnDateCopyWith<$Res>
+abstract class _$$_NotificationOnDateCopyWith<$Res>
     implements $NotificationOnDateCopyWith<$Res> {
-  factory _$NotificationOnDateCopyWith(
-          _NotificationOnDate value, $Res Function(_NotificationOnDate) then) =
-      __$NotificationOnDateCopyWithImpl<$Res>;
+  factory _$$_NotificationOnDateCopyWith(_$_NotificationOnDate value,
+          $Res Function(_$_NotificationOnDate) then) =
+      __$$_NotificationOnDateCopyWithImpl<$Res>;
   @override
   $Res call({DateTime dateTime, String title, String body});
 }
 
 /// @nodoc
-class __$NotificationOnDateCopyWithImpl<$Res>
+class __$$_NotificationOnDateCopyWithImpl<$Res>
     extends _$NotificationOnDateCopyWithImpl<$Res>
-    implements _$NotificationOnDateCopyWith<$Res> {
-  __$NotificationOnDateCopyWithImpl(
-      _NotificationOnDate _value, $Res Function(_NotificationOnDate) _then)
-      : super(_value, (v) => _then(v as _NotificationOnDate));
+    implements _$$_NotificationOnDateCopyWith<$Res> {
+  __$$_NotificationOnDateCopyWithImpl(
+      _$_NotificationOnDate _value, $Res Function(_$_NotificationOnDate) _then)
+      : super(_value, (v) => _then(v as _$_NotificationOnDate));
 
   @override
-  _NotificationOnDate get _value => super._value as _NotificationOnDate;
+  _$_NotificationOnDate get _value => super._value as _$_NotificationOnDate;
 
   @override
   $Res call({
@@ -111,7 +92,7 @@ class __$NotificationOnDateCopyWithImpl<$Res>
     Object? title = freezed,
     Object? body = freezed,
   }) {
-    return _then(_NotificationOnDate(
+    return _then(_$_NotificationOnDate(
       dateTime: dateTime == freezed
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
@@ -150,7 +131,7 @@ class _$_NotificationOnDate implements _NotificationOnDate {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _NotificationOnDate &&
+            other is _$_NotificationOnDate &&
             const DeepCollectionEquality().equals(other.dateTime, dateTime) &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.body, body));
@@ -165,15 +146,16 @@ class _$_NotificationOnDate implements _NotificationOnDate {
 
   @JsonKey(ignore: true)
   @override
-  _$NotificationOnDateCopyWith<_NotificationOnDate> get copyWith =>
-      __$NotificationOnDateCopyWithImpl<_NotificationOnDate>(this, _$identity);
+  _$$_NotificationOnDateCopyWith<_$_NotificationOnDate> get copyWith =>
+      __$$_NotificationOnDateCopyWithImpl<_$_NotificationOnDate>(
+          this, _$identity);
 }
 
 abstract class _NotificationOnDate implements NotificationOnDate {
   const factory _NotificationOnDate(
-      {required DateTime dateTime,
-      required String title,
-      required String body}) = _$_NotificationOnDate;
+      {required final DateTime dateTime,
+      required final String title,
+      required final String body}) = _$_NotificationOnDate;
 
   @override
   DateTime get dateTime;
@@ -183,6 +165,6 @@ abstract class _NotificationOnDate implements NotificationOnDate {
   String get body;
   @override
   @JsonKey(ignore: true)
-  _$NotificationOnDateCopyWith<_NotificationOnDate> get copyWith =>
+  _$$_NotificationOnDateCopyWith<_$_NotificationOnDate> get copyWith =>
       throw _privateConstructorUsedError;
 }

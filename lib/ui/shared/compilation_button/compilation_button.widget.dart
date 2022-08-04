@@ -10,11 +10,11 @@ class CompilationButton extends HookWidget {
   const CompilationButton({
     Key? key,
     required this.onPressed,
-    this.month,
+    this.monthOfYear,
   }) : super(key: key);
 
   final VoidCallback onPressed;
-  final int? month;
+  final DateTime? monthOfYear;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,9 @@ class CompilationButton extends HookWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
-              month == null ? Icons.movie_filter_rounded : Icons.movie_rounded,
+              monthOfYear == null
+                  ? Icons.movie_filter_rounded
+                  : Icons.movie_rounded,
               size: Spacers.m,
               color: colorScheme.secondaryContainer,
             ),

@@ -12,46 +12,11 @@ part of 'color_scheme_request.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ColorSchemeRequestTearOff {
-  const _$ColorSchemeRequestTearOff();
-
-  ColorRequest color({required Color color, required Brightness brightness}) {
-    return ColorRequest(
-      color: color,
-      brightness: brightness,
-    );
-  }
-
-  EntryColorSchemeRequest entry(
-      {required SavedEntry entry,
-      required Color projectColor,
-      required Brightness brightness}) {
-    return EntryColorSchemeRequest(
-      entry: entry,
-      projectColor: projectColor,
-      brightness: brightness,
-    );
-  }
-
-  ProjectColorSchemeRequest project(
-      {required Project project, required Brightness brightness}) {
-    return ProjectColorSchemeRequest(
-      project: project,
-      brightness: brightness,
-    );
-  }
-}
-
-/// @nodoc
-const $ColorSchemeRequest = _$ColorSchemeRequestTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ColorSchemeRequest {
   Brightness get brightness => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color color, Brightness brightness) color,
@@ -139,32 +104,32 @@ class _$ColorSchemeRequestCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $ColorRequestCopyWith<$Res>
+abstract class _$$ColorRequestCopyWith<$Res>
     implements $ColorSchemeRequestCopyWith<$Res> {
-  factory $ColorRequestCopyWith(
-          ColorRequest value, $Res Function(ColorRequest) then) =
-      _$ColorRequestCopyWithImpl<$Res>;
+  factory _$$ColorRequestCopyWith(
+          _$ColorRequest value, $Res Function(_$ColorRequest) then) =
+      __$$ColorRequestCopyWithImpl<$Res>;
   @override
   $Res call({Color color, Brightness brightness});
 }
 
 /// @nodoc
-class _$ColorRequestCopyWithImpl<$Res>
+class __$$ColorRequestCopyWithImpl<$Res>
     extends _$ColorSchemeRequestCopyWithImpl<$Res>
-    implements $ColorRequestCopyWith<$Res> {
-  _$ColorRequestCopyWithImpl(
-      ColorRequest _value, $Res Function(ColorRequest) _then)
-      : super(_value, (v) => _then(v as ColorRequest));
+    implements _$$ColorRequestCopyWith<$Res> {
+  __$$ColorRequestCopyWithImpl(
+      _$ColorRequest _value, $Res Function(_$ColorRequest) _then)
+      : super(_value, (v) => _then(v as _$ColorRequest));
 
   @override
-  ColorRequest get _value => super._value as ColorRequest;
+  _$ColorRequest get _value => super._value as _$ColorRequest;
 
   @override
   $Res call({
     Object? color = freezed,
     Object? brightness = freezed,
   }) {
-    return _then(ColorRequest(
+    return _then(_$ColorRequest(
       color: color == freezed
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -196,7 +161,7 @@ class _$ColorRequest implements ColorRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ColorRequest &&
+            other is _$ColorRequest &&
             const DeepCollectionEquality().equals(other.color, color) &&
             const DeepCollectionEquality()
                 .equals(other.brightness, brightness));
@@ -210,8 +175,8 @@ class _$ColorRequest implements ColorRequest {
 
   @JsonKey(ignore: true)
   @override
-  $ColorRequestCopyWith<ColorRequest> get copyWith =>
-      _$ColorRequestCopyWithImpl<ColorRequest>(this, _$identity);
+  _$$ColorRequestCopyWith<_$ColorRequest> get copyWith =>
+      __$$ColorRequestCopyWithImpl<_$ColorRequest>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -290,37 +255,39 @@ class _$ColorRequest implements ColorRequest {
 
 abstract class ColorRequest implements ColorSchemeRequest {
   const factory ColorRequest(
-      {required Color color, required Brightness brightness}) = _$ColorRequest;
+      {required final Color color,
+      required final Brightness brightness}) = _$ColorRequest;
 
   Color get color;
   @override
   Brightness get brightness;
   @override
   @JsonKey(ignore: true)
-  $ColorRequestCopyWith<ColorRequest> get copyWith =>
+  _$$ColorRequestCopyWith<_$ColorRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $EntryColorSchemeRequestCopyWith<$Res>
+abstract class _$$EntryColorSchemeRequestCopyWith<$Res>
     implements $ColorSchemeRequestCopyWith<$Res> {
-  factory $EntryColorSchemeRequestCopyWith(EntryColorSchemeRequest value,
-          $Res Function(EntryColorSchemeRequest) then) =
-      _$EntryColorSchemeRequestCopyWithImpl<$Res>;
+  factory _$$EntryColorSchemeRequestCopyWith(_$EntryColorSchemeRequest value,
+          $Res Function(_$EntryColorSchemeRequest) then) =
+      __$$EntryColorSchemeRequestCopyWithImpl<$Res>;
   @override
   $Res call({SavedEntry entry, Color projectColor, Brightness brightness});
 }
 
 /// @nodoc
-class _$EntryColorSchemeRequestCopyWithImpl<$Res>
+class __$$EntryColorSchemeRequestCopyWithImpl<$Res>
     extends _$ColorSchemeRequestCopyWithImpl<$Res>
-    implements $EntryColorSchemeRequestCopyWith<$Res> {
-  _$EntryColorSchemeRequestCopyWithImpl(EntryColorSchemeRequest _value,
-      $Res Function(EntryColorSchemeRequest) _then)
-      : super(_value, (v) => _then(v as EntryColorSchemeRequest));
+    implements _$$EntryColorSchemeRequestCopyWith<$Res> {
+  __$$EntryColorSchemeRequestCopyWithImpl(_$EntryColorSchemeRequest _value,
+      $Res Function(_$EntryColorSchemeRequest) _then)
+      : super(_value, (v) => _then(v as _$EntryColorSchemeRequest));
 
   @override
-  EntryColorSchemeRequest get _value => super._value as EntryColorSchemeRequest;
+  _$EntryColorSchemeRequest get _value =>
+      super._value as _$EntryColorSchemeRequest;
 
   @override
   $Res call({
@@ -328,7 +295,7 @@ class _$EntryColorSchemeRequestCopyWithImpl<$Res>
     Object? projectColor = freezed,
     Object? brightness = freezed,
   }) {
-    return _then(EntryColorSchemeRequest(
+    return _then(_$EntryColorSchemeRequest(
       entry: entry == freezed
           ? _value.entry
           : entry // ignore: cast_nullable_to_non_nullable
@@ -369,7 +336,7 @@ class _$EntryColorSchemeRequest implements EntryColorSchemeRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is EntryColorSchemeRequest &&
+            other is _$EntryColorSchemeRequest &&
             const DeepCollectionEquality().equals(other.entry, entry) &&
             const DeepCollectionEquality()
                 .equals(other.projectColor, projectColor) &&
@@ -386,8 +353,8 @@ class _$EntryColorSchemeRequest implements EntryColorSchemeRequest {
 
   @JsonKey(ignore: true)
   @override
-  $EntryColorSchemeRequestCopyWith<EntryColorSchemeRequest> get copyWith =>
-      _$EntryColorSchemeRequestCopyWithImpl<EntryColorSchemeRequest>(
+  _$$EntryColorSchemeRequestCopyWith<_$EntryColorSchemeRequest> get copyWith =>
+      __$$EntryColorSchemeRequestCopyWithImpl<_$EntryColorSchemeRequest>(
           this, _$identity);
 
   @override
@@ -467,9 +434,9 @@ class _$EntryColorSchemeRequest implements EntryColorSchemeRequest {
 
 abstract class EntryColorSchemeRequest implements ColorSchemeRequest {
   const factory EntryColorSchemeRequest(
-      {required SavedEntry entry,
-      required Color projectColor,
-      required Brightness brightness}) = _$EntryColorSchemeRequest;
+      {required final SavedEntry entry,
+      required final Color projectColor,
+      required final Brightness brightness}) = _$EntryColorSchemeRequest;
 
   SavedEntry get entry;
   Color get projectColor;
@@ -477,16 +444,17 @@ abstract class EntryColorSchemeRequest implements ColorSchemeRequest {
   Brightness get brightness;
   @override
   @JsonKey(ignore: true)
-  $EntryColorSchemeRequestCopyWith<EntryColorSchemeRequest> get copyWith =>
+  _$$EntryColorSchemeRequestCopyWith<_$EntryColorSchemeRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProjectColorSchemeRequestCopyWith<$Res>
+abstract class _$$ProjectColorSchemeRequestCopyWith<$Res>
     implements $ColorSchemeRequestCopyWith<$Res> {
-  factory $ProjectColorSchemeRequestCopyWith(ProjectColorSchemeRequest value,
-          $Res Function(ProjectColorSchemeRequest) then) =
-      _$ProjectColorSchemeRequestCopyWithImpl<$Res>;
+  factory _$$ProjectColorSchemeRequestCopyWith(
+          _$ProjectColorSchemeRequest value,
+          $Res Function(_$ProjectColorSchemeRequest) then) =
+      __$$ProjectColorSchemeRequestCopyWithImpl<$Res>;
   @override
   $Res call({Project project, Brightness brightness});
 
@@ -494,23 +462,23 @@ abstract class $ProjectColorSchemeRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class _$ProjectColorSchemeRequestCopyWithImpl<$Res>
+class __$$ProjectColorSchemeRequestCopyWithImpl<$Res>
     extends _$ColorSchemeRequestCopyWithImpl<$Res>
-    implements $ProjectColorSchemeRequestCopyWith<$Res> {
-  _$ProjectColorSchemeRequestCopyWithImpl(ProjectColorSchemeRequest _value,
-      $Res Function(ProjectColorSchemeRequest) _then)
-      : super(_value, (v) => _then(v as ProjectColorSchemeRequest));
+    implements _$$ProjectColorSchemeRequestCopyWith<$Res> {
+  __$$ProjectColorSchemeRequestCopyWithImpl(_$ProjectColorSchemeRequest _value,
+      $Res Function(_$ProjectColorSchemeRequest) _then)
+      : super(_value, (v) => _then(v as _$ProjectColorSchemeRequest));
 
   @override
-  ProjectColorSchemeRequest get _value =>
-      super._value as ProjectColorSchemeRequest;
+  _$ProjectColorSchemeRequest get _value =>
+      super._value as _$ProjectColorSchemeRequest;
 
   @override
   $Res call({
     Object? project = freezed,
     Object? brightness = freezed,
   }) {
-    return _then(ProjectColorSchemeRequest(
+    return _then(_$ProjectColorSchemeRequest(
       project: project == freezed
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
@@ -550,7 +518,7 @@ class _$ProjectColorSchemeRequest implements ProjectColorSchemeRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ProjectColorSchemeRequest &&
+            other is _$ProjectColorSchemeRequest &&
             const DeepCollectionEquality().equals(other.project, project) &&
             const DeepCollectionEquality()
                 .equals(other.brightness, brightness));
@@ -564,9 +532,9 @@ class _$ProjectColorSchemeRequest implements ProjectColorSchemeRequest {
 
   @JsonKey(ignore: true)
   @override
-  $ProjectColorSchemeRequestCopyWith<ProjectColorSchemeRequest> get copyWith =>
-      _$ProjectColorSchemeRequestCopyWithImpl<ProjectColorSchemeRequest>(
-          this, _$identity);
+  _$$ProjectColorSchemeRequestCopyWith<_$ProjectColorSchemeRequest>
+      get copyWith => __$$ProjectColorSchemeRequestCopyWithImpl<
+          _$ProjectColorSchemeRequest>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -645,14 +613,14 @@ class _$ProjectColorSchemeRequest implements ProjectColorSchemeRequest {
 
 abstract class ProjectColorSchemeRequest implements ColorSchemeRequest {
   const factory ProjectColorSchemeRequest(
-      {required Project project,
-      required Brightness brightness}) = _$ProjectColorSchemeRequest;
+      {required final Project project,
+      required final Brightness brightness}) = _$ProjectColorSchemeRequest;
 
   Project get project;
   @override
   Brightness get brightness;
   @override
   @JsonKey(ignore: true)
-  $ProjectColorSchemeRequestCopyWith<ProjectColorSchemeRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ProjectColorSchemeRequestCopyWith<_$ProjectColorSchemeRequest>
+      get copyWith => throw _privateConstructorUsedError;
 }

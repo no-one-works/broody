@@ -25,7 +25,7 @@ class BroodyCompilationDatasource extends ICompilationDatasource {
 
   @override
   FutureOr<void> setCompilation(SavedCompilation compilation) {
-    _box.put(compilation.projectUid, compilation);
+    _box.put(compilation.uid, compilation);
   }
 
   @override
@@ -35,11 +35,11 @@ class BroodyCompilationDatasource extends ICompilationDatasource {
     if (!await dir.exists()) {
       await dir.create(recursive: true);
     }
-    final filename = _getFilenameForCompilation(compilation: createCompilation);
-    final outputPath = "${dir.path}/$filename";
+    final outputPath = "${dir.path}/${createCompilation.filename}.mp4";
     final videoPaths = createCompilation.usedEntries
         .map((e) => "${createCompilation.projectPath}/${e.clipFileName}")
         .toList();
+    print(outputPath);
     final process = BroodyVideo.instance
         .concatVideos(sourcePaths: videoPaths, destination: File(outputPath));
 
@@ -55,7 +55,9 @@ class BroodyCompilationDatasource extends ICompilationDatasource {
             stackTrace: loadingFile.stackTrace);
       }
     }
-    final file = loadingFile.whenOrNull(data: (mediaInfo) => mediaInfo?.file);
+    final mediaInfo = loadingFile.whenOrNull(data: (mediaInfo) => mediaInfo);
+    final file = mediaInfo?.file;
+    print(mediaInfo?.toJson());
     await file?.setLastModified(DateTime.now());
     final savedCompilation = file == null
         ? null
@@ -63,7 +65,7 @@ class BroodyCompilationDatasource extends ICompilationDatasource {
             uid: createCompilation.uid,
             filename: file.name,
             projectUid: createCompilation.projectUid,
-            month: createCompilation.month,
+            monthOfYear: createCompilation.monthOfYear,
             usedEntries: createCompilation.usedEntries,
             created: DateTime.now(),
             width: createCompilation.width,
@@ -72,14 +74,23 @@ class BroodyCompilationDatasource extends ICompilationDatasource {
 
     if (savedCompilation != null) {
       setCompilation(savedCompilation);
-    }
+    } else {}
     yield LoadingValue.data(savedCompilation);
   }
 
   @override
-  Future<bool> deleteCompilation({required File file}) async {
+  Future<void> clearCompilations(List<Directory> compilationDirectories) async {
+    _box.clear();
+    await Future.wait(
+        compilationDirectories.map((e) => e.delete(recursive: true)));
+  }
+
+  @override
+  Future<bool> deleteCompilation(
+      {required SavedCompilation compilation, File? file}) async {
+    _box.delete(compilation.uid);
     try {
-      await file.delete();
+      await file?.delete();
       return true;
     } catch (e) {
       debugPrint("Could not delete file: $e");
@@ -98,23 +109,10 @@ class BroodyCompilationDatasource extends ICompilationDatasource {
   @override
   SavedCompilation? getCompilationForProject({
     required String projectUid,
-    int? month,
+    DateTime? monthOfYear,
   }) {
     return compilations.firstWhereOrNull(
-      (c) => c.projectUid == projectUid && c.month == month,
+      (c) => c.projectUid == projectUid && c.monthOfYear == monthOfYear,
     );
-  }
-
-  String _getFilenameForCompilation({
-    required CreateCompilation compilation,
-  }) {
-    final extension =
-        File(compilation.usedEntries.first.clipFileName).extension;
-    final outputCompilationName = compilation.month == null
-        ? compilation.projectTitle
-        : "${compilation.projectTitle}-${compilation.month}";
-    final filename =
-        outputCompilationName.replaceAll(RegExp(r'[ /\\?%*:|"<>]'), '-');
-    return filename + extension;
   }
 }

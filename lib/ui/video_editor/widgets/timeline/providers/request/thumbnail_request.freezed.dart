@@ -12,32 +12,7 @@ part of 'thumbnail_request.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ThumbnailRequestTearOff {
-  const _$ThumbnailRequestTearOff();
-
-  _ThumbnailRequest call(
-      {required String videoPath,
-      required Duration videoDuration,
-      required int thumbnailHeight,
-      required double aspectRatio,
-      required int thumbnailCount,
-      required int quality}) {
-    return _ThumbnailRequest(
-      videoPath: videoPath,
-      videoDuration: videoDuration,
-      thumbnailHeight: thumbnailHeight,
-      aspectRatio: aspectRatio,
-      thumbnailCount: thumbnailCount,
-      quality: quality,
-    );
-  }
-}
-
-/// @nodoc
-const $ThumbnailRequest = _$ThumbnailRequestTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ThumbnailRequest {
@@ -115,11 +90,11 @@ class _$ThumbnailRequestCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ThumbnailRequestCopyWith<$Res>
+abstract class _$$_ThumbnailRequestCopyWith<$Res>
     implements $ThumbnailRequestCopyWith<$Res> {
-  factory _$ThumbnailRequestCopyWith(
-          _ThumbnailRequest value, $Res Function(_ThumbnailRequest) then) =
-      __$ThumbnailRequestCopyWithImpl<$Res>;
+  factory _$$_ThumbnailRequestCopyWith(
+          _$_ThumbnailRequest value, $Res Function(_$_ThumbnailRequest) then) =
+      __$$_ThumbnailRequestCopyWithImpl<$Res>;
   @override
   $Res call(
       {String videoPath,
@@ -131,15 +106,15 @@ abstract class _$ThumbnailRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ThumbnailRequestCopyWithImpl<$Res>
+class __$$_ThumbnailRequestCopyWithImpl<$Res>
     extends _$ThumbnailRequestCopyWithImpl<$Res>
-    implements _$ThumbnailRequestCopyWith<$Res> {
-  __$ThumbnailRequestCopyWithImpl(
-      _ThumbnailRequest _value, $Res Function(_ThumbnailRequest) _then)
-      : super(_value, (v) => _then(v as _ThumbnailRequest));
+    implements _$$_ThumbnailRequestCopyWith<$Res> {
+  __$$_ThumbnailRequestCopyWithImpl(
+      _$_ThumbnailRequest _value, $Res Function(_$_ThumbnailRequest) _then)
+      : super(_value, (v) => _then(v as _$_ThumbnailRequest));
 
   @override
-  _ThumbnailRequest get _value => super._value as _ThumbnailRequest;
+  _$_ThumbnailRequest get _value => super._value as _$_ThumbnailRequest;
 
   @override
   $Res call({
@@ -150,7 +125,7 @@ class __$ThumbnailRequestCopyWithImpl<$Res>
     Object? thumbnailCount = freezed,
     Object? quality = freezed,
   }) {
-    return _then(_ThumbnailRequest(
+    return _then(_$_ThumbnailRequest(
       videoPath: videoPath == freezed
           ? _value.videoPath
           : videoPath // ignore: cast_nullable_to_non_nullable
@@ -212,7 +187,7 @@ class _$_ThumbnailRequest implements _ThumbnailRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ThumbnailRequest &&
+            other is _$_ThumbnailRequest &&
             const DeepCollectionEquality().equals(other.videoPath, videoPath) &&
             const DeepCollectionEquality()
                 .equals(other.videoDuration, videoDuration) &&
@@ -237,18 +212,18 @@ class _$_ThumbnailRequest implements _ThumbnailRequest {
 
   @JsonKey(ignore: true)
   @override
-  _$ThumbnailRequestCopyWith<_ThumbnailRequest> get copyWith =>
-      __$ThumbnailRequestCopyWithImpl<_ThumbnailRequest>(this, _$identity);
+  _$$_ThumbnailRequestCopyWith<_$_ThumbnailRequest> get copyWith =>
+      __$$_ThumbnailRequestCopyWithImpl<_$_ThumbnailRequest>(this, _$identity);
 }
 
 abstract class _ThumbnailRequest implements ThumbnailRequest {
   const factory _ThumbnailRequest(
-      {required String videoPath,
-      required Duration videoDuration,
-      required int thumbnailHeight,
-      required double aspectRatio,
-      required int thumbnailCount,
-      required int quality}) = _$_ThumbnailRequest;
+      {required final String videoPath,
+      required final Duration videoDuration,
+      required final int thumbnailHeight,
+      required final double aspectRatio,
+      required final int thumbnailCount,
+      required final int quality}) = _$_ThumbnailRequest;
 
   @override
   String get videoPath;
@@ -264,6 +239,6 @@ abstract class _ThumbnailRequest implements ThumbnailRequest {
   int get quality;
   @override
   @JsonKey(ignore: true)
-  _$ThumbnailRequestCopyWith<_ThumbnailRequest> get copyWith =>
+  _$$_ThumbnailRequestCopyWith<_$_ThumbnailRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }

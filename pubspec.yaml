@@ -10,6 +10,8 @@ environment:
 
 dependency_overrides:
   material_color_utilities: ^0.1.4
+  broody_video:
+    path: ../broody_video
 
 dependencies:
   flutter:
@@ -59,8 +61,7 @@ dependencies:
   package_info: ^2.0.2
   wakelock: ^0.6.2
   loading_value: ^0.0.2
-  broody_video:
-    path: ../broody_video
+  broody_video: ^0.0.5-dev.1
 
 dev_dependencies:
   flutter_test:

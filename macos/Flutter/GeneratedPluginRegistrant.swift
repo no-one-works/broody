@@ -5,7 +5,6 @@
 import FlutterMacOS
 import Foundation
 
-import broody_video
 import dynamic_color
 import ffmpeg_kit_flutter_min_gpl
 import flutter_local_notifications
@@ -19,7 +18,6 @@ import url_launcher_macos
 import wakelock_macos
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
-  VideoCompressPlugin.register(with: registry.registrar(forPlugin: "VideoCompressPlugin"))
   DynamicColorPlugin.register(with: registry.registrar(forPlugin: "DynamicColorPlugin"))
   FFmpegKitFlutterPlugin.register(with: registry.registrar(forPlugin: "FFmpegKitFlutterPlugin"))
   FlutterLocalNotificationsPlugin.register(with: registry.registrar(forPlugin: "FlutterLocalNotificationsPlugin"))

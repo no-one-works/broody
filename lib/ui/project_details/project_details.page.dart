@@ -94,10 +94,8 @@ class ProjectDetailsPage extends HookConsumerWidget {
                                 project: state.project);
                         if (changed && !isRunning) {
                           notifier.deleteProject();
-                          var selectedProjectUid = ref
-                              .read(selectedProjectProvider.notifier)
-                              .state
-                              ?.uid;
+                          final selectedProjectUid =
+                              ref.read(selectedProjectProvider)?.uid;
                           if (state.project.uid == selectedProjectUid) {
                             //remove HomePage from stack - project was deleted
                             context.router.replaceAll([const ProjectsRoute()]);

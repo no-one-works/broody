@@ -13,17 +13,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class CreateCompilationPage extends HookConsumerWidget {
   CreateCompilationPage({
     required this.projectUid,
-    this.month,
+    this.monthOfYear,
     Key? key,
   }) : super(key: key);
 
   final String projectUid;
-  final int? month;
+  final DateTime? monthOfYear;
 
   late final CreateCompilationState _initialState =
       CreateCompilationState.prepareExport(
     projectUid: projectUid,
-    month: month,
+    monthOfYear: monthOfYear,
   );
 
   @override
@@ -40,10 +40,9 @@ class CreateCompilationPage extends HookConsumerWidget {
       backgroundColor: colorScheme.secondaryContainer,
       appBar: AppBar(
         foregroundColor: colorScheme.secondary,
-        title: Text(state.month == null
+        title: Text(state.monthOfYear == null
             ? projectTitle
-            : l10n.monthCompilation(
-                projectTitle, DateTime(1970, state.month!))),
+            : l10n.monthCompilation(projectTitle, monthOfYear!)),
       ),
       body: AnimatedSwitcher(
         duration: kThemeAnimationDuration,

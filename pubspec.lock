@@ -105,7 +105,7 @@ packages:
       path: "../broody_video"
       relative: true
     source: path
-    version: "3.1.1"
+    version: "0.5.0-dev.1"
   build:
     dependency: transitive
     description:

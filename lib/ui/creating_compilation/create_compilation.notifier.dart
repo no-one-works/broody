@@ -31,7 +31,7 @@ class CreateCompilationNotifier extends StateNotifier<CreateCompilationState> {
       debugPrint("update needed for compilation");
       state = CreateCompilationState.exporting(
         projectUid: state.projectUid,
-        month: state.month,
+        monthOfYear: state.monthOfYear,
         exportProgress: const LoadingValue.loading(0),
       );
       _saveCompilation();
@@ -40,19 +40,19 @@ class CreateCompilationNotifier extends StateNotifier<CreateCompilationState> {
       final projectRepo = reader(projectRepositoryProvider);
       final savedCompilation = projectRepo.getCompilationForProject(
         projectUid: state.projectUid,
-        month: state.month,
+        monthOfYear: state.monthOfYear,
       );
       if (savedCompilation == null) {
         state = CreateCompilationExportFailed(
           projectUid: state.projectUid,
-          month: state.month,
+          monthOfYear: state.monthOfYear,
         );
       } else {
         final file = await projectRepo.getFileForCompilation(savedCompilation);
 
         state = CreateCompilationState.exportSuccess(
             projectUid: state.projectUid,
-            month: state.month,
+            monthOfYear: state.monthOfYear,
             savedCompilation: savedCompilation,
             file: file,
             videoController: await _createPlayerController(
@@ -69,7 +69,7 @@ class CreateCompilationNotifier extends StateNotifier<CreateCompilationState> {
       final project = repo.getProject(s.projectUid)!;
       final assetEntity = await repo.saveCompilationInGallery(
         project: project,
-        month: s.month,
+        monthOfYear: s.monthOfYear,
       );
       return assetEntity != null;
     }
@@ -93,7 +93,7 @@ class CreateCompilationNotifier extends StateNotifier<CreateCompilationState> {
     final projectRepo = reader(projectRepositoryProvider);
     return projectRepo.compilationNeedsUpdate(
       projectUid: s.projectUid,
-      month: s.month,
+      monthOfYear: s.monthOfYear,
     );
   }
 
@@ -118,10 +118,9 @@ class CreateCompilationNotifier extends StateNotifier<CreateCompilationState> {
     final repo = reader(projectRepositoryProvider);
     final compilationProgress = repo.createCompilation(
       projectUid: state.projectUid,
-      month: s.month,
+      monthOfYear: state.monthOfYear,
     );
     await for (final loadingValue in compilationProgress) {
-      debugPrint("compilation exporting...");
       state = s.copyWith(exportProgress: loadingValue);
       loadingValue.whenOrNull(
         data: (savedCompilation) async {
@@ -129,7 +128,7 @@ class CreateCompilationNotifier extends StateNotifier<CreateCompilationState> {
             final file = await repo.getFileForCompilation(savedCompilation);
             state = CreateCompilationState.exportSuccess(
               projectUid: state.projectUid,
-              month: state.month,
+              monthOfYear: state.monthOfYear,
               savedCompilation: savedCompilation,
               file: file,
               videoController: await _createPlayerController(file),
@@ -137,7 +136,7 @@ class CreateCompilationNotifier extends StateNotifier<CreateCompilationState> {
           } else {
             state = CreateCompilationState.exportFailed(
               projectUid: state.projectUid,
-              month: state.month,
+              monthOfYear: state.monthOfYear,
             );
           }
         },

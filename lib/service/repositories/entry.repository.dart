@@ -12,6 +12,7 @@ import 'package:broody/service/datasources/entry/entry.datasource.dart';
 import 'package:broody/service/providers/directory.provider.dart';
 import 'package:broody/service/repositories/project.repository.dart';
 import 'package:broody/service/repositories/repository.dart';
+import 'package:broody_video/broody_video.dart';
 import 'package:dartx/dartx_io.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -314,15 +315,25 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
     EditingEntry entry,
     Directory directory,
   ) async {
-    final bytes = entry.thumbnailBytes ??
-        await VideoThumbnail.thumbnailData(
-          video: entry.videoPath,
-          timeMs: entry.startPoint.inMilliseconds,
-          imageFormat: ImageFormat.JPEG,
-          maxHeight: entry.height ~/ 2,
-          maxWidth: entry.width ~/ 2,
-          quality: 10,
-        );
+    final List<int>? bytes;
+    if (entry.thumbnailBytes != null) {
+      bytes = entry.thumbnailBytes!;
+    } else if (Platform.isIOS) {
+      bytes = await BroodyVideo.instance.getThumbnail(
+        sourceFile: File(entry.videoPath),
+        position: entry.startPoint,
+        quality: 10,
+      );
+    } else {
+      bytes = await VideoThumbnail.thumbnailData(
+        video: entry.videoPath,
+        timeMs: entry.startPoint.inMilliseconds,
+        imageFormat: ImageFormat.JPEG,
+        maxHeight: entry.height ~/ 2,
+        maxWidth: entry.width ~/ 2,
+        quality: 10,
+      );
+    }
     if (bytes == null) return null;
     File(directory.path + "/" + entry.uid + ".jpg").writeAsBytes(bytes);
     final img = await decodeImageOnIsolate(Uint8List.fromList(bytes));

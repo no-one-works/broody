@@ -177,7 +177,7 @@
   },
   "outdatedEntriesOk": "Update Entries",
   "outdatedEntriesCancel": "Open in Read-Only Mode",
-  "outdatedEntriesRunningDescription": "This could take a while. Please don't close the app until this process is finished!",
+  "outdatedEntriesRunningDescription": "This could take a while. Please don't close the app until this process is finished! We might need to request some of your original files from your cloud storage, so please make sure you're connected to the internet.",
   "updatingEntriesRemaining": "Updating Entries...\n{count} remain",
   "@updatingEntriesRemaining": {
     "placeholders": {

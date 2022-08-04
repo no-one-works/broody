@@ -669,7 +669,7 @@ class __$$SavedEntryCopyWithImpl<$Res> extends _$EntryCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SavedEntry extends SavedEntry {
   _$SavedEntry(
-      {this.exportVersion = entryAlgorithmVersion,
+      {required this.exportVersion,
       required this.timestamp,
       required this.changedWhen,
       required this.projectId,
@@ -689,7 +689,6 @@ class _$SavedEntry extends SavedEntry {
       _$$SavedEntryFromJson(json);
 
   @override
-  @JsonKey()
   final int exportVersion;
   @override
   final DateTime timestamp;
@@ -945,7 +944,7 @@ class _$SavedEntry extends SavedEntry {
 
 abstract class SavedEntry extends Entry {
   factory SavedEntry(
-      {final int exportVersion,
+      {required final int exportVersion,
       required final DateTime timestamp,
       required final DateTime changedWhen,
       required final String projectId,

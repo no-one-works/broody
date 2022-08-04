@@ -8,7 +8,10 @@ import 'package:broody_video/broody_video.dart';
 import 'package:flutter/foundation.dart';
 import 'package:loading_value/loading_value.dart';
 
-class VideoCompressClipDatasource extends IClipDatasource {
+class BroodyClipDatasource extends IClipDatasource {
+  @override
+  int get algorithmVersion => 6;
+
   @override
   String get fileFormat => ".mp4";
 

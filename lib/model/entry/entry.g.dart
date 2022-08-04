@@ -37,7 +37,7 @@ Map<String, dynamic> _$$EditingEntryToJson(_$EditingEntry instance) =>
     };
 
 _$SavedEntry _$$SavedEntryFromJson(Map<String, dynamic> json) => _$SavedEntry(
-      exportVersion: json['exportVersion'] as int? ?? entryAlgorithmVersion,
+      exportVersion: json['exportVersion'] as int,
       timestamp: DateTime.parse(json['timestamp'] as String),
       changedWhen: DateTime.parse(json['changedWhen'] as String),
       projectId: json['projectId'] as String,

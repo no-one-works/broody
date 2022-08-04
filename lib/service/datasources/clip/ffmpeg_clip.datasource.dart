@@ -16,6 +16,9 @@ class FFmpegClipDatasource extends IClipDatasource {
   Session? _currentSession;
 
   @override
+  int get algorithmVersion => 5;
+
+  @override
   String get fileFormat => ".mp4";
 
   final useX265 = !Platform.isAndroid;

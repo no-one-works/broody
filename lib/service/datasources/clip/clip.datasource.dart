@@ -9,6 +9,8 @@ import 'package:loading_value/loading_value.dart';
 import 'ffmpeg_clip.datasource.dart';
 
 abstract class IClipDatasource {
+  int get algorithmVersion;
+
   String get fileFormat;
 
   Stream<LoadingValue<File?>> createClip({
@@ -26,6 +28,5 @@ abstract class IClipDatasource {
 }
 
 final clipDatasourceProvider = Provider<IClipDatasource>(
-  (ref) =>
-      Platform.isIOS ? VideoCompressClipDatasource() : FFmpegClipDatasource(),
+  (ref) => Platform.isIOS ? BroodyClipDatasource() : FFmpegClipDatasource(),
 );

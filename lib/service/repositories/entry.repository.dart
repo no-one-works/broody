@@ -71,9 +71,10 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
   @override
   Stream<List<SavedEntry>> watchOutdatedEntries(
       {required String projectId}) async* {
+    final clipDatasource = ref.read(clipDatasourceProvider);
     await for (final entries in watchEntriesForProject(projectId: projectId)) {
       yield entries
-          .where((e) => e.exportVersion != entryAlgorithmVersion)
+          .where((e) => e.exportVersion != clipDatasource.algorithmVersion)
           .toList();
     }
   }
@@ -160,6 +161,7 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
         }
         final hash = await blurHash;
         final entryToSave = Entry.saved(
+          exportVersion: clipDatasource.algorithmVersion,
           changedWhen: DateTime.now(),
           projectId: entry.projectId,
           timestamp: entry.timestamp,
@@ -202,15 +204,16 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
         ref.read(projectRepositoryProvider).getProject(entry.projectId);
 
     final needsCropping = _entryNeedsCropping(project: project!, entry: entry);
-    final process = ref.read(clipDatasourceProvider).createClip(
-          startPoint: entry.startPoint,
-          duration: entry.duration,
-          videoSource: originalFile,
-          resolution: project.resolution,
-          centerCropping: needsCropping
-              ? _calculateCropping(project: project, entry: entry)
-              : null,
-        );
+    final clipDatasource = ref.read(clipDatasourceProvider);
+    final process = clipDatasource.createClip(
+      startPoint: entry.startPoint,
+      duration: entry.duration,
+      videoSource: originalFile,
+      resolution: project.resolution,
+      centerCropping: needsCropping
+          ? _calculateCropping(project: project, entry: entry)
+          : null,
+    );
 
     await for (final loadingValue in process) {
       if (loadingValue is ValueLoading<File?>) {
@@ -239,7 +242,7 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
           return;
         }
         final updatedEntry = entry.copyWith(
-          exportVersion: entryAlgorithmVersion,
+          exportVersion: clipDatasource.algorithmVersion,
           changedWhen: DateTime.now(),
         );
         debugPrint("Saving Updated Entry to Database...");
@@ -293,7 +296,7 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
           return;
         }
         final updatedEntry = entry.copyWith(
-          exportVersion: entryAlgorithmVersion,
+          exportVersion: clipDatasource.algorithmVersion,
           changedWhen: DateTime.now(),
         );
         debugPrint("Saving Updated Entry to Database...");

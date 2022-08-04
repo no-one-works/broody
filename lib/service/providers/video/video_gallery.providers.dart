@@ -85,7 +85,14 @@ final pickedVideoProvider = Provider.autoDispose
     .family<LoadingValue<File>, AssetEntity>((ref, assetEntity) {
   final asyncValue = ref.watch(_pickedVideoStreamProvider(assetEntity));
   return asyncValue.when(
-    data: (v) => v,
+    data: (v) {
+      v.whenOrNull(data: (f) async {
+        await Future.delayed(Duration(milliseconds: 500));
+        ref.refresh(galleryVideoIsLocalProvider(assetEntity));
+        ref.refresh(assetEntityFileProvider(assetEntity));
+      });
+      return v;
+    },
     error: (e, s) => LoadingValue.error(e, stackTrace: s),
     loading: () => const LoadingValue.loading(0),
   );
@@ -93,7 +100,7 @@ final pickedVideoProvider = Provider.autoDispose
 
 final galleryVideoIsLocalProvider =
     FutureProvider.autoDispose.family((ref, AssetEntity entity) async {
-  return await entity.isLocallyAvailable;
+  return await entity.isLocallyAvailable();
 });
 
 final assetEntityFileProvider =
@@ -101,6 +108,7 @@ final assetEntityFileProvider =
   (ref, AssetEntity entity) async {
     debugPrint("Obtaining Converted File");
     File? file = await entity.file;
+    debugPrint("File " + file.toString());
     if (file == null) {
       debugPrint("Fallback to originFile");
       file = await entity.originFile;

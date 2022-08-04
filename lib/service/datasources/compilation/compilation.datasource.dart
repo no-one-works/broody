@@ -6,6 +6,7 @@ import 'package:broody/core/constants/box_keys.dart';
 import 'package:broody/core/constants/box_type_ids.dart';
 import 'package:broody/core/extensions/hive_box.x.dart';
 import 'package:broody/model/compilation/compilation.dart';
+import 'package:broody/service/datasources/compilation/broody_compilation.datasource.dart';
 import 'package:collection/collection.dart';
 import 'package:dartx/dartx_io.dart';
 import 'package:ffmpeg_kit_flutter_min_gpl/ffmpeg_kit.dart';
@@ -25,19 +26,26 @@ abstract class ICompilationDatasource {
 
   FutureOr<void> setCompilation(SavedCompilation compilation);
 
-  SavedCompilation? getCompilationForProject(
-      {required String projectUid, int? month});
+  SavedCompilation? getCompilationForProject({
+    required String projectUid,
+    DateTime? monthOfYear,
+  });
 
   Stream<LoadingValue<SavedCompilation?>> createCompilation(
       {required CreateCompilation createCompilation});
 
-  Future<bool> deleteCompilation({required File file});
+  Future<void> clearCompilations(List<Directory> compilationDirectories);
+
+  Future<bool> deleteCompilation({
+    required SavedCompilation compilation,
+    File? file,
+  });
 
   Future<File?> loadCompilation({required File file});
 }
 
-final compilationDatasourceProvider =
-    Provider<ICompilationDatasource>((ref) => CompilationDatasource());
+final compilationDatasourceProvider = Provider<ICompilationDatasource>((ref) =>
+    Platform.isIOS ? BroodyCompilationDatasource() : CompilationDatasource());
 
 class CompilationDatasource extends ICompilationDatasource {
   late final Box<SavedCompilation> _box =
@@ -51,7 +59,7 @@ class CompilationDatasource extends ICompilationDatasource {
 
   @override
   FutureOr<void> setCompilation(SavedCompilation compilation) {
-    _box.put(compilation.projectUid, compilation);
+    _box.put(compilation.uid, compilation);
   }
 
   @override
@@ -61,8 +69,7 @@ class CompilationDatasource extends ICompilationDatasource {
     if (!await dir.exists()) {
       await dir.create(recursive: true);
     }
-    final filename = _getFilenameForCompilation(compilation: createCompilation);
-    final outputPath = "${dir.path}/$filename";
+    final outputPath = "${dir.path}/${createCompilation.filename}";
 
     final path = await getTemporaryDirectory();
     debugPrint(path.path);
@@ -110,7 +117,7 @@ class CompilationDatasource extends ICompilationDatasource {
             uid: createCompilation.uid,
             filename: file.name,
             projectUid: createCompilation.projectUid,
-            month: createCompilation.month,
+            monthOfYear: createCompilation.monthOfYear,
             usedEntries: createCompilation.usedEntries,
             created: DateTime.now(),
             width: createCompilation.width,
@@ -124,9 +131,20 @@ class CompilationDatasource extends ICompilationDatasource {
   }
 
   @override
-  Future<bool> deleteCompilation({required File file}) async {
+  Future<void> clearCompilations(List<Directory> compilationDirectories) async {
+    _box.clear();
+    await Future.wait(
+        compilationDirectories.map((e) => e.delete(recursive: true)));
+  }
+
+  @override
+  Future<bool> deleteCompilation({
+    required SavedCompilation compilation,
+    File? file,
+  }) async {
+    _box.delete(compilation.uid);
     try {
-      await file.delete();
+      await file?.delete();
       return true;
     } catch (e) {
       debugPrint("Could not delete file: $e");
@@ -145,24 +163,11 @@ class CompilationDatasource extends ICompilationDatasource {
   @override
   SavedCompilation? getCompilationForProject({
     required String projectUid,
-    int? month,
+    DateTime? monthOfYear,
   }) {
     return compilations.firstWhereOrNull(
-      (c) => c.projectUid == projectUid && c.month == month,
+      (c) => c.projectUid == projectUid && c.monthOfYear == monthOfYear,
     );
-  }
-
-  String _getFilenameForCompilation({
-    required CreateCompilation compilation,
-  }) {
-    final extension =
-        File(compilation.usedEntries.first.clipFileName).extension;
-    final outputCompilationName = compilation.month == null
-        ? compilation.projectTitle
-        : "${compilation.projectTitle}-${compilation.month}";
-    final filename =
-        outputCompilationName.replaceAll(RegExp(r'[ /\\?%*:|"<>]'), '-');
-    return filename + extension;
   }
 }
 

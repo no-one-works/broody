@@ -3,7 +3,6 @@ import 'package:broody/core/hook/use_theme.hook.dart';
 import 'package:broody/routing/router.dart';
 import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:flutter/material.dart';
-import 'package:heroicons/heroicons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../theme/spacing.dart';
@@ -18,7 +17,7 @@ class HomeDropdown extends HookConsumerWidget {
     final selectedProject = ref.watch(selectedProjectProvider);
 
     return PopupMenuButton(
-      icon: const HeroIcon(HeroIcons.dotsVertical),
+      icon: const Icon(Icons.more_vert_rounded),
       padding: EdgeInsets.zero,
       color: colorScheme.surface,
       itemBuilder: (context) => [

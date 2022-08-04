@@ -28,7 +28,7 @@ class MonthSliverGrid extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final month = dates.first.month;
+    final monthOfYear = DateTime(dates.first.year, dates.first.month);
     ref.listen<ProjectMonth?>(projectMonthCompleteProvider(dates.first),
         (previous, next) {
       if (next != null &&
@@ -37,7 +37,7 @@ class MonthSliverGrid extends HookConsumerWidget {
           !(previous?.complete ?? true)) {
         context.router.navigate(
           MonthCompleteInfoRoute(
-            month: month,
+            monthOfYear: monthOfYear,
           ),
         );
       }
@@ -46,7 +46,7 @@ class MonthSliverGrid extends HookConsumerWidget {
     final textTheme = useTextTheme();
     final colorScheme = useColorScheme();
     final dateFormat = useDateFormat();
-    final monthName = dateFormat.dateSymbols.MONTHS[month - 1];
+    final monthName = dateFormat.dateSymbols.MONTHS[monthOfYear.month - 1];
     final selectedProject = ref.watch(selectedProjectProvider)!;
     final monthEnded = ref.watch(projectMonthEndedProvider(dates.first));
 
@@ -94,7 +94,7 @@ class MonthSliverGrid extends HookConsumerWidget {
                             context.router.navigate(
                               CreateCompilationRoute(
                                 projectUid: selectedProject.uid,
-                                month: month,
+                                monthOfYear: monthOfYear,
                               ),
                             );
                           },

@@ -1,4 +1,6 @@
 PODS:
+  - broody_video (0.3.0):
+    - Flutter
   - ffmpeg-kit-ios-min-gpl (4.5.1)
   - ffmpeg_kit_flutter_min_gpl (4.5.1):
     - ffmpeg_kit_flutter_min_gpl/min-gpl (= 4.5.1)
@@ -42,6 +44,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - broody_video (from `.symlinks/plugins/broody_video/ios`)
   - ffmpeg_kit_flutter_min_gpl (from `.symlinks/plugins/ffmpeg_kit_flutter_min_gpl/ios`)
   - Flutter (from `Flutter`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
@@ -62,6 +65,8 @@ SPEC REPOS:
     - libwebp
 
 EXTERNAL SOURCES:
+  broody_video:
+    :path: ".symlinks/plugins/broody_video/ios"
   ffmpeg_kit_flutter_min_gpl:
     :path: ".symlinks/plugins/ffmpeg_kit_flutter_min_gpl/ios"
   Flutter:
@@ -90,6 +95,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/wakelock/ios"
 
 SPEC CHECKSUMS:
+  broody_video: bfa9f92dc70e23e40478b0e5b6e9af7d438cc9ef
   ffmpeg-kit-ios-min-gpl: da951b00628916702be2a90918181ebdcdd569ff
   ffmpeg_kit_flutter_min_gpl: 3c3266c6284c29340ac8bea41613efcdd7aea3e4
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
@@ -108,4 +114,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: a856ed3eb7d4dc73cd38d83ed0e01cfeff65670e
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

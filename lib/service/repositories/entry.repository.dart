@@ -72,7 +72,7 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
       {required String projectId}) async* {
     await for (final entries in watchEntriesForProject(projectId: projectId)) {
       yield entries
-          .where((e) => e.exportVersion < entryAlgorithmVersion)
+          .where((e) => e.exportVersion != entryAlgorithmVersion)
           .toList();
     }
   }
@@ -215,6 +215,7 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
       if (loadingValue is ValueLoading<File?>) {
         yield LoadingValue.loading(loadingValue.progress);
       } else if (loadingValue is LoadingError<File?>) {
+        print(loadingValue);
         yield LoadingValue.error(
           loadingValue.error,
           stackTrace: loadingValue.stackTrace,
@@ -259,7 +260,7 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
           "This entry can't be regenerated because its file wasn't found!");
     }
     final process = clipDatasource.createClip(
-      startPoint: null,
+      startPoint: Duration.zero,
       duration: entry.duration,
       videoSource: file,
       resolution: Size(entry.width.toDouble(), entry.height.toDouble()),

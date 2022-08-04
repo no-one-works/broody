@@ -12,31 +12,11 @@ part of 'onboarding.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Onboarding _$OnboardingFromJson(Map<String, dynamic> json) {
   return _Onboarding.fromJson(json);
 }
-
-/// @nodoc
-class _$OnboardingTearOff {
-  const _$OnboardingTearOff();
-
-  _Onboarding call(
-      {bool knowsTwoFingerSwipe = false, bool knowsTimeline = false}) {
-    return _Onboarding(
-      knowsTwoFingerSwipe: knowsTwoFingerSwipe,
-      knowsTimeline: knowsTimeline,
-    );
-  }
-
-  Onboarding fromJson(Map<String, Object?> json) {
-    return Onboarding.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Onboarding = _$OnboardingTearOff();
 
 /// @nodoc
 mixin _$Onboarding {
@@ -84,30 +64,31 @@ class _$OnboardingCopyWithImpl<$Res> implements $OnboardingCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$OnboardingCopyWith<$Res> implements $OnboardingCopyWith<$Res> {
-  factory _$OnboardingCopyWith(
-          _Onboarding value, $Res Function(_Onboarding) then) =
-      __$OnboardingCopyWithImpl<$Res>;
+abstract class _$$_OnboardingCopyWith<$Res>
+    implements $OnboardingCopyWith<$Res> {
+  factory _$$_OnboardingCopyWith(
+          _$_Onboarding value, $Res Function(_$_Onboarding) then) =
+      __$$_OnboardingCopyWithImpl<$Res>;
   @override
   $Res call({bool knowsTwoFingerSwipe, bool knowsTimeline});
 }
 
 /// @nodoc
-class __$OnboardingCopyWithImpl<$Res> extends _$OnboardingCopyWithImpl<$Res>
-    implements _$OnboardingCopyWith<$Res> {
-  __$OnboardingCopyWithImpl(
-      _Onboarding _value, $Res Function(_Onboarding) _then)
-      : super(_value, (v) => _then(v as _Onboarding));
+class __$$_OnboardingCopyWithImpl<$Res> extends _$OnboardingCopyWithImpl<$Res>
+    implements _$$_OnboardingCopyWith<$Res> {
+  __$$_OnboardingCopyWithImpl(
+      _$_Onboarding _value, $Res Function(_$_Onboarding) _then)
+      : super(_value, (v) => _then(v as _$_Onboarding));
 
   @override
-  _Onboarding get _value => super._value as _Onboarding;
+  _$_Onboarding get _value => super._value as _$_Onboarding;
 
   @override
   $Res call({
     Object? knowsTwoFingerSwipe = freezed,
     Object? knowsTimeline = freezed,
   }) {
-    return _then(_Onboarding(
+    return _then(_$_Onboarding(
       knowsTwoFingerSwipe: knowsTwoFingerSwipe == freezed
           ? _value.knowsTwoFingerSwipe
           : knowsTwoFingerSwipe // ignore: cast_nullable_to_non_nullable
@@ -129,11 +110,11 @@ class _$_Onboarding implements _Onboarding {
   factory _$_Onboarding.fromJson(Map<String, dynamic> json) =>
       _$$_OnboardingFromJson(json);
 
-  @JsonKey()
   @override
+  @JsonKey()
   final bool knowsTwoFingerSwipe;
-  @JsonKey()
   @override
+  @JsonKey()
   final bool knowsTimeline;
 
   @override
@@ -145,13 +126,14 @@ class _$_Onboarding implements _Onboarding {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Onboarding &&
+            other is _$_Onboarding &&
             const DeepCollectionEquality()
                 .equals(other.knowsTwoFingerSwipe, knowsTwoFingerSwipe) &&
             const DeepCollectionEquality()
                 .equals(other.knowsTimeline, knowsTimeline));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -160,18 +142,21 @@ class _$_Onboarding implements _Onboarding {
 
   @JsonKey(ignore: true)
   @override
-  _$OnboardingCopyWith<_Onboarding> get copyWith =>
-      __$OnboardingCopyWithImpl<_Onboarding>(this, _$identity);
+  _$$_OnboardingCopyWith<_$_Onboarding> get copyWith =>
+      __$$_OnboardingCopyWithImpl<_$_Onboarding>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OnboardingToJson(this);
+    return _$$_OnboardingToJson(
+      this,
+    );
   }
 }
 
 abstract class _Onboarding implements Onboarding {
-  const factory _Onboarding({bool knowsTwoFingerSwipe, bool knowsTimeline}) =
-      _$_Onboarding;
+  const factory _Onboarding(
+      {final bool knowsTwoFingerSwipe,
+      final bool knowsTimeline}) = _$_Onboarding;
 
   factory _Onboarding.fromJson(Map<String, dynamic> json) =
       _$_Onboarding.fromJson;
@@ -182,6 +167,6 @@ abstract class _Onboarding implements Onboarding {
   bool get knowsTimeline;
   @override
   @JsonKey(ignore: true)
-  _$OnboardingCopyWith<_Onboarding> get copyWith =>
+  _$$_OnboardingCopyWith<_$_Onboarding> get copyWith =>
       throw _privateConstructorUsedError;
 }

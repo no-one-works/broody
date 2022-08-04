@@ -10,59 +10,84 @@
 //
 // ignore_for_file: type=lint
 
-part of 'router.dart';
+import 'package:auto_route/auto_route.dart' as _i14;
+import 'package:flutter/material.dart' as _i15;
+import 'package:flutter/widgets.dart' as _i21;
+import 'package:photo_manager/photo_manager.dart' as _i23;
+import 'package:video_player/video_player.dart' as _i24;
 
-class _$AppRouter extends RootStackRouter {
-  _$AppRouter(
-      {GlobalKey<NavigatorState>? navigatorKey,
+import '../model/entry/entry.dart' as _i22;
+import '../model/project/project.dart' as _i25;
+import '../ui/creating_compilation/create_compilation.page.dart' as _i8;
+import '../ui/creating_compilation/pages/video_full_screen.page.dart' as _i9;
+import '../ui/entry/entry.page.dart' as _i5;
+import '../ui/home/home.page.dart' as _i1;
+import '../ui/info/month_complete_info.page.dart' as _i12;
+import '../ui/info/no_permission_info.page.dart' as _i13;
+import '../ui/loading_from_cloud/loading_from_cloud.page.dart' as _i7;
+import '../ui/onboarding/onboarding.page.dart' as _i4;
+import '../ui/project/projects.page.dart' as _i2;
+import '../ui/project_details/project_details.page.dart' as _i3;
+import '../ui/theme/transitions.dart' as _i20;
+import '../ui/update_entries/update_entries.page.dart' as _i11;
+import '../ui/video_editor/video_editor.page.dart' as _i10;
+import '../ui/video_picker/video_picker.page.dart' as _i6;
+import 'route_guards/no_permissions.guard.dart' as _i18;
+import 'route_guards/no_projects.guard.dart' as _i16;
+import 'route_guards/no_selected_project.guard.dart' as _i17;
+import 'route_guards/outdated_entries.guard.dart' as _i19;
+
+class AppRouter extends _i14.RootStackRouter {
+  AppRouter(
+      {_i15.GlobalKey<_i15.NavigatorState>? navigatorKey,
       required this.noProjectsGuard,
       required this.noSelectedProjectGuard,
       required this.noPermissionsGuard,
       required this.outdatedEntriesGuard})
       : super(navigatorKey);
 
-  final NoProjectsGuard noProjectsGuard;
+  final _i16.NoProjectsGuard noProjectsGuard;
 
-  final NoSelectedProjectGuard noSelectedProjectGuard;
+  final _i17.NoSelectedProjectGuard noSelectedProjectGuard;
 
-  final NoPermissionsGuard noPermissionsGuard;
+  final _i18.NoPermissionsGuard noPermissionsGuard;
 
-  final OutdatedEntriesGuard outdatedEntriesGuard;
+  final _i19.OutdatedEntriesGuard outdatedEntriesGuard;
 
   @override
-  final Map<String, PageFactory> pagesMap = {
+  final Map<String, _i14.PageFactory> pagesMap = {
     HomeRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-          routeData: routeData, child: const HomePage());
+      return _i14.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i1.HomePage());
     },
     ProjectsRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-          routeData: routeData, child: const ProjectsPage());
+      return _i14.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i2.ProjectsPage());
     },
     ProjectDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<ProjectDetailsRouteArgs>(
           orElse: () => const ProjectDetailsRouteArgs());
-      return MaterialPageX<dynamic>(
+      return _i14.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: ProjectDetailsPage(
+          child: _i3.ProjectDetailsPage(
               key: args.key, projectToEdit: args.projectToEdit),
           fullscreenDialog: true);
     },
     OnboardingRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-          routeData: routeData, child: const OnboardingPage());
+      return _i14.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i4.OnboardingPage());
     },
     EntryRoute.name: (routeData) {
       final args = routeData.argsAs<EntryRouteArgs>();
-      return CustomPage<dynamic>(
+      return _i14.CustomPage<dynamic>(
           routeData: routeData,
-          child: EntryPage(
+          child: _i5.EntryPage(
               key: args.key,
               entry: args.entry,
               projectId: args.projectId,
               date: args.date),
           fullscreenDialog: true,
-          transitionsBuilder: fadeThroughTransition,
+          transitionsBuilder: _i20.fadeThroughTransition,
           durationInMilliseconds: 500,
           opaque: false,
           barrierDismissible: false);
@@ -70,129 +95,133 @@ class _$AppRouter extends RootStackRouter {
     VideoPickerRoute.name: (routeData) {
       final args = routeData.argsAs<VideoPickerRouteArgs>(
           orElse: () => const VideoPickerRouteArgs());
-      return MaterialPageX<dynamic>(
+      return _i14.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: VideoPickerPage(key: args.key, forDate: args.forDate));
+          child: _i6.VideoPickerPage(key: args.key, forDate: args.forDate));
     },
     LoadingFromCloudRoute.name: (routeData) {
       final args = routeData.argsAs<LoadingFromCloudRouteArgs>();
-      return CustomPage<dynamic>(
+      return _i14.CustomPage<dynamic>(
           routeData: routeData,
-          child: LoadingFromCloudPage(
+          child: _i7.LoadingFromCloudPage(
               key: args.key, assetEntity: args.assetEntity),
           fullscreenDialog: true,
-          transitionsBuilder: fadeThroughTransitionTransparent,
+          transitionsBuilder: _i20.fadeThroughTransitionTransparent,
           opaque: true,
           barrierDismissible: false);
     },
     CreateCompilationRoute.name: (routeData) {
       final args = routeData.argsAs<CreateCompilationRouteArgs>();
-      return CustomPage<dynamic>(
+      return _i14.CustomPage<dynamic>(
           routeData: routeData,
-          child: CreateCompilationPage(
-              projectUid: args.projectUid, month: args.month, key: args.key),
+          child: _i8.CreateCompilationPage(
+              projectUid: args.projectUid,
+              monthOfYear: args.monthOfYear,
+              key: args.key),
           fullscreenDialog: true,
-          transitionsBuilder: fadeThroughTransitionTransparent,
+          transitionsBuilder: _i20.fadeThroughTransitionTransparent,
           opaque: true,
           barrierDismissible: false);
     },
     VideoFullScreenRoute.name: (routeData) {
       final args = routeData.argsAs<VideoFullScreenRouteArgs>();
-      return CustomPage<dynamic>(
+      return _i14.CustomPage<dynamic>(
           routeData: routeData,
-          child:
-              VideoFullScreenPage(key: args.key, controller: args.controller),
+          child: _i9.VideoFullScreenPage(
+              key: args.key, controller: args.controller),
           fullscreenDialog: true,
-          transitionsBuilder: fadeThroughTransitionTransparent,
+          transitionsBuilder: _i20.fadeThroughTransitionTransparent,
           opaque: false,
           barrierDismissible: false);
     },
     VideoEditorRoute.name: (routeData) {
       final args = routeData.argsAs<VideoEditorRouteArgs>();
-      return CustomPage<dynamic>(
+      return _i14.CustomPage<dynamic>(
           routeData: routeData,
-          child: VideoEditorPage(assetEntity: args.assetEntity, key: args.key),
+          child: _i10.VideoEditorPage(
+              assetEntity: args.assetEntity, key: args.key),
           fullscreenDialog: true,
-          transitionsBuilder: fadeThroughTransitionTransparent,
+          transitionsBuilder: _i20.fadeThroughTransitionTransparent,
           opaque: false,
           barrierDismissible: false);
     },
     UpdateEntriesRoute.name: (routeData) {
       final args = routeData.argsAs<UpdateEntriesRouteArgs>();
-      return CustomPage<dynamic>(
+      return _i14.CustomPage<dynamic>(
           routeData: routeData,
-          child: UpdateEntriesPage(key: args.key, project: args.project),
+          child: _i11.UpdateEntriesPage(key: args.key, project: args.project),
           fullscreenDialog: true,
-          transitionsBuilder: fadeThroughTransitionTransparent,
+          transitionsBuilder: _i20.fadeThroughTransitionTransparent,
           opaque: false,
           barrierDismissible: false);
     },
     MonthCompleteInfoRoute.name: (routeData) {
       final args = routeData.argsAs<MonthCompleteInfoRouteArgs>();
-      return CustomPage<dynamic>(
+      return _i14.CustomPage<dynamic>(
           routeData: routeData,
-          child: MonthCompleteInfoPage(key: args.key, month: args.month),
+          child: _i12.MonthCompleteInfoPage(
+              key: args.key, monthOfYear: args.monthOfYear),
           fullscreenDialog: true,
-          transitionsBuilder: fadeThroughTransitionTransparent,
+          transitionsBuilder: _i20.fadeThroughTransitionTransparent,
           opaque: false,
           barrierDismissible: false);
     },
     NoPermissionInfoRoute.name: (routeData) {
-      return CustomPage<dynamic>(
+      return _i14.CustomPage<dynamic>(
           routeData: routeData,
-          child: const NoPermissionInfoPage(),
+          child: const _i13.NoPermissionInfoPage(),
           fullscreenDialog: true,
-          transitionsBuilder: fadeThroughTransitionTransparent,
+          transitionsBuilder: _i20.fadeThroughTransitionTransparent,
           opaque: false,
           barrierDismissible: false);
     }
   };
 
   @override
-  List<RouteConfig> get routes => [
-        RouteConfig(HomeRoute.name, path: '/', guards: [
+  List<_i14.RouteConfig> get routes => [
+        _i14.RouteConfig(HomeRoute.name, path: '/', guards: [
           noProjectsGuard,
           noSelectedProjectGuard,
           noPermissionsGuard,
           outdatedEntriesGuard
         ]),
-        RouteConfig(ProjectsRoute.name,
+        _i14.RouteConfig(ProjectsRoute.name,
             path: '/projects', guards: [noPermissionsGuard, noProjectsGuard]),
-        RouteConfig(ProjectDetailsRoute.name,
+        _i14.RouteConfig(ProjectDetailsRoute.name,
             path: '/new-project', guards: [noPermissionsGuard]),
-        RouteConfig(OnboardingRoute.name, path: '/welcome'),
-        RouteConfig(EntryRoute.name, path: '/entry'),
-        RouteConfig(VideoPickerRoute.name, path: '/pick'),
-        RouteConfig(LoadingFromCloudRoute.name, path: '/load'),
-        RouteConfig(CreateCompilationRoute.name, path: '/export'),
-        RouteConfig(VideoFullScreenRoute.name, path: '/view-export'),
-        RouteConfig(VideoEditorRoute.name, path: '/edit'),
-        RouteConfig(UpdateEntriesRoute.name, path: '/update-entries'),
-        RouteConfig(MonthCompleteInfoRoute.name, path: '/month-complete'),
-        RouteConfig(NoPermissionInfoRoute.name, path: '/no-permission')
+        _i14.RouteConfig(OnboardingRoute.name, path: '/welcome'),
+        _i14.RouteConfig(EntryRoute.name, path: '/entry'),
+        _i14.RouteConfig(VideoPickerRoute.name, path: '/pick'),
+        _i14.RouteConfig(LoadingFromCloudRoute.name, path: '/load'),
+        _i14.RouteConfig(CreateCompilationRoute.name, path: '/export'),
+        _i14.RouteConfig(VideoFullScreenRoute.name, path: '/view-export'),
+        _i14.RouteConfig(VideoEditorRoute.name, path: '/edit'),
+        _i14.RouteConfig(UpdateEntriesRoute.name, path: '/update-entries'),
+        _i14.RouteConfig(MonthCompleteInfoRoute.name, path: '/month-complete'),
+        _i14.RouteConfig(NoPermissionInfoRoute.name, path: '/no-permission')
       ];
 }
 
 /// generated route for
-/// [HomePage]
-class HomeRoute extends PageRouteInfo<void> {
+/// [_i1.HomePage]
+class HomeRoute extends _i14.PageRouteInfo<void> {
   const HomeRoute() : super(HomeRoute.name, path: '/');
 
   static const String name = 'HomeRoute';
 }
 
 /// generated route for
-/// [ProjectsPage]
-class ProjectsRoute extends PageRouteInfo<void> {
+/// [_i2.ProjectsPage]
+class ProjectsRoute extends _i14.PageRouteInfo<void> {
   const ProjectsRoute() : super(ProjectsRoute.name, path: '/projects');
 
   static const String name = 'ProjectsRoute';
 }
 
 /// generated route for
-/// [ProjectDetailsPage]
-class ProjectDetailsRoute extends PageRouteInfo<ProjectDetailsRouteArgs> {
-  ProjectDetailsRoute({Key? key, String? projectToEdit})
+/// [_i3.ProjectDetailsPage]
+class ProjectDetailsRoute extends _i14.PageRouteInfo<ProjectDetailsRouteArgs> {
+  ProjectDetailsRoute({_i21.Key? key, String? projectToEdit})
       : super(ProjectDetailsRoute.name,
             path: '/new-project',
             args: ProjectDetailsRouteArgs(
@@ -204,7 +233,7 @@ class ProjectDetailsRoute extends PageRouteInfo<ProjectDetailsRouteArgs> {
 class ProjectDetailsRouteArgs {
   const ProjectDetailsRouteArgs({this.key, this.projectToEdit});
 
-  final Key? key;
+  final _i21.Key? key;
 
   final String? projectToEdit;
 
@@ -215,19 +244,19 @@ class ProjectDetailsRouteArgs {
 }
 
 /// generated route for
-/// [OnboardingPage]
-class OnboardingRoute extends PageRouteInfo<void> {
+/// [_i4.OnboardingPage]
+class OnboardingRoute extends _i14.PageRouteInfo<void> {
   const OnboardingRoute() : super(OnboardingRoute.name, path: '/welcome');
 
   static const String name = 'OnboardingRoute';
 }
 
 /// generated route for
-/// [EntryPage]
-class EntryRoute extends PageRouteInfo<EntryRouteArgs> {
+/// [_i5.EntryPage]
+class EntryRoute extends _i14.PageRouteInfo<EntryRouteArgs> {
   EntryRoute(
-      {Key? key,
-      SavedEntry? entry,
+      {_i21.Key? key,
+      _i22.SavedEntry? entry,
       required String projectId,
       required DateTime date})
       : super(EntryRoute.name,
@@ -242,9 +271,9 @@ class EntryRouteArgs {
   const EntryRouteArgs(
       {this.key, this.entry, required this.projectId, required this.date});
 
-  final Key? key;
+  final _i21.Key? key;
 
-  final SavedEntry? entry;
+  final _i22.SavedEntry? entry;
 
   final String projectId;
 
@@ -257,9 +286,9 @@ class EntryRouteArgs {
 }
 
 /// generated route for
-/// [VideoPickerPage]
-class VideoPickerRoute extends PageRouteInfo<VideoPickerRouteArgs> {
-  VideoPickerRoute({Key? key, DateTime? forDate})
+/// [_i6.VideoPickerPage]
+class VideoPickerRoute extends _i14.PageRouteInfo<VideoPickerRouteArgs> {
+  VideoPickerRoute({_i21.Key? key, DateTime? forDate})
       : super(VideoPickerRoute.name,
             path: '/pick',
             args: VideoPickerRouteArgs(key: key, forDate: forDate));
@@ -270,7 +299,7 @@ class VideoPickerRoute extends PageRouteInfo<VideoPickerRouteArgs> {
 class VideoPickerRouteArgs {
   const VideoPickerRouteArgs({this.key, this.forDate});
 
-  final Key? key;
+  final _i21.Key? key;
 
   final DateTime? forDate;
 
@@ -281,9 +310,10 @@ class VideoPickerRouteArgs {
 }
 
 /// generated route for
-/// [LoadingFromCloudPage]
-class LoadingFromCloudRoute extends PageRouteInfo<LoadingFromCloudRouteArgs> {
-  LoadingFromCloudRoute({Key? key, required AssetEntity assetEntity})
+/// [_i7.LoadingFromCloudPage]
+class LoadingFromCloudRoute
+    extends _i14.PageRouteInfo<LoadingFromCloudRouteArgs> {
+  LoadingFromCloudRoute({_i21.Key? key, required _i23.AssetEntity assetEntity})
       : super(LoadingFromCloudRoute.name,
             path: '/load',
             args:
@@ -295,9 +325,9 @@ class LoadingFromCloudRoute extends PageRouteInfo<LoadingFromCloudRouteArgs> {
 class LoadingFromCloudRouteArgs {
   const LoadingFromCloudRouteArgs({this.key, required this.assetEntity});
 
-  final Key? key;
+  final _i21.Key? key;
 
-  final AssetEntity assetEntity;
+  final _i23.AssetEntity assetEntity;
 
   @override
   String toString() {
@@ -306,37 +336,41 @@ class LoadingFromCloudRouteArgs {
 }
 
 /// generated route for
-/// [CreateCompilationPage]
-class CreateCompilationRoute extends PageRouteInfo<CreateCompilationRouteArgs> {
-  CreateCompilationRoute({required String projectUid, int? month, Key? key})
+/// [_i8.CreateCompilationPage]
+class CreateCompilationRoute
+    extends _i14.PageRouteInfo<CreateCompilationRouteArgs> {
+  CreateCompilationRoute(
+      {required String projectUid, DateTime? monthOfYear, _i21.Key? key})
       : super(CreateCompilationRoute.name,
             path: '/export',
             args: CreateCompilationRouteArgs(
-                projectUid: projectUid, month: month, key: key));
+                projectUid: projectUid, monthOfYear: monthOfYear, key: key));
 
   static const String name = 'CreateCompilationRoute';
 }
 
 class CreateCompilationRouteArgs {
   const CreateCompilationRouteArgs(
-      {required this.projectUid, this.month, this.key});
+      {required this.projectUid, this.monthOfYear, this.key});
 
   final String projectUid;
 
-  final int? month;
+  final DateTime? monthOfYear;
 
-  final Key? key;
+  final _i21.Key? key;
 
   @override
   String toString() {
-    return 'CreateCompilationRouteArgs{projectUid: $projectUid, month: $month, key: $key}';
+    return 'CreateCompilationRouteArgs{projectUid: $projectUid, monthOfYear: $monthOfYear, key: $key}';
   }
 }
 
 /// generated route for
-/// [VideoFullScreenPage]
-class VideoFullScreenRoute extends PageRouteInfo<VideoFullScreenRouteArgs> {
-  VideoFullScreenRoute({Key? key, required VideoPlayerController controller})
+/// [_i9.VideoFullScreenPage]
+class VideoFullScreenRoute
+    extends _i14.PageRouteInfo<VideoFullScreenRouteArgs> {
+  VideoFullScreenRoute(
+      {_i21.Key? key, required _i24.VideoPlayerController controller})
       : super(VideoFullScreenRoute.name,
             path: '/view-export',
             args: VideoFullScreenRouteArgs(key: key, controller: controller));
@@ -347,9 +381,9 @@ class VideoFullScreenRoute extends PageRouteInfo<VideoFullScreenRouteArgs> {
 class VideoFullScreenRouteArgs {
   const VideoFullScreenRouteArgs({this.key, required this.controller});
 
-  final Key? key;
+  final _i21.Key? key;
 
-  final VideoPlayerController controller;
+  final _i24.VideoPlayerController controller;
 
   @override
   String toString() {
@@ -358,9 +392,9 @@ class VideoFullScreenRouteArgs {
 }
 
 /// generated route for
-/// [VideoEditorPage]
-class VideoEditorRoute extends PageRouteInfo<VideoEditorRouteArgs> {
-  VideoEditorRoute({required AssetEntity assetEntity, Key? key})
+/// [_i10.VideoEditorPage]
+class VideoEditorRoute extends _i14.PageRouteInfo<VideoEditorRouteArgs> {
+  VideoEditorRoute({required _i23.AssetEntity assetEntity, _i21.Key? key})
       : super(VideoEditorRoute.name,
             path: '/edit',
             args: VideoEditorRouteArgs(assetEntity: assetEntity, key: key));
@@ -371,9 +405,9 @@ class VideoEditorRoute extends PageRouteInfo<VideoEditorRouteArgs> {
 class VideoEditorRouteArgs {
   const VideoEditorRouteArgs({required this.assetEntity, this.key});
 
-  final AssetEntity assetEntity;
+  final _i23.AssetEntity assetEntity;
 
-  final Key? key;
+  final _i21.Key? key;
 
   @override
   String toString() {
@@ -382,9 +416,9 @@ class VideoEditorRouteArgs {
 }
 
 /// generated route for
-/// [UpdateEntriesPage]
-class UpdateEntriesRoute extends PageRouteInfo<UpdateEntriesRouteArgs> {
-  UpdateEntriesRoute({Key? key, required Project project})
+/// [_i11.UpdateEntriesPage]
+class UpdateEntriesRoute extends _i14.PageRouteInfo<UpdateEntriesRouteArgs> {
+  UpdateEntriesRoute({_i21.Key? key, required _i25.Project project})
       : super(UpdateEntriesRoute.name,
             path: '/update-entries',
             args: UpdateEntriesRouteArgs(key: key, project: project));
@@ -395,9 +429,9 @@ class UpdateEntriesRoute extends PageRouteInfo<UpdateEntriesRouteArgs> {
 class UpdateEntriesRouteArgs {
   const UpdateEntriesRouteArgs({this.key, required this.project});
 
-  final Key? key;
+  final _i21.Key? key;
 
-  final Project project;
+  final _i25.Project project;
 
   @override
   String toString() {
@@ -406,32 +440,34 @@ class UpdateEntriesRouteArgs {
 }
 
 /// generated route for
-/// [MonthCompleteInfoPage]
-class MonthCompleteInfoRoute extends PageRouteInfo<MonthCompleteInfoRouteArgs> {
-  MonthCompleteInfoRoute({Key? key, required int month})
+/// [_i12.MonthCompleteInfoPage]
+class MonthCompleteInfoRoute
+    extends _i14.PageRouteInfo<MonthCompleteInfoRouteArgs> {
+  MonthCompleteInfoRoute({_i21.Key? key, required DateTime monthOfYear})
       : super(MonthCompleteInfoRoute.name,
             path: '/month-complete',
-            args: MonthCompleteInfoRouteArgs(key: key, month: month));
+            args:
+                MonthCompleteInfoRouteArgs(key: key, monthOfYear: monthOfYear));
 
   static const String name = 'MonthCompleteInfoRoute';
 }
 
 class MonthCompleteInfoRouteArgs {
-  const MonthCompleteInfoRouteArgs({this.key, required this.month});
+  const MonthCompleteInfoRouteArgs({this.key, required this.monthOfYear});
 
-  final Key? key;
+  final _i21.Key? key;
 
-  final int month;
+  final DateTime monthOfYear;
 
   @override
   String toString() {
-    return 'MonthCompleteInfoRouteArgs{key: $key, month: $month}';
+    return 'MonthCompleteInfoRouteArgs{key: $key, monthOfYear: $monthOfYear}';
   }
 }
 
 /// generated route for
-/// [NoPermissionInfoPage]
-class NoPermissionInfoRoute extends PageRouteInfo<void> {
+/// [_i13.NoPermissionInfoPage]
+class NoPermissionInfoRoute extends _i14.PageRouteInfo<void> {
   const NoPermissionInfoRoute()
       : super(NoPermissionInfoRoute.name, path: '/no-permission');
 

@@ -8,11 +8,13 @@ const compilationAlgorithmVersion = 2;
 
 @freezed
 class Compilation with _$Compilation {
+  const Compilation._();
+
   const factory Compilation.create({
     required String uid,
     required String projectUid,
     required String projectTitle,
-    int? month,
+    DateTime? monthOfYear,
     required String destination,
     required List<SavedEntry> usedEntries,
     required double width,
@@ -25,7 +27,7 @@ class Compilation with _$Compilation {
     required String uid,
     required String filename,
     required String projectUid,
-    int? month,
+    DateTime? monthOfYear,
     required List<SavedEntry> usedEntries,
     required double width,
     required double height,
@@ -35,4 +37,18 @@ class Compilation with _$Compilation {
 
   factory Compilation.fromJson(Map<String, dynamic> json) =>
       _$CompilationFromJson(json);
+
+  String get filename => map(
+        create: (c) {
+          {
+            final outputCompilationName = c.monthOfYear == null
+                ? c.projectTitle
+                : "${c.projectTitle}-${c.monthOfYear}";
+            final filename = Uri.encodeFull(outputCompilationName)
+                .replaceAll(RegExp(r'[ /\\?%*:|"<>]'), '-');
+            return filename;
+          }
+        },
+        saved: (saved) => saved.filename,
+      );
 }

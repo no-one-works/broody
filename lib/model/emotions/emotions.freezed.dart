@@ -12,29 +12,11 @@ part of 'emotions.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Emotions _$EmotionsFromJson(Map<String, dynamic> json) {
   return _Emotions.fromJson(json);
 }
-
-/// @nodoc
-class _$EmotionsTearOff {
-  const _$EmotionsTearOff();
-
-  _Emotions call({double sadHappy = 0.5}) {
-    return _Emotions(
-      sadHappy: sadHappy,
-    );
-  }
-
-  Emotions fromJson(Map<String, Object?> json) {
-    return Emotions.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Emotions = _$EmotionsTearOff();
 
 /// @nodoc
 mixin _$Emotions {
@@ -75,27 +57,29 @@ class _$EmotionsCopyWithImpl<$Res> implements $EmotionsCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$EmotionsCopyWith<$Res> implements $EmotionsCopyWith<$Res> {
-  factory _$EmotionsCopyWith(_Emotions value, $Res Function(_Emotions) then) =
-      __$EmotionsCopyWithImpl<$Res>;
+abstract class _$$_EmotionsCopyWith<$Res> implements $EmotionsCopyWith<$Res> {
+  factory _$$_EmotionsCopyWith(
+          _$_Emotions value, $Res Function(_$_Emotions) then) =
+      __$$_EmotionsCopyWithImpl<$Res>;
   @override
   $Res call({double sadHappy});
 }
 
 /// @nodoc
-class __$EmotionsCopyWithImpl<$Res> extends _$EmotionsCopyWithImpl<$Res>
-    implements _$EmotionsCopyWith<$Res> {
-  __$EmotionsCopyWithImpl(_Emotions _value, $Res Function(_Emotions) _then)
-      : super(_value, (v) => _then(v as _Emotions));
+class __$$_EmotionsCopyWithImpl<$Res> extends _$EmotionsCopyWithImpl<$Res>
+    implements _$$_EmotionsCopyWith<$Res> {
+  __$$_EmotionsCopyWithImpl(
+      _$_Emotions _value, $Res Function(_$_Emotions) _then)
+      : super(_value, (v) => _then(v as _$_Emotions));
 
   @override
-  _Emotions get _value => super._value as _Emotions;
+  _$_Emotions get _value => super._value as _$_Emotions;
 
   @override
   $Res call({
     Object? sadHappy = freezed,
   }) {
-    return _then(_Emotions(
+    return _then(_$_Emotions(
       sadHappy: sadHappy == freezed
           ? _value.sadHappy
           : sadHappy // ignore: cast_nullable_to_non_nullable
@@ -112,8 +96,8 @@ class _$_Emotions implements _Emotions {
   factory _$_Emotions.fromJson(Map<String, dynamic> json) =>
       _$$_EmotionsFromJson(json);
 
-  @JsonKey()
   @override
+  @JsonKey()
   final double sadHappy;
 
   @override
@@ -125,27 +109,30 @@ class _$_Emotions implements _Emotions {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Emotions &&
+            other is _$_Emotions &&
             const DeepCollectionEquality().equals(other.sadHappy, sadHappy));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(sadHappy));
 
   @JsonKey(ignore: true)
   @override
-  _$EmotionsCopyWith<_Emotions> get copyWith =>
-      __$EmotionsCopyWithImpl<_Emotions>(this, _$identity);
+  _$$_EmotionsCopyWith<_$_Emotions> get copyWith =>
+      __$$_EmotionsCopyWithImpl<_$_Emotions>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_EmotionsToJson(this);
+    return _$$_EmotionsToJson(
+      this,
+    );
   }
 }
 
 abstract class _Emotions implements Emotions {
-  const factory _Emotions({double sadHappy}) = _$_Emotions;
+  const factory _Emotions({final double sadHappy}) = _$_Emotions;
 
   factory _Emotions.fromJson(Map<String, dynamic> json) = _$_Emotions.fromJson;
 
@@ -153,6 +140,6 @@ abstract class _Emotions implements Emotions {
   double get sadHappy;
   @override
   @JsonKey(ignore: true)
-  _$EmotionsCopyWith<_Emotions> get copyWith =>
+  _$$_EmotionsCopyWith<_$_Emotions> get copyWith =>
       throw _privateConstructorUsedError;
 }

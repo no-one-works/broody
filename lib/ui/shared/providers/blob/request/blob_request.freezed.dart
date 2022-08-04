@@ -12,22 +12,7 @@ part of 'blob_request.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$BlobRequestTearOff {
-  const _$BlobRequestTearOff();
-
-  _BlobRequest call({required int day, required int month}) {
-    return _BlobRequest(
-      day: day,
-      month: month,
-    );
-  }
-}
-
-/// @nodoc
-const $BlobRequest = _$BlobRequestTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$BlobRequest {
@@ -74,31 +59,31 @@ class _$BlobRequestCopyWithImpl<$Res> implements $BlobRequestCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$BlobRequestCopyWith<$Res>
+abstract class _$$_BlobRequestCopyWith<$Res>
     implements $BlobRequestCopyWith<$Res> {
-  factory _$BlobRequestCopyWith(
-          _BlobRequest value, $Res Function(_BlobRequest) then) =
-      __$BlobRequestCopyWithImpl<$Res>;
+  factory _$$_BlobRequestCopyWith(
+          _$_BlobRequest value, $Res Function(_$_BlobRequest) then) =
+      __$$_BlobRequestCopyWithImpl<$Res>;
   @override
   $Res call({int day, int month});
 }
 
 /// @nodoc
-class __$BlobRequestCopyWithImpl<$Res> extends _$BlobRequestCopyWithImpl<$Res>
-    implements _$BlobRequestCopyWith<$Res> {
-  __$BlobRequestCopyWithImpl(
-      _BlobRequest _value, $Res Function(_BlobRequest) _then)
-      : super(_value, (v) => _then(v as _BlobRequest));
+class __$$_BlobRequestCopyWithImpl<$Res> extends _$BlobRequestCopyWithImpl<$Res>
+    implements _$$_BlobRequestCopyWith<$Res> {
+  __$$_BlobRequestCopyWithImpl(
+      _$_BlobRequest _value, $Res Function(_$_BlobRequest) _then)
+      : super(_value, (v) => _then(v as _$_BlobRequest));
 
   @override
-  _BlobRequest get _value => super._value as _BlobRequest;
+  _$_BlobRequest get _value => super._value as _$_BlobRequest;
 
   @override
   $Res call({
     Object? day = freezed,
     Object? month = freezed,
   }) {
-    return _then(_BlobRequest(
+    return _then(_$_BlobRequest(
       day: day == freezed
           ? _value.day
           : day // ignore: cast_nullable_to_non_nullable
@@ -130,7 +115,7 @@ class _$_BlobRequest implements _BlobRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _BlobRequest &&
+            other is _$_BlobRequest &&
             const DeepCollectionEquality().equals(other.day, day) &&
             const DeepCollectionEquality().equals(other.month, month));
   }
@@ -143,13 +128,13 @@ class _$_BlobRequest implements _BlobRequest {
 
   @JsonKey(ignore: true)
   @override
-  _$BlobRequestCopyWith<_BlobRequest> get copyWith =>
-      __$BlobRequestCopyWithImpl<_BlobRequest>(this, _$identity);
+  _$$_BlobRequestCopyWith<_$_BlobRequest> get copyWith =>
+      __$$_BlobRequestCopyWithImpl<_$_BlobRequest>(this, _$identity);
 }
 
 abstract class _BlobRequest implements BlobRequest {
-  const factory _BlobRequest({required int day, required int month}) =
-      _$_BlobRequest;
+  const factory _BlobRequest(
+      {required final int day, required final int month}) = _$_BlobRequest;
 
   @override
   int get day;
@@ -157,6 +142,6 @@ abstract class _BlobRequest implements BlobRequest {
   int get month;
   @override
   @JsonKey(ignore: true)
-  _$BlobRequestCopyWith<_BlobRequest> get copyWith =>
+  _$$_BlobRequestCopyWith<_$_BlobRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }

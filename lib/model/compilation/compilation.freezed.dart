@@ -12,7 +12,7 @@ part of 'compilation.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Compilation _$CompilationFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
@@ -28,82 +28,21 @@ Compilation _$CompilationFromJson(Map<String, dynamic> json) {
 }
 
 /// @nodoc
-class _$CompilationTearOff {
-  const _$CompilationTearOff();
-
-  CreateCompilation create(
-      {required String uid,
-      required String projectUid,
-      required String projectTitle,
-      int? month,
-      required String destination,
-      required List<SavedEntry> usedEntries,
-      required double width,
-      required double height,
-      required String projectPath,
-      required DateTime created}) {
-    return CreateCompilation(
-      uid: uid,
-      projectUid: projectUid,
-      projectTitle: projectTitle,
-      month: month,
-      destination: destination,
-      usedEntries: usedEntries,
-      width: width,
-      height: height,
-      projectPath: projectPath,
-      created: created,
-    );
-  }
-
-  SavedCompilation saved(
-      {required String uid,
-      required String filename,
-      required String projectUid,
-      int? month,
-      required List<SavedEntry> usedEntries,
-      required double width,
-      required double height,
-      int algorithmVersion = compilationAlgorithmVersion,
-      required DateTime created}) {
-    return SavedCompilation(
-      uid: uid,
-      filename: filename,
-      projectUid: projectUid,
-      month: month,
-      usedEntries: usedEntries,
-      width: width,
-      height: height,
-      algorithmVersion: algorithmVersion,
-      created: created,
-    );
-  }
-
-  Compilation fromJson(Map<String, Object?> json) {
-    return Compilation.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Compilation = _$CompilationTearOff();
-
-/// @nodoc
 mixin _$Compilation {
   String get uid => throw _privateConstructorUsedError;
   String get projectUid => throw _privateConstructorUsedError;
-  int? get month => throw _privateConstructorUsedError;
+  DateTime? get monthOfYear => throw _privateConstructorUsedError;
   List<SavedEntry> get usedEntries => throw _privateConstructorUsedError;
   double get width => throw _privateConstructorUsedError;
   double get height => throw _privateConstructorUsedError;
   DateTime get created => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
             String uid,
             String projectUid,
             String projectTitle,
-            int? month,
+            DateTime? monthOfYear,
             String destination,
             List<SavedEntry> usedEntries,
             double width,
@@ -115,7 +54,7 @@ mixin _$Compilation {
             String uid,
             String filename,
             String projectUid,
-            int? month,
+            DateTime? monthOfYear,
             List<SavedEntry> usedEntries,
             double width,
             double height,
@@ -130,7 +69,7 @@ mixin _$Compilation {
             String uid,
             String projectUid,
             String projectTitle,
-            int? month,
+            DateTime? monthOfYear,
             String destination,
             List<SavedEntry> usedEntries,
             double width,
@@ -142,7 +81,7 @@ mixin _$Compilation {
             String uid,
             String filename,
             String projectUid,
-            int? month,
+            DateTime? monthOfYear,
             List<SavedEntry> usedEntries,
             double width,
             double height,
@@ -157,7 +96,7 @@ mixin _$Compilation {
             String uid,
             String projectUid,
             String projectTitle,
-            int? month,
+            DateTime? monthOfYear,
             String destination,
             List<SavedEntry> usedEntries,
             double width,
@@ -169,7 +108,7 @@ mixin _$Compilation {
             String uid,
             String filename,
             String projectUid,
-            int? month,
+            DateTime? monthOfYear,
             List<SavedEntry> usedEntries,
             double width,
             double height,
@@ -212,7 +151,7 @@ abstract class $CompilationCopyWith<$Res> {
   $Res call(
       {String uid,
       String projectUid,
-      int? month,
+      DateTime? monthOfYear,
       List<SavedEntry> usedEntries,
       double width,
       double height,
@@ -231,7 +170,7 @@ class _$CompilationCopyWithImpl<$Res> implements $CompilationCopyWith<$Res> {
   $Res call({
     Object? uid = freezed,
     Object? projectUid = freezed,
-    Object? month = freezed,
+    Object? monthOfYear = freezed,
     Object? usedEntries = freezed,
     Object? width = freezed,
     Object? height = freezed,
@@ -246,10 +185,10 @@ class _$CompilationCopyWithImpl<$Res> implements $CompilationCopyWith<$Res> {
           ? _value.projectUid
           : projectUid // ignore: cast_nullable_to_non_nullable
               as String,
-      month: month == freezed
-          ? _value.month
-          : month // ignore: cast_nullable_to_non_nullable
-              as int?,
+      monthOfYear: monthOfYear == freezed
+          ? _value.monthOfYear
+          : monthOfYear // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       usedEntries: usedEntries == freezed
           ? _value.usedEntries
           : usedEntries // ignore: cast_nullable_to_non_nullable
@@ -271,17 +210,17 @@ class _$CompilationCopyWithImpl<$Res> implements $CompilationCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $CreateCompilationCopyWith<$Res>
+abstract class _$$CreateCompilationCopyWith<$Res>
     implements $CompilationCopyWith<$Res> {
-  factory $CreateCompilationCopyWith(
-          CreateCompilation value, $Res Function(CreateCompilation) then) =
-      _$CreateCompilationCopyWithImpl<$Res>;
+  factory _$$CreateCompilationCopyWith(
+          _$CreateCompilation value, $Res Function(_$CreateCompilation) then) =
+      __$$CreateCompilationCopyWithImpl<$Res>;
   @override
   $Res call(
       {String uid,
       String projectUid,
       String projectTitle,
-      int? month,
+      DateTime? monthOfYear,
       String destination,
       List<SavedEntry> usedEntries,
       double width,
@@ -291,22 +230,22 @@ abstract class $CreateCompilationCopyWith<$Res>
 }
 
 /// @nodoc
-class _$CreateCompilationCopyWithImpl<$Res>
+class __$$CreateCompilationCopyWithImpl<$Res>
     extends _$CompilationCopyWithImpl<$Res>
-    implements $CreateCompilationCopyWith<$Res> {
-  _$CreateCompilationCopyWithImpl(
-      CreateCompilation _value, $Res Function(CreateCompilation) _then)
-      : super(_value, (v) => _then(v as CreateCompilation));
+    implements _$$CreateCompilationCopyWith<$Res> {
+  __$$CreateCompilationCopyWithImpl(
+      _$CreateCompilation _value, $Res Function(_$CreateCompilation) _then)
+      : super(_value, (v) => _then(v as _$CreateCompilation));
 
   @override
-  CreateCompilation get _value => super._value as CreateCompilation;
+  _$CreateCompilation get _value => super._value as _$CreateCompilation;
 
   @override
   $Res call({
     Object? uid = freezed,
     Object? projectUid = freezed,
     Object? projectTitle = freezed,
-    Object? month = freezed,
+    Object? monthOfYear = freezed,
     Object? destination = freezed,
     Object? usedEntries = freezed,
     Object? width = freezed,
@@ -314,7 +253,7 @@ class _$CreateCompilationCopyWithImpl<$Res>
     Object? projectPath = freezed,
     Object? created = freezed,
   }) {
-    return _then(CreateCompilation(
+    return _then(_$CreateCompilation(
       uid: uid == freezed
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
@@ -327,16 +266,16 @@ class _$CreateCompilationCopyWithImpl<$Res>
           ? _value.projectTitle
           : projectTitle // ignore: cast_nullable_to_non_nullable
               as String,
-      month: month == freezed
-          ? _value.month
-          : month // ignore: cast_nullable_to_non_nullable
-              as int?,
+      monthOfYear: monthOfYear == freezed
+          ? _value.monthOfYear
+          : monthOfYear // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       destination: destination == freezed
           ? _value.destination
           : destination // ignore: cast_nullable_to_non_nullable
               as String,
       usedEntries: usedEntries == freezed
-          ? _value.usedEntries
+          ? _value._usedEntries
           : usedEntries // ignore: cast_nullable_to_non_nullable
               as List<SavedEntry>,
       width: width == freezed
@@ -361,20 +300,22 @@ class _$CreateCompilationCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CreateCompilation implements CreateCompilation {
+class _$CreateCompilation extends CreateCompilation {
   const _$CreateCompilation(
       {required this.uid,
       required this.projectUid,
       required this.projectTitle,
-      this.month,
+      this.monthOfYear,
       required this.destination,
-      required this.usedEntries,
+      required final List<SavedEntry> usedEntries,
       required this.width,
       required this.height,
       required this.projectPath,
       required this.created,
-      String? $type})
-      : $type = $type ?? 'create';
+      final String? $type})
+      : _usedEntries = usedEntries,
+        $type = $type ?? 'create',
+        super._();
 
   factory _$CreateCompilation.fromJson(Map<String, dynamic> json) =>
       _$$CreateCompilationFromJson(json);
@@ -386,11 +327,16 @@ class _$CreateCompilation implements CreateCompilation {
   @override
   final String projectTitle;
   @override
-  final int? month;
+  final DateTime? monthOfYear;
   @override
   final String destination;
+  final List<SavedEntry> _usedEntries;
   @override
-  final List<SavedEntry> usedEntries;
+  List<SavedEntry> get usedEntries {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_usedEntries);
+  }
+
   @override
   final double width;
   @override
@@ -405,24 +351,25 @@ class _$CreateCompilation implements CreateCompilation {
 
   @override
   String toString() {
-    return 'Compilation.create(uid: $uid, projectUid: $projectUid, projectTitle: $projectTitle, month: $month, destination: $destination, usedEntries: $usedEntries, width: $width, height: $height, projectPath: $projectPath, created: $created)';
+    return 'Compilation.create(uid: $uid, projectUid: $projectUid, projectTitle: $projectTitle, monthOfYear: $monthOfYear, destination: $destination, usedEntries: $usedEntries, width: $width, height: $height, projectPath: $projectPath, created: $created)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is CreateCompilation &&
+            other is _$CreateCompilation &&
             const DeepCollectionEquality().equals(other.uid, uid) &&
             const DeepCollectionEquality()
                 .equals(other.projectUid, projectUid) &&
             const DeepCollectionEquality()
                 .equals(other.projectTitle, projectTitle) &&
-            const DeepCollectionEquality().equals(other.month, month) &&
+            const DeepCollectionEquality()
+                .equals(other.monthOfYear, monthOfYear) &&
             const DeepCollectionEquality()
                 .equals(other.destination, destination) &&
             const DeepCollectionEquality()
-                .equals(other.usedEntries, usedEntries) &&
+                .equals(other._usedEntries, _usedEntries) &&
             const DeepCollectionEquality().equals(other.width, width) &&
             const DeepCollectionEquality().equals(other.height, height) &&
             const DeepCollectionEquality()
@@ -430,15 +377,16 @@ class _$CreateCompilation implements CreateCompilation {
             const DeepCollectionEquality().equals(other.created, created));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(uid),
       const DeepCollectionEquality().hash(projectUid),
       const DeepCollectionEquality().hash(projectTitle),
-      const DeepCollectionEquality().hash(month),
+      const DeepCollectionEquality().hash(monthOfYear),
       const DeepCollectionEquality().hash(destination),
-      const DeepCollectionEquality().hash(usedEntries),
+      const DeepCollectionEquality().hash(_usedEntries),
       const DeepCollectionEquality().hash(width),
       const DeepCollectionEquality().hash(height),
       const DeepCollectionEquality().hash(projectPath),
@@ -446,8 +394,8 @@ class _$CreateCompilation implements CreateCompilation {
 
   @JsonKey(ignore: true)
   @override
-  $CreateCompilationCopyWith<CreateCompilation> get copyWith =>
-      _$CreateCompilationCopyWithImpl<CreateCompilation>(this, _$identity);
+  _$$CreateCompilationCopyWith<_$CreateCompilation> get copyWith =>
+      __$$CreateCompilationCopyWithImpl<_$CreateCompilation>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -456,7 +404,7 @@ class _$CreateCompilation implements CreateCompilation {
             String uid,
             String projectUid,
             String projectTitle,
-            int? month,
+            DateTime? monthOfYear,
             String destination,
             List<SavedEntry> usedEntries,
             double width,
@@ -468,7 +416,7 @@ class _$CreateCompilation implements CreateCompilation {
             String uid,
             String filename,
             String projectUid,
-            int? month,
+            DateTime? monthOfYear,
             List<SavedEntry> usedEntries,
             double width,
             double height,
@@ -476,7 +424,7 @@ class _$CreateCompilation implements CreateCompilation {
             DateTime created)
         saved,
   }) {
-    return create(uid, projectUid, projectTitle, month, destination,
+    return create(uid, projectUid, projectTitle, monthOfYear, destination,
         usedEntries, width, height, projectPath, created);
   }
 
@@ -487,7 +435,7 @@ class _$CreateCompilation implements CreateCompilation {
             String uid,
             String projectUid,
             String projectTitle,
-            int? month,
+            DateTime? monthOfYear,
             String destination,
             List<SavedEntry> usedEntries,
             double width,
@@ -499,7 +447,7 @@ class _$CreateCompilation implements CreateCompilation {
             String uid,
             String filename,
             String projectUid,
-            int? month,
+            DateTime? monthOfYear,
             List<SavedEntry> usedEntries,
             double width,
             double height,
@@ -507,7 +455,7 @@ class _$CreateCompilation implements CreateCompilation {
             DateTime created)?
         saved,
   }) {
-    return create?.call(uid, projectUid, projectTitle, month, destination,
+    return create?.call(uid, projectUid, projectTitle, monthOfYear, destination,
         usedEntries, width, height, projectPath, created);
   }
 
@@ -518,7 +466,7 @@ class _$CreateCompilation implements CreateCompilation {
             String uid,
             String projectUid,
             String projectTitle,
-            int? month,
+            DateTime? monthOfYear,
             String destination,
             List<SavedEntry> usedEntries,
             double width,
@@ -530,7 +478,7 @@ class _$CreateCompilation implements CreateCompilation {
             String uid,
             String filename,
             String projectUid,
-            int? month,
+            DateTime? monthOfYear,
             List<SavedEntry> usedEntries,
             double width,
             double height,
@@ -540,7 +488,7 @@ class _$CreateCompilation implements CreateCompilation {
     required TResult orElse(),
   }) {
     if (create != null) {
-      return create(uid, projectUid, projectTitle, month, destination,
+      return create(uid, projectUid, projectTitle, monthOfYear, destination,
           usedEntries, width, height, projectPath, created);
     }
     return orElse();
@@ -579,22 +527,25 @@ class _$CreateCompilation implements CreateCompilation {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CreateCompilationToJson(this);
+    return _$$CreateCompilationToJson(
+      this,
+    );
   }
 }
 
-abstract class CreateCompilation implements Compilation {
+abstract class CreateCompilation extends Compilation {
   const factory CreateCompilation(
-      {required String uid,
-      required String projectUid,
-      required String projectTitle,
-      int? month,
-      required String destination,
-      required List<SavedEntry> usedEntries,
-      required double width,
-      required double height,
-      required String projectPath,
-      required DateTime created}) = _$CreateCompilation;
+      {required final String uid,
+      required final String projectUid,
+      required final String projectTitle,
+      final DateTime? monthOfYear,
+      required final String destination,
+      required final List<SavedEntry> usedEntries,
+      required final double width,
+      required final double height,
+      required final String projectPath,
+      required final DateTime created}) = _$CreateCompilation;
+  const CreateCompilation._() : super._();
 
   factory CreateCompilation.fromJson(Map<String, dynamic> json) =
       _$CreateCompilation.fromJson;
@@ -605,7 +556,7 @@ abstract class CreateCompilation implements Compilation {
   String get projectUid;
   String get projectTitle;
   @override
-  int? get month;
+  DateTime? get monthOfYear;
   String get destination;
   @override
   List<SavedEntry> get usedEntries;
@@ -618,22 +569,22 @@ abstract class CreateCompilation implements Compilation {
   DateTime get created;
   @override
   @JsonKey(ignore: true)
-  $CreateCompilationCopyWith<CreateCompilation> get copyWith =>
+  _$$CreateCompilationCopyWith<_$CreateCompilation> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SavedCompilationCopyWith<$Res>
+abstract class _$$SavedCompilationCopyWith<$Res>
     implements $CompilationCopyWith<$Res> {
-  factory $SavedCompilationCopyWith(
-          SavedCompilation value, $Res Function(SavedCompilation) then) =
-      _$SavedCompilationCopyWithImpl<$Res>;
+  factory _$$SavedCompilationCopyWith(
+          _$SavedCompilation value, $Res Function(_$SavedCompilation) then) =
+      __$$SavedCompilationCopyWithImpl<$Res>;
   @override
   $Res call(
       {String uid,
       String filename,
       String projectUid,
-      int? month,
+      DateTime? monthOfYear,
       List<SavedEntry> usedEntries,
       double width,
       double height,
@@ -642,29 +593,29 @@ abstract class $SavedCompilationCopyWith<$Res>
 }
 
 /// @nodoc
-class _$SavedCompilationCopyWithImpl<$Res>
+class __$$SavedCompilationCopyWithImpl<$Res>
     extends _$CompilationCopyWithImpl<$Res>
-    implements $SavedCompilationCopyWith<$Res> {
-  _$SavedCompilationCopyWithImpl(
-      SavedCompilation _value, $Res Function(SavedCompilation) _then)
-      : super(_value, (v) => _then(v as SavedCompilation));
+    implements _$$SavedCompilationCopyWith<$Res> {
+  __$$SavedCompilationCopyWithImpl(
+      _$SavedCompilation _value, $Res Function(_$SavedCompilation) _then)
+      : super(_value, (v) => _then(v as _$SavedCompilation));
 
   @override
-  SavedCompilation get _value => super._value as SavedCompilation;
+  _$SavedCompilation get _value => super._value as _$SavedCompilation;
 
   @override
   $Res call({
     Object? uid = freezed,
     Object? filename = freezed,
     Object? projectUid = freezed,
-    Object? month = freezed,
+    Object? monthOfYear = freezed,
     Object? usedEntries = freezed,
     Object? width = freezed,
     Object? height = freezed,
     Object? algorithmVersion = freezed,
     Object? created = freezed,
   }) {
-    return _then(SavedCompilation(
+    return _then(_$SavedCompilation(
       uid: uid == freezed
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
@@ -677,12 +628,12 @@ class _$SavedCompilationCopyWithImpl<$Res>
           ? _value.projectUid
           : projectUid // ignore: cast_nullable_to_non_nullable
               as String,
-      month: month == freezed
-          ? _value.month
-          : month // ignore: cast_nullable_to_non_nullable
-              as int?,
+      monthOfYear: monthOfYear == freezed
+          ? _value.monthOfYear
+          : monthOfYear // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       usedEntries: usedEntries == freezed
-          ? _value.usedEntries
+          ? _value._usedEntries
           : usedEntries // ignore: cast_nullable_to_non_nullable
               as List<SavedEntry>,
       width: width == freezed
@@ -707,19 +658,21 @@ class _$SavedCompilationCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SavedCompilation implements SavedCompilation {
+class _$SavedCompilation extends SavedCompilation {
   const _$SavedCompilation(
       {required this.uid,
       required this.filename,
       required this.projectUid,
-      this.month,
-      required this.usedEntries,
+      this.monthOfYear,
+      required final List<SavedEntry> usedEntries,
       required this.width,
       required this.height,
       this.algorithmVersion = compilationAlgorithmVersion,
       required this.created,
-      String? $type})
-      : $type = $type ?? 'saved';
+      final String? $type})
+      : _usedEntries = usedEntries,
+        $type = $type ?? 'saved',
+        super._();
 
   factory _$SavedCompilation.fromJson(Map<String, dynamic> json) =>
       _$$SavedCompilationFromJson(json);
@@ -731,15 +684,20 @@ class _$SavedCompilation implements SavedCompilation {
   @override
   final String projectUid;
   @override
-  final int? month;
+  final DateTime? monthOfYear;
+  final List<SavedEntry> _usedEntries;
   @override
-  final List<SavedEntry> usedEntries;
+  List<SavedEntry> get usedEntries {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_usedEntries);
+  }
+
   @override
   final double width;
   @override
   final double height;
-  @JsonKey()
   @override
+  @JsonKey()
   final int algorithmVersion;
   @override
   final DateTime created;
@@ -749,21 +707,22 @@ class _$SavedCompilation implements SavedCompilation {
 
   @override
   String toString() {
-    return 'Compilation.saved(uid: $uid, filename: $filename, projectUid: $projectUid, month: $month, usedEntries: $usedEntries, width: $width, height: $height, algorithmVersion: $algorithmVersion, created: $created)';
+    return 'Compilation.saved(uid: $uid, filename: $filename, projectUid: $projectUid, monthOfYear: $monthOfYear, usedEntries: $usedEntries, width: $width, height: $height, algorithmVersion: $algorithmVersion, created: $created)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is SavedCompilation &&
+            other is _$SavedCompilation &&
             const DeepCollectionEquality().equals(other.uid, uid) &&
             const DeepCollectionEquality().equals(other.filename, filename) &&
             const DeepCollectionEquality()
                 .equals(other.projectUid, projectUid) &&
-            const DeepCollectionEquality().equals(other.month, month) &&
             const DeepCollectionEquality()
-                .equals(other.usedEntries, usedEntries) &&
+                .equals(other.monthOfYear, monthOfYear) &&
+            const DeepCollectionEquality()
+                .equals(other._usedEntries, _usedEntries) &&
             const DeepCollectionEquality().equals(other.width, width) &&
             const DeepCollectionEquality().equals(other.height, height) &&
             const DeepCollectionEquality()
@@ -771,14 +730,15 @@ class _$SavedCompilation implements SavedCompilation {
             const DeepCollectionEquality().equals(other.created, created));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(uid),
       const DeepCollectionEquality().hash(filename),
       const DeepCollectionEquality().hash(projectUid),
-      const DeepCollectionEquality().hash(month),
-      const DeepCollectionEquality().hash(usedEntries),
+      const DeepCollectionEquality().hash(monthOfYear),
+      const DeepCollectionEquality().hash(_usedEntries),
       const DeepCollectionEquality().hash(width),
       const DeepCollectionEquality().hash(height),
       const DeepCollectionEquality().hash(algorithmVersion),
@@ -786,8 +746,8 @@ class _$SavedCompilation implements SavedCompilation {
 
   @JsonKey(ignore: true)
   @override
-  $SavedCompilationCopyWith<SavedCompilation> get copyWith =>
-      _$SavedCompilationCopyWithImpl<SavedCompilation>(this, _$identity);
+  _$$SavedCompilationCopyWith<_$SavedCompilation> get copyWith =>
+      __$$SavedCompilationCopyWithImpl<_$SavedCompilation>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -796,7 +756,7 @@ class _$SavedCompilation implements SavedCompilation {
             String uid,
             String projectUid,
             String projectTitle,
-            int? month,
+            DateTime? monthOfYear,
             String destination,
             List<SavedEntry> usedEntries,
             double width,
@@ -808,7 +768,7 @@ class _$SavedCompilation implements SavedCompilation {
             String uid,
             String filename,
             String projectUid,
-            int? month,
+            DateTime? monthOfYear,
             List<SavedEntry> usedEntries,
             double width,
             double height,
@@ -816,8 +776,8 @@ class _$SavedCompilation implements SavedCompilation {
             DateTime created)
         saved,
   }) {
-    return saved(uid, filename, projectUid, month, usedEntries, width, height,
-        algorithmVersion, created);
+    return saved(uid, filename, projectUid, monthOfYear, usedEntries, width,
+        height, algorithmVersion, created);
   }
 
   @override
@@ -827,7 +787,7 @@ class _$SavedCompilation implements SavedCompilation {
             String uid,
             String projectUid,
             String projectTitle,
-            int? month,
+            DateTime? monthOfYear,
             String destination,
             List<SavedEntry> usedEntries,
             double width,
@@ -839,7 +799,7 @@ class _$SavedCompilation implements SavedCompilation {
             String uid,
             String filename,
             String projectUid,
-            int? month,
+            DateTime? monthOfYear,
             List<SavedEntry> usedEntries,
             double width,
             double height,
@@ -847,8 +807,8 @@ class _$SavedCompilation implements SavedCompilation {
             DateTime created)?
         saved,
   }) {
-    return saved?.call(uid, filename, projectUid, month, usedEntries, width,
-        height, algorithmVersion, created);
+    return saved?.call(uid, filename, projectUid, monthOfYear, usedEntries,
+        width, height, algorithmVersion, created);
   }
 
   @override
@@ -858,7 +818,7 @@ class _$SavedCompilation implements SavedCompilation {
             String uid,
             String projectUid,
             String projectTitle,
-            int? month,
+            DateTime? monthOfYear,
             String destination,
             List<SavedEntry> usedEntries,
             double width,
@@ -870,7 +830,7 @@ class _$SavedCompilation implements SavedCompilation {
             String uid,
             String filename,
             String projectUid,
-            int? month,
+            DateTime? monthOfYear,
             List<SavedEntry> usedEntries,
             double width,
             double height,
@@ -880,8 +840,8 @@ class _$SavedCompilation implements SavedCompilation {
     required TResult orElse(),
   }) {
     if (saved != null) {
-      return saved(uid, filename, projectUid, month, usedEntries, width, height,
-          algorithmVersion, created);
+      return saved(uid, filename, projectUid, monthOfYear, usedEntries, width,
+          height, algorithmVersion, created);
     }
     return orElse();
   }
@@ -919,21 +879,24 @@ class _$SavedCompilation implements SavedCompilation {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SavedCompilationToJson(this);
+    return _$$SavedCompilationToJson(
+      this,
+    );
   }
 }
 
-abstract class SavedCompilation implements Compilation {
+abstract class SavedCompilation extends Compilation {
   const factory SavedCompilation(
-      {required String uid,
-      required String filename,
-      required String projectUid,
-      int? month,
-      required List<SavedEntry> usedEntries,
-      required double width,
-      required double height,
-      int algorithmVersion,
-      required DateTime created}) = _$SavedCompilation;
+      {required final String uid,
+      required final String filename,
+      required final String projectUid,
+      final DateTime? monthOfYear,
+      required final List<SavedEntry> usedEntries,
+      required final double width,
+      required final double height,
+      final int algorithmVersion,
+      required final DateTime created}) = _$SavedCompilation;
+  const SavedCompilation._() : super._();
 
   factory SavedCompilation.fromJson(Map<String, dynamic> json) =
       _$SavedCompilation.fromJson;
@@ -944,7 +907,7 @@ abstract class SavedCompilation implements Compilation {
   @override
   String get projectUid;
   @override
-  int? get month;
+  DateTime? get monthOfYear;
   @override
   List<SavedEntry> get usedEntries;
   @override
@@ -956,6 +919,6 @@ abstract class SavedCompilation implements Compilation {
   DateTime get created;
   @override
   @JsonKey(ignore: true)
-  $SavedCompilationCopyWith<SavedCompilation> get copyWith =>
+  _$$SavedCompilationCopyWith<_$SavedCompilation> get copyWith =>
       throw _privateConstructorUsedError;
 }

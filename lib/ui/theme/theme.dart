@@ -7,8 +7,10 @@ ThemeData getTheme(ColorScheme colorScheme, TextTheme textTheme) =>
       textTheme: textTheme,
     ).copyWith(
       useMaterial3: true,
+      shadowColor: colorScheme.shadow,
       appBarTheme: AppBarTheme(
         color: Colors.transparent,
+        scrolledUnderElevation: 0,
         systemOverlayStyle: colorScheme.brightness == Brightness.light
             ? SystemUiOverlayStyle.dark
             : SystemUiOverlayStyle.light,

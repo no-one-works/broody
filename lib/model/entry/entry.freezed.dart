@@ -12,7 +12,7 @@ part of 'entry.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Entry _$EntryFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
@@ -28,70 +28,6 @@ Entry _$EntryFromJson(Map<String, dynamic> json) {
 }
 
 /// @nodoc
-class _$EntryTearOff {
-  const _$EntryTearOff();
-
-  EditingEntry editing(
-      {required DateTime timestamp,
-      required String projectId,
-      required String assetEntityId,
-      required String videoPath,
-      required Duration startPoint,
-      required Duration duration,
-      required int width,
-      required int height,
-      List<int>? thumbnailBytes}) {
-    return EditingEntry(
-      timestamp: timestamp,
-      projectId: projectId,
-      assetEntityId: assetEntityId,
-      videoPath: videoPath,
-      startPoint: startPoint,
-      duration: duration,
-      width: width,
-      height: height,
-      thumbnailBytes: thumbnailBytes,
-    );
-  }
-
-  SavedEntry saved(
-      {int exportVersion = entryAlgorithmVersion,
-      required DateTime timestamp,
-      required DateTime changedWhen,
-      required String projectId,
-      required String assetEntityId,
-      required String clipFileName,
-      required String blurHash,
-      int? color,
-      required Duration startPoint,
-      required Duration duration,
-      required int width,
-      required int height}) {
-    return SavedEntry(
-      exportVersion: exportVersion,
-      timestamp: timestamp,
-      changedWhen: changedWhen,
-      projectId: projectId,
-      assetEntityId: assetEntityId,
-      clipFileName: clipFileName,
-      blurHash: blurHash,
-      color: color,
-      startPoint: startPoint,
-      duration: duration,
-      width: width,
-      height: height,
-    );
-  }
-
-  Entry fromJson(Map<String, Object?> json) {
-    return Entry.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Entry = _$EntryTearOff();
-
-/// @nodoc
 mixin _$Entry {
   DateTime get timestamp => throw _privateConstructorUsedError;
   String get projectId => throw _privateConstructorUsedError;
@@ -100,7 +36,6 @@ mixin _$Entry {
   Duration get duration => throw _privateConstructorUsedError;
   int get width => throw _privateConstructorUsedError;
   int get height => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
@@ -279,10 +214,10 @@ class _$EntryCopyWithImpl<$Res> implements $EntryCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $EditingEntryCopyWith<$Res> implements $EntryCopyWith<$Res> {
-  factory $EditingEntryCopyWith(
-          EditingEntry value, $Res Function(EditingEntry) then) =
-      _$EditingEntryCopyWithImpl<$Res>;
+abstract class _$$EditingEntryCopyWith<$Res> implements $EntryCopyWith<$Res> {
+  factory _$$EditingEntryCopyWith(
+          _$EditingEntry value, $Res Function(_$EditingEntry) then) =
+      __$$EditingEntryCopyWithImpl<$Res>;
   @override
   $Res call(
       {DateTime timestamp,
@@ -297,14 +232,14 @@ abstract class $EditingEntryCopyWith<$Res> implements $EntryCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$EditingEntryCopyWithImpl<$Res> extends _$EntryCopyWithImpl<$Res>
-    implements $EditingEntryCopyWith<$Res> {
-  _$EditingEntryCopyWithImpl(
-      EditingEntry _value, $Res Function(EditingEntry) _then)
-      : super(_value, (v) => _then(v as EditingEntry));
+class __$$EditingEntryCopyWithImpl<$Res> extends _$EntryCopyWithImpl<$Res>
+    implements _$$EditingEntryCopyWith<$Res> {
+  __$$EditingEntryCopyWithImpl(
+      _$EditingEntry _value, $Res Function(_$EditingEntry) _then)
+      : super(_value, (v) => _then(v as _$EditingEntry));
 
   @override
-  EditingEntry get _value => super._value as EditingEntry;
+  _$EditingEntry get _value => super._value as _$EditingEntry;
 
   @override
   $Res call({
@@ -318,7 +253,7 @@ class _$EditingEntryCopyWithImpl<$Res> extends _$EntryCopyWithImpl<$Res>
     Object? height = freezed,
     Object? thumbnailBytes = freezed,
   }) {
-    return _then(EditingEntry(
+    return _then(_$EditingEntry(
       timestamp: timestamp == freezed
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
@@ -352,7 +287,7 @@ class _$EditingEntryCopyWithImpl<$Res> extends _$EntryCopyWithImpl<$Res>
           : height // ignore: cast_nullable_to_non_nullable
               as int,
       thumbnailBytes: thumbnailBytes == freezed
-          ? _value.thumbnailBytes
+          ? _value._thumbnailBytes
           : thumbnailBytes // ignore: cast_nullable_to_non_nullable
               as List<int>?,
     ));
@@ -371,9 +306,10 @@ class _$EditingEntry extends EditingEntry {
       required this.duration,
       required this.width,
       required this.height,
-      this.thumbnailBytes,
-      String? $type})
-      : $type = $type ?? 'editing',
+      final List<int>? thumbnailBytes,
+      final String? $type})
+      : _thumbnailBytes = thumbnailBytes,
+        $type = $type ?? 'editing',
         super._();
 
   factory _$EditingEntry.fromJson(Map<String, dynamic> json) =>
@@ -395,8 +331,14 @@ class _$EditingEntry extends EditingEntry {
   final int width;
   @override
   final int height;
+  final List<int>? _thumbnailBytes;
   @override
-  final List<int>? thumbnailBytes;
+  List<int>? get thumbnailBytes {
+    final value = _thumbnailBytes;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @JsonKey(name: 'runtimeType')
   final String $type;
@@ -410,7 +352,7 @@ class _$EditingEntry extends EditingEntry {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is EditingEntry &&
+            other is _$EditingEntry &&
             const DeepCollectionEquality().equals(other.timestamp, timestamp) &&
             const DeepCollectionEquality().equals(other.projectId, projectId) &&
             const DeepCollectionEquality()
@@ -422,9 +364,10 @@ class _$EditingEntry extends EditingEntry {
             const DeepCollectionEquality().equals(other.width, width) &&
             const DeepCollectionEquality().equals(other.height, height) &&
             const DeepCollectionEquality()
-                .equals(other.thumbnailBytes, thumbnailBytes));
+                .equals(other._thumbnailBytes, _thumbnailBytes));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -436,12 +379,12 @@ class _$EditingEntry extends EditingEntry {
       const DeepCollectionEquality().hash(duration),
       const DeepCollectionEquality().hash(width),
       const DeepCollectionEquality().hash(height),
-      const DeepCollectionEquality().hash(thumbnailBytes));
+      const DeepCollectionEquality().hash(_thumbnailBytes));
 
   @JsonKey(ignore: true)
   @override
-  $EditingEntryCopyWith<EditingEntry> get copyWith =>
-      _$EditingEntryCopyWithImpl<EditingEntry>(this, _$identity);
+  _$$EditingEntryCopyWith<_$EditingEntry> get copyWith =>
+      __$$EditingEntryCopyWithImpl<_$EditingEntry>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -579,21 +522,23 @@ class _$EditingEntry extends EditingEntry {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$EditingEntryToJson(this);
+    return _$$EditingEntryToJson(
+      this,
+    );
   }
 }
 
 abstract class EditingEntry extends Entry {
   factory EditingEntry(
-      {required DateTime timestamp,
-      required String projectId,
-      required String assetEntityId,
-      required String videoPath,
-      required Duration startPoint,
-      required Duration duration,
-      required int width,
-      required int height,
-      List<int>? thumbnailBytes}) = _$EditingEntry;
+      {required final DateTime timestamp,
+      required final String projectId,
+      required final String assetEntityId,
+      required final String videoPath,
+      required final Duration startPoint,
+      required final Duration duration,
+      required final int width,
+      required final int height,
+      final List<int>? thumbnailBytes}) = _$EditingEntry;
   EditingEntry._() : super._();
 
   factory EditingEntry.fromJson(Map<String, dynamic> json) =
@@ -617,15 +562,15 @@ abstract class EditingEntry extends Entry {
   List<int>? get thumbnailBytes;
   @override
   @JsonKey(ignore: true)
-  $EditingEntryCopyWith<EditingEntry> get copyWith =>
+  _$$EditingEntryCopyWith<_$EditingEntry> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SavedEntryCopyWith<$Res> implements $EntryCopyWith<$Res> {
-  factory $SavedEntryCopyWith(
-          SavedEntry value, $Res Function(SavedEntry) then) =
-      _$SavedEntryCopyWithImpl<$Res>;
+abstract class _$$SavedEntryCopyWith<$Res> implements $EntryCopyWith<$Res> {
+  factory _$$SavedEntryCopyWith(
+          _$SavedEntry value, $Res Function(_$SavedEntry) then) =
+      __$$SavedEntryCopyWithImpl<$Res>;
   @override
   $Res call(
       {int exportVersion,
@@ -643,13 +588,14 @@ abstract class $SavedEntryCopyWith<$Res> implements $EntryCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SavedEntryCopyWithImpl<$Res> extends _$EntryCopyWithImpl<$Res>
-    implements $SavedEntryCopyWith<$Res> {
-  _$SavedEntryCopyWithImpl(SavedEntry _value, $Res Function(SavedEntry) _then)
-      : super(_value, (v) => _then(v as SavedEntry));
+class __$$SavedEntryCopyWithImpl<$Res> extends _$EntryCopyWithImpl<$Res>
+    implements _$$SavedEntryCopyWith<$Res> {
+  __$$SavedEntryCopyWithImpl(
+      _$SavedEntry _value, $Res Function(_$SavedEntry) _then)
+      : super(_value, (v) => _then(v as _$SavedEntry));
 
   @override
-  SavedEntry get _value => super._value as SavedEntry;
+  _$SavedEntry get _value => super._value as _$SavedEntry;
 
   @override
   $Res call({
@@ -666,7 +612,7 @@ class _$SavedEntryCopyWithImpl<$Res> extends _$EntryCopyWithImpl<$Res>
     Object? width = freezed,
     Object? height = freezed,
   }) {
-    return _then(SavedEntry(
+    return _then(_$SavedEntry(
       exportVersion: exportVersion == freezed
           ? _value.exportVersion
           : exportVersion // ignore: cast_nullable_to_non_nullable
@@ -735,15 +681,15 @@ class _$SavedEntry extends SavedEntry {
       required this.duration,
       required this.width,
       required this.height,
-      String? $type})
+      final String? $type})
       : $type = $type ?? 'saved',
         super._();
 
   factory _$SavedEntry.fromJson(Map<String, dynamic> json) =>
       _$$SavedEntryFromJson(json);
 
-  @JsonKey()
   @override
+  @JsonKey()
   final int exportVersion;
   @override
   final DateTime timestamp;
@@ -780,7 +726,7 @@ class _$SavedEntry extends SavedEntry {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is SavedEntry &&
+            other is _$SavedEntry &&
             const DeepCollectionEquality()
                 .equals(other.exportVersion, exportVersion) &&
             const DeepCollectionEquality().equals(other.timestamp, timestamp) &&
@@ -800,6 +746,7 @@ class _$SavedEntry extends SavedEntry {
             const DeepCollectionEquality().equals(other.height, height));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -818,8 +765,8 @@ class _$SavedEntry extends SavedEntry {
 
   @JsonKey(ignore: true)
   @override
-  $SavedEntryCopyWith<SavedEntry> get copyWith =>
-      _$SavedEntryCopyWithImpl<SavedEntry>(this, _$identity);
+  _$$SavedEntryCopyWith<_$SavedEntry> get copyWith =>
+      __$$SavedEntryCopyWithImpl<_$SavedEntry>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -990,24 +937,26 @@ class _$SavedEntry extends SavedEntry {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SavedEntryToJson(this);
+    return _$$SavedEntryToJson(
+      this,
+    );
   }
 }
 
 abstract class SavedEntry extends Entry {
   factory SavedEntry(
-      {int exportVersion,
-      required DateTime timestamp,
-      required DateTime changedWhen,
-      required String projectId,
-      required String assetEntityId,
-      required String clipFileName,
-      required String blurHash,
-      int? color,
-      required Duration startPoint,
-      required Duration duration,
-      required int width,
-      required int height}) = _$SavedEntry;
+      {final int exportVersion,
+      required final DateTime timestamp,
+      required final DateTime changedWhen,
+      required final String projectId,
+      required final String assetEntityId,
+      required final String clipFileName,
+      required final String blurHash,
+      final int? color,
+      required final Duration startPoint,
+      required final Duration duration,
+      required final int width,
+      required final int height}) = _$SavedEntry;
   SavedEntry._() : super._();
 
   factory SavedEntry.fromJson(Map<String, dynamic> json) =
@@ -1034,6 +983,6 @@ abstract class SavedEntry extends Entry {
   int get height;
   @override
   @JsonKey(ignore: true)
-  $SavedEntryCopyWith<SavedEntry> get copyWith =>
+  _$$SavedEntryCopyWith<_$SavedEntry> get copyWith =>
       throw _privateConstructorUsedError;
 }

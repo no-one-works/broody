@@ -18,29 +18,28 @@ final videoEditorStateProvider = StateNotifierProvider.autoDispose
     .family<VideoEditorNotifier, VideoEditorState, AssetEntity>(
         (ref, assetEntity) {
   final size = ref.watch(assetEntitySizeProvider((assetEntity)));
-  final state = ref.watch(assetEntityFileProvider(assetEntity)).whenOrNull(
-            data: (file) => file == null
-                ? VideoEditorState.failedToLoad(assetEntity: assetEntity)
-                : ref
-                    .watch(loopingFileVideoControllerProvider(file.path))
-                    .whenOrNull(
-                        data: (videoController) => VideoEditorState.editing(
-                              assetEntity: assetEntity,
-                              videoController: videoController,
-                              entry: EditingEntry(
-                                projectId:
-                                    ref.watch(selectedProjectProvider)!.uid,
-                                duration:
-                                    ref.watch(projectClipDurationProvider)!,
-                                videoPath: file.path,
-                                assetEntityId: assetEntity.id,
-                                height: size.height.toInt(),
-                                width: size.width.toInt(),
-                                timestamp: assetEntity.createDateTime,
-                                startPoint: Duration.zero,
-                              ),
-                            )),
-          ) ??
+  final file = ref.watch(assetEntityFileProvider(assetEntity));
+  final state = file.whenOrNull(
+        data: (file) => file == null
+            ? VideoEditorState.failedToLoad(assetEntity: assetEntity)
+            : ref
+                .watch(loopingFileVideoControllerProvider(file.path))
+                .whenOrNull(
+                    data: (videoController) => VideoEditorState.editing(
+                          assetEntity: assetEntity,
+                          videoController: videoController,
+                          entry: EditingEntry(
+                            projectId: ref.watch(selectedProjectProvider)!.uid,
+                            duration: ref.watch(projectClipDurationProvider)!,
+                            videoPath: file.path,
+                            assetEntityId: assetEntity.id,
+                            height: size.height.toInt(),
+                            width: size.width.toInt(),
+                            timestamp: assetEntity.createDateTime,
+                            startPoint: Duration.zero,
+                          ),
+                        )),
+      ) ??
       VideoEditorState.loadingVideo(assetEntity: assetEntity);
 
   return VideoEditorNotifier(ref.read, state);
@@ -183,6 +182,7 @@ class VideoEditorNotifier extends StateNotifier<VideoEditorState> {
   }
 
   void _videoControllerListener() {
+    if (!mounted) return;
     final s = state;
     if (s is! VideoEditorEditing) return;
     final videoPosition = s.videoController.value.position;

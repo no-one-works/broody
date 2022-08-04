@@ -12,51 +12,11 @@ part of 'project_details.state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ProjectDetailsStateTearOff {
-  const _$ProjectDetailsStateTearOff();
-
-  ProjectDetailsCreating creating({required Project project}) {
-    return ProjectDetailsCreating(
-      project: project,
-    );
-  }
-
-  ProjectDetailsEditing editing({required Project project}) {
-    return ProjectDetailsEditing(
-      project: project,
-    );
-  }
-
-  ProjectDetailsConfirmDestructive confirmDestructive(
-      {required Project project}) {
-    return ProjectDetailsConfirmDestructive(
-      project: project,
-    );
-  }
-
-  ProjectDetailsSaved saved({required Project project}) {
-    return ProjectDetailsSaved(
-      project: project,
-    );
-  }
-
-  ProjectDetailsDeleted deleted({required Project project}) {
-    return ProjectDetailsDeleted(
-      project: project,
-    );
-  }
-}
-
-/// @nodoc
-const $ProjectDetailsState = _$ProjectDetailsStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ProjectDetailsState {
   Project get project => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Project project) creating,
@@ -162,11 +122,11 @@ class _$ProjectDetailsStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $ProjectDetailsCreatingCopyWith<$Res>
+abstract class _$$ProjectDetailsCreatingCopyWith<$Res>
     implements $ProjectDetailsStateCopyWith<$Res> {
-  factory $ProjectDetailsCreatingCopyWith(ProjectDetailsCreating value,
-          $Res Function(ProjectDetailsCreating) then) =
-      _$ProjectDetailsCreatingCopyWithImpl<$Res>;
+  factory _$$ProjectDetailsCreatingCopyWith(_$ProjectDetailsCreating value,
+          $Res Function(_$ProjectDetailsCreating) then) =
+      __$$ProjectDetailsCreatingCopyWithImpl<$Res>;
   @override
   $Res call({Project project});
 
@@ -175,21 +135,22 @@ abstract class $ProjectDetailsCreatingCopyWith<$Res>
 }
 
 /// @nodoc
-class _$ProjectDetailsCreatingCopyWithImpl<$Res>
+class __$$ProjectDetailsCreatingCopyWithImpl<$Res>
     extends _$ProjectDetailsStateCopyWithImpl<$Res>
-    implements $ProjectDetailsCreatingCopyWith<$Res> {
-  _$ProjectDetailsCreatingCopyWithImpl(ProjectDetailsCreating _value,
-      $Res Function(ProjectDetailsCreating) _then)
-      : super(_value, (v) => _then(v as ProjectDetailsCreating));
+    implements _$$ProjectDetailsCreatingCopyWith<$Res> {
+  __$$ProjectDetailsCreatingCopyWithImpl(_$ProjectDetailsCreating _value,
+      $Res Function(_$ProjectDetailsCreating) _then)
+      : super(_value, (v) => _then(v as _$ProjectDetailsCreating));
 
   @override
-  ProjectDetailsCreating get _value => super._value as ProjectDetailsCreating;
+  _$ProjectDetailsCreating get _value =>
+      super._value as _$ProjectDetailsCreating;
 
   @override
   $Res call({
     Object? project = freezed,
   }) {
-    return _then(ProjectDetailsCreating(
+    return _then(_$ProjectDetailsCreating(
       project: project == freezed
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
@@ -215,7 +176,7 @@ class _$ProjectDetailsCreating implements ProjectDetailsCreating {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ProjectDetailsCreating &&
+            other is _$ProjectDetailsCreating &&
             const DeepCollectionEquality().equals(other.project, project));
   }
 
@@ -225,8 +186,8 @@ class _$ProjectDetailsCreating implements ProjectDetailsCreating {
 
   @JsonKey(ignore: true)
   @override
-  $ProjectDetailsCreatingCopyWith<ProjectDetailsCreating> get copyWith =>
-      _$ProjectDetailsCreatingCopyWithImpl<ProjectDetailsCreating>(
+  _$$ProjectDetailsCreatingCopyWith<_$ProjectDetailsCreating> get copyWith =>
+      __$$ProjectDetailsCreatingCopyWithImpl<_$ProjectDetailsCreating>(
           this, _$identity);
 
   @override
@@ -314,23 +275,23 @@ class _$ProjectDetailsCreating implements ProjectDetailsCreating {
 }
 
 abstract class ProjectDetailsCreating implements ProjectDetailsState {
-  const factory ProjectDetailsCreating({required Project project}) =
+  const factory ProjectDetailsCreating({required final Project project}) =
       _$ProjectDetailsCreating;
 
   @override
   Project get project;
   @override
   @JsonKey(ignore: true)
-  $ProjectDetailsCreatingCopyWith<ProjectDetailsCreating> get copyWith =>
+  _$$ProjectDetailsCreatingCopyWith<_$ProjectDetailsCreating> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProjectDetailsEditingCopyWith<$Res>
+abstract class _$$ProjectDetailsEditingCopyWith<$Res>
     implements $ProjectDetailsStateCopyWith<$Res> {
-  factory $ProjectDetailsEditingCopyWith(ProjectDetailsEditing value,
-          $Res Function(ProjectDetailsEditing) then) =
-      _$ProjectDetailsEditingCopyWithImpl<$Res>;
+  factory _$$ProjectDetailsEditingCopyWith(_$ProjectDetailsEditing value,
+          $Res Function(_$ProjectDetailsEditing) then) =
+      __$$ProjectDetailsEditingCopyWithImpl<$Res>;
   @override
   $Res call({Project project});
 
@@ -339,21 +300,21 @@ abstract class $ProjectDetailsEditingCopyWith<$Res>
 }
 
 /// @nodoc
-class _$ProjectDetailsEditingCopyWithImpl<$Res>
+class __$$ProjectDetailsEditingCopyWithImpl<$Res>
     extends _$ProjectDetailsStateCopyWithImpl<$Res>
-    implements $ProjectDetailsEditingCopyWith<$Res> {
-  _$ProjectDetailsEditingCopyWithImpl(
-      ProjectDetailsEditing _value, $Res Function(ProjectDetailsEditing) _then)
-      : super(_value, (v) => _then(v as ProjectDetailsEditing));
+    implements _$$ProjectDetailsEditingCopyWith<$Res> {
+  __$$ProjectDetailsEditingCopyWithImpl(_$ProjectDetailsEditing _value,
+      $Res Function(_$ProjectDetailsEditing) _then)
+      : super(_value, (v) => _then(v as _$ProjectDetailsEditing));
 
   @override
-  ProjectDetailsEditing get _value => super._value as ProjectDetailsEditing;
+  _$ProjectDetailsEditing get _value => super._value as _$ProjectDetailsEditing;
 
   @override
   $Res call({
     Object? project = freezed,
   }) {
-    return _then(ProjectDetailsEditing(
+    return _then(_$ProjectDetailsEditing(
       project: project == freezed
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
@@ -379,7 +340,7 @@ class _$ProjectDetailsEditing implements ProjectDetailsEditing {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ProjectDetailsEditing &&
+            other is _$ProjectDetailsEditing &&
             const DeepCollectionEquality().equals(other.project, project));
   }
 
@@ -389,8 +350,8 @@ class _$ProjectDetailsEditing implements ProjectDetailsEditing {
 
   @JsonKey(ignore: true)
   @override
-  $ProjectDetailsEditingCopyWith<ProjectDetailsEditing> get copyWith =>
-      _$ProjectDetailsEditingCopyWithImpl<ProjectDetailsEditing>(
+  _$$ProjectDetailsEditingCopyWith<_$ProjectDetailsEditing> get copyWith =>
+      __$$ProjectDetailsEditingCopyWithImpl<_$ProjectDetailsEditing>(
           this, _$identity);
 
   @override
@@ -478,24 +439,24 @@ class _$ProjectDetailsEditing implements ProjectDetailsEditing {
 }
 
 abstract class ProjectDetailsEditing implements ProjectDetailsState {
-  const factory ProjectDetailsEditing({required Project project}) =
+  const factory ProjectDetailsEditing({required final Project project}) =
       _$ProjectDetailsEditing;
 
   @override
   Project get project;
   @override
   @JsonKey(ignore: true)
-  $ProjectDetailsEditingCopyWith<ProjectDetailsEditing> get copyWith =>
+  _$$ProjectDetailsEditingCopyWith<_$ProjectDetailsEditing> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProjectDetailsConfirmDestructiveCopyWith<$Res>
+abstract class _$$ProjectDetailsConfirmDestructiveCopyWith<$Res>
     implements $ProjectDetailsStateCopyWith<$Res> {
-  factory $ProjectDetailsConfirmDestructiveCopyWith(
-          ProjectDetailsConfirmDestructive value,
-          $Res Function(ProjectDetailsConfirmDestructive) then) =
-      _$ProjectDetailsConfirmDestructiveCopyWithImpl<$Res>;
+  factory _$$ProjectDetailsConfirmDestructiveCopyWith(
+          _$ProjectDetailsConfirmDestructive value,
+          $Res Function(_$ProjectDetailsConfirmDestructive) then) =
+      __$$ProjectDetailsConfirmDestructiveCopyWithImpl<$Res>;
   @override
   $Res call({Project project});
 
@@ -504,23 +465,23 @@ abstract class $ProjectDetailsConfirmDestructiveCopyWith<$Res>
 }
 
 /// @nodoc
-class _$ProjectDetailsConfirmDestructiveCopyWithImpl<$Res>
+class __$$ProjectDetailsConfirmDestructiveCopyWithImpl<$Res>
     extends _$ProjectDetailsStateCopyWithImpl<$Res>
-    implements $ProjectDetailsConfirmDestructiveCopyWith<$Res> {
-  _$ProjectDetailsConfirmDestructiveCopyWithImpl(
-      ProjectDetailsConfirmDestructive _value,
-      $Res Function(ProjectDetailsConfirmDestructive) _then)
-      : super(_value, (v) => _then(v as ProjectDetailsConfirmDestructive));
+    implements _$$ProjectDetailsConfirmDestructiveCopyWith<$Res> {
+  __$$ProjectDetailsConfirmDestructiveCopyWithImpl(
+      _$ProjectDetailsConfirmDestructive _value,
+      $Res Function(_$ProjectDetailsConfirmDestructive) _then)
+      : super(_value, (v) => _then(v as _$ProjectDetailsConfirmDestructive));
 
   @override
-  ProjectDetailsConfirmDestructive get _value =>
-      super._value as ProjectDetailsConfirmDestructive;
+  _$ProjectDetailsConfirmDestructive get _value =>
+      super._value as _$ProjectDetailsConfirmDestructive;
 
   @override
   $Res call({
     Object? project = freezed,
   }) {
-    return _then(ProjectDetailsConfirmDestructive(
+    return _then(_$ProjectDetailsConfirmDestructive(
       project: project == freezed
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
@@ -547,7 +508,7 @@ class _$ProjectDetailsConfirmDestructive
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ProjectDetailsConfirmDestructive &&
+            other is _$ProjectDetailsConfirmDestructive &&
             const DeepCollectionEquality().equals(other.project, project));
   }
 
@@ -557,9 +518,10 @@ class _$ProjectDetailsConfirmDestructive
 
   @JsonKey(ignore: true)
   @override
-  $ProjectDetailsConfirmDestructiveCopyWith<ProjectDetailsConfirmDestructive>
-      get copyWith => _$ProjectDetailsConfirmDestructiveCopyWithImpl<
-          ProjectDetailsConfirmDestructive>(this, _$identity);
+  _$$ProjectDetailsConfirmDestructiveCopyWith<
+          _$ProjectDetailsConfirmDestructive>
+      get copyWith => __$$ProjectDetailsConfirmDestructiveCopyWithImpl<
+          _$ProjectDetailsConfirmDestructive>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -646,23 +608,24 @@ class _$ProjectDetailsConfirmDestructive
 }
 
 abstract class ProjectDetailsConfirmDestructive implements ProjectDetailsState {
-  const factory ProjectDetailsConfirmDestructive({required Project project}) =
-      _$ProjectDetailsConfirmDestructive;
+  const factory ProjectDetailsConfirmDestructive(
+      {required final Project project}) = _$ProjectDetailsConfirmDestructive;
 
   @override
   Project get project;
   @override
   @JsonKey(ignore: true)
-  $ProjectDetailsConfirmDestructiveCopyWith<ProjectDetailsConfirmDestructive>
+  _$$ProjectDetailsConfirmDestructiveCopyWith<
+          _$ProjectDetailsConfirmDestructive>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProjectDetailsSavedCopyWith<$Res>
+abstract class _$$ProjectDetailsSavedCopyWith<$Res>
     implements $ProjectDetailsStateCopyWith<$Res> {
-  factory $ProjectDetailsSavedCopyWith(
-          ProjectDetailsSaved value, $Res Function(ProjectDetailsSaved) then) =
-      _$ProjectDetailsSavedCopyWithImpl<$Res>;
+  factory _$$ProjectDetailsSavedCopyWith(_$ProjectDetailsSaved value,
+          $Res Function(_$ProjectDetailsSaved) then) =
+      __$$ProjectDetailsSavedCopyWithImpl<$Res>;
   @override
   $Res call({Project project});
 
@@ -671,21 +634,21 @@ abstract class $ProjectDetailsSavedCopyWith<$Res>
 }
 
 /// @nodoc
-class _$ProjectDetailsSavedCopyWithImpl<$Res>
+class __$$ProjectDetailsSavedCopyWithImpl<$Res>
     extends _$ProjectDetailsStateCopyWithImpl<$Res>
-    implements $ProjectDetailsSavedCopyWith<$Res> {
-  _$ProjectDetailsSavedCopyWithImpl(
-      ProjectDetailsSaved _value, $Res Function(ProjectDetailsSaved) _then)
-      : super(_value, (v) => _then(v as ProjectDetailsSaved));
+    implements _$$ProjectDetailsSavedCopyWith<$Res> {
+  __$$ProjectDetailsSavedCopyWithImpl(
+      _$ProjectDetailsSaved _value, $Res Function(_$ProjectDetailsSaved) _then)
+      : super(_value, (v) => _then(v as _$ProjectDetailsSaved));
 
   @override
-  ProjectDetailsSaved get _value => super._value as ProjectDetailsSaved;
+  _$ProjectDetailsSaved get _value => super._value as _$ProjectDetailsSaved;
 
   @override
   $Res call({
     Object? project = freezed,
   }) {
-    return _then(ProjectDetailsSaved(
+    return _then(_$ProjectDetailsSaved(
       project: project == freezed
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
@@ -711,7 +674,7 @@ class _$ProjectDetailsSaved implements ProjectDetailsSaved {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ProjectDetailsSaved &&
+            other is _$ProjectDetailsSaved &&
             const DeepCollectionEquality().equals(other.project, project));
   }
 
@@ -721,8 +684,9 @@ class _$ProjectDetailsSaved implements ProjectDetailsSaved {
 
   @JsonKey(ignore: true)
   @override
-  $ProjectDetailsSavedCopyWith<ProjectDetailsSaved> get copyWith =>
-      _$ProjectDetailsSavedCopyWithImpl<ProjectDetailsSaved>(this, _$identity);
+  _$$ProjectDetailsSavedCopyWith<_$ProjectDetailsSaved> get copyWith =>
+      __$$ProjectDetailsSavedCopyWithImpl<_$ProjectDetailsSaved>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -809,23 +773,23 @@ class _$ProjectDetailsSaved implements ProjectDetailsSaved {
 }
 
 abstract class ProjectDetailsSaved implements ProjectDetailsState {
-  const factory ProjectDetailsSaved({required Project project}) =
+  const factory ProjectDetailsSaved({required final Project project}) =
       _$ProjectDetailsSaved;
 
   @override
   Project get project;
   @override
   @JsonKey(ignore: true)
-  $ProjectDetailsSavedCopyWith<ProjectDetailsSaved> get copyWith =>
+  _$$ProjectDetailsSavedCopyWith<_$ProjectDetailsSaved> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProjectDetailsDeletedCopyWith<$Res>
+abstract class _$$ProjectDetailsDeletedCopyWith<$Res>
     implements $ProjectDetailsStateCopyWith<$Res> {
-  factory $ProjectDetailsDeletedCopyWith(ProjectDetailsDeleted value,
-          $Res Function(ProjectDetailsDeleted) then) =
-      _$ProjectDetailsDeletedCopyWithImpl<$Res>;
+  factory _$$ProjectDetailsDeletedCopyWith(_$ProjectDetailsDeleted value,
+          $Res Function(_$ProjectDetailsDeleted) then) =
+      __$$ProjectDetailsDeletedCopyWithImpl<$Res>;
   @override
   $Res call({Project project});
 
@@ -834,21 +798,21 @@ abstract class $ProjectDetailsDeletedCopyWith<$Res>
 }
 
 /// @nodoc
-class _$ProjectDetailsDeletedCopyWithImpl<$Res>
+class __$$ProjectDetailsDeletedCopyWithImpl<$Res>
     extends _$ProjectDetailsStateCopyWithImpl<$Res>
-    implements $ProjectDetailsDeletedCopyWith<$Res> {
-  _$ProjectDetailsDeletedCopyWithImpl(
-      ProjectDetailsDeleted _value, $Res Function(ProjectDetailsDeleted) _then)
-      : super(_value, (v) => _then(v as ProjectDetailsDeleted));
+    implements _$$ProjectDetailsDeletedCopyWith<$Res> {
+  __$$ProjectDetailsDeletedCopyWithImpl(_$ProjectDetailsDeleted _value,
+      $Res Function(_$ProjectDetailsDeleted) _then)
+      : super(_value, (v) => _then(v as _$ProjectDetailsDeleted));
 
   @override
-  ProjectDetailsDeleted get _value => super._value as ProjectDetailsDeleted;
+  _$ProjectDetailsDeleted get _value => super._value as _$ProjectDetailsDeleted;
 
   @override
   $Res call({
     Object? project = freezed,
   }) {
-    return _then(ProjectDetailsDeleted(
+    return _then(_$ProjectDetailsDeleted(
       project: project == freezed
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
@@ -874,7 +838,7 @@ class _$ProjectDetailsDeleted implements ProjectDetailsDeleted {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ProjectDetailsDeleted &&
+            other is _$ProjectDetailsDeleted &&
             const DeepCollectionEquality().equals(other.project, project));
   }
 
@@ -884,8 +848,8 @@ class _$ProjectDetailsDeleted implements ProjectDetailsDeleted {
 
   @JsonKey(ignore: true)
   @override
-  $ProjectDetailsDeletedCopyWith<ProjectDetailsDeleted> get copyWith =>
-      _$ProjectDetailsDeletedCopyWithImpl<ProjectDetailsDeleted>(
+  _$$ProjectDetailsDeletedCopyWith<_$ProjectDetailsDeleted> get copyWith =>
+      __$$ProjectDetailsDeletedCopyWithImpl<_$ProjectDetailsDeleted>(
           this, _$identity);
 
   @override
@@ -973,13 +937,13 @@ class _$ProjectDetailsDeleted implements ProjectDetailsDeleted {
 }
 
 abstract class ProjectDetailsDeleted implements ProjectDetailsState {
-  const factory ProjectDetailsDeleted({required Project project}) =
+  const factory ProjectDetailsDeleted({required final Project project}) =
       _$ProjectDetailsDeleted;
 
   @override
   Project get project;
   @override
   @JsonKey(ignore: true)
-  $ProjectDetailsDeletedCopyWith<ProjectDetailsDeleted> get copyWith =>
+  _$$ProjectDetailsDeletedCopyWith<_$ProjectDetailsDeleted> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -140,6 +140,7 @@ class ProjectRepositoryImpl extends ProjectRepository {
     } else {
       final lostDates = old.startDate
           .getDaysUntil(old.endDate)
+          .map((d) => d.startOfDay())
           .except(project.startDate.getDaysUntil(project.endDate));
       final entries =
           await ref.read(projectEntriesProvider(project.uid).future);

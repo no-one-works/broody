@@ -48,7 +48,7 @@ class MonthSliverGrid extends HookConsumerWidget {
     final dateFormat = useDateFormat();
     final monthName = dateFormat.dateSymbols.MONTHS[monthOfYear.month - 1];
     final selectedProject = ref.watch(selectedProjectProvider)!;
-    final monthEnded = ref.watch(projectMonthEndedProvider(dates.first));
+    final monthEnded = ref.watch(projectMonthCompleteProvider(dates.first));
 
     return SliverStickyHeader.builder(
       builder: (context, state) => Stack(

@@ -107,29 +107,6 @@ final projectMonthCompleteProvider =
   ));
 });
 
-final projectMonthEndedProvider =
-    Provider.autoDispose.family<ProjectMonth?, DateTime>((ref, month) {
-  final lastDay = DateTime(month.year, month.month + 1, 0);
-  final project = ref.watch(selectedProjectProvider);
-  if (project == null) return null;
-  return ref.watch(selectedProjectEntriesProvider.select(
-    (value) => value.maybeWhen(
-      data: (entries) => ProjectMonth._(
-        project,
-        month,
-        entries
-                    .where((entry) =>
-                        entry.day.year == month.year &&
-                        entry.day.month == month.month)
-                    .length >
-                1 &&
-            lastDay.endOfDay().isBefore(DateTime.now()),
-      ),
-      orElse: () => null,
-    ),
-  ));
-});
-
 class ProjectMonth {
   ProjectMonth._(this.project, this.month, this.complete);
 

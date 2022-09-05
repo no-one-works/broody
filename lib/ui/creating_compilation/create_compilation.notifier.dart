@@ -148,7 +148,7 @@ class CreateCompilationNotifier extends StateNotifier<CreateCompilationState> {
   void dispose() {
     final s = state;
     if (s is CreateCompilationExportSuccess) {
-      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
         s.videoController.dispose();
       });
     }

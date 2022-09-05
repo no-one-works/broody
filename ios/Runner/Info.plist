@@ -32,6 +32,10 @@
 	<string>We need microphone access for recording clips.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Please allow access to your library for adding clips.</string>
+	<key>NSBonjourServices</key>
+    <array>
+        <string>_dartobservatory._tcp</string>
+    </array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

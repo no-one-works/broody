@@ -77,7 +77,7 @@ class VideoPickerPage extends HookConsumerWidget {
                   ?.map((v) => v.id)
                   .contains(entry.value!.assetEntityId) ??
               true)) {
-        WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
           showEntryOriginalNotFoundDialog(context, ref);
         });
       }

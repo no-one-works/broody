@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'thumbnail_request.dart';
 
@@ -32,7 +32,8 @@ mixin _$ThumbnailRequest {
 abstract class $ThumbnailRequestCopyWith<$Res> {
   factory $ThumbnailRequestCopyWith(
           ThumbnailRequest value, $Res Function(ThumbnailRequest) then) =
-      _$ThumbnailRequestCopyWithImpl<$Res>;
+      _$ThumbnailRequestCopyWithImpl<$Res, ThumbnailRequest>;
+  @useResult
   $Res call(
       {String videoPath,
       Duration videoDuration,
@@ -43,49 +44,51 @@ abstract class $ThumbnailRequestCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ThumbnailRequestCopyWithImpl<$Res>
+class _$ThumbnailRequestCopyWithImpl<$Res, $Val extends ThumbnailRequest>
     implements $ThumbnailRequestCopyWith<$Res> {
   _$ThumbnailRequestCopyWithImpl(this._value, this._then);
 
-  final ThumbnailRequest _value;
   // ignore: unused_field
-  final $Res Function(ThumbnailRequest) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? videoPath = freezed,
-    Object? videoDuration = freezed,
-    Object? thumbnailHeight = freezed,
-    Object? aspectRatio = freezed,
-    Object? thumbnailCount = freezed,
-    Object? quality = freezed,
+    Object? videoPath = null,
+    Object? videoDuration = null,
+    Object? thumbnailHeight = null,
+    Object? aspectRatio = null,
+    Object? thumbnailCount = null,
+    Object? quality = null,
   }) {
     return _then(_value.copyWith(
-      videoPath: videoPath == freezed
+      videoPath: null == videoPath
           ? _value.videoPath
           : videoPath // ignore: cast_nullable_to_non_nullable
               as String,
-      videoDuration: videoDuration == freezed
+      videoDuration: null == videoDuration
           ? _value.videoDuration
           : videoDuration // ignore: cast_nullable_to_non_nullable
               as Duration,
-      thumbnailHeight: thumbnailHeight == freezed
+      thumbnailHeight: null == thumbnailHeight
           ? _value.thumbnailHeight
           : thumbnailHeight // ignore: cast_nullable_to_non_nullable
               as int,
-      aspectRatio: aspectRatio == freezed
+      aspectRatio: null == aspectRatio
           ? _value.aspectRatio
           : aspectRatio // ignore: cast_nullable_to_non_nullable
               as double,
-      thumbnailCount: thumbnailCount == freezed
+      thumbnailCount: null == thumbnailCount
           ? _value.thumbnailCount
           : thumbnailCount // ignore: cast_nullable_to_non_nullable
               as int,
-      quality: quality == freezed
+      quality: null == quality
           ? _value.quality
           : quality // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -96,6 +99,7 @@ abstract class _$$_ThumbnailRequestCopyWith<$Res>
           _$_ThumbnailRequest value, $Res Function(_$_ThumbnailRequest) then) =
       __$$_ThumbnailRequestCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String videoPath,
       Duration videoDuration,
@@ -107,46 +111,44 @@ abstract class _$$_ThumbnailRequestCopyWith<$Res>
 
 /// @nodoc
 class __$$_ThumbnailRequestCopyWithImpl<$Res>
-    extends _$ThumbnailRequestCopyWithImpl<$Res>
+    extends _$ThumbnailRequestCopyWithImpl<$Res, _$_ThumbnailRequest>
     implements _$$_ThumbnailRequestCopyWith<$Res> {
   __$$_ThumbnailRequestCopyWithImpl(
       _$_ThumbnailRequest _value, $Res Function(_$_ThumbnailRequest) _then)
-      : super(_value, (v) => _then(v as _$_ThumbnailRequest));
+      : super(_value, _then);
 
-  @override
-  _$_ThumbnailRequest get _value => super._value as _$_ThumbnailRequest;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? videoPath = freezed,
-    Object? videoDuration = freezed,
-    Object? thumbnailHeight = freezed,
-    Object? aspectRatio = freezed,
-    Object? thumbnailCount = freezed,
-    Object? quality = freezed,
+    Object? videoPath = null,
+    Object? videoDuration = null,
+    Object? thumbnailHeight = null,
+    Object? aspectRatio = null,
+    Object? thumbnailCount = null,
+    Object? quality = null,
   }) {
     return _then(_$_ThumbnailRequest(
-      videoPath: videoPath == freezed
+      videoPath: null == videoPath
           ? _value.videoPath
           : videoPath // ignore: cast_nullable_to_non_nullable
               as String,
-      videoDuration: videoDuration == freezed
+      videoDuration: null == videoDuration
           ? _value.videoDuration
           : videoDuration // ignore: cast_nullable_to_non_nullable
               as Duration,
-      thumbnailHeight: thumbnailHeight == freezed
+      thumbnailHeight: null == thumbnailHeight
           ? _value.thumbnailHeight
           : thumbnailHeight // ignore: cast_nullable_to_non_nullable
               as int,
-      aspectRatio: aspectRatio == freezed
+      aspectRatio: null == aspectRatio
           ? _value.aspectRatio
           : aspectRatio // ignore: cast_nullable_to_non_nullable
               as double,
-      thumbnailCount: thumbnailCount == freezed
+      thumbnailCount: null == thumbnailCount
           ? _value.thumbnailCount
           : thumbnailCount // ignore: cast_nullable_to_non_nullable
               as int,
-      quality: quality == freezed
+      quality: null == quality
           ? _value.quality
           : quality // ignore: cast_nullable_to_non_nullable
               as int,
@@ -188,30 +190,26 @@ class _$_ThumbnailRequest implements _ThumbnailRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ThumbnailRequest &&
-            const DeepCollectionEquality().equals(other.videoPath, videoPath) &&
-            const DeepCollectionEquality()
-                .equals(other.videoDuration, videoDuration) &&
-            const DeepCollectionEquality()
-                .equals(other.thumbnailHeight, thumbnailHeight) &&
-            const DeepCollectionEquality()
-                .equals(other.aspectRatio, aspectRatio) &&
-            const DeepCollectionEquality()
-                .equals(other.thumbnailCount, thumbnailCount) &&
-            const DeepCollectionEquality().equals(other.quality, quality));
+            (identical(other.videoPath, videoPath) ||
+                other.videoPath == videoPath) &&
+            (identical(other.videoDuration, videoDuration) ||
+                other.videoDuration == videoDuration) &&
+            (identical(other.thumbnailHeight, thumbnailHeight) ||
+                other.thumbnailHeight == thumbnailHeight) &&
+            (identical(other.aspectRatio, aspectRatio) ||
+                other.aspectRatio == aspectRatio) &&
+            (identical(other.thumbnailCount, thumbnailCount) ||
+                other.thumbnailCount == thumbnailCount) &&
+            (identical(other.quality, quality) || other.quality == quality));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(videoPath),
-      const DeepCollectionEquality().hash(videoDuration),
-      const DeepCollectionEquality().hash(thumbnailHeight),
-      const DeepCollectionEquality().hash(aspectRatio),
-      const DeepCollectionEquality().hash(thumbnailCount),
-      const DeepCollectionEquality().hash(quality));
+  int get hashCode => Object.hash(runtimeType, videoPath, videoDuration,
+      thumbnailHeight, aspectRatio, thumbnailCount, quality);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ThumbnailRequestCopyWith<_$_ThumbnailRequest> get copyWith =>
       __$$_ThumbnailRequestCopyWithImpl<_$_ThumbnailRequest>(this, _$identity);
 }

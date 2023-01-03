@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'onboarding.dart';
 
@@ -33,33 +33,37 @@ mixin _$Onboarding {
 abstract class $OnboardingCopyWith<$Res> {
   factory $OnboardingCopyWith(
           Onboarding value, $Res Function(Onboarding) then) =
-      _$OnboardingCopyWithImpl<$Res>;
+      _$OnboardingCopyWithImpl<$Res, Onboarding>;
+  @useResult
   $Res call({bool knowsTwoFingerSwipe, bool knowsTimeline});
 }
 
 /// @nodoc
-class _$OnboardingCopyWithImpl<$Res> implements $OnboardingCopyWith<$Res> {
+class _$OnboardingCopyWithImpl<$Res, $Val extends Onboarding>
+    implements $OnboardingCopyWith<$Res> {
   _$OnboardingCopyWithImpl(this._value, this._then);
 
-  final Onboarding _value;
   // ignore: unused_field
-  final $Res Function(Onboarding) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? knowsTwoFingerSwipe = freezed,
-    Object? knowsTimeline = freezed,
+    Object? knowsTwoFingerSwipe = null,
+    Object? knowsTimeline = null,
   }) {
     return _then(_value.copyWith(
-      knowsTwoFingerSwipe: knowsTwoFingerSwipe == freezed
+      knowsTwoFingerSwipe: null == knowsTwoFingerSwipe
           ? _value.knowsTwoFingerSwipe
           : knowsTwoFingerSwipe // ignore: cast_nullable_to_non_nullable
               as bool,
-      knowsTimeline: knowsTimeline == freezed
+      knowsTimeline: null == knowsTimeline
           ? _value.knowsTimeline
           : knowsTimeline // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
+    ) as $Val);
   }
 }
 
@@ -70,30 +74,30 @@ abstract class _$$_OnboardingCopyWith<$Res>
           _$_Onboarding value, $Res Function(_$_Onboarding) then) =
       __$$_OnboardingCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({bool knowsTwoFingerSwipe, bool knowsTimeline});
 }
 
 /// @nodoc
-class __$$_OnboardingCopyWithImpl<$Res> extends _$OnboardingCopyWithImpl<$Res>
+class __$$_OnboardingCopyWithImpl<$Res>
+    extends _$OnboardingCopyWithImpl<$Res, _$_Onboarding>
     implements _$$_OnboardingCopyWith<$Res> {
   __$$_OnboardingCopyWithImpl(
       _$_Onboarding _value, $Res Function(_$_Onboarding) _then)
-      : super(_value, (v) => _then(v as _$_Onboarding));
+      : super(_value, _then);
 
-  @override
-  _$_Onboarding get _value => super._value as _$_Onboarding;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? knowsTwoFingerSwipe = freezed,
-    Object? knowsTimeline = freezed,
+    Object? knowsTwoFingerSwipe = null,
+    Object? knowsTimeline = null,
   }) {
     return _then(_$_Onboarding(
-      knowsTwoFingerSwipe: knowsTwoFingerSwipe == freezed
+      knowsTwoFingerSwipe: null == knowsTwoFingerSwipe
           ? _value.knowsTwoFingerSwipe
           : knowsTwoFingerSwipe // ignore: cast_nullable_to_non_nullable
               as bool,
-      knowsTimeline: knowsTimeline == freezed
+      knowsTimeline: null == knowsTimeline
           ? _value.knowsTimeline
           : knowsTimeline // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -127,21 +131,20 @@ class _$_Onboarding implements _Onboarding {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Onboarding &&
-            const DeepCollectionEquality()
-                .equals(other.knowsTwoFingerSwipe, knowsTwoFingerSwipe) &&
-            const DeepCollectionEquality()
-                .equals(other.knowsTimeline, knowsTimeline));
+            (identical(other.knowsTwoFingerSwipe, knowsTwoFingerSwipe) ||
+                other.knowsTwoFingerSwipe == knowsTwoFingerSwipe) &&
+            (identical(other.knowsTimeline, knowsTimeline) ||
+                other.knowsTimeline == knowsTimeline));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(knowsTwoFingerSwipe),
-      const DeepCollectionEquality().hash(knowsTimeline));
+  int get hashCode =>
+      Object.hash(runtimeType, knowsTwoFingerSwipe, knowsTimeline);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_OnboardingCopyWith<_$_Onboarding> get copyWith =>
       __$$_OnboardingCopyWithImpl<_$_Onboarding>(this, _$identity);
 

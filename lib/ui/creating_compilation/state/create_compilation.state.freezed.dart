@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'create_compilation.state.dart';
 
@@ -38,18 +38,18 @@ mixin _$CreateCompilationState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String projectUid, DateTime? monthOfYear)? prepareExport,
-    TResult Function(String projectUid, DateTime? monthOfYear,
+    TResult? Function(String projectUid, DateTime? monthOfYear)? prepareExport,
+    TResult? Function(String projectUid, DateTime? monthOfYear,
             LoadingValue<dynamic> exportProgress)?
         exporting,
-    TResult Function(
+    TResult? Function(
             String projectUid,
             DateTime? monthOfYear,
             SavedCompilation savedCompilation,
             File file,
             VideoPlayerController videoController)?
         exportSuccess,
-    TResult Function(String projectUid, DateTime? monthOfYear)? exportFailed,
+    TResult? Function(String projectUid, DateTime? monthOfYear)? exportFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -81,10 +81,10 @@ mixin _$CreateCompilationState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CreateCompilationPrepareExport value)? prepareExport,
-    TResult Function(CreateCompilationExporting value)? exporting,
-    TResult Function(CreateCompilationExportSuccess value)? exportSuccess,
-    TResult Function(CreateCompilationExportFailed value)? exportFailed,
+    TResult? Function(CreateCompilationPrepareExport value)? prepareExport,
+    TResult? Function(CreateCompilationExporting value)? exporting,
+    TResult? Function(CreateCompilationExportSuccess value)? exportSuccess,
+    TResult? Function(CreateCompilationExportFailed value)? exportFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -106,34 +106,38 @@ mixin _$CreateCompilationState {
 abstract class $CreateCompilationStateCopyWith<$Res> {
   factory $CreateCompilationStateCopyWith(CreateCompilationState value,
           $Res Function(CreateCompilationState) then) =
-      _$CreateCompilationStateCopyWithImpl<$Res>;
+      _$CreateCompilationStateCopyWithImpl<$Res, CreateCompilationState>;
+  @useResult
   $Res call({String projectUid, DateTime? monthOfYear});
 }
 
 /// @nodoc
-class _$CreateCompilationStateCopyWithImpl<$Res>
+class _$CreateCompilationStateCopyWithImpl<$Res,
+        $Val extends CreateCompilationState>
     implements $CreateCompilationStateCopyWith<$Res> {
   _$CreateCompilationStateCopyWithImpl(this._value, this._then);
 
-  final CreateCompilationState _value;
   // ignore: unused_field
-  final $Res Function(CreateCompilationState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projectUid = freezed,
+    Object? projectUid = null,
     Object? monthOfYear = freezed,
   }) {
     return _then(_value.copyWith(
-      projectUid: projectUid == freezed
+      projectUid: null == projectUid
           ? _value.projectUid
           : projectUid // ignore: cast_nullable_to_non_nullable
               as String,
-      monthOfYear: monthOfYear == freezed
+      monthOfYear: freezed == monthOfYear
           ? _value.monthOfYear
           : monthOfYear // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -145,33 +149,32 @@ abstract class _$$CreateCompilationPrepareExportCopyWith<$Res>
           $Res Function(_$CreateCompilationPrepareExport) then) =
       __$$CreateCompilationPrepareExportCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String projectUid, DateTime? monthOfYear});
 }
 
 /// @nodoc
 class __$$CreateCompilationPrepareExportCopyWithImpl<$Res>
-    extends _$CreateCompilationStateCopyWithImpl<$Res>
+    extends _$CreateCompilationStateCopyWithImpl<$Res,
+        _$CreateCompilationPrepareExport>
     implements _$$CreateCompilationPrepareExportCopyWith<$Res> {
   __$$CreateCompilationPrepareExportCopyWithImpl(
       _$CreateCompilationPrepareExport _value,
       $Res Function(_$CreateCompilationPrepareExport) _then)
-      : super(_value, (v) => _then(v as _$CreateCompilationPrepareExport));
+      : super(_value, _then);
 
-  @override
-  _$CreateCompilationPrepareExport get _value =>
-      super._value as _$CreateCompilationPrepareExport;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projectUid = freezed,
+    Object? projectUid = null,
     Object? monthOfYear = freezed,
   }) {
     return _then(_$CreateCompilationPrepareExport(
-      projectUid: projectUid == freezed
+      projectUid: null == projectUid
           ? _value.projectUid
           : projectUid // ignore: cast_nullable_to_non_nullable
               as String,
-      monthOfYear: monthOfYear == freezed
+      monthOfYear: freezed == monthOfYear
           ? _value.monthOfYear
           : monthOfYear // ignore: cast_nullable_to_non_nullable
               as DateTime?,
@@ -201,20 +204,18 @@ class _$CreateCompilationPrepareExport
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateCompilationPrepareExport &&
-            const DeepCollectionEquality()
-                .equals(other.projectUid, projectUid) &&
-            const DeepCollectionEquality()
-                .equals(other.monthOfYear, monthOfYear));
+            (identical(other.projectUid, projectUid) ||
+                other.projectUid == projectUid) &&
+            (identical(other.monthOfYear, monthOfYear) ||
+                other.monthOfYear == monthOfYear));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(projectUid),
-      const DeepCollectionEquality().hash(monthOfYear));
+  int get hashCode => Object.hash(runtimeType, projectUid, monthOfYear);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$CreateCompilationPrepareExportCopyWith<_$CreateCompilationPrepareExport>
       get copyWith => __$$CreateCompilationPrepareExportCopyWithImpl<
           _$CreateCompilationPrepareExport>(this, _$identity);
@@ -243,18 +244,18 @@ class _$CreateCompilationPrepareExport
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String projectUid, DateTime? monthOfYear)? prepareExport,
-    TResult Function(String projectUid, DateTime? monthOfYear,
+    TResult? Function(String projectUid, DateTime? monthOfYear)? prepareExport,
+    TResult? Function(String projectUid, DateTime? monthOfYear,
             LoadingValue<dynamic> exportProgress)?
         exporting,
-    TResult Function(
+    TResult? Function(
             String projectUid,
             DateTime? monthOfYear,
             SavedCompilation savedCompilation,
             File file,
             VideoPlayerController videoController)?
         exportSuccess,
-    TResult Function(String projectUid, DateTime? monthOfYear)? exportFailed,
+    TResult? Function(String projectUid, DateTime? monthOfYear)? exportFailed,
   }) {
     return prepareExport?.call(projectUid, monthOfYear);
   }
@@ -298,10 +299,10 @@ class _$CreateCompilationPrepareExport
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CreateCompilationPrepareExport value)? prepareExport,
-    TResult Function(CreateCompilationExporting value)? exporting,
-    TResult Function(CreateCompilationExportSuccess value)? exportSuccess,
-    TResult Function(CreateCompilationExportFailed value)? exportFailed,
+    TResult? Function(CreateCompilationPrepareExport value)? prepareExport,
+    TResult? Function(CreateCompilationExporting value)? exporting,
+    TResult? Function(CreateCompilationExportSuccess value)? exportSuccess,
+    TResult? Function(CreateCompilationExportFailed value)? exportFailed,
   }) {
     return prepareExport?.call(this);
   }
@@ -346,6 +347,7 @@ abstract class _$$CreateCompilationExportingCopyWith<$Res>
           $Res Function(_$CreateCompilationExporting) then) =
       __$$CreateCompilationExportingCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String projectUid,
       DateTime? monthOfYear,
@@ -354,33 +356,31 @@ abstract class _$$CreateCompilationExportingCopyWith<$Res>
 
 /// @nodoc
 class __$$CreateCompilationExportingCopyWithImpl<$Res>
-    extends _$CreateCompilationStateCopyWithImpl<$Res>
+    extends _$CreateCompilationStateCopyWithImpl<$Res,
+        _$CreateCompilationExporting>
     implements _$$CreateCompilationExportingCopyWith<$Res> {
   __$$CreateCompilationExportingCopyWithImpl(
       _$CreateCompilationExporting _value,
       $Res Function(_$CreateCompilationExporting) _then)
-      : super(_value, (v) => _then(v as _$CreateCompilationExporting));
+      : super(_value, _then);
 
-  @override
-  _$CreateCompilationExporting get _value =>
-      super._value as _$CreateCompilationExporting;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projectUid = freezed,
+    Object? projectUid = null,
     Object? monthOfYear = freezed,
-    Object? exportProgress = freezed,
+    Object? exportProgress = null,
   }) {
     return _then(_$CreateCompilationExporting(
-      projectUid: projectUid == freezed
+      projectUid: null == projectUid
           ? _value.projectUid
           : projectUid // ignore: cast_nullable_to_non_nullable
               as String,
-      monthOfYear: monthOfYear == freezed
+      monthOfYear: freezed == monthOfYear
           ? _value.monthOfYear
           : monthOfYear // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      exportProgress: exportProgress == freezed
+      exportProgress: null == exportProgress
           ? _value.exportProgress
           : exportProgress // ignore: cast_nullable_to_non_nullable
               as LoadingValue<dynamic>,
@@ -413,23 +413,21 @@ class _$CreateCompilationExporting implements CreateCompilationExporting {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateCompilationExporting &&
-            const DeepCollectionEquality()
-                .equals(other.projectUid, projectUid) &&
-            const DeepCollectionEquality()
-                .equals(other.monthOfYear, monthOfYear) &&
-            const DeepCollectionEquality()
-                .equals(other.exportProgress, exportProgress));
+            (identical(other.projectUid, projectUid) ||
+                other.projectUid == projectUid) &&
+            (identical(other.monthOfYear, monthOfYear) ||
+                other.monthOfYear == monthOfYear) &&
+            (identical(other.exportProgress, exportProgress) ||
+                other.exportProgress == exportProgress));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(projectUid),
-      const DeepCollectionEquality().hash(monthOfYear),
-      const DeepCollectionEquality().hash(exportProgress));
+  int get hashCode =>
+      Object.hash(runtimeType, projectUid, monthOfYear, exportProgress);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$CreateCompilationExportingCopyWith<_$CreateCompilationExporting>
       get copyWith => __$$CreateCompilationExportingCopyWithImpl<
           _$CreateCompilationExporting>(this, _$identity);
@@ -458,18 +456,18 @@ class _$CreateCompilationExporting implements CreateCompilationExporting {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String projectUid, DateTime? monthOfYear)? prepareExport,
-    TResult Function(String projectUid, DateTime? monthOfYear,
+    TResult? Function(String projectUid, DateTime? monthOfYear)? prepareExport,
+    TResult? Function(String projectUid, DateTime? monthOfYear,
             LoadingValue<dynamic> exportProgress)?
         exporting,
-    TResult Function(
+    TResult? Function(
             String projectUid,
             DateTime? monthOfYear,
             SavedCompilation savedCompilation,
             File file,
             VideoPlayerController videoController)?
         exportSuccess,
-    TResult Function(String projectUid, DateTime? monthOfYear)? exportFailed,
+    TResult? Function(String projectUid, DateTime? monthOfYear)? exportFailed,
   }) {
     return exporting?.call(projectUid, monthOfYear, exportProgress);
   }
@@ -513,10 +511,10 @@ class _$CreateCompilationExporting implements CreateCompilationExporting {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CreateCompilationPrepareExport value)? prepareExport,
-    TResult Function(CreateCompilationExporting value)? exporting,
-    TResult Function(CreateCompilationExportSuccess value)? exportSuccess,
-    TResult Function(CreateCompilationExportFailed value)? exportFailed,
+    TResult? Function(CreateCompilationPrepareExport value)? prepareExport,
+    TResult? Function(CreateCompilationExporting value)? exporting,
+    TResult? Function(CreateCompilationExportSuccess value)? exportSuccess,
+    TResult? Function(CreateCompilationExportFailed value)? exportFailed,
   }) {
     return exporting?.call(this);
   }
@@ -563,6 +561,7 @@ abstract class _$$CreateCompilationExportSuccessCopyWith<$Res>
           $Res Function(_$CreateCompilationExportSuccess) then) =
       __$$CreateCompilationExportSuccessCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String projectUid,
       DateTime? monthOfYear,
@@ -573,43 +572,41 @@ abstract class _$$CreateCompilationExportSuccessCopyWith<$Res>
 
 /// @nodoc
 class __$$CreateCompilationExportSuccessCopyWithImpl<$Res>
-    extends _$CreateCompilationStateCopyWithImpl<$Res>
+    extends _$CreateCompilationStateCopyWithImpl<$Res,
+        _$CreateCompilationExportSuccess>
     implements _$$CreateCompilationExportSuccessCopyWith<$Res> {
   __$$CreateCompilationExportSuccessCopyWithImpl(
       _$CreateCompilationExportSuccess _value,
       $Res Function(_$CreateCompilationExportSuccess) _then)
-      : super(_value, (v) => _then(v as _$CreateCompilationExportSuccess));
+      : super(_value, _then);
 
-  @override
-  _$CreateCompilationExportSuccess get _value =>
-      super._value as _$CreateCompilationExportSuccess;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projectUid = freezed,
+    Object? projectUid = null,
     Object? monthOfYear = freezed,
-    Object? savedCompilation = freezed,
-    Object? file = freezed,
-    Object? videoController = freezed,
+    Object? savedCompilation = null,
+    Object? file = null,
+    Object? videoController = null,
   }) {
     return _then(_$CreateCompilationExportSuccess(
-      projectUid: projectUid == freezed
+      projectUid: null == projectUid
           ? _value.projectUid
           : projectUid // ignore: cast_nullable_to_non_nullable
               as String,
-      monthOfYear: monthOfYear == freezed
+      monthOfYear: freezed == monthOfYear
           ? _value.monthOfYear
           : monthOfYear // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      savedCompilation: savedCompilation == freezed
+      savedCompilation: null == savedCompilation
           ? _value.savedCompilation
           : savedCompilation // ignore: cast_nullable_to_non_nullable
               as SavedCompilation,
-      file: file == freezed
+      file: null == file
           ? _value.file
           : file // ignore: cast_nullable_to_non_nullable
               as File,
-      videoController: videoController == freezed
+      videoController: null == videoController
           ? _value.videoController
           : videoController // ignore: cast_nullable_to_non_nullable
               as VideoPlayerController,
@@ -649,28 +646,24 @@ class _$CreateCompilationExportSuccess
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateCompilationExportSuccess &&
-            const DeepCollectionEquality()
-                .equals(other.projectUid, projectUid) &&
-            const DeepCollectionEquality()
-                .equals(other.monthOfYear, monthOfYear) &&
-            const DeepCollectionEquality()
-                .equals(other.savedCompilation, savedCompilation) &&
-            const DeepCollectionEquality().equals(other.file, file) &&
-            const DeepCollectionEquality()
-                .equals(other.videoController, videoController));
+            (identical(other.projectUid, projectUid) ||
+                other.projectUid == projectUid) &&
+            (identical(other.monthOfYear, monthOfYear) ||
+                other.monthOfYear == monthOfYear) &&
+            (identical(other.savedCompilation, savedCompilation) ||
+                other.savedCompilation == savedCompilation) &&
+            (identical(other.file, file) || other.file == file) &&
+            (identical(other.videoController, videoController) ||
+                other.videoController == videoController));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(projectUid),
-      const DeepCollectionEquality().hash(monthOfYear),
-      const DeepCollectionEquality().hash(savedCompilation),
-      const DeepCollectionEquality().hash(file),
-      const DeepCollectionEquality().hash(videoController));
+  int get hashCode => Object.hash(runtimeType, projectUid, monthOfYear,
+      savedCompilation, file, videoController);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$CreateCompilationExportSuccessCopyWith<_$CreateCompilationExportSuccess>
       get copyWith => __$$CreateCompilationExportSuccessCopyWithImpl<
           _$CreateCompilationExportSuccess>(this, _$identity);
@@ -700,18 +693,18 @@ class _$CreateCompilationExportSuccess
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String projectUid, DateTime? monthOfYear)? prepareExport,
-    TResult Function(String projectUid, DateTime? monthOfYear,
+    TResult? Function(String projectUid, DateTime? monthOfYear)? prepareExport,
+    TResult? Function(String projectUid, DateTime? monthOfYear,
             LoadingValue<dynamic> exportProgress)?
         exporting,
-    TResult Function(
+    TResult? Function(
             String projectUid,
             DateTime? monthOfYear,
             SavedCompilation savedCompilation,
             File file,
             VideoPlayerController videoController)?
         exportSuccess,
-    TResult Function(String projectUid, DateTime? monthOfYear)? exportFailed,
+    TResult? Function(String projectUid, DateTime? monthOfYear)? exportFailed,
   }) {
     return exportSuccess?.call(
         projectUid, monthOfYear, savedCompilation, file, videoController);
@@ -757,10 +750,10 @@ class _$CreateCompilationExportSuccess
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CreateCompilationPrepareExport value)? prepareExport,
-    TResult Function(CreateCompilationExporting value)? exporting,
-    TResult Function(CreateCompilationExportSuccess value)? exportSuccess,
-    TResult Function(CreateCompilationExportFailed value)? exportFailed,
+    TResult? Function(CreateCompilationPrepareExport value)? prepareExport,
+    TResult? Function(CreateCompilationExporting value)? exporting,
+    TResult? Function(CreateCompilationExportSuccess value)? exportSuccess,
+    TResult? Function(CreateCompilationExportFailed value)? exportFailed,
   }) {
     return exportSuccess?.call(this);
   }
@@ -812,33 +805,32 @@ abstract class _$$CreateCompilationExportFailedCopyWith<$Res>
           $Res Function(_$CreateCompilationExportFailed) then) =
       __$$CreateCompilationExportFailedCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String projectUid, DateTime? monthOfYear});
 }
 
 /// @nodoc
 class __$$CreateCompilationExportFailedCopyWithImpl<$Res>
-    extends _$CreateCompilationStateCopyWithImpl<$Res>
+    extends _$CreateCompilationStateCopyWithImpl<$Res,
+        _$CreateCompilationExportFailed>
     implements _$$CreateCompilationExportFailedCopyWith<$Res> {
   __$$CreateCompilationExportFailedCopyWithImpl(
       _$CreateCompilationExportFailed _value,
       $Res Function(_$CreateCompilationExportFailed) _then)
-      : super(_value, (v) => _then(v as _$CreateCompilationExportFailed));
+      : super(_value, _then);
 
-  @override
-  _$CreateCompilationExportFailed get _value =>
-      super._value as _$CreateCompilationExportFailed;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projectUid = freezed,
+    Object? projectUid = null,
     Object? monthOfYear = freezed,
   }) {
     return _then(_$CreateCompilationExportFailed(
-      projectUid: projectUid == freezed
+      projectUid: null == projectUid
           ? _value.projectUid
           : projectUid // ignore: cast_nullable_to_non_nullable
               as String,
-      monthOfYear: monthOfYear == freezed
+      monthOfYear: freezed == monthOfYear
           ? _value.monthOfYear
           : monthOfYear // ignore: cast_nullable_to_non_nullable
               as DateTime?,
@@ -867,20 +859,18 @@ class _$CreateCompilationExportFailed implements CreateCompilationExportFailed {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateCompilationExportFailed &&
-            const DeepCollectionEquality()
-                .equals(other.projectUid, projectUid) &&
-            const DeepCollectionEquality()
-                .equals(other.monthOfYear, monthOfYear));
+            (identical(other.projectUid, projectUid) ||
+                other.projectUid == projectUid) &&
+            (identical(other.monthOfYear, monthOfYear) ||
+                other.monthOfYear == monthOfYear));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(projectUid),
-      const DeepCollectionEquality().hash(monthOfYear));
+  int get hashCode => Object.hash(runtimeType, projectUid, monthOfYear);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$CreateCompilationExportFailedCopyWith<_$CreateCompilationExportFailed>
       get copyWith => __$$CreateCompilationExportFailedCopyWithImpl<
           _$CreateCompilationExportFailed>(this, _$identity);
@@ -909,18 +899,18 @@ class _$CreateCompilationExportFailed implements CreateCompilationExportFailed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String projectUid, DateTime? monthOfYear)? prepareExport,
-    TResult Function(String projectUid, DateTime? monthOfYear,
+    TResult? Function(String projectUid, DateTime? monthOfYear)? prepareExport,
+    TResult? Function(String projectUid, DateTime? monthOfYear,
             LoadingValue<dynamic> exportProgress)?
         exporting,
-    TResult Function(
+    TResult? Function(
             String projectUid,
             DateTime? monthOfYear,
             SavedCompilation savedCompilation,
             File file,
             VideoPlayerController videoController)?
         exportSuccess,
-    TResult Function(String projectUid, DateTime? monthOfYear)? exportFailed,
+    TResult? Function(String projectUid, DateTime? monthOfYear)? exportFailed,
   }) {
     return exportFailed?.call(projectUid, monthOfYear);
   }
@@ -964,10 +954,10 @@ class _$CreateCompilationExportFailed implements CreateCompilationExportFailed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CreateCompilationPrepareExport value)? prepareExport,
-    TResult Function(CreateCompilationExporting value)? exporting,
-    TResult Function(CreateCompilationExportSuccess value)? exportSuccess,
-    TResult Function(CreateCompilationExportFailed value)? exportFailed,
+    TResult? Function(CreateCompilationPrepareExport value)? prepareExport,
+    TResult? Function(CreateCompilationExporting value)? exporting,
+    TResult? Function(CreateCompilationExportSuccess value)? exportSuccess,
+    TResult? Function(CreateCompilationExportFailed value)? exportFailed,
   }) {
     return exportFailed?.call(this);
   }

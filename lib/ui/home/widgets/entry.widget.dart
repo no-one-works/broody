@@ -28,10 +28,10 @@ class EntryWidget extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final entry = ref.watch(entryForDateProvider(date)).value;
+    final entry = ref.watch(entryForDateProvider(date)).valueOrNull;
     final readOnly = ref.watch(selectedProjectReadOnlyProvider);
     final thumbnailFile =
-        entry == null ? null : ref.watch(entryThumbnailProvider(entry)).value;
+        entry == null ? null : ref.watch(entryThumbnailProvider(entry)).valueOrNull;
     final hasVideos = ref.watch(dayHasVideosProvider(date));
     final markVideos = hasVideos && entry == null;
     final themeColorScheme = useColorScheme();

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'compilation.dart';
 
@@ -65,7 +65,7 @@ mixin _$Compilation {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
+    TResult? Function(
             String uid,
             String projectUid,
             String projectTitle,
@@ -77,7 +77,7 @@ mixin _$Compilation {
             String projectPath,
             DateTime created)?
         create,
-    TResult Function(
+    TResult? Function(
             String uid,
             String filename,
             String projectUid,
@@ -126,8 +126,8 @@ mixin _$Compilation {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CreateCompilation value)? create,
-    TResult Function(SavedCompilation value)? saved,
+    TResult? Function(CreateCompilation value)? create,
+    TResult? Function(SavedCompilation value)? saved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -147,7 +147,8 @@ mixin _$Compilation {
 abstract class $CompilationCopyWith<$Res> {
   factory $CompilationCopyWith(
           Compilation value, $Res Function(Compilation) then) =
-      _$CompilationCopyWithImpl<$Res>;
+      _$CompilationCopyWithImpl<$Res, Compilation>;
+  @useResult
   $Res call(
       {String uid,
       String projectUid,
@@ -159,53 +160,56 @@ abstract class $CompilationCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CompilationCopyWithImpl<$Res> implements $CompilationCopyWith<$Res> {
+class _$CompilationCopyWithImpl<$Res, $Val extends Compilation>
+    implements $CompilationCopyWith<$Res> {
   _$CompilationCopyWithImpl(this._value, this._then);
 
-  final Compilation _value;
   // ignore: unused_field
-  final $Res Function(Compilation) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? uid = freezed,
-    Object? projectUid = freezed,
+    Object? uid = null,
+    Object? projectUid = null,
     Object? monthOfYear = freezed,
-    Object? usedEntries = freezed,
-    Object? width = freezed,
-    Object? height = freezed,
-    Object? created = freezed,
+    Object? usedEntries = null,
+    Object? width = null,
+    Object? height = null,
+    Object? created = null,
   }) {
     return _then(_value.copyWith(
-      uid: uid == freezed
+      uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      projectUid: projectUid == freezed
+      projectUid: null == projectUid
           ? _value.projectUid
           : projectUid // ignore: cast_nullable_to_non_nullable
               as String,
-      monthOfYear: monthOfYear == freezed
+      monthOfYear: freezed == monthOfYear
           ? _value.monthOfYear
           : monthOfYear // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      usedEntries: usedEntries == freezed
+      usedEntries: null == usedEntries
           ? _value.usedEntries
           : usedEntries // ignore: cast_nullable_to_non_nullable
               as List<SavedEntry>,
-      width: width == freezed
+      width: null == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
               as double,
-      height: height == freezed
+      height: null == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
               as double,
-      created: created == freezed
+      created: null == created
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as DateTime,
-    ));
+    ) as $Val);
   }
 }
 
@@ -216,6 +220,7 @@ abstract class _$$CreateCompilationCopyWith<$Res>
           _$CreateCompilation value, $Res Function(_$CreateCompilation) then) =
       __$$CreateCompilationCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String uid,
       String projectUid,
@@ -231,66 +236,64 @@ abstract class _$$CreateCompilationCopyWith<$Res>
 
 /// @nodoc
 class __$$CreateCompilationCopyWithImpl<$Res>
-    extends _$CompilationCopyWithImpl<$Res>
+    extends _$CompilationCopyWithImpl<$Res, _$CreateCompilation>
     implements _$$CreateCompilationCopyWith<$Res> {
   __$$CreateCompilationCopyWithImpl(
       _$CreateCompilation _value, $Res Function(_$CreateCompilation) _then)
-      : super(_value, (v) => _then(v as _$CreateCompilation));
+      : super(_value, _then);
 
-  @override
-  _$CreateCompilation get _value => super._value as _$CreateCompilation;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? uid = freezed,
-    Object? projectUid = freezed,
-    Object? projectTitle = freezed,
+    Object? uid = null,
+    Object? projectUid = null,
+    Object? projectTitle = null,
     Object? monthOfYear = freezed,
-    Object? destination = freezed,
-    Object? usedEntries = freezed,
-    Object? width = freezed,
-    Object? height = freezed,
-    Object? projectPath = freezed,
-    Object? created = freezed,
+    Object? destination = null,
+    Object? usedEntries = null,
+    Object? width = null,
+    Object? height = null,
+    Object? projectPath = null,
+    Object? created = null,
   }) {
     return _then(_$CreateCompilation(
-      uid: uid == freezed
+      uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      projectUid: projectUid == freezed
+      projectUid: null == projectUid
           ? _value.projectUid
           : projectUid // ignore: cast_nullable_to_non_nullable
               as String,
-      projectTitle: projectTitle == freezed
+      projectTitle: null == projectTitle
           ? _value.projectTitle
           : projectTitle // ignore: cast_nullable_to_non_nullable
               as String,
-      monthOfYear: monthOfYear == freezed
+      monthOfYear: freezed == monthOfYear
           ? _value.monthOfYear
           : monthOfYear // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      destination: destination == freezed
+      destination: null == destination
           ? _value.destination
           : destination // ignore: cast_nullable_to_non_nullable
               as String,
-      usedEntries: usedEntries == freezed
+      usedEntries: null == usedEntries
           ? _value._usedEntries
           : usedEntries // ignore: cast_nullable_to_non_nullable
               as List<SavedEntry>,
-      width: width == freezed
+      width: null == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
               as double,
-      height: height == freezed
+      height: null == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
               as double,
-      projectPath: projectPath == freezed
+      projectPath: null == projectPath
           ? _value.projectPath
           : projectPath // ignore: cast_nullable_to_non_nullable
               as String,
-      created: created == freezed
+      created: null == created
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as DateTime,
@@ -333,6 +336,7 @@ class _$CreateCompilation extends CreateCompilation {
   final List<SavedEntry> _usedEntries;
   @override
   List<SavedEntry> get usedEntries {
+    if (_usedEntries is EqualUnmodifiableListView) return _usedEntries;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_usedEntries);
   }
@@ -359,41 +363,42 @@ class _$CreateCompilation extends CreateCompilation {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateCompilation &&
-            const DeepCollectionEquality().equals(other.uid, uid) &&
-            const DeepCollectionEquality()
-                .equals(other.projectUid, projectUid) &&
-            const DeepCollectionEquality()
-                .equals(other.projectTitle, projectTitle) &&
-            const DeepCollectionEquality()
-                .equals(other.monthOfYear, monthOfYear) &&
-            const DeepCollectionEquality()
-                .equals(other.destination, destination) &&
+            (identical(other.uid, uid) || other.uid == uid) &&
+            (identical(other.projectUid, projectUid) ||
+                other.projectUid == projectUid) &&
+            (identical(other.projectTitle, projectTitle) ||
+                other.projectTitle == projectTitle) &&
+            (identical(other.monthOfYear, monthOfYear) ||
+                other.monthOfYear == monthOfYear) &&
+            (identical(other.destination, destination) ||
+                other.destination == destination) &&
             const DeepCollectionEquality()
                 .equals(other._usedEntries, _usedEntries) &&
-            const DeepCollectionEquality().equals(other.width, width) &&
-            const DeepCollectionEquality().equals(other.height, height) &&
-            const DeepCollectionEquality()
-                .equals(other.projectPath, projectPath) &&
-            const DeepCollectionEquality().equals(other.created, created));
+            (identical(other.width, width) || other.width == width) &&
+            (identical(other.height, height) || other.height == height) &&
+            (identical(other.projectPath, projectPath) ||
+                other.projectPath == projectPath) &&
+            (identical(other.created, created) || other.created == created));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(uid),
-      const DeepCollectionEquality().hash(projectUid),
-      const DeepCollectionEquality().hash(projectTitle),
-      const DeepCollectionEquality().hash(monthOfYear),
-      const DeepCollectionEquality().hash(destination),
+      uid,
+      projectUid,
+      projectTitle,
+      monthOfYear,
+      destination,
       const DeepCollectionEquality().hash(_usedEntries),
-      const DeepCollectionEquality().hash(width),
-      const DeepCollectionEquality().hash(height),
-      const DeepCollectionEquality().hash(projectPath),
-      const DeepCollectionEquality().hash(created));
+      width,
+      height,
+      projectPath,
+      created);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$CreateCompilationCopyWith<_$CreateCompilation> get copyWith =>
       __$$CreateCompilationCopyWithImpl<_$CreateCompilation>(this, _$identity);
 
@@ -431,7 +436,7 @@ class _$CreateCompilation extends CreateCompilation {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
+    TResult? Function(
             String uid,
             String projectUid,
             String projectTitle,
@@ -443,7 +448,7 @@ class _$CreateCompilation extends CreateCompilation {
             String projectPath,
             DateTime created)?
         create,
-    TResult Function(
+    TResult? Function(
             String uid,
             String filename,
             String projectUid,
@@ -506,8 +511,8 @@ class _$CreateCompilation extends CreateCompilation {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CreateCompilation value)? create,
-    TResult Function(SavedCompilation value)? saved,
+    TResult? Function(CreateCompilation value)? create,
+    TResult? Function(SavedCompilation value)? saved,
   }) {
     return create?.call(this);
   }
@@ -580,6 +585,7 @@ abstract class _$$SavedCompilationCopyWith<$Res>
           _$SavedCompilation value, $Res Function(_$SavedCompilation) then) =
       __$$SavedCompilationCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String uid,
       String filename,
@@ -594,61 +600,59 @@ abstract class _$$SavedCompilationCopyWith<$Res>
 
 /// @nodoc
 class __$$SavedCompilationCopyWithImpl<$Res>
-    extends _$CompilationCopyWithImpl<$Res>
+    extends _$CompilationCopyWithImpl<$Res, _$SavedCompilation>
     implements _$$SavedCompilationCopyWith<$Res> {
   __$$SavedCompilationCopyWithImpl(
       _$SavedCompilation _value, $Res Function(_$SavedCompilation) _then)
-      : super(_value, (v) => _then(v as _$SavedCompilation));
+      : super(_value, _then);
 
-  @override
-  _$SavedCompilation get _value => super._value as _$SavedCompilation;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? uid = freezed,
-    Object? filename = freezed,
-    Object? projectUid = freezed,
+    Object? uid = null,
+    Object? filename = null,
+    Object? projectUid = null,
     Object? monthOfYear = freezed,
-    Object? usedEntries = freezed,
-    Object? width = freezed,
-    Object? height = freezed,
-    Object? algorithmVersion = freezed,
-    Object? created = freezed,
+    Object? usedEntries = null,
+    Object? width = null,
+    Object? height = null,
+    Object? algorithmVersion = null,
+    Object? created = null,
   }) {
     return _then(_$SavedCompilation(
-      uid: uid == freezed
+      uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      filename: filename == freezed
+      filename: null == filename
           ? _value.filename
           : filename // ignore: cast_nullable_to_non_nullable
               as String,
-      projectUid: projectUid == freezed
+      projectUid: null == projectUid
           ? _value.projectUid
           : projectUid // ignore: cast_nullable_to_non_nullable
               as String,
-      monthOfYear: monthOfYear == freezed
+      monthOfYear: freezed == monthOfYear
           ? _value.monthOfYear
           : monthOfYear // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      usedEntries: usedEntries == freezed
+      usedEntries: null == usedEntries
           ? _value._usedEntries
           : usedEntries // ignore: cast_nullable_to_non_nullable
               as List<SavedEntry>,
-      width: width == freezed
+      width: null == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
               as double,
-      height: height == freezed
+      height: null == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
               as double,
-      algorithmVersion: algorithmVersion == freezed
+      algorithmVersion: null == algorithmVersion
           ? _value.algorithmVersion
           : algorithmVersion // ignore: cast_nullable_to_non_nullable
               as int,
-      created: created == freezed
+      created: null == created
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as DateTime,
@@ -688,6 +692,7 @@ class _$SavedCompilation extends SavedCompilation {
   final List<SavedEntry> _usedEntries;
   @override
   List<SavedEntry> get usedEntries {
+    if (_usedEntries is EqualUnmodifiableListView) return _usedEntries;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_usedEntries);
   }
@@ -715,37 +720,39 @@ class _$SavedCompilation extends SavedCompilation {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SavedCompilation &&
-            const DeepCollectionEquality().equals(other.uid, uid) &&
-            const DeepCollectionEquality().equals(other.filename, filename) &&
-            const DeepCollectionEquality()
-                .equals(other.projectUid, projectUid) &&
-            const DeepCollectionEquality()
-                .equals(other.monthOfYear, monthOfYear) &&
+            (identical(other.uid, uid) || other.uid == uid) &&
+            (identical(other.filename, filename) ||
+                other.filename == filename) &&
+            (identical(other.projectUid, projectUid) ||
+                other.projectUid == projectUid) &&
+            (identical(other.monthOfYear, monthOfYear) ||
+                other.monthOfYear == monthOfYear) &&
             const DeepCollectionEquality()
                 .equals(other._usedEntries, _usedEntries) &&
-            const DeepCollectionEquality().equals(other.width, width) &&
-            const DeepCollectionEquality().equals(other.height, height) &&
-            const DeepCollectionEquality()
-                .equals(other.algorithmVersion, algorithmVersion) &&
-            const DeepCollectionEquality().equals(other.created, created));
+            (identical(other.width, width) || other.width == width) &&
+            (identical(other.height, height) || other.height == height) &&
+            (identical(other.algorithmVersion, algorithmVersion) ||
+                other.algorithmVersion == algorithmVersion) &&
+            (identical(other.created, created) || other.created == created));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(uid),
-      const DeepCollectionEquality().hash(filename),
-      const DeepCollectionEquality().hash(projectUid),
-      const DeepCollectionEquality().hash(monthOfYear),
+      uid,
+      filename,
+      projectUid,
+      monthOfYear,
       const DeepCollectionEquality().hash(_usedEntries),
-      const DeepCollectionEquality().hash(width),
-      const DeepCollectionEquality().hash(height),
-      const DeepCollectionEquality().hash(algorithmVersion),
-      const DeepCollectionEquality().hash(created));
+      width,
+      height,
+      algorithmVersion,
+      created);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$SavedCompilationCopyWith<_$SavedCompilation> get copyWith =>
       __$$SavedCompilationCopyWithImpl<_$SavedCompilation>(this, _$identity);
 
@@ -783,7 +790,7 @@ class _$SavedCompilation extends SavedCompilation {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
+    TResult? Function(
             String uid,
             String projectUid,
             String projectTitle,
@@ -795,7 +802,7 @@ class _$SavedCompilation extends SavedCompilation {
             String projectPath,
             DateTime created)?
         create,
-    TResult Function(
+    TResult? Function(
             String uid,
             String filename,
             String projectUid,
@@ -858,8 +865,8 @@ class _$SavedCompilation extends SavedCompilation {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CreateCompilation value)? create,
-    TResult Function(SavedCompilation value)? saved,
+    TResult? Function(CreateCompilation value)? create,
+    TResult? Function(SavedCompilation value)? saved,
   }) {
     return saved?.call(this);
   }

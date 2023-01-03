@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'color_scheme_request.dart';
 
@@ -28,11 +28,11 @@ mixin _$ColorSchemeRequest {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Color color, Brightness brightness)? color,
-    TResult Function(
+    TResult? Function(Color color, Brightness brightness)? color,
+    TResult? Function(
             SavedEntry entry, Color projectColor, Brightness brightness)?
         entry,
-    TResult Function(Project project, Brightness brightness)? project,
+    TResult? Function(Project project, Brightness brightness)? project,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,9 +54,9 @@ mixin _$ColorSchemeRequest {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColorRequest value)? color,
-    TResult Function(EntryColorSchemeRequest value)? entry,
-    TResult Function(ProjectColorSchemeRequest value)? project,
+    TResult? Function(ColorRequest value)? color,
+    TResult? Function(EntryColorSchemeRequest value)? entry,
+    TResult? Function(ProjectColorSchemeRequest value)? project,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -77,29 +77,32 @@ mixin _$ColorSchemeRequest {
 abstract class $ColorSchemeRequestCopyWith<$Res> {
   factory $ColorSchemeRequestCopyWith(
           ColorSchemeRequest value, $Res Function(ColorSchemeRequest) then) =
-      _$ColorSchemeRequestCopyWithImpl<$Res>;
+      _$ColorSchemeRequestCopyWithImpl<$Res, ColorSchemeRequest>;
+  @useResult
   $Res call({Brightness brightness});
 }
 
 /// @nodoc
-class _$ColorSchemeRequestCopyWithImpl<$Res>
+class _$ColorSchemeRequestCopyWithImpl<$Res, $Val extends ColorSchemeRequest>
     implements $ColorSchemeRequestCopyWith<$Res> {
   _$ColorSchemeRequestCopyWithImpl(this._value, this._then);
 
-  final ColorSchemeRequest _value;
   // ignore: unused_field
-  final $Res Function(ColorSchemeRequest) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? brightness = freezed,
+    Object? brightness = null,
   }) {
     return _then(_value.copyWith(
-      brightness: brightness == freezed
+      brightness: null == brightness
           ? _value.brightness
           : brightness // ignore: cast_nullable_to_non_nullable
               as Brightness,
-    ));
+    ) as $Val);
   }
 }
 
@@ -110,31 +113,30 @@ abstract class _$$ColorRequestCopyWith<$Res>
           _$ColorRequest value, $Res Function(_$ColorRequest) then) =
       __$$ColorRequestCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({Color color, Brightness brightness});
 }
 
 /// @nodoc
 class __$$ColorRequestCopyWithImpl<$Res>
-    extends _$ColorSchemeRequestCopyWithImpl<$Res>
+    extends _$ColorSchemeRequestCopyWithImpl<$Res, _$ColorRequest>
     implements _$$ColorRequestCopyWith<$Res> {
   __$$ColorRequestCopyWithImpl(
       _$ColorRequest _value, $Res Function(_$ColorRequest) _then)
-      : super(_value, (v) => _then(v as _$ColorRequest));
+      : super(_value, _then);
 
-  @override
-  _$ColorRequest get _value => super._value as _$ColorRequest;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color = freezed,
-    Object? brightness = freezed,
+    Object? color = null,
+    Object? brightness = null,
   }) {
     return _then(_$ColorRequest(
-      color: color == freezed
+      color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as Color,
-      brightness: brightness == freezed
+      brightness: null == brightness
           ? _value.brightness
           : brightness // ignore: cast_nullable_to_non_nullable
               as Brightness,
@@ -162,19 +164,17 @@ class _$ColorRequest implements ColorRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ColorRequest &&
-            const DeepCollectionEquality().equals(other.color, color) &&
-            const DeepCollectionEquality()
-                .equals(other.brightness, brightness));
+            (identical(other.color, color) || other.color == color) &&
+            (identical(other.brightness, brightness) ||
+                other.brightness == brightness));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(color),
-      const DeepCollectionEquality().hash(brightness));
+  int get hashCode => Object.hash(runtimeType, color, brightness);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$ColorRequestCopyWith<_$ColorRequest> get copyWith =>
       __$$ColorRequestCopyWithImpl<_$ColorRequest>(this, _$identity);
 
@@ -193,11 +193,11 @@ class _$ColorRequest implements ColorRequest {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Color color, Brightness brightness)? color,
-    TResult Function(
+    TResult? Function(Color color, Brightness brightness)? color,
+    TResult? Function(
             SavedEntry entry, Color projectColor, Brightness brightness)?
         entry,
-    TResult Function(Project project, Brightness brightness)? project,
+    TResult? Function(Project project, Brightness brightness)? project,
   }) {
     return color?.call(this.color, brightness);
   }
@@ -231,9 +231,9 @@ class _$ColorRequest implements ColorRequest {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColorRequest value)? color,
-    TResult Function(EntryColorSchemeRequest value)? entry,
-    TResult Function(ProjectColorSchemeRequest value)? project,
+    TResult? Function(ColorRequest value)? color,
+    TResult? Function(EntryColorSchemeRequest value)? entry,
+    TResult? Function(ProjectColorSchemeRequest value)? project,
   }) {
     return color?.call(this);
   }
@@ -274,37 +274,35 @@ abstract class _$$EntryColorSchemeRequestCopyWith<$Res>
           $Res Function(_$EntryColorSchemeRequest) then) =
       __$$EntryColorSchemeRequestCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({SavedEntry entry, Color projectColor, Brightness brightness});
 }
 
 /// @nodoc
 class __$$EntryColorSchemeRequestCopyWithImpl<$Res>
-    extends _$ColorSchemeRequestCopyWithImpl<$Res>
+    extends _$ColorSchemeRequestCopyWithImpl<$Res, _$EntryColorSchemeRequest>
     implements _$$EntryColorSchemeRequestCopyWith<$Res> {
   __$$EntryColorSchemeRequestCopyWithImpl(_$EntryColorSchemeRequest _value,
       $Res Function(_$EntryColorSchemeRequest) _then)
-      : super(_value, (v) => _then(v as _$EntryColorSchemeRequest));
+      : super(_value, _then);
 
-  @override
-  _$EntryColorSchemeRequest get _value =>
-      super._value as _$EntryColorSchemeRequest;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? entry = freezed,
-    Object? projectColor = freezed,
-    Object? brightness = freezed,
+    Object? projectColor = null,
+    Object? brightness = null,
   }) {
     return _then(_$EntryColorSchemeRequest(
-      entry: entry == freezed
+      entry: freezed == entry
           ? _value.entry
           : entry // ignore: cast_nullable_to_non_nullable
               as SavedEntry,
-      projectColor: projectColor == freezed
+      projectColor: null == projectColor
           ? _value.projectColor
           : projectColor // ignore: cast_nullable_to_non_nullable
               as Color,
-      brightness: brightness == freezed
+      brightness: null == brightness
           ? _value.brightness
           : brightness // ignore: cast_nullable_to_non_nullable
               as Brightness,
@@ -338,21 +336,19 @@ class _$EntryColorSchemeRequest implements EntryColorSchemeRequest {
         (other.runtimeType == runtimeType &&
             other is _$EntryColorSchemeRequest &&
             const DeepCollectionEquality().equals(other.entry, entry) &&
-            const DeepCollectionEquality()
-                .equals(other.projectColor, projectColor) &&
-            const DeepCollectionEquality()
-                .equals(other.brightness, brightness));
+            (identical(other.projectColor, projectColor) ||
+                other.projectColor == projectColor) &&
+            (identical(other.brightness, brightness) ||
+                other.brightness == brightness));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(entry),
-      const DeepCollectionEquality().hash(projectColor),
-      const DeepCollectionEquality().hash(brightness));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(entry), projectColor, brightness);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$EntryColorSchemeRequestCopyWith<_$EntryColorSchemeRequest> get copyWith =>
       __$$EntryColorSchemeRequestCopyWithImpl<_$EntryColorSchemeRequest>(
           this, _$identity);
@@ -372,11 +368,11 @@ class _$EntryColorSchemeRequest implements EntryColorSchemeRequest {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Color color, Brightness brightness)? color,
-    TResult Function(
+    TResult? Function(Color color, Brightness brightness)? color,
+    TResult? Function(
             SavedEntry entry, Color projectColor, Brightness brightness)?
         entry,
-    TResult Function(Project project, Brightness brightness)? project,
+    TResult? Function(Project project, Brightness brightness)? project,
   }) {
     return entry?.call(this.entry, projectColor, brightness);
   }
@@ -410,9 +406,9 @@ class _$EntryColorSchemeRequest implements EntryColorSchemeRequest {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColorRequest value)? color,
-    TResult Function(EntryColorSchemeRequest value)? entry,
-    TResult Function(ProjectColorSchemeRequest value)? project,
+    TResult? Function(ColorRequest value)? color,
+    TResult? Function(EntryColorSchemeRequest value)? entry,
+    TResult? Function(ProjectColorSchemeRequest value)? project,
   }) {
     return entry?.call(this);
   }
@@ -456,6 +452,7 @@ abstract class _$$ProjectColorSchemeRequestCopyWith<$Res>
           $Res Function(_$ProjectColorSchemeRequest) then) =
       __$$ProjectColorSchemeRequestCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({Project project, Brightness brightness});
 
   $ProjectCopyWith<$Res> get project;
@@ -463,27 +460,24 @@ abstract class _$$ProjectColorSchemeRequestCopyWith<$Res>
 
 /// @nodoc
 class __$$ProjectColorSchemeRequestCopyWithImpl<$Res>
-    extends _$ColorSchemeRequestCopyWithImpl<$Res>
+    extends _$ColorSchemeRequestCopyWithImpl<$Res, _$ProjectColorSchemeRequest>
     implements _$$ProjectColorSchemeRequestCopyWith<$Res> {
   __$$ProjectColorSchemeRequestCopyWithImpl(_$ProjectColorSchemeRequest _value,
       $Res Function(_$ProjectColorSchemeRequest) _then)
-      : super(_value, (v) => _then(v as _$ProjectColorSchemeRequest));
+      : super(_value, _then);
 
-  @override
-  _$ProjectColorSchemeRequest get _value =>
-      super._value as _$ProjectColorSchemeRequest;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? project = freezed,
-    Object? brightness = freezed,
+    Object? project = null,
+    Object? brightness = null,
   }) {
     return _then(_$ProjectColorSchemeRequest(
-      project: project == freezed
+      project: null == project
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
               as Project,
-      brightness: brightness == freezed
+      brightness: null == brightness
           ? _value.brightness
           : brightness // ignore: cast_nullable_to_non_nullable
               as Brightness,
@@ -491,6 +485,7 @@ class __$$ProjectColorSchemeRequestCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ProjectCopyWith<$Res> get project {
     return $ProjectCopyWith<$Res>(_value.project, (value) {
       return _then(_value.copyWith(project: value));
@@ -519,19 +514,17 @@ class _$ProjectColorSchemeRequest implements ProjectColorSchemeRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectColorSchemeRequest &&
-            const DeepCollectionEquality().equals(other.project, project) &&
-            const DeepCollectionEquality()
-                .equals(other.brightness, brightness));
+            (identical(other.project, project) || other.project == project) &&
+            (identical(other.brightness, brightness) ||
+                other.brightness == brightness));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(project),
-      const DeepCollectionEquality().hash(brightness));
+  int get hashCode => Object.hash(runtimeType, project, brightness);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$ProjectColorSchemeRequestCopyWith<_$ProjectColorSchemeRequest>
       get copyWith => __$$ProjectColorSchemeRequestCopyWithImpl<
           _$ProjectColorSchemeRequest>(this, _$identity);
@@ -551,11 +544,11 @@ class _$ProjectColorSchemeRequest implements ProjectColorSchemeRequest {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Color color, Brightness brightness)? color,
-    TResult Function(
+    TResult? Function(Color color, Brightness brightness)? color,
+    TResult? Function(
             SavedEntry entry, Color projectColor, Brightness brightness)?
         entry,
-    TResult Function(Project project, Brightness brightness)? project,
+    TResult? Function(Project project, Brightness brightness)? project,
   }) {
     return project?.call(this.project, brightness);
   }
@@ -589,9 +582,9 @@ class _$ProjectColorSchemeRequest implements ProjectColorSchemeRequest {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColorRequest value)? color,
-    TResult Function(EntryColorSchemeRequest value)? entry,
-    TResult Function(ProjectColorSchemeRequest value)? project,
+    TResult? Function(ColorRequest value)? color,
+    TResult? Function(EntryColorSchemeRequest value)? entry,
+    TResult? Function(ProjectColorSchemeRequest value)? project,
   }) {
     return project?.call(this);
   }

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'video_editor_state.dart';
 
@@ -41,11 +41,11 @@ mixin _$VideoEditorState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AssetEntity assetEntity, double dismissProgress)?
+    TResult? Function(AssetEntity assetEntity, double dismissProgress)?
         loadingVideo,
-    TResult Function(AssetEntity assetEntity, double dismissProgress)?
+    TResult? Function(AssetEntity assetEntity, double dismissProgress)?
         failedToLoad,
-    TResult Function(
+    TResult? Function(
             AssetEntity assetEntity,
             VideoPlayerController videoController,
             EditingEntry entry,
@@ -54,10 +54,10 @@ mixin _$VideoEditorState {
             double dismissProgress,
             bool previewing)?
         editing,
-    TResult Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
+    TResult? Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
             double dismissProgress)?
         exporting,
-    TResult Function(SavedEntry entry, double dismissProgress)?
+    TResult? Function(SavedEntry entry, double dismissProgress)?
         exportingSuccess,
   }) =>
       throw _privateConstructorUsedError;
@@ -96,11 +96,11 @@ mixin _$VideoEditorState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VideoEditorLoadingVideo value)? loadingVideo,
-    TResult Function(VideoEditorFailedToLoad value)? failedToLoad,
-    TResult Function(VideoEditorEditing value)? editing,
-    TResult Function(VideoEditorExporting value)? exporting,
-    TResult Function(VideoEditorExportingSuccess value)? exportingSuccess,
+    TResult? Function(VideoEditorLoadingVideo value)? loadingVideo,
+    TResult? Function(VideoEditorFailedToLoad value)? failedToLoad,
+    TResult? Function(VideoEditorEditing value)? editing,
+    TResult? Function(VideoEditorExporting value)? exporting,
+    TResult? Function(VideoEditorExportingSuccess value)? exportingSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -123,29 +123,32 @@ mixin _$VideoEditorState {
 abstract class $VideoEditorStateCopyWith<$Res> {
   factory $VideoEditorStateCopyWith(
           VideoEditorState value, $Res Function(VideoEditorState) then) =
-      _$VideoEditorStateCopyWithImpl<$Res>;
+      _$VideoEditorStateCopyWithImpl<$Res, VideoEditorState>;
+  @useResult
   $Res call({double dismissProgress});
 }
 
 /// @nodoc
-class _$VideoEditorStateCopyWithImpl<$Res>
+class _$VideoEditorStateCopyWithImpl<$Res, $Val extends VideoEditorState>
     implements $VideoEditorStateCopyWith<$Res> {
   _$VideoEditorStateCopyWithImpl(this._value, this._then);
 
-  final VideoEditorState _value;
   // ignore: unused_field
-  final $Res Function(VideoEditorState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dismissProgress = freezed,
+    Object? dismissProgress = null,
   }) {
     return _then(_value.copyWith(
-      dismissProgress: dismissProgress == freezed
+      dismissProgress: null == dismissProgress
           ? _value.dismissProgress
           : dismissProgress // ignore: cast_nullable_to_non_nullable
               as double,
-    ));
+    ) as $Val);
   }
 }
 
@@ -156,32 +159,30 @@ abstract class _$$VideoEditorLoadingVideoCopyWith<$Res>
           $Res Function(_$VideoEditorLoadingVideo) then) =
       __$$VideoEditorLoadingVideoCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({AssetEntity assetEntity, double dismissProgress});
 }
 
 /// @nodoc
 class __$$VideoEditorLoadingVideoCopyWithImpl<$Res>
-    extends _$VideoEditorStateCopyWithImpl<$Res>
+    extends _$VideoEditorStateCopyWithImpl<$Res, _$VideoEditorLoadingVideo>
     implements _$$VideoEditorLoadingVideoCopyWith<$Res> {
   __$$VideoEditorLoadingVideoCopyWithImpl(_$VideoEditorLoadingVideo _value,
       $Res Function(_$VideoEditorLoadingVideo) _then)
-      : super(_value, (v) => _then(v as _$VideoEditorLoadingVideo));
+      : super(_value, _then);
 
-  @override
-  _$VideoEditorLoadingVideo get _value =>
-      super._value as _$VideoEditorLoadingVideo;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? assetEntity = freezed,
-    Object? dismissProgress = freezed,
+    Object? assetEntity = null,
+    Object? dismissProgress = null,
   }) {
     return _then(_$VideoEditorLoadingVideo(
-      assetEntity: assetEntity == freezed
+      assetEntity: null == assetEntity
           ? _value.assetEntity
           : assetEntity // ignore: cast_nullable_to_non_nullable
               as AssetEntity,
-      dismissProgress: dismissProgress == freezed
+      dismissProgress: null == dismissProgress
           ? _value.dismissProgress
           : dismissProgress // ignore: cast_nullable_to_non_nullable
               as double,
@@ -211,20 +212,18 @@ class _$VideoEditorLoadingVideo implements VideoEditorLoadingVideo {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$VideoEditorLoadingVideo &&
-            const DeepCollectionEquality()
-                .equals(other.assetEntity, assetEntity) &&
-            const DeepCollectionEquality()
-                .equals(other.dismissProgress, dismissProgress));
+            (identical(other.assetEntity, assetEntity) ||
+                other.assetEntity == assetEntity) &&
+            (identical(other.dismissProgress, dismissProgress) ||
+                other.dismissProgress == dismissProgress));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(assetEntity),
-      const DeepCollectionEquality().hash(dismissProgress));
+  int get hashCode => Object.hash(runtimeType, assetEntity, dismissProgress);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$VideoEditorLoadingVideoCopyWith<_$VideoEditorLoadingVideo> get copyWith =>
       __$$VideoEditorLoadingVideoCopyWithImpl<_$VideoEditorLoadingVideo>(
           this, _$identity);
@@ -257,11 +256,11 @@ class _$VideoEditorLoadingVideo implements VideoEditorLoadingVideo {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AssetEntity assetEntity, double dismissProgress)?
+    TResult? Function(AssetEntity assetEntity, double dismissProgress)?
         loadingVideo,
-    TResult Function(AssetEntity assetEntity, double dismissProgress)?
+    TResult? Function(AssetEntity assetEntity, double dismissProgress)?
         failedToLoad,
-    TResult Function(
+    TResult? Function(
             AssetEntity assetEntity,
             VideoPlayerController videoController,
             EditingEntry entry,
@@ -270,10 +269,10 @@ class _$VideoEditorLoadingVideo implements VideoEditorLoadingVideo {
             double dismissProgress,
             bool previewing)?
         editing,
-    TResult Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
+    TResult? Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
             double dismissProgress)?
         exporting,
-    TResult Function(SavedEntry entry, double dismissProgress)?
+    TResult? Function(SavedEntry entry, double dismissProgress)?
         exportingSuccess,
   }) {
     return loadingVideo?.call(assetEntity, dismissProgress);
@@ -324,11 +323,11 @@ class _$VideoEditorLoadingVideo implements VideoEditorLoadingVideo {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VideoEditorLoadingVideo value)? loadingVideo,
-    TResult Function(VideoEditorFailedToLoad value)? failedToLoad,
-    TResult Function(VideoEditorEditing value)? editing,
-    TResult Function(VideoEditorExporting value)? exporting,
-    TResult Function(VideoEditorExportingSuccess value)? exportingSuccess,
+    TResult? Function(VideoEditorLoadingVideo value)? loadingVideo,
+    TResult? Function(VideoEditorFailedToLoad value)? failedToLoad,
+    TResult? Function(VideoEditorEditing value)? editing,
+    TResult? Function(VideoEditorExporting value)? exporting,
+    TResult? Function(VideoEditorExportingSuccess value)? exportingSuccess,
   }) {
     return loadingVideo?.call(this);
   }
@@ -371,32 +370,30 @@ abstract class _$$VideoEditorFailedToLoadCopyWith<$Res>
           $Res Function(_$VideoEditorFailedToLoad) then) =
       __$$VideoEditorFailedToLoadCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({AssetEntity assetEntity, double dismissProgress});
 }
 
 /// @nodoc
 class __$$VideoEditorFailedToLoadCopyWithImpl<$Res>
-    extends _$VideoEditorStateCopyWithImpl<$Res>
+    extends _$VideoEditorStateCopyWithImpl<$Res, _$VideoEditorFailedToLoad>
     implements _$$VideoEditorFailedToLoadCopyWith<$Res> {
   __$$VideoEditorFailedToLoadCopyWithImpl(_$VideoEditorFailedToLoad _value,
       $Res Function(_$VideoEditorFailedToLoad) _then)
-      : super(_value, (v) => _then(v as _$VideoEditorFailedToLoad));
+      : super(_value, _then);
 
-  @override
-  _$VideoEditorFailedToLoad get _value =>
-      super._value as _$VideoEditorFailedToLoad;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? assetEntity = freezed,
-    Object? dismissProgress = freezed,
+    Object? assetEntity = null,
+    Object? dismissProgress = null,
   }) {
     return _then(_$VideoEditorFailedToLoad(
-      assetEntity: assetEntity == freezed
+      assetEntity: null == assetEntity
           ? _value.assetEntity
           : assetEntity // ignore: cast_nullable_to_non_nullable
               as AssetEntity,
-      dismissProgress: dismissProgress == freezed
+      dismissProgress: null == dismissProgress
           ? _value.dismissProgress
           : dismissProgress // ignore: cast_nullable_to_non_nullable
               as double,
@@ -426,20 +423,18 @@ class _$VideoEditorFailedToLoad implements VideoEditorFailedToLoad {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$VideoEditorFailedToLoad &&
-            const DeepCollectionEquality()
-                .equals(other.assetEntity, assetEntity) &&
-            const DeepCollectionEquality()
-                .equals(other.dismissProgress, dismissProgress));
+            (identical(other.assetEntity, assetEntity) ||
+                other.assetEntity == assetEntity) &&
+            (identical(other.dismissProgress, dismissProgress) ||
+                other.dismissProgress == dismissProgress));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(assetEntity),
-      const DeepCollectionEquality().hash(dismissProgress));
+  int get hashCode => Object.hash(runtimeType, assetEntity, dismissProgress);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$VideoEditorFailedToLoadCopyWith<_$VideoEditorFailedToLoad> get copyWith =>
       __$$VideoEditorFailedToLoadCopyWithImpl<_$VideoEditorFailedToLoad>(
           this, _$identity);
@@ -472,11 +467,11 @@ class _$VideoEditorFailedToLoad implements VideoEditorFailedToLoad {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AssetEntity assetEntity, double dismissProgress)?
+    TResult? Function(AssetEntity assetEntity, double dismissProgress)?
         loadingVideo,
-    TResult Function(AssetEntity assetEntity, double dismissProgress)?
+    TResult? Function(AssetEntity assetEntity, double dismissProgress)?
         failedToLoad,
-    TResult Function(
+    TResult? Function(
             AssetEntity assetEntity,
             VideoPlayerController videoController,
             EditingEntry entry,
@@ -485,10 +480,10 @@ class _$VideoEditorFailedToLoad implements VideoEditorFailedToLoad {
             double dismissProgress,
             bool previewing)?
         editing,
-    TResult Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
+    TResult? Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
             double dismissProgress)?
         exporting,
-    TResult Function(SavedEntry entry, double dismissProgress)?
+    TResult? Function(SavedEntry entry, double dismissProgress)?
         exportingSuccess,
   }) {
     return failedToLoad?.call(assetEntity, dismissProgress);
@@ -539,11 +534,11 @@ class _$VideoEditorFailedToLoad implements VideoEditorFailedToLoad {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VideoEditorLoadingVideo value)? loadingVideo,
-    TResult Function(VideoEditorFailedToLoad value)? failedToLoad,
-    TResult Function(VideoEditorEditing value)? editing,
-    TResult Function(VideoEditorExporting value)? exporting,
-    TResult Function(VideoEditorExportingSuccess value)? exportingSuccess,
+    TResult? Function(VideoEditorLoadingVideo value)? loadingVideo,
+    TResult? Function(VideoEditorFailedToLoad value)? failedToLoad,
+    TResult? Function(VideoEditorEditing value)? editing,
+    TResult? Function(VideoEditorExporting value)? exporting,
+    TResult? Function(VideoEditorExportingSuccess value)? exportingSuccess,
   }) {
     return failedToLoad?.call(this);
   }
@@ -586,6 +581,7 @@ abstract class _$$VideoEditorEditingCopyWith<$Res>
           $Res Function(_$VideoEditorEditing) then) =
       __$$VideoEditorEditingCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {AssetEntity assetEntity,
       VideoPlayerController videoController,
@@ -598,51 +594,49 @@ abstract class _$$VideoEditorEditingCopyWith<$Res>
 
 /// @nodoc
 class __$$VideoEditorEditingCopyWithImpl<$Res>
-    extends _$VideoEditorStateCopyWithImpl<$Res>
+    extends _$VideoEditorStateCopyWithImpl<$Res, _$VideoEditorEditing>
     implements _$$VideoEditorEditingCopyWith<$Res> {
   __$$VideoEditorEditingCopyWithImpl(
       _$VideoEditorEditing _value, $Res Function(_$VideoEditorEditing) _then)
-      : super(_value, (v) => _then(v as _$VideoEditorEditing));
+      : super(_value, _then);
 
-  @override
-  _$VideoEditorEditing get _value => super._value as _$VideoEditorEditing;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? assetEntity = freezed,
-    Object? videoController = freezed,
+    Object? assetEntity = null,
+    Object? videoController = null,
     Object? entry = freezed,
-    Object? isPlaying = freezed,
-    Object? seekPosition = freezed,
-    Object? dismissProgress = freezed,
-    Object? previewing = freezed,
+    Object? isPlaying = null,
+    Object? seekPosition = null,
+    Object? dismissProgress = null,
+    Object? previewing = null,
   }) {
     return _then(_$VideoEditorEditing(
-      assetEntity: assetEntity == freezed
+      assetEntity: null == assetEntity
           ? _value.assetEntity
           : assetEntity // ignore: cast_nullable_to_non_nullable
               as AssetEntity,
-      videoController: videoController == freezed
+      videoController: null == videoController
           ? _value.videoController
           : videoController // ignore: cast_nullable_to_non_nullable
               as VideoPlayerController,
-      entry: entry == freezed
+      entry: freezed == entry
           ? _value.entry
           : entry // ignore: cast_nullable_to_non_nullable
               as EditingEntry,
-      isPlaying: isPlaying == freezed
+      isPlaying: null == isPlaying
           ? _value.isPlaying
           : isPlaying // ignore: cast_nullable_to_non_nullable
               as bool,
-      seekPosition: seekPosition == freezed
+      seekPosition: null == seekPosition
           ? _value.seekPosition
           : seekPosition // ignore: cast_nullable_to_non_nullable
               as Duration,
-      dismissProgress: dismissProgress == freezed
+      dismissProgress: null == dismissProgress
           ? _value.dismissProgress
           : dismissProgress // ignore: cast_nullable_to_non_nullable
               as double,
-      previewing: previewing == freezed
+      previewing: null == previewing
           ? _value.previewing
           : previewing // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -691,33 +685,35 @@ class _$VideoEditorEditing implements VideoEditorEditing {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$VideoEditorEditing &&
-            const DeepCollectionEquality()
-                .equals(other.assetEntity, assetEntity) &&
-            const DeepCollectionEquality()
-                .equals(other.videoController, videoController) &&
+            (identical(other.assetEntity, assetEntity) ||
+                other.assetEntity == assetEntity) &&
+            (identical(other.videoController, videoController) ||
+                other.videoController == videoController) &&
             const DeepCollectionEquality().equals(other.entry, entry) &&
-            const DeepCollectionEquality().equals(other.isPlaying, isPlaying) &&
-            const DeepCollectionEquality()
-                .equals(other.seekPosition, seekPosition) &&
-            const DeepCollectionEquality()
-                .equals(other.dismissProgress, dismissProgress) &&
-            const DeepCollectionEquality()
-                .equals(other.previewing, previewing));
+            (identical(other.isPlaying, isPlaying) ||
+                other.isPlaying == isPlaying) &&
+            (identical(other.seekPosition, seekPosition) ||
+                other.seekPosition == seekPosition) &&
+            (identical(other.dismissProgress, dismissProgress) ||
+                other.dismissProgress == dismissProgress) &&
+            (identical(other.previewing, previewing) ||
+                other.previewing == previewing));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(assetEntity),
-      const DeepCollectionEquality().hash(videoController),
+      assetEntity,
+      videoController,
       const DeepCollectionEquality().hash(entry),
-      const DeepCollectionEquality().hash(isPlaying),
-      const DeepCollectionEquality().hash(seekPosition),
-      const DeepCollectionEquality().hash(dismissProgress),
-      const DeepCollectionEquality().hash(previewing));
+      isPlaying,
+      seekPosition,
+      dismissProgress,
+      previewing);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$VideoEditorEditingCopyWith<_$VideoEditorEditing> get copyWith =>
       __$$VideoEditorEditingCopyWithImpl<_$VideoEditorEditing>(
           this, _$identity);
@@ -751,11 +747,11 @@ class _$VideoEditorEditing implements VideoEditorEditing {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AssetEntity assetEntity, double dismissProgress)?
+    TResult? Function(AssetEntity assetEntity, double dismissProgress)?
         loadingVideo,
-    TResult Function(AssetEntity assetEntity, double dismissProgress)?
+    TResult? Function(AssetEntity assetEntity, double dismissProgress)?
         failedToLoad,
-    TResult Function(
+    TResult? Function(
             AssetEntity assetEntity,
             VideoPlayerController videoController,
             EditingEntry entry,
@@ -764,10 +760,10 @@ class _$VideoEditorEditing implements VideoEditorEditing {
             double dismissProgress,
             bool previewing)?
         editing,
-    TResult Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
+    TResult? Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
             double dismissProgress)?
         exporting,
-    TResult Function(SavedEntry entry, double dismissProgress)?
+    TResult? Function(SavedEntry entry, double dismissProgress)?
         exportingSuccess,
   }) {
     return editing?.call(assetEntity, videoController, entry, isPlaying,
@@ -820,11 +816,11 @@ class _$VideoEditorEditing implements VideoEditorEditing {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VideoEditorLoadingVideo value)? loadingVideo,
-    TResult Function(VideoEditorFailedToLoad value)? failedToLoad,
-    TResult Function(VideoEditorEditing value)? editing,
-    TResult Function(VideoEditorExporting value)? exporting,
-    TResult Function(VideoEditorExportingSuccess value)? exportingSuccess,
+    TResult? Function(VideoEditorLoadingVideo value)? loadingVideo,
+    TResult? Function(VideoEditorFailedToLoad value)? failedToLoad,
+    TResult? Function(VideoEditorEditing value)? editing,
+    TResult? Function(VideoEditorExporting value)? exporting,
+    TResult? Function(VideoEditorExportingSuccess value)? exportingSuccess,
   }) {
     return editing?.call(this);
   }
@@ -877,6 +873,7 @@ abstract class _$$VideoEditorExportingCopyWith<$Res>
           $Res Function(_$VideoEditorExporting) then) =
       __$$VideoEditorExportingCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {EditingEntry entry,
       LoadingValue<dynamic> exportProgress,
@@ -885,31 +882,29 @@ abstract class _$$VideoEditorExportingCopyWith<$Res>
 
 /// @nodoc
 class __$$VideoEditorExportingCopyWithImpl<$Res>
-    extends _$VideoEditorStateCopyWithImpl<$Res>
+    extends _$VideoEditorStateCopyWithImpl<$Res, _$VideoEditorExporting>
     implements _$$VideoEditorExportingCopyWith<$Res> {
   __$$VideoEditorExportingCopyWithImpl(_$VideoEditorExporting _value,
       $Res Function(_$VideoEditorExporting) _then)
-      : super(_value, (v) => _then(v as _$VideoEditorExporting));
+      : super(_value, _then);
 
-  @override
-  _$VideoEditorExporting get _value => super._value as _$VideoEditorExporting;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? entry = freezed,
-    Object? exportProgress = freezed,
-    Object? dismissProgress = freezed,
+    Object? exportProgress = null,
+    Object? dismissProgress = null,
   }) {
     return _then(_$VideoEditorExporting(
-      entry: entry == freezed
+      entry: freezed == entry
           ? _value.entry
           : entry // ignore: cast_nullable_to_non_nullable
               as EditingEntry,
-      exportProgress: exportProgress == freezed
+      exportProgress: null == exportProgress
           ? _value.exportProgress
           : exportProgress // ignore: cast_nullable_to_non_nullable
               as LoadingValue<dynamic>,
-      dismissProgress: dismissProgress == freezed
+      dismissProgress: null == dismissProgress
           ? _value.dismissProgress
           : dismissProgress // ignore: cast_nullable_to_non_nullable
               as double,
@@ -944,21 +939,22 @@ class _$VideoEditorExporting implements VideoEditorExporting {
         (other.runtimeType == runtimeType &&
             other is _$VideoEditorExporting &&
             const DeepCollectionEquality().equals(other.entry, entry) &&
-            const DeepCollectionEquality()
-                .equals(other.exportProgress, exportProgress) &&
-            const DeepCollectionEquality()
-                .equals(other.dismissProgress, dismissProgress));
+            (identical(other.exportProgress, exportProgress) ||
+                other.exportProgress == exportProgress) &&
+            (identical(other.dismissProgress, dismissProgress) ||
+                other.dismissProgress == dismissProgress));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(entry),
-      const DeepCollectionEquality().hash(exportProgress),
-      const DeepCollectionEquality().hash(dismissProgress));
+      exportProgress,
+      dismissProgress);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$VideoEditorExportingCopyWith<_$VideoEditorExporting> get copyWith =>
       __$$VideoEditorExportingCopyWithImpl<_$VideoEditorExporting>(
           this, _$identity);
@@ -991,11 +987,11 @@ class _$VideoEditorExporting implements VideoEditorExporting {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AssetEntity assetEntity, double dismissProgress)?
+    TResult? Function(AssetEntity assetEntity, double dismissProgress)?
         loadingVideo,
-    TResult Function(AssetEntity assetEntity, double dismissProgress)?
+    TResult? Function(AssetEntity assetEntity, double dismissProgress)?
         failedToLoad,
-    TResult Function(
+    TResult? Function(
             AssetEntity assetEntity,
             VideoPlayerController videoController,
             EditingEntry entry,
@@ -1004,10 +1000,10 @@ class _$VideoEditorExporting implements VideoEditorExporting {
             double dismissProgress,
             bool previewing)?
         editing,
-    TResult Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
+    TResult? Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
             double dismissProgress)?
         exporting,
-    TResult Function(SavedEntry entry, double dismissProgress)?
+    TResult? Function(SavedEntry entry, double dismissProgress)?
         exportingSuccess,
   }) {
     return exporting?.call(entry, exportProgress, dismissProgress);
@@ -1058,11 +1054,11 @@ class _$VideoEditorExporting implements VideoEditorExporting {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VideoEditorLoadingVideo value)? loadingVideo,
-    TResult Function(VideoEditorFailedToLoad value)? failedToLoad,
-    TResult Function(VideoEditorEditing value)? editing,
-    TResult Function(VideoEditorExporting value)? exporting,
-    TResult Function(VideoEditorExportingSuccess value)? exportingSuccess,
+    TResult? Function(VideoEditorLoadingVideo value)? loadingVideo,
+    TResult? Function(VideoEditorFailedToLoad value)? failedToLoad,
+    TResult? Function(VideoEditorEditing value)? editing,
+    TResult? Function(VideoEditorExporting value)? exporting,
+    TResult? Function(VideoEditorExportingSuccess value)? exportingSuccess,
   }) {
     return exporting?.call(this);
   }
@@ -1108,33 +1104,31 @@ abstract class _$$VideoEditorExportingSuccessCopyWith<$Res>
           $Res Function(_$VideoEditorExportingSuccess) then) =
       __$$VideoEditorExportingSuccessCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({SavedEntry entry, double dismissProgress});
 }
 
 /// @nodoc
 class __$$VideoEditorExportingSuccessCopyWithImpl<$Res>
-    extends _$VideoEditorStateCopyWithImpl<$Res>
+    extends _$VideoEditorStateCopyWithImpl<$Res, _$VideoEditorExportingSuccess>
     implements _$$VideoEditorExportingSuccessCopyWith<$Res> {
   __$$VideoEditorExportingSuccessCopyWithImpl(
       _$VideoEditorExportingSuccess _value,
       $Res Function(_$VideoEditorExportingSuccess) _then)
-      : super(_value, (v) => _then(v as _$VideoEditorExportingSuccess));
+      : super(_value, _then);
 
-  @override
-  _$VideoEditorExportingSuccess get _value =>
-      super._value as _$VideoEditorExportingSuccess;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? entry = freezed,
-    Object? dismissProgress = freezed,
+    Object? dismissProgress = null,
   }) {
     return _then(_$VideoEditorExportingSuccess(
-      entry: entry == freezed
+      entry: freezed == entry
           ? _value.entry
           : entry // ignore: cast_nullable_to_non_nullable
               as SavedEntry,
-      dismissProgress: dismissProgress == freezed
+      dismissProgress: null == dismissProgress
           ? _value.dismissProgress
           : dismissProgress // ignore: cast_nullable_to_non_nullable
               as double,
@@ -1165,18 +1159,17 @@ class _$VideoEditorExportingSuccess implements VideoEditorExportingSuccess {
         (other.runtimeType == runtimeType &&
             other is _$VideoEditorExportingSuccess &&
             const DeepCollectionEquality().equals(other.entry, entry) &&
-            const DeepCollectionEquality()
-                .equals(other.dismissProgress, dismissProgress));
+            (identical(other.dismissProgress, dismissProgress) ||
+                other.dismissProgress == dismissProgress));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(entry),
-      const DeepCollectionEquality().hash(dismissProgress));
+      runtimeType, const DeepCollectionEquality().hash(entry), dismissProgress);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$VideoEditorExportingSuccessCopyWith<_$VideoEditorExportingSuccess>
       get copyWith => __$$VideoEditorExportingSuccessCopyWithImpl<
           _$VideoEditorExportingSuccess>(this, _$identity);
@@ -1209,11 +1202,11 @@ class _$VideoEditorExportingSuccess implements VideoEditorExportingSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AssetEntity assetEntity, double dismissProgress)?
+    TResult? Function(AssetEntity assetEntity, double dismissProgress)?
         loadingVideo,
-    TResult Function(AssetEntity assetEntity, double dismissProgress)?
+    TResult? Function(AssetEntity assetEntity, double dismissProgress)?
         failedToLoad,
-    TResult Function(
+    TResult? Function(
             AssetEntity assetEntity,
             VideoPlayerController videoController,
             EditingEntry entry,
@@ -1222,10 +1215,10 @@ class _$VideoEditorExportingSuccess implements VideoEditorExportingSuccess {
             double dismissProgress,
             bool previewing)?
         editing,
-    TResult Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
+    TResult? Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
             double dismissProgress)?
         exporting,
-    TResult Function(SavedEntry entry, double dismissProgress)?
+    TResult? Function(SavedEntry entry, double dismissProgress)?
         exportingSuccess,
   }) {
     return exportingSuccess?.call(entry, dismissProgress);
@@ -1276,11 +1269,11 @@ class _$VideoEditorExportingSuccess implements VideoEditorExportingSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VideoEditorLoadingVideo value)? loadingVideo,
-    TResult Function(VideoEditorFailedToLoad value)? failedToLoad,
-    TResult Function(VideoEditorEditing value)? editing,
-    TResult Function(VideoEditorExporting value)? exporting,
-    TResult Function(VideoEditorExportingSuccess value)? exportingSuccess,
+    TResult? Function(VideoEditorLoadingVideo value)? loadingVideo,
+    TResult? Function(VideoEditorFailedToLoad value)? failedToLoad,
+    TResult? Function(VideoEditorEditing value)? editing,
+    TResult? Function(VideoEditorExporting value)? exporting,
+    TResult? Function(VideoEditorExportingSuccess value)? exportingSuccess,
   }) {
     return exportingSuccess?.call(this);
   }

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'notification_on_date.dart';
 
@@ -29,39 +29,42 @@ mixin _$NotificationOnDate {
 abstract class $NotificationOnDateCopyWith<$Res> {
   factory $NotificationOnDateCopyWith(
           NotificationOnDate value, $Res Function(NotificationOnDate) then) =
-      _$NotificationOnDateCopyWithImpl<$Res>;
+      _$NotificationOnDateCopyWithImpl<$Res, NotificationOnDate>;
+  @useResult
   $Res call({DateTime dateTime, String title, String body});
 }
 
 /// @nodoc
-class _$NotificationOnDateCopyWithImpl<$Res>
+class _$NotificationOnDateCopyWithImpl<$Res, $Val extends NotificationOnDate>
     implements $NotificationOnDateCopyWith<$Res> {
   _$NotificationOnDateCopyWithImpl(this._value, this._then);
 
-  final NotificationOnDate _value;
   // ignore: unused_field
-  final $Res Function(NotificationOnDate) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dateTime = freezed,
-    Object? title = freezed,
-    Object? body = freezed,
+    Object? dateTime = null,
+    Object? title = null,
+    Object? body = null,
   }) {
     return _then(_value.copyWith(
-      dateTime: dateTime == freezed
+      dateTime: null == dateTime
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      body: body == freezed
+      body: null == body
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -72,36 +75,35 @@ abstract class _$$_NotificationOnDateCopyWith<$Res>
           $Res Function(_$_NotificationOnDate) then) =
       __$$_NotificationOnDateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({DateTime dateTime, String title, String body});
 }
 
 /// @nodoc
 class __$$_NotificationOnDateCopyWithImpl<$Res>
-    extends _$NotificationOnDateCopyWithImpl<$Res>
+    extends _$NotificationOnDateCopyWithImpl<$Res, _$_NotificationOnDate>
     implements _$$_NotificationOnDateCopyWith<$Res> {
   __$$_NotificationOnDateCopyWithImpl(
       _$_NotificationOnDate _value, $Res Function(_$_NotificationOnDate) _then)
-      : super(_value, (v) => _then(v as _$_NotificationOnDate));
+      : super(_value, _then);
 
-  @override
-  _$_NotificationOnDate get _value => super._value as _$_NotificationOnDate;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dateTime = freezed,
-    Object? title = freezed,
-    Object? body = freezed,
+    Object? dateTime = null,
+    Object? title = null,
+    Object? body = null,
   }) {
     return _then(_$_NotificationOnDate(
-      dateTime: dateTime == freezed
+      dateTime: null == dateTime
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      body: body == freezed
+      body: null == body
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
               as String,
@@ -132,20 +134,18 @@ class _$_NotificationOnDate implements _NotificationOnDate {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NotificationOnDate &&
-            const DeepCollectionEquality().equals(other.dateTime, dateTime) &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.body, body));
+            (identical(other.dateTime, dateTime) ||
+                other.dateTime == dateTime) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.body, body) || other.body == body));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(dateTime),
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(body));
+  int get hashCode => Object.hash(runtimeType, dateTime, title, body);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_NotificationOnDateCopyWith<_$_NotificationOnDate> get copyWith =>
       __$$_NotificationOnDateCopyWithImpl<_$_NotificationOnDate>(
           this, _$identity);

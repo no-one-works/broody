@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'project.dart';
 
@@ -43,7 +43,8 @@ mixin _$Project {
 /// @nodoc
 abstract class $ProjectCopyWith<$Res> {
   factory $ProjectCopyWith(Project value, $Res Function(Project) then) =
-      _$ProjectCopyWithImpl<$Res>;
+      _$ProjectCopyWithImpl<$Res, Project>;
+  @useResult
   $Res call(
       {String uid,
       String title,
@@ -61,83 +62,86 @@ abstract class $ProjectCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProjectCopyWithImpl<$Res> implements $ProjectCopyWith<$Res> {
+class _$ProjectCopyWithImpl<$Res, $Val extends Project>
+    implements $ProjectCopyWith<$Res> {
   _$ProjectCopyWithImpl(this._value, this._then);
 
-  final Project _value;
   // ignore: unused_field
-  final $Res Function(Project) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? uid = freezed,
-    Object? title = freezed,
-    Object? startDate = freezed,
-    Object? endDate = freezed,
-    Object? entryDuration = freezed,
+    Object? uid = null,
+    Object? title = null,
+    Object? startDate = null,
+    Object? endDate = null,
+    Object? entryDuration = null,
     Object? thumbnailPath = freezed,
     Object? notificationTime = freezed,
-    Object? landScapeResolution = freezed,
-    Object? portrait = freezed,
+    Object? landScapeResolution = null,
+    Object? portrait = null,
     Object? color = freezed,
     Object? isHardcoreMode = freezed,
-    Object? compilationAssetIds = freezed,
+    Object? compilationAssetIds = null,
     Object? exportedPath = freezed,
   }) {
     return _then(_value.copyWith(
-      uid: uid == freezed
+      uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      startDate: startDate == freezed
+      startDate: null == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      endDate: endDate == freezed
+      endDate: null == endDate
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      entryDuration: entryDuration == freezed
+      entryDuration: null == entryDuration
           ? _value.entryDuration
           : entryDuration // ignore: cast_nullable_to_non_nullable
               as Duration,
-      thumbnailPath: thumbnailPath == freezed
+      thumbnailPath: freezed == thumbnailPath
           ? _value.thumbnailPath
           : thumbnailPath // ignore: cast_nullable_to_non_nullable
               as String?,
-      notificationTime: notificationTime == freezed
+      notificationTime: freezed == notificationTime
           ? _value.notificationTime
           : notificationTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      landScapeResolution: landScapeResolution == freezed
+      landScapeResolution: null == landScapeResolution
           ? _value.landScapeResolution
           : landScapeResolution // ignore: cast_nullable_to_non_nullable
               as Size,
-      portrait: portrait == freezed
+      portrait: null == portrait
           ? _value.portrait
           : portrait // ignore: cast_nullable_to_non_nullable
               as bool,
-      color: color == freezed
+      color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as int?,
-      isHardcoreMode: isHardcoreMode == freezed
+      isHardcoreMode: freezed == isHardcoreMode
           ? _value.isHardcoreMode
           : isHardcoreMode // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      compilationAssetIds: compilationAssetIds == freezed
+      compilationAssetIds: null == compilationAssetIds
           ? _value.compilationAssetIds
           : compilationAssetIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      exportedPath: exportedPath == freezed
+      exportedPath: freezed == exportedPath
           ? _value.exportedPath
           : exportedPath // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -147,6 +151,7 @@ abstract class _$$_ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
           _$_Project value, $Res Function(_$_Project) then) =
       __$$_ProjectCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String uid,
       String title,
@@ -164,78 +169,77 @@ abstract class _$$_ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ProjectCopyWithImpl<$Res> extends _$ProjectCopyWithImpl<$Res>
+class __$$_ProjectCopyWithImpl<$Res>
+    extends _$ProjectCopyWithImpl<$Res, _$_Project>
     implements _$$_ProjectCopyWith<$Res> {
   __$$_ProjectCopyWithImpl(_$_Project _value, $Res Function(_$_Project) _then)
-      : super(_value, (v) => _then(v as _$_Project));
+      : super(_value, _then);
 
-  @override
-  _$_Project get _value => super._value as _$_Project;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? uid = freezed,
-    Object? title = freezed,
-    Object? startDate = freezed,
-    Object? endDate = freezed,
-    Object? entryDuration = freezed,
+    Object? uid = null,
+    Object? title = null,
+    Object? startDate = null,
+    Object? endDate = null,
+    Object? entryDuration = null,
     Object? thumbnailPath = freezed,
     Object? notificationTime = freezed,
-    Object? landScapeResolution = freezed,
-    Object? portrait = freezed,
+    Object? landScapeResolution = null,
+    Object? portrait = null,
     Object? color = freezed,
     Object? isHardcoreMode = freezed,
-    Object? compilationAssetIds = freezed,
+    Object? compilationAssetIds = null,
     Object? exportedPath = freezed,
   }) {
     return _then(_$_Project(
-      uid: uid == freezed
+      uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      startDate: startDate == freezed
+      startDate: null == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      endDate: endDate == freezed
+      endDate: null == endDate
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      entryDuration: entryDuration == freezed
+      entryDuration: null == entryDuration
           ? _value.entryDuration
           : entryDuration // ignore: cast_nullable_to_non_nullable
               as Duration,
-      thumbnailPath: thumbnailPath == freezed
+      thumbnailPath: freezed == thumbnailPath
           ? _value.thumbnailPath
           : thumbnailPath // ignore: cast_nullable_to_non_nullable
               as String?,
-      notificationTime: notificationTime == freezed
+      notificationTime: freezed == notificationTime
           ? _value.notificationTime
           : notificationTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      landScapeResolution: landScapeResolution == freezed
+      landScapeResolution: null == landScapeResolution
           ? _value.landScapeResolution
           : landScapeResolution // ignore: cast_nullable_to_non_nullable
               as Size,
-      portrait: portrait == freezed
+      portrait: null == portrait
           ? _value.portrait
           : portrait // ignore: cast_nullable_to_non_nullable
               as bool,
-      color: color == freezed
+      color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as int?,
       isHardcoreMode:
-          isHardcoreMode == freezed ? _value.isHardcoreMode : isHardcoreMode,
-      compilationAssetIds: compilationAssetIds == freezed
+          freezed == isHardcoreMode ? _value.isHardcoreMode! : isHardcoreMode,
+      compilationAssetIds: null == compilationAssetIds
           ? _value._compilationAssetIds
           : compilationAssetIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      exportedPath: exportedPath == freezed
+      exportedPath: freezed == exportedPath
           ? _value.exportedPath
           : exportedPath // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -297,6 +301,8 @@ class _$_Project extends _Project {
   @override
   @JsonKey()
   List<String> get compilationAssetIds {
+    if (_compilationAssetIds is EqualUnmodifiableListView)
+      return _compilationAssetIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_compilationAssetIds);
   }
@@ -314,48 +320,51 @@ class _$_Project extends _Project {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Project &&
-            const DeepCollectionEquality().equals(other.uid, uid) &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.startDate, startDate) &&
-            const DeepCollectionEquality().equals(other.endDate, endDate) &&
-            const DeepCollectionEquality()
-                .equals(other.entryDuration, entryDuration) &&
-            const DeepCollectionEquality()
-                .equals(other.thumbnailPath, thumbnailPath) &&
-            const DeepCollectionEquality()
-                .equals(other.notificationTime, notificationTime) &&
-            const DeepCollectionEquality()
-                .equals(other.landScapeResolution, landScapeResolution) &&
-            const DeepCollectionEquality().equals(other.portrait, portrait) &&
-            const DeepCollectionEquality().equals(other.color, color) &&
+            (identical(other.uid, uid) || other.uid == uid) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.entryDuration, entryDuration) ||
+                other.entryDuration == entryDuration) &&
+            (identical(other.thumbnailPath, thumbnailPath) ||
+                other.thumbnailPath == thumbnailPath) &&
+            (identical(other.notificationTime, notificationTime) ||
+                other.notificationTime == notificationTime) &&
+            (identical(other.landScapeResolution, landScapeResolution) ||
+                other.landScapeResolution == landScapeResolution) &&
+            (identical(other.portrait, portrait) ||
+                other.portrait == portrait) &&
+            (identical(other.color, color) || other.color == color) &&
             const DeepCollectionEquality()
                 .equals(other.isHardcoreMode, isHardcoreMode) &&
             const DeepCollectionEquality()
                 .equals(other._compilationAssetIds, _compilationAssetIds) &&
-            const DeepCollectionEquality()
-                .equals(other.exportedPath, exportedPath));
+            (identical(other.exportedPath, exportedPath) ||
+                other.exportedPath == exportedPath));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(uid),
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(startDate),
-      const DeepCollectionEquality().hash(endDate),
-      const DeepCollectionEquality().hash(entryDuration),
-      const DeepCollectionEquality().hash(thumbnailPath),
-      const DeepCollectionEquality().hash(notificationTime),
-      const DeepCollectionEquality().hash(landScapeResolution),
-      const DeepCollectionEquality().hash(portrait),
-      const DeepCollectionEquality().hash(color),
+      uid,
+      title,
+      startDate,
+      endDate,
+      entryDuration,
+      thumbnailPath,
+      notificationTime,
+      landScapeResolution,
+      portrait,
+      color,
       const DeepCollectionEquality().hash(isHardcoreMode),
       const DeepCollectionEquality().hash(_compilationAssetIds),
-      const DeepCollectionEquality().hash(exportedPath));
+      exportedPath);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ProjectCopyWith<_$_Project> get copyWith =>
       __$$_ProjectCopyWithImpl<_$_Project>(this, _$identity);
 

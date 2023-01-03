@@ -7,7 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 final scheduleNotificationProvider =
     Provider.autoDispose.family<void, L10n>((ref, l10n) {
   final repo = ref.watch(notificationRepositoryProvider);
-  final projects = ref.watch(projectsProvider).value;
+  final projects = ref.watch(projectsProvider).valueOrNull;
   final todaysEntries = ref.watch(todaysEntriesProvider).value ?? [];
   final projectsWithEntryToday = todaysEntries.map((e) => e.projectId).toList();
   if (projects != null) {

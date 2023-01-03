@@ -3,13 +3,13 @@ import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class NoSelectedProjectGuard extends AutoRouteGuard {
-  NoSelectedProjectGuard(this._reader);
+  NoSelectedProjectGuard(this.ref);
 
-  final Reader _reader;
+  final Ref ref;
 
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) async {
-    final activeProject = _reader(selectedProjectProvider);
+    final activeProject = ref.read(selectedProjectProvider);
     if (activeProject == null) {
       resolver.next(false);
       await router.push(const ProjectsRoute());

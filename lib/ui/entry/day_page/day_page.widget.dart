@@ -58,7 +58,7 @@ class DayPage extends HookConsumerWidget {
 
     final blurHashImage = entry != null ? BlurHashImage(entry!.blurHash) : null;
 
-    final videoController = videoControllerAsync?.asData?.value;
+    final videoController = videoControllerAsync?.valueOrNull;
 
     final dateFormat = useDateFormat(DateFormat.ABBR_MONTH_WEEKDAY_DAY);
 

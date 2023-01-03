@@ -29,7 +29,7 @@ class GalleryVideo extends HookConsumerWidget {
         : null;
     final thumbnailImageAsync =
         ref.watch(galleryVideoThumbnailProvider(assetEntity));
-    final videoController = videoControllerAsync?.asData?.value;
+    final videoController = videoControllerAsync?.valueOrNull;
     final spinner =
         showProgressIndicator && loadVideo && videoController == null;
     return Stack(

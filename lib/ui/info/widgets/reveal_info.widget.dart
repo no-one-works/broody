@@ -17,7 +17,7 @@ class RevealInfo extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colorScheme = useColorScheme();
-    final config = ref.watch(onboardingConfigProvider).value;
+    final config = ref.watch(onboardingConfigProvider).valueOrNull;
     final show = ref.watch(showRevealOnboardingProvider) && config != null;
     return AnimatedSwitcher(
       duration: kThemeAnimationDuration,

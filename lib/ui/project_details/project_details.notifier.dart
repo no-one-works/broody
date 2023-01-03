@@ -15,14 +15,13 @@ final projectDetailsStateProvider = StateNotifierProvider.autoDispose
   final state = projectId == null || repo.getProject(projectId) == null
       ? ProjectDetailsState.creating(project: repo.newProject)
       : ProjectDetailsState.editing(project: repo.getProject(projectId)!);
-  return ProjectDetailsNotifier(ref.read, state);
+  return ProjectDetailsNotifier(ref, state);
 });
 
 class ProjectDetailsNotifier extends StateNotifier<ProjectDetailsState> {
-  ProjectDetailsNotifier(this._reader, ProjectDetailsState state)
-      : super(state);
+  ProjectDetailsNotifier(this.ref, ProjectDetailsState state) : super(state);
 
-  final Reader _reader;
+  final Ref ref;
 
   bool get isCreating => state is ProjectDetailsCreating;
 
@@ -96,7 +95,7 @@ class ProjectDetailsNotifier extends StateNotifier<ProjectDetailsState> {
   Future<bool> toggleNotifications(bool isEnabled) async {
     if (state is ProjectDetailsSaved) return false;
     final hasPermission =
-        await _reader(notificationRepositoryProvider).ensurePermission();
+        await ref.read(notificationRepositoryProvider).ensurePermission();
     if (!hasPermission) {
       state = state.copyWith.project(
         notificationTime: null,
@@ -112,7 +111,7 @@ class ProjectDetailsNotifier extends StateNotifier<ProjectDetailsState> {
 
   void deleteProject() {
     state = ProjectDetailsState.deleted(project: state.project);
-    _reader(projectRepositoryProvider).deleteProject(state.project);
+    ref.read(projectRepositoryProvider).deleteProject(state.project);
   }
 
   void save() async {
@@ -137,7 +136,7 @@ class ProjectDetailsNotifier extends StateNotifier<ProjectDetailsState> {
     if (state is ProjectDetailsSaved) return false;
 
     final currentProject =
-        _reader(projectRepositoryProvider).getProject(state.project.uid);
+        ref.read(projectRepositoryProvider).getProject(state.project.uid);
     if (currentProject == null) return false;
     final lostDates =
         currentProject.startDate.getDaysUntil(currentProject.endDate).except(
@@ -145,14 +144,14 @@ class ProjectDetailsNotifier extends StateNotifier<ProjectDetailsState> {
             );
     if (lostDates.isEmpty) return false;
     final entries =
-        await _reader(projectEntriesProvider(state.project.uid).future);
+        await ref.read(projectEntriesProvider(state.project.uid).future);
     return entries.map((e) => e.day).any(lostDates.contains);
   }
 
   Future<void> _save() async {
     if (state is ProjectDetailsSaved) return;
-    await _reader(projectRepositoryProvider).setProject(state.project);
-    _reader(selectedProjectProvider.notifier).state = state.project;
+    await ref.read(projectRepositoryProvider).setProject(state.project);
+    ref.read(selectedProjectProvider.notifier).state = state.project;
     state = ProjectDetailsState.saved(project: state.project);
   }
 }

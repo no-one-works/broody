@@ -117,16 +117,16 @@ export 'router.gr.dart';
   ],
 )
 class $AppRouter extends AppRouter {
-  $AppRouter(Reader reader)
+  $AppRouter(Ref ref)
       : super(
-          noProjectsGuard: NoProjectsGuard(reader),
-          noSelectedProjectGuard: NoSelectedProjectGuard(reader),
+          noProjectsGuard: NoProjectsGuard(ref),
+          noSelectedProjectGuard: NoSelectedProjectGuard(ref),
           noPermissionsGuard: NoPermissionsGuard(),
-          outdatedEntriesGuard: OutdatedEntriesGuard(reader),
+          outdatedEntriesGuard: OutdatedEntriesGuard(ref),
         );
 }
 
-final routerProvider = Provider((ref) => $AppRouter(ref.read));
+final routerProvider = Provider((ref) => $AppRouter(ref));
 
 class DebugRouteObserver extends AutoRouterObserver {
   @override

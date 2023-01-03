@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'entry.dart';
 
@@ -67,7 +67,7 @@ mixin _$Entry {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
+    TResult? Function(
             DateTime timestamp,
             String projectId,
             String assetEntityId,
@@ -78,7 +78,7 @@ mixin _$Entry {
             int height,
             List<int>? thumbnailBytes)?
         editing,
-    TResult Function(
+    TResult? Function(
             int exportVersion,
             DateTime timestamp,
             DateTime changedWhen,
@@ -132,8 +132,8 @@ mixin _$Entry {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(EditingEntry value)? editing,
-    TResult Function(SavedEntry value)? saved,
+    TResult? Function(EditingEntry value)? editing,
+    TResult? Function(SavedEntry value)? saved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -151,7 +151,8 @@ mixin _$Entry {
 /// @nodoc
 abstract class $EntryCopyWith<$Res> {
   factory $EntryCopyWith(Entry value, $Res Function(Entry) then) =
-      _$EntryCopyWithImpl<$Res>;
+      _$EntryCopyWithImpl<$Res, Entry>;
+  @useResult
   $Res call(
       {DateTime timestamp,
       String projectId,
@@ -163,53 +164,56 @@ abstract class $EntryCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$EntryCopyWithImpl<$Res> implements $EntryCopyWith<$Res> {
+class _$EntryCopyWithImpl<$Res, $Val extends Entry>
+    implements $EntryCopyWith<$Res> {
   _$EntryCopyWithImpl(this._value, this._then);
 
-  final Entry _value;
   // ignore: unused_field
-  final $Res Function(Entry) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? timestamp = freezed,
-    Object? projectId = freezed,
-    Object? assetEntityId = freezed,
-    Object? startPoint = freezed,
-    Object? duration = freezed,
-    Object? width = freezed,
-    Object? height = freezed,
+    Object? timestamp = null,
+    Object? projectId = null,
+    Object? assetEntityId = null,
+    Object? startPoint = null,
+    Object? duration = null,
+    Object? width = null,
+    Object? height = null,
   }) {
     return _then(_value.copyWith(
-      timestamp: timestamp == freezed
+      timestamp: null == timestamp
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      projectId: projectId == freezed
+      projectId: null == projectId
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
               as String,
-      assetEntityId: assetEntityId == freezed
+      assetEntityId: null == assetEntityId
           ? _value.assetEntityId
           : assetEntityId // ignore: cast_nullable_to_non_nullable
               as String,
-      startPoint: startPoint == freezed
+      startPoint: null == startPoint
           ? _value.startPoint
           : startPoint // ignore: cast_nullable_to_non_nullable
               as Duration,
-      duration: duration == freezed
+      duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as Duration,
-      width: width == freezed
+      width: null == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
               as int,
-      height: height == freezed
+      height: null == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -219,6 +223,7 @@ abstract class _$$EditingEntryCopyWith<$Res> implements $EntryCopyWith<$Res> {
           _$EditingEntry value, $Res Function(_$EditingEntry) then) =
       __$$EditingEntryCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {DateTime timestamp,
       String projectId,
@@ -232,61 +237,60 @@ abstract class _$$EditingEntryCopyWith<$Res> implements $EntryCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$EditingEntryCopyWithImpl<$Res> extends _$EntryCopyWithImpl<$Res>
+class __$$EditingEntryCopyWithImpl<$Res>
+    extends _$EntryCopyWithImpl<$Res, _$EditingEntry>
     implements _$$EditingEntryCopyWith<$Res> {
   __$$EditingEntryCopyWithImpl(
       _$EditingEntry _value, $Res Function(_$EditingEntry) _then)
-      : super(_value, (v) => _then(v as _$EditingEntry));
+      : super(_value, _then);
 
-  @override
-  _$EditingEntry get _value => super._value as _$EditingEntry;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? timestamp = freezed,
-    Object? projectId = freezed,
-    Object? assetEntityId = freezed,
-    Object? videoPath = freezed,
-    Object? startPoint = freezed,
-    Object? duration = freezed,
-    Object? width = freezed,
-    Object? height = freezed,
+    Object? timestamp = null,
+    Object? projectId = null,
+    Object? assetEntityId = null,
+    Object? videoPath = null,
+    Object? startPoint = null,
+    Object? duration = null,
+    Object? width = null,
+    Object? height = null,
     Object? thumbnailBytes = freezed,
   }) {
     return _then(_$EditingEntry(
-      timestamp: timestamp == freezed
+      timestamp: null == timestamp
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      projectId: projectId == freezed
+      projectId: null == projectId
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
               as String,
-      assetEntityId: assetEntityId == freezed
+      assetEntityId: null == assetEntityId
           ? _value.assetEntityId
           : assetEntityId // ignore: cast_nullable_to_non_nullable
               as String,
-      videoPath: videoPath == freezed
+      videoPath: null == videoPath
           ? _value.videoPath
           : videoPath // ignore: cast_nullable_to_non_nullable
               as String,
-      startPoint: startPoint == freezed
+      startPoint: null == startPoint
           ? _value.startPoint
           : startPoint // ignore: cast_nullable_to_non_nullable
               as Duration,
-      duration: duration == freezed
+      duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as Duration,
-      width: width == freezed
+      width: null == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
               as int,
-      height: height == freezed
+      height: null == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
               as int,
-      thumbnailBytes: thumbnailBytes == freezed
+      thumbnailBytes: freezed == thumbnailBytes
           ? _value._thumbnailBytes
           : thumbnailBytes // ignore: cast_nullable_to_non_nullable
               as List<int>?,
@@ -336,6 +340,7 @@ class _$EditingEntry extends EditingEntry {
   List<int>? get thumbnailBytes {
     final value = _thumbnailBytes;
     if (value == null) return null;
+    if (_thumbnailBytes is EqualUnmodifiableListView) return _thumbnailBytes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -353,16 +358,20 @@ class _$EditingEntry extends EditingEntry {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EditingEntry &&
-            const DeepCollectionEquality().equals(other.timestamp, timestamp) &&
-            const DeepCollectionEquality().equals(other.projectId, projectId) &&
-            const DeepCollectionEquality()
-                .equals(other.assetEntityId, assetEntityId) &&
-            const DeepCollectionEquality().equals(other.videoPath, videoPath) &&
-            const DeepCollectionEquality()
-                .equals(other.startPoint, startPoint) &&
-            const DeepCollectionEquality().equals(other.duration, duration) &&
-            const DeepCollectionEquality().equals(other.width, width) &&
-            const DeepCollectionEquality().equals(other.height, height) &&
+            (identical(other.timestamp, timestamp) ||
+                other.timestamp == timestamp) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.assetEntityId, assetEntityId) ||
+                other.assetEntityId == assetEntityId) &&
+            (identical(other.videoPath, videoPath) ||
+                other.videoPath == videoPath) &&
+            (identical(other.startPoint, startPoint) ||
+                other.startPoint == startPoint) &&
+            (identical(other.duration, duration) ||
+                other.duration == duration) &&
+            (identical(other.width, width) || other.width == width) &&
+            (identical(other.height, height) || other.height == height) &&
             const DeepCollectionEquality()
                 .equals(other._thumbnailBytes, _thumbnailBytes));
   }
@@ -371,18 +380,19 @@ class _$EditingEntry extends EditingEntry {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(timestamp),
-      const DeepCollectionEquality().hash(projectId),
-      const DeepCollectionEquality().hash(assetEntityId),
-      const DeepCollectionEquality().hash(videoPath),
-      const DeepCollectionEquality().hash(startPoint),
-      const DeepCollectionEquality().hash(duration),
-      const DeepCollectionEquality().hash(width),
-      const DeepCollectionEquality().hash(height),
+      timestamp,
+      projectId,
+      assetEntityId,
+      videoPath,
+      startPoint,
+      duration,
+      width,
+      height,
       const DeepCollectionEquality().hash(_thumbnailBytes));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$EditingEntryCopyWith<_$EditingEntry> get copyWith =>
       __$$EditingEntryCopyWithImpl<_$EditingEntry>(this, _$identity);
 
@@ -422,7 +432,7 @@ class _$EditingEntry extends EditingEntry {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
+    TResult? Function(
             DateTime timestamp,
             String projectId,
             String assetEntityId,
@@ -433,7 +443,7 @@ class _$EditingEntry extends EditingEntry {
             int height,
             List<int>? thumbnailBytes)?
         editing,
-    TResult Function(
+    TResult? Function(
             int exportVersion,
             DateTime timestamp,
             DateTime changedWhen,
@@ -501,8 +511,8 @@ class _$EditingEntry extends EditingEntry {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(EditingEntry value)? editing,
-    TResult Function(SavedEntry value)? saved,
+    TResult? Function(EditingEntry value)? editing,
+    TResult? Function(SavedEntry value)? saved,
   }) {
     return editing?.call(this);
   }
@@ -572,6 +582,7 @@ abstract class _$$SavedEntryCopyWith<$Res> implements $EntryCopyWith<$Res> {
           _$SavedEntry value, $Res Function(_$SavedEntry) then) =
       __$$SavedEntryCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {int exportVersion,
       DateTime timestamp,
@@ -588,76 +599,75 @@ abstract class _$$SavedEntryCopyWith<$Res> implements $EntryCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$SavedEntryCopyWithImpl<$Res> extends _$EntryCopyWithImpl<$Res>
+class __$$SavedEntryCopyWithImpl<$Res>
+    extends _$EntryCopyWithImpl<$Res, _$SavedEntry>
     implements _$$SavedEntryCopyWith<$Res> {
   __$$SavedEntryCopyWithImpl(
       _$SavedEntry _value, $Res Function(_$SavedEntry) _then)
-      : super(_value, (v) => _then(v as _$SavedEntry));
+      : super(_value, _then);
 
-  @override
-  _$SavedEntry get _value => super._value as _$SavedEntry;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? exportVersion = freezed,
-    Object? timestamp = freezed,
-    Object? changedWhen = freezed,
-    Object? projectId = freezed,
-    Object? assetEntityId = freezed,
-    Object? clipFileName = freezed,
-    Object? blurHash = freezed,
+    Object? exportVersion = null,
+    Object? timestamp = null,
+    Object? changedWhen = null,
+    Object? projectId = null,
+    Object? assetEntityId = null,
+    Object? clipFileName = null,
+    Object? blurHash = null,
     Object? color = freezed,
-    Object? startPoint = freezed,
-    Object? duration = freezed,
-    Object? width = freezed,
-    Object? height = freezed,
+    Object? startPoint = null,
+    Object? duration = null,
+    Object? width = null,
+    Object? height = null,
   }) {
     return _then(_$SavedEntry(
-      exportVersion: exportVersion == freezed
+      exportVersion: null == exportVersion
           ? _value.exportVersion
           : exportVersion // ignore: cast_nullable_to_non_nullable
               as int,
-      timestamp: timestamp == freezed
+      timestamp: null == timestamp
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      changedWhen: changedWhen == freezed
+      changedWhen: null == changedWhen
           ? _value.changedWhen
           : changedWhen // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      projectId: projectId == freezed
+      projectId: null == projectId
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
               as String,
-      assetEntityId: assetEntityId == freezed
+      assetEntityId: null == assetEntityId
           ? _value.assetEntityId
           : assetEntityId // ignore: cast_nullable_to_non_nullable
               as String,
-      clipFileName: clipFileName == freezed
+      clipFileName: null == clipFileName
           ? _value.clipFileName
           : clipFileName // ignore: cast_nullable_to_non_nullable
               as String,
-      blurHash: blurHash == freezed
+      blurHash: null == blurHash
           ? _value.blurHash
           : blurHash // ignore: cast_nullable_to_non_nullable
               as String,
-      color: color == freezed
+      color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as int?,
-      startPoint: startPoint == freezed
+      startPoint: null == startPoint
           ? _value.startPoint
           : startPoint // ignore: cast_nullable_to_non_nullable
               as Duration,
-      duration: duration == freezed
+      duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as Duration,
-      width: width == freezed
+      width: null == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
               as int,
-      height: height == freezed
+      height: null == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
               as int,
@@ -726,44 +736,49 @@ class _$SavedEntry extends SavedEntry {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SavedEntry &&
-            const DeepCollectionEquality()
-                .equals(other.exportVersion, exportVersion) &&
-            const DeepCollectionEquality().equals(other.timestamp, timestamp) &&
-            const DeepCollectionEquality()
-                .equals(other.changedWhen, changedWhen) &&
-            const DeepCollectionEquality().equals(other.projectId, projectId) &&
-            const DeepCollectionEquality()
-                .equals(other.assetEntityId, assetEntityId) &&
-            const DeepCollectionEquality()
-                .equals(other.clipFileName, clipFileName) &&
-            const DeepCollectionEquality().equals(other.blurHash, blurHash) &&
-            const DeepCollectionEquality().equals(other.color, color) &&
-            const DeepCollectionEquality()
-                .equals(other.startPoint, startPoint) &&
-            const DeepCollectionEquality().equals(other.duration, duration) &&
-            const DeepCollectionEquality().equals(other.width, width) &&
-            const DeepCollectionEquality().equals(other.height, height));
+            (identical(other.exportVersion, exportVersion) ||
+                other.exportVersion == exportVersion) &&
+            (identical(other.timestamp, timestamp) ||
+                other.timestamp == timestamp) &&
+            (identical(other.changedWhen, changedWhen) ||
+                other.changedWhen == changedWhen) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.assetEntityId, assetEntityId) ||
+                other.assetEntityId == assetEntityId) &&
+            (identical(other.clipFileName, clipFileName) ||
+                other.clipFileName == clipFileName) &&
+            (identical(other.blurHash, blurHash) ||
+                other.blurHash == blurHash) &&
+            (identical(other.color, color) || other.color == color) &&
+            (identical(other.startPoint, startPoint) ||
+                other.startPoint == startPoint) &&
+            (identical(other.duration, duration) ||
+                other.duration == duration) &&
+            (identical(other.width, width) || other.width == width) &&
+            (identical(other.height, height) || other.height == height));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(exportVersion),
-      const DeepCollectionEquality().hash(timestamp),
-      const DeepCollectionEquality().hash(changedWhen),
-      const DeepCollectionEquality().hash(projectId),
-      const DeepCollectionEquality().hash(assetEntityId),
-      const DeepCollectionEquality().hash(clipFileName),
-      const DeepCollectionEquality().hash(blurHash),
-      const DeepCollectionEquality().hash(color),
-      const DeepCollectionEquality().hash(startPoint),
-      const DeepCollectionEquality().hash(duration),
-      const DeepCollectionEquality().hash(width),
-      const DeepCollectionEquality().hash(height));
+      exportVersion,
+      timestamp,
+      changedWhen,
+      projectId,
+      assetEntityId,
+      clipFileName,
+      blurHash,
+      color,
+      startPoint,
+      duration,
+      width,
+      height);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$SavedEntryCopyWith<_$SavedEntry> get copyWith =>
       __$$SavedEntryCopyWithImpl<_$SavedEntry>(this, _$identity);
 
@@ -814,7 +829,7 @@ class _$SavedEntry extends SavedEntry {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
+    TResult? Function(
             DateTime timestamp,
             String projectId,
             String assetEntityId,
@@ -825,7 +840,7 @@ class _$SavedEntry extends SavedEntry {
             int height,
             List<int>? thumbnailBytes)?
         editing,
-    TResult Function(
+    TResult? Function(
             int exportVersion,
             DateTime timestamp,
             DateTime changedWhen,
@@ -915,8 +930,8 @@ class _$SavedEntry extends SavedEntry {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(EditingEntry value)? editing,
-    TResult Function(SavedEntry value)? saved,
+    TResult? Function(EditingEntry value)? editing,
+    TResult? Function(SavedEntry value)? saved,
   }) {
     return saved?.call(this);
   }

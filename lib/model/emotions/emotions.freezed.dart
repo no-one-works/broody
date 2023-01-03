@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'emotions.dart';
 
@@ -31,28 +31,32 @@ mixin _$Emotions {
 /// @nodoc
 abstract class $EmotionsCopyWith<$Res> {
   factory $EmotionsCopyWith(Emotions value, $Res Function(Emotions) then) =
-      _$EmotionsCopyWithImpl<$Res>;
+      _$EmotionsCopyWithImpl<$Res, Emotions>;
+  @useResult
   $Res call({double sadHappy});
 }
 
 /// @nodoc
-class _$EmotionsCopyWithImpl<$Res> implements $EmotionsCopyWith<$Res> {
+class _$EmotionsCopyWithImpl<$Res, $Val extends Emotions>
+    implements $EmotionsCopyWith<$Res> {
   _$EmotionsCopyWithImpl(this._value, this._then);
 
-  final Emotions _value;
   // ignore: unused_field
-  final $Res Function(Emotions) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? sadHappy = freezed,
+    Object? sadHappy = null,
   }) {
     return _then(_value.copyWith(
-      sadHappy: sadHappy == freezed
+      sadHappy: null == sadHappy
           ? _value.sadHappy
           : sadHappy // ignore: cast_nullable_to_non_nullable
               as double,
-    ));
+    ) as $Val);
   }
 }
 
@@ -62,25 +66,25 @@ abstract class _$$_EmotionsCopyWith<$Res> implements $EmotionsCopyWith<$Res> {
           _$_Emotions value, $Res Function(_$_Emotions) then) =
       __$$_EmotionsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({double sadHappy});
 }
 
 /// @nodoc
-class __$$_EmotionsCopyWithImpl<$Res> extends _$EmotionsCopyWithImpl<$Res>
+class __$$_EmotionsCopyWithImpl<$Res>
+    extends _$EmotionsCopyWithImpl<$Res, _$_Emotions>
     implements _$$_EmotionsCopyWith<$Res> {
   __$$_EmotionsCopyWithImpl(
       _$_Emotions _value, $Res Function(_$_Emotions) _then)
-      : super(_value, (v) => _then(v as _$_Emotions));
+      : super(_value, _then);
 
-  @override
-  _$_Emotions get _value => super._value as _$_Emotions;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? sadHappy = freezed,
+    Object? sadHappy = null,
   }) {
     return _then(_$_Emotions(
-      sadHappy: sadHappy == freezed
+      sadHappy: null == sadHappy
           ? _value.sadHappy
           : sadHappy // ignore: cast_nullable_to_non_nullable
               as double,
@@ -110,16 +114,17 @@ class _$_Emotions implements _Emotions {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Emotions &&
-            const DeepCollectionEquality().equals(other.sadHappy, sadHappy));
+            (identical(other.sadHappy, sadHappy) ||
+                other.sadHappy == sadHappy));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(sadHappy));
+  int get hashCode => Object.hash(runtimeType, sadHappy);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_EmotionsCopyWith<_$_Emotions> get copyWith =>
       __$$_EmotionsCopyWithImpl<_$_Emotions>(this, _$identity);
 

@@ -13,18 +13,18 @@ final createCompilationStateProvider = StateNotifierProvider.autoDispose.family<
     CreateCompilationState,
     CreateCompilationState>((ref, state) {
   return CreateCompilationNotifier(
-    ref.read,
+    ref,
     state,
   );
 });
 
 class CreateCompilationNotifier extends StateNotifier<CreateCompilationState> {
-  CreateCompilationNotifier(this.reader, CreateCompilationState initialState)
+  CreateCompilationNotifier(this.ref, CreateCompilationState initialState)
       : super(initialState) {
     _init();
   }
 
-  final Reader reader;
+  final Ref ref;
 
   void _init() async {
     if (_compilationNeedsUpdate()) {
@@ -37,7 +37,7 @@ class CreateCompilationNotifier extends StateNotifier<CreateCompilationState> {
       _saveCompilation();
     } else {
       debugPrint("No compilation update is needed");
-      final projectRepo = reader(projectRepositoryProvider);
+      final projectRepo = ref.read(projectRepositoryProvider);
       final savedCompilation = projectRepo.getCompilationForProject(
         projectUid: state.projectUid,
         monthOfYear: state.monthOfYear,
@@ -65,7 +65,7 @@ class CreateCompilationNotifier extends StateNotifier<CreateCompilationState> {
   Future<bool> saveToGallery() async {
     final s = state;
     if (s is CreateCompilationExportSuccess) {
-      final repo = reader(projectRepositoryProvider);
+      final repo = ref.read(projectRepositoryProvider);
       final project = repo.getProject(s.projectUid)!;
       final assetEntity = await repo.saveCompilationInGallery(
         project: project,
@@ -90,7 +90,7 @@ class CreateCompilationNotifier extends StateNotifier<CreateCompilationState> {
     if (s is! CreateCompilationPrepareExport) {
       return false;
     }
-    final projectRepo = reader(projectRepositoryProvider);
+    final projectRepo = ref.read(projectRepositoryProvider);
     return projectRepo.compilationNeedsUpdate(
       projectUid: s.projectUid,
       monthOfYear: s.monthOfYear,
@@ -115,7 +115,7 @@ class CreateCompilationNotifier extends StateNotifier<CreateCompilationState> {
       return;
     }
     debugPrint("lets export...");
-    final repo = reader(projectRepositoryProvider);
+    final repo = ref.read(projectRepositoryProvider);
     final compilationProgress = repo.createCompilation(
       projectUid: state.projectUid,
       monthOfYear: state.monthOfYear,

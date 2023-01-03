@@ -29,7 +29,7 @@ final entryForDateProvider =
       (entry) => entry.timestamp.startOfDay() == date.startOfDay(),
     )),
     loading: () => const AsyncValue.loading(),
-    error: (e, s) => AsyncValue.error(e, stackTrace: s),
+    error: (e, s) => AsyncValue.error(e, s),
   );
 });
 

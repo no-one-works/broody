@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'project_details.state.dart';
 
@@ -28,11 +28,11 @@ mixin _$ProjectDetailsState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Project project)? creating,
-    TResult Function(Project project)? editing,
-    TResult Function(Project project)? confirmDestructive,
-    TResult Function(Project project)? saved,
-    TResult Function(Project project)? deleted,
+    TResult? Function(Project project)? creating,
+    TResult? Function(Project project)? editing,
+    TResult? Function(Project project)? confirmDestructive,
+    TResult? Function(Project project)? saved,
+    TResult? Function(Project project)? deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,12 +57,12 @@ mixin _$ProjectDetailsState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ProjectDetailsCreating value)? creating,
-    TResult Function(ProjectDetailsEditing value)? editing,
-    TResult Function(ProjectDetailsConfirmDestructive value)?
+    TResult? Function(ProjectDetailsCreating value)? creating,
+    TResult? Function(ProjectDetailsEditing value)? editing,
+    TResult? Function(ProjectDetailsConfirmDestructive value)?
         confirmDestructive,
-    TResult Function(ProjectDetailsSaved value)? saved,
-    TResult Function(ProjectDetailsDeleted value)? deleted,
+    TResult? Function(ProjectDetailsSaved value)? saved,
+    TResult? Function(ProjectDetailsDeleted value)? deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -86,37 +86,41 @@ mixin _$ProjectDetailsState {
 abstract class $ProjectDetailsStateCopyWith<$Res> {
   factory $ProjectDetailsStateCopyWith(
           ProjectDetailsState value, $Res Function(ProjectDetailsState) then) =
-      _$ProjectDetailsStateCopyWithImpl<$Res>;
+      _$ProjectDetailsStateCopyWithImpl<$Res, ProjectDetailsState>;
+  @useResult
   $Res call({Project project});
 
   $ProjectCopyWith<$Res> get project;
 }
 
 /// @nodoc
-class _$ProjectDetailsStateCopyWithImpl<$Res>
+class _$ProjectDetailsStateCopyWithImpl<$Res, $Val extends ProjectDetailsState>
     implements $ProjectDetailsStateCopyWith<$Res> {
   _$ProjectDetailsStateCopyWithImpl(this._value, this._then);
 
-  final ProjectDetailsState _value;
   // ignore: unused_field
-  final $Res Function(ProjectDetailsState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? project = freezed,
+    Object? project = null,
   }) {
     return _then(_value.copyWith(
-      project: project == freezed
+      project: null == project
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
               as Project,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ProjectCopyWith<$Res> get project {
     return $ProjectCopyWith<$Res>(_value.project, (value) {
-      return _then(_value.copyWith(project: value));
+      return _then(_value.copyWith(project: value) as $Val);
     });
   }
 }
@@ -128,6 +132,7 @@ abstract class _$$ProjectDetailsCreatingCopyWith<$Res>
           $Res Function(_$ProjectDetailsCreating) then) =
       __$$ProjectDetailsCreatingCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({Project project});
 
   @override
@@ -136,22 +141,19 @@ abstract class _$$ProjectDetailsCreatingCopyWith<$Res>
 
 /// @nodoc
 class __$$ProjectDetailsCreatingCopyWithImpl<$Res>
-    extends _$ProjectDetailsStateCopyWithImpl<$Res>
+    extends _$ProjectDetailsStateCopyWithImpl<$Res, _$ProjectDetailsCreating>
     implements _$$ProjectDetailsCreatingCopyWith<$Res> {
   __$$ProjectDetailsCreatingCopyWithImpl(_$ProjectDetailsCreating _value,
       $Res Function(_$ProjectDetailsCreating) _then)
-      : super(_value, (v) => _then(v as _$ProjectDetailsCreating));
+      : super(_value, _then);
 
-  @override
-  _$ProjectDetailsCreating get _value =>
-      super._value as _$ProjectDetailsCreating;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? project = freezed,
+    Object? project = null,
   }) {
     return _then(_$ProjectDetailsCreating(
-      project: project == freezed
+      project: null == project
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
               as Project,
@@ -177,15 +179,15 @@ class _$ProjectDetailsCreating implements ProjectDetailsCreating {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectDetailsCreating &&
-            const DeepCollectionEquality().equals(other.project, project));
+            (identical(other.project, project) || other.project == project));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(project));
+  int get hashCode => Object.hash(runtimeType, project);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$ProjectDetailsCreatingCopyWith<_$ProjectDetailsCreating> get copyWith =>
       __$$ProjectDetailsCreatingCopyWithImpl<_$ProjectDetailsCreating>(
           this, _$identity);
@@ -205,11 +207,11 @@ class _$ProjectDetailsCreating implements ProjectDetailsCreating {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Project project)? creating,
-    TResult Function(Project project)? editing,
-    TResult Function(Project project)? confirmDestructive,
-    TResult Function(Project project)? saved,
-    TResult Function(Project project)? deleted,
+    TResult? Function(Project project)? creating,
+    TResult? Function(Project project)? editing,
+    TResult? Function(Project project)? confirmDestructive,
+    TResult? Function(Project project)? saved,
+    TResult? Function(Project project)? deleted,
   }) {
     return creating?.call(project);
   }
@@ -246,12 +248,12 @@ class _$ProjectDetailsCreating implements ProjectDetailsCreating {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ProjectDetailsCreating value)? creating,
-    TResult Function(ProjectDetailsEditing value)? editing,
-    TResult Function(ProjectDetailsConfirmDestructive value)?
+    TResult? Function(ProjectDetailsCreating value)? creating,
+    TResult? Function(ProjectDetailsEditing value)? editing,
+    TResult? Function(ProjectDetailsConfirmDestructive value)?
         confirmDestructive,
-    TResult Function(ProjectDetailsSaved value)? saved,
-    TResult Function(ProjectDetailsDeleted value)? deleted,
+    TResult? Function(ProjectDetailsSaved value)? saved,
+    TResult? Function(ProjectDetailsDeleted value)? deleted,
   }) {
     return creating?.call(this);
   }
@@ -293,6 +295,7 @@ abstract class _$$ProjectDetailsEditingCopyWith<$Res>
           $Res Function(_$ProjectDetailsEditing) then) =
       __$$ProjectDetailsEditingCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({Project project});
 
   @override
@@ -301,21 +304,19 @@ abstract class _$$ProjectDetailsEditingCopyWith<$Res>
 
 /// @nodoc
 class __$$ProjectDetailsEditingCopyWithImpl<$Res>
-    extends _$ProjectDetailsStateCopyWithImpl<$Res>
+    extends _$ProjectDetailsStateCopyWithImpl<$Res, _$ProjectDetailsEditing>
     implements _$$ProjectDetailsEditingCopyWith<$Res> {
   __$$ProjectDetailsEditingCopyWithImpl(_$ProjectDetailsEditing _value,
       $Res Function(_$ProjectDetailsEditing) _then)
-      : super(_value, (v) => _then(v as _$ProjectDetailsEditing));
+      : super(_value, _then);
 
-  @override
-  _$ProjectDetailsEditing get _value => super._value as _$ProjectDetailsEditing;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? project = freezed,
+    Object? project = null,
   }) {
     return _then(_$ProjectDetailsEditing(
-      project: project == freezed
+      project: null == project
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
               as Project,
@@ -341,15 +342,15 @@ class _$ProjectDetailsEditing implements ProjectDetailsEditing {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectDetailsEditing &&
-            const DeepCollectionEquality().equals(other.project, project));
+            (identical(other.project, project) || other.project == project));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(project));
+  int get hashCode => Object.hash(runtimeType, project);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$ProjectDetailsEditingCopyWith<_$ProjectDetailsEditing> get copyWith =>
       __$$ProjectDetailsEditingCopyWithImpl<_$ProjectDetailsEditing>(
           this, _$identity);
@@ -369,11 +370,11 @@ class _$ProjectDetailsEditing implements ProjectDetailsEditing {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Project project)? creating,
-    TResult Function(Project project)? editing,
-    TResult Function(Project project)? confirmDestructive,
-    TResult Function(Project project)? saved,
-    TResult Function(Project project)? deleted,
+    TResult? Function(Project project)? creating,
+    TResult? Function(Project project)? editing,
+    TResult? Function(Project project)? confirmDestructive,
+    TResult? Function(Project project)? saved,
+    TResult? Function(Project project)? deleted,
   }) {
     return editing?.call(project);
   }
@@ -410,12 +411,12 @@ class _$ProjectDetailsEditing implements ProjectDetailsEditing {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ProjectDetailsCreating value)? creating,
-    TResult Function(ProjectDetailsEditing value)? editing,
-    TResult Function(ProjectDetailsConfirmDestructive value)?
+    TResult? Function(ProjectDetailsCreating value)? creating,
+    TResult? Function(ProjectDetailsEditing value)? editing,
+    TResult? Function(ProjectDetailsConfirmDestructive value)?
         confirmDestructive,
-    TResult Function(ProjectDetailsSaved value)? saved,
-    TResult Function(ProjectDetailsDeleted value)? deleted,
+    TResult? Function(ProjectDetailsSaved value)? saved,
+    TResult? Function(ProjectDetailsDeleted value)? deleted,
   }) {
     return editing?.call(this);
   }
@@ -458,6 +459,7 @@ abstract class _$$ProjectDetailsConfirmDestructiveCopyWith<$Res>
           $Res Function(_$ProjectDetailsConfirmDestructive) then) =
       __$$ProjectDetailsConfirmDestructiveCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({Project project});
 
   @override
@@ -466,23 +468,21 @@ abstract class _$$ProjectDetailsConfirmDestructiveCopyWith<$Res>
 
 /// @nodoc
 class __$$ProjectDetailsConfirmDestructiveCopyWithImpl<$Res>
-    extends _$ProjectDetailsStateCopyWithImpl<$Res>
+    extends _$ProjectDetailsStateCopyWithImpl<$Res,
+        _$ProjectDetailsConfirmDestructive>
     implements _$$ProjectDetailsConfirmDestructiveCopyWith<$Res> {
   __$$ProjectDetailsConfirmDestructiveCopyWithImpl(
       _$ProjectDetailsConfirmDestructive _value,
       $Res Function(_$ProjectDetailsConfirmDestructive) _then)
-      : super(_value, (v) => _then(v as _$ProjectDetailsConfirmDestructive));
+      : super(_value, _then);
 
-  @override
-  _$ProjectDetailsConfirmDestructive get _value =>
-      super._value as _$ProjectDetailsConfirmDestructive;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? project = freezed,
+    Object? project = null,
   }) {
     return _then(_$ProjectDetailsConfirmDestructive(
-      project: project == freezed
+      project: null == project
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
               as Project,
@@ -509,15 +509,15 @@ class _$ProjectDetailsConfirmDestructive
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectDetailsConfirmDestructive &&
-            const DeepCollectionEquality().equals(other.project, project));
+            (identical(other.project, project) || other.project == project));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(project));
+  int get hashCode => Object.hash(runtimeType, project);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$ProjectDetailsConfirmDestructiveCopyWith<
           _$ProjectDetailsConfirmDestructive>
       get copyWith => __$$ProjectDetailsConfirmDestructiveCopyWithImpl<
@@ -538,11 +538,11 @@ class _$ProjectDetailsConfirmDestructive
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Project project)? creating,
-    TResult Function(Project project)? editing,
-    TResult Function(Project project)? confirmDestructive,
-    TResult Function(Project project)? saved,
-    TResult Function(Project project)? deleted,
+    TResult? Function(Project project)? creating,
+    TResult? Function(Project project)? editing,
+    TResult? Function(Project project)? confirmDestructive,
+    TResult? Function(Project project)? saved,
+    TResult? Function(Project project)? deleted,
   }) {
     return confirmDestructive?.call(project);
   }
@@ -579,12 +579,12 @@ class _$ProjectDetailsConfirmDestructive
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ProjectDetailsCreating value)? creating,
-    TResult Function(ProjectDetailsEditing value)? editing,
-    TResult Function(ProjectDetailsConfirmDestructive value)?
+    TResult? Function(ProjectDetailsCreating value)? creating,
+    TResult? Function(ProjectDetailsEditing value)? editing,
+    TResult? Function(ProjectDetailsConfirmDestructive value)?
         confirmDestructive,
-    TResult Function(ProjectDetailsSaved value)? saved,
-    TResult Function(ProjectDetailsDeleted value)? deleted,
+    TResult? Function(ProjectDetailsSaved value)? saved,
+    TResult? Function(ProjectDetailsDeleted value)? deleted,
   }) {
     return confirmDestructive?.call(this);
   }
@@ -627,6 +627,7 @@ abstract class _$$ProjectDetailsSavedCopyWith<$Res>
           $Res Function(_$ProjectDetailsSaved) then) =
       __$$ProjectDetailsSavedCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({Project project});
 
   @override
@@ -635,21 +636,19 @@ abstract class _$$ProjectDetailsSavedCopyWith<$Res>
 
 /// @nodoc
 class __$$ProjectDetailsSavedCopyWithImpl<$Res>
-    extends _$ProjectDetailsStateCopyWithImpl<$Res>
+    extends _$ProjectDetailsStateCopyWithImpl<$Res, _$ProjectDetailsSaved>
     implements _$$ProjectDetailsSavedCopyWith<$Res> {
   __$$ProjectDetailsSavedCopyWithImpl(
       _$ProjectDetailsSaved _value, $Res Function(_$ProjectDetailsSaved) _then)
-      : super(_value, (v) => _then(v as _$ProjectDetailsSaved));
+      : super(_value, _then);
 
-  @override
-  _$ProjectDetailsSaved get _value => super._value as _$ProjectDetailsSaved;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? project = freezed,
+    Object? project = null,
   }) {
     return _then(_$ProjectDetailsSaved(
-      project: project == freezed
+      project: null == project
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
               as Project,
@@ -675,15 +674,15 @@ class _$ProjectDetailsSaved implements ProjectDetailsSaved {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectDetailsSaved &&
-            const DeepCollectionEquality().equals(other.project, project));
+            (identical(other.project, project) || other.project == project));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(project));
+  int get hashCode => Object.hash(runtimeType, project);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$ProjectDetailsSavedCopyWith<_$ProjectDetailsSaved> get copyWith =>
       __$$ProjectDetailsSavedCopyWithImpl<_$ProjectDetailsSaved>(
           this, _$identity);
@@ -703,11 +702,11 @@ class _$ProjectDetailsSaved implements ProjectDetailsSaved {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Project project)? creating,
-    TResult Function(Project project)? editing,
-    TResult Function(Project project)? confirmDestructive,
-    TResult Function(Project project)? saved,
-    TResult Function(Project project)? deleted,
+    TResult? Function(Project project)? creating,
+    TResult? Function(Project project)? editing,
+    TResult? Function(Project project)? confirmDestructive,
+    TResult? Function(Project project)? saved,
+    TResult? Function(Project project)? deleted,
   }) {
     return saved?.call(project);
   }
@@ -744,12 +743,12 @@ class _$ProjectDetailsSaved implements ProjectDetailsSaved {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ProjectDetailsCreating value)? creating,
-    TResult Function(ProjectDetailsEditing value)? editing,
-    TResult Function(ProjectDetailsConfirmDestructive value)?
+    TResult? Function(ProjectDetailsCreating value)? creating,
+    TResult? Function(ProjectDetailsEditing value)? editing,
+    TResult? Function(ProjectDetailsConfirmDestructive value)?
         confirmDestructive,
-    TResult Function(ProjectDetailsSaved value)? saved,
-    TResult Function(ProjectDetailsDeleted value)? deleted,
+    TResult? Function(ProjectDetailsSaved value)? saved,
+    TResult? Function(ProjectDetailsDeleted value)? deleted,
   }) {
     return saved?.call(this);
   }
@@ -791,6 +790,7 @@ abstract class _$$ProjectDetailsDeletedCopyWith<$Res>
           $Res Function(_$ProjectDetailsDeleted) then) =
       __$$ProjectDetailsDeletedCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({Project project});
 
   @override
@@ -799,21 +799,19 @@ abstract class _$$ProjectDetailsDeletedCopyWith<$Res>
 
 /// @nodoc
 class __$$ProjectDetailsDeletedCopyWithImpl<$Res>
-    extends _$ProjectDetailsStateCopyWithImpl<$Res>
+    extends _$ProjectDetailsStateCopyWithImpl<$Res, _$ProjectDetailsDeleted>
     implements _$$ProjectDetailsDeletedCopyWith<$Res> {
   __$$ProjectDetailsDeletedCopyWithImpl(_$ProjectDetailsDeleted _value,
       $Res Function(_$ProjectDetailsDeleted) _then)
-      : super(_value, (v) => _then(v as _$ProjectDetailsDeleted));
+      : super(_value, _then);
 
-  @override
-  _$ProjectDetailsDeleted get _value => super._value as _$ProjectDetailsDeleted;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? project = freezed,
+    Object? project = null,
   }) {
     return _then(_$ProjectDetailsDeleted(
-      project: project == freezed
+      project: null == project
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
               as Project,
@@ -839,15 +837,15 @@ class _$ProjectDetailsDeleted implements ProjectDetailsDeleted {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectDetailsDeleted &&
-            const DeepCollectionEquality().equals(other.project, project));
+            (identical(other.project, project) || other.project == project));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(project));
+  int get hashCode => Object.hash(runtimeType, project);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$ProjectDetailsDeletedCopyWith<_$ProjectDetailsDeleted> get copyWith =>
       __$$ProjectDetailsDeletedCopyWithImpl<_$ProjectDetailsDeleted>(
           this, _$identity);
@@ -867,11 +865,11 @@ class _$ProjectDetailsDeleted implements ProjectDetailsDeleted {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Project project)? creating,
-    TResult Function(Project project)? editing,
-    TResult Function(Project project)? confirmDestructive,
-    TResult Function(Project project)? saved,
-    TResult Function(Project project)? deleted,
+    TResult? Function(Project project)? creating,
+    TResult? Function(Project project)? editing,
+    TResult? Function(Project project)? confirmDestructive,
+    TResult? Function(Project project)? saved,
+    TResult? Function(Project project)? deleted,
   }) {
     return deleted?.call(project);
   }
@@ -908,12 +906,12 @@ class _$ProjectDetailsDeleted implements ProjectDetailsDeleted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ProjectDetailsCreating value)? creating,
-    TResult Function(ProjectDetailsEditing value)? editing,
-    TResult Function(ProjectDetailsConfirmDestructive value)?
+    TResult? Function(ProjectDetailsCreating value)? creating,
+    TResult? Function(ProjectDetailsEditing value)? editing,
+    TResult? Function(ProjectDetailsConfirmDestructive value)?
         confirmDestructive,
-    TResult Function(ProjectDetailsSaved value)? saved,
-    TResult Function(ProjectDetailsDeleted value)? deleted,
+    TResult? Function(ProjectDetailsSaved value)? saved,
+    TResult? Function(ProjectDetailsDeleted value)? deleted,
   }) {
     return deleted?.call(this);
   }

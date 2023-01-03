@@ -42,16 +42,16 @@ final videoEditorStateProvider = StateNotifierProvider.autoDispose
       ) ??
       VideoEditorState.loadingVideo(assetEntity: assetEntity);
 
-  return VideoEditorNotifier(ref.read, state);
+  return VideoEditorNotifier(ref, state);
 });
 
 class VideoEditorNotifier extends StateNotifier<VideoEditorState> {
-  VideoEditorNotifier(this.reader, VideoEditorState initialState)
+  VideoEditorNotifier(this.ref, VideoEditorState initialState)
       : super(initialState) {
     init();
   }
 
-  final Reader reader;
+  final Ref ref;
 
   Timer? _loopTimer;
 
@@ -69,11 +69,12 @@ class VideoEditorNotifier extends StateNotifier<VideoEditorState> {
     if (s is! VideoEditorEditing) return;
     s.videoController.setLooping(false);
     _loopTimer?.cancel();
-    final onboarding = reader(onboardingRepositoryProvider).onboardingConfig;
-    reader(onboardingRepositoryProvider)
+    final onboarding = ref.read(onboardingRepositoryProvider).onboardingConfig;
+    ref
+        .read(onboardingRepositoryProvider)
         .setOnboardingConfig(onboarding.copyWith(
-      knowsTimeline: true,
-    ));
+          knowsTimeline: true,
+        ));
     s.videoController.pause();
     state = s.copyWith(
       isPlaying: false,
@@ -144,7 +145,7 @@ class VideoEditorNotifier extends StateNotifier<VideoEditorState> {
       exportProgress: const LoadingValue.loading(0),
       dismissProgress: state.dismissProgress,
     );
-    final repo = reader(entryRepositoryProvider);
+    final repo = ref.read(entryRepositoryProvider);
 
     final entryProgress = repo.saveEntry(entry: newEntry);
     await for (final loadingValue in entryProgress) {

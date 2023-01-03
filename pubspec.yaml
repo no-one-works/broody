@@ -10,8 +10,7 @@ environment:
 
 dependency_overrides:
   material_color_utilities: ^0.1.4
-  broody_video:
-    path: ../broody_video
+
 
 dependencies:
   flutter:

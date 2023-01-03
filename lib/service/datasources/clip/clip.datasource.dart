@@ -1,14 +1,13 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:broody/service/datasources/clip/video_compress_clip.datasource.dart';
+import 'package:broody/service/datasources/clip/broody_clip.datasource.dart';
+import 'package:broody/service/datasources/clip/frankenstein_clip.datasource.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loading_value/loading_value.dart';
 
-import 'ffmpeg_clip.datasource.dart';
-
-abstract class IClipDatasource {
+abstract class ClipDatasource {
   int get algorithmVersion;
 
   String get fileFormat;
@@ -27,6 +26,7 @@ abstract class IClipDatasource {
   Future<File?> loadClip({required File file});
 }
 
-final clipDatasourceProvider = Provider<IClipDatasource>(
-  (ref) => Platform.isIOS ? BroodyClipDatasource() : FFmpegClipDatasource(),
+final clipDatasourceProvider = Provider<ClipDatasource>(
+  (ref) =>
+      Platform.isIOS ? BroodyClipDatasource() : FrankensteinClipDatasource(),
 );

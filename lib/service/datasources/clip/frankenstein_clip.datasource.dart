@@ -2,7 +2,9 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:broody/core/constants/video_resolutions.dart';
 import 'package:broody/service/datasources/clip/clip.datasource.dart';
+import 'package:broody_video/broody_video.dart';
 import 'package:dartx/dartx_io.dart';
 import 'package:ffmpeg_kit_flutter_min_gpl/ffmpeg_kit.dart';
 import 'package:ffmpeg_kit_flutter_min_gpl/return_code.dart';
@@ -10,9 +12,8 @@ import 'package:ffmpeg_kit_flutter_min_gpl/session.dart';
 import 'package:ffmpeg_kit_flutter_min_gpl/session_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:loading_value/loading_value.dart';
-import 'package:path_provider/path_provider.dart';
 
-class FFmpegClipDatasource extends ClipDatasource {
+class FrankensteinClipDatasource extends ClipDatasource {
   Session? _currentSession;
 
   @override
@@ -32,25 +33,26 @@ class FFmpegClipDatasource extends ClipDatasource {
     bool highQuality = false,
     Size? centerCropping,
   }) async* {
-    final temporaryDirectory = await getTemporaryDirectory();
-    final cuttingProcess = _cutClip(
-      temporaryDirectory: temporaryDirectory,
-      videoSource: videoSource,
-      startPoint: startPoint,
+    if (resolution != resolution1080Landscape &&
+        resolution !=
+            Size(resolution1080Landscape.height,
+                resolution1080Landscape.width)) {
+      throw UnimplementedError("Only 1080p supported so far");
+    }
+
+    final process = BroodyVideo.instance.processClip(
+      sourceFile: videoSource,
+      start: startPoint,
       duration: duration,
-      resolution: resolution,
-      highQuality: highQuality,
-      centerCropping: centerCropping,
+      targetSize: resolution,
     );
-    debugPrint("Exporting ${videoSource.path}...");
-    await for (final cutLoadingValue in cuttingProcess) {
-      if (cutLoadingValue is ValueLoading<File?>) {
-        yield LoadingValue.loading(cutLoadingValue.progress);
-      } else {
-        debugPrint(cutLoadingValue.toString());
-        yield cutLoadingValue;
-        return;
-      }
+
+    await for (final p in process) {
+      yield p.when(
+        data: (data) => LoadingValue.data(data?.file),
+        error: (e, s) => LoadingValue.error(e, stackTrace: s),
+        loading: (p) => LoadingValue.loading(p),
+      );
     }
   }
 

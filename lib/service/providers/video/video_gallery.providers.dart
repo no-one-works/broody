@@ -63,15 +63,15 @@ final dayHasVideosProvider =
 final videosProvider = FutureProvider.autoDispose
     .family<List<AssetEntity>, DateTime>((ref, date) async {
   final repo = ref.watch(videoGalleryRepositoryProvider);
+  ref.onDispose(() {
+    debugPrint("Clearing Photo Cache");
+    PhotoManager.clearFileCache();
+  });
   final album = await ref.watch(_albumProvider(date).future);
   final activeProject = ref.watch(selectedProjectProvider);
   if (album == null || activeProject == null) {
     return [];
   }
-  ref.onDispose(() {
-    debugPrint("Clearing Photo Cache");
-    PhotoManager.clearFileCache();
-  });
   return await repo.getVideos(pathEntity: album);
 });
 
@@ -87,9 +87,10 @@ final pickedVideoProvider = Provider.autoDispose
   return asyncValue.when(
     data: (v) {
       v.whenOrNull(data: (f) async {
+        // ! this is a bit of a workaround, but somehow needed to properly work with cloud videos on iOS
         await Future.delayed(Duration(milliseconds: 500));
-        ref.refresh(galleryVideoIsLocalProvider(assetEntity));
-        ref.refresh(assetEntityFileProvider(assetEntity));
+        ref.invalidate(galleryVideoIsLocalProvider(assetEntity));
+        ref.invalidate(assetEntityFileProvider(assetEntity));
       });
       return v;
     },

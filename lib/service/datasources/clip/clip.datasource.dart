@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:broody/service/datasources/clip/broody_clip.datasource.dart';
-import 'package:broody/service/datasources/clip/ffmpeg_clip.datasource.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loading_value/loading_value.dart';
@@ -27,5 +26,5 @@ abstract class ClipDatasource {
 }
 
 final clipDatasourceProvider = Provider<ClipDatasource>(
-  (ref) => Platform.isAndroid ? FFmpegClipDatasource() : BroodyClipDatasource(),
+  (ref) => BroodyClipDatasource(),
 );

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:broody/core/hook/use_theme.hook.dart';
 import 'package:broody/routing/router.dart';
 import 'package:broody/service/providers/entry.providers.dart';
@@ -35,6 +33,7 @@ class EntryBubbleWidget extends HookConsumerWidget {
     final thumbnailFile = entry == null
         ? null
         : ref.watch(entryThumbnailProvider(entry)).valueOrNull;
+
     final ImageProvider? blurHashImage =
         entry != null ? BlurHashImage(entry.blurHash) : null;
 
@@ -89,7 +88,6 @@ class EntryBubbleWidget extends HookConsumerWidget {
           children: [
             Hero(
               tag: date,
-              flightShuttleBuilder: fadeShuttle,
               child: TweenAnimationBuilder<double>(
                 tween: Tween(begin: 1, end: showThumbnail ? 8 : 1),
                 curve: Curves.ease,

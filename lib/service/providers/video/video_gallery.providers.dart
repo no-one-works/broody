@@ -14,6 +14,10 @@ import 'package:photo_manager/photo_manager.dart';
 
 final videosChangedProvider = StreamProvider.autoDispose<int>((ref) {
   final StreamController<int> controller = StreamController();
+  ref.onDispose(() {
+    debugPrint("Clearing Photo Cache");
+    PhotoManager.clearFileCache();
+  });
   void changeNotify(MethodCall call) {
     final count = call.arguments["newCount"];
     if (count != call.arguments["oldCount"]) {
@@ -69,10 +73,6 @@ final videosProvider = FutureProvider.autoDispose
     .family<List<AssetEntity>, DateTime>((ref, date) async {
   ref.watch(videosChangedProvider);
   final repo = ref.watch(videoGalleryRepositoryProvider);
-  ref.onDispose(() {
-    debugPrint("Clearing Photo Cache");
-    PhotoManager.clearFileCache();
-  });
   final activeProject = ref.watch(selectedProjectProvider);
   final album = await ref.watch(_albumProvider(date).future);
   if (album == null || activeProject == null) {
@@ -114,11 +114,14 @@ final assetEntityFileProvider =
     FutureProvider.autoDispose.family<File?, AssetEntity>(
   (ref, AssetEntity entity) async {
     debugPrint("Obtaining Converted File");
-    File? file = await entity.file;
+    final file =
+        entity.isLivePhoto ? await entity.fileWithSubtype : await entity.file;
     debugPrint("File " + file.toString());
     if (file == null) {
       debugPrint("Fallback to originFile");
-      file = await entity.originFile;
+      return entity.isLivePhoto
+          ? await entity.originFileWithSubtype
+          : await entity.originFile;
     }
     return file;
   },

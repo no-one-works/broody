@@ -10,6 +10,7 @@ import 'package:broody/ui/shared/constants/date_formats.dart';
 import 'package:broody/ui/shared/gallery_video/gallery_video.widget.dart';
 import 'package:broody/ui/theme/spacing.dart';
 import 'package:broody/ui/theme/transitions.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:photo_manager/photo_manager.dart';
@@ -133,15 +134,20 @@ class VideoTile extends HookConsumerWidget {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: Spacers.xxs, vertical: 2),
                                 color: Colors.black54,
-                                child: Text(
-                                  assetEntity.videoDuration
-                                      .toString()
-                                      .split('.')
-                                      .first
-                                      .substring(2),
-                                  style: textTheme.subtitle2!
-                                      .copyWith(color: Colors.white),
-                                ),
+                                child: assetEntity.isLivePhoto
+                                    ? const Icon(
+                                        Icons.filter_tilt_shift_rounded,
+                                        color: Colors.white,
+                                      )
+                                    : Text(
+                                        assetEntity.videoDuration
+                                            .toString()
+                                            .split('.')
+                                            .first
+                                            .substring(2),
+                                        style: textTheme.subtitle2!
+                                            .copyWith(color: Colors.white),
+                                      ),
                               ),
                             ),
                             Positioned.fill(

@@ -36,8 +36,10 @@ class GalleryClipRepository extends VideoGalleryRepository {
   final ImagePicker picker = ImagePicker();
 
   @override
-  Future<AssetPathEntity?> getFilteredAlbum(
-          {required Duration minDuration, required DateTime date}) =>
+  Future<AssetPathEntity?> getFilteredAlbum({
+    required Duration minDuration,
+    required DateTime date,
+  }) =>
       ref.read(galleryVideoDatasourceProvider).getFilteredAlbum(
             minDuration: minDuration,
             date: date,

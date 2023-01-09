@@ -40,8 +40,7 @@ class GalleryVideoDatasource implements IGalleryVideoDatasource {
       //onlyAll: true,
       hasAll: true,
       filterOption: FilterOptionGroup(
-        //TODO look
-        containsLivePhotos: false,
+        containsLivePhotos: true,
         orders: const [
           OrderOption(type: OrderOptionType.createDate, asc: false)
         ],

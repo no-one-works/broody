@@ -71,6 +71,7 @@ class ProjectDetailsPage extends HookConsumerWidget {
               ? FloatingActionButton.extended(
                   heroTag: null,
                   onPressed: () => notifier.save(),
+                  icon: const Icon(Icons.save_rounded),
                   label: Text(l10n.save),
                 )
               : null,

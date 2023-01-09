@@ -17,6 +17,7 @@ final videosChangedProvider = StreamProvider.autoDispose<int>((ref) {
   void changeNotify(MethodCall call) {
     final count = call.arguments["newCount"];
     if (count != call.arguments["oldCount"]) {
+      debugPrint("New Photo count: $count");
       controller.add(count);
     }
   }
@@ -33,7 +34,7 @@ final videosChangedProvider = StreamProvider.autoDispose<int>((ref) {
 
 final videoGalleryPermissionProvider =
     FutureProvider.autoDispose<bool>((ref) async {
-  final changes = ref.watch(videosChangedProvider);
+  ref.watch(videosChangedProvider);
   final permission = await PhotoManager.requestPermissionExtend();
   return permission.isAuth;
 });
@@ -52,23 +53,28 @@ final _albumProvider =
   );
 });
 
+final _albumAssetCountProvider =
+    FutureProvider.autoDispose.family<int, DateTime>((ref, date) async {
+  final album = await ref.watch(_albumProvider(date).future);
+  return (await album?.assetCountAsync) ?? 0;
+});
+
 final dayHasVideosProvider =
-    Provider.autoDispose.family<bool, DateTime>((ref, date) {
-  //TODO Check this regularly, iOS is just too fucking slow
-  if (Platform.isIOS) return true;
-  final album = ref.watch(_albumProvider(date));
-  return (album.asData?.value?.assetCount ?? 0) > 0;
+    FutureProvider.autoDispose.family<bool, DateTime>((ref, date) {
+  return ref
+      .watch(_albumAssetCountProvider(date).selectAsync((data) => data > 0));
 });
 
 final videosProvider = FutureProvider.autoDispose
     .family<List<AssetEntity>, DateTime>((ref, date) async {
+  ref.watch(videosChangedProvider);
   final repo = ref.watch(videoGalleryRepositoryProvider);
   ref.onDispose(() {
     debugPrint("Clearing Photo Cache");
     PhotoManager.clearFileCache();
   });
-  final album = await ref.watch(_albumProvider(date).future);
   final activeProject = ref.watch(selectedProjectProvider);
+  final album = await ref.watch(_albumProvider(date).future);
   if (album == null || activeProject == null) {
     return [];
   }

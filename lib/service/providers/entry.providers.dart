@@ -22,10 +22,13 @@ final activeEntriesProvider =
 
 final entryForDateProvider =
     FutureProvider.autoDispose.family<SavedEntry?, DateTime>((ref, date) async {
-  final entries = ref
-      .watch(activeEntriesProvider.selectAsync((data) => data.firstWhereOrNull(
-            (entry) => entry.timestamp.startOfDay() == date.startOfDay(),
-          )));
+  final entries = ref.watch(
+    activeEntriesProvider.selectAsync(
+      (entries) => entries.firstWhereOrNull(
+        (entry) => entry.timestamp.startOfDay() == date.startOfDay(),
+      ),
+    ),
+  );
 
   return await entries;
 });

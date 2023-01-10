@@ -136,9 +136,7 @@ class EntryBubbleWidget extends HookConsumerWidget {
                 duration: kThemeAnimationDuration * 2,
                 curve: Curves.ease,
                 decoration: BoxDecoration(
-                  color: (markVideos && theme.platform != TargetPlatform.iOS
-                          ? themeColorScheme.primary
-                          : themeColorScheme.background)
+                  color: themeColorScheme.background
                       .withOpacity(showThumbnail ? 0.6 : 1),
                   shape: BoxShape.circle,
                 ),
@@ -148,9 +146,7 @@ class EntryBubbleWidget extends HookConsumerWidget {
                 padding: const EdgeInsets.all(Spacers.xxs),
                 child: Text(
                   date.day.toString().padLeft(2, '0'),
-                  style: markVideos && theme.platform != TargetPlatform.iOS
-                      ? numberStyle.copyWith(color: colorScheme.onPrimary)
-                      : numberStyle,
+                  style: numberStyle,
                 ),
               ),
             ),

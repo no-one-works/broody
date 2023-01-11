@@ -59,7 +59,7 @@ dependencies:
   auto_size_text: ^3.0.0
   package_info: ^2.0.2
   wakelock: ^0.6.2
-  loading_value: ^0.0.2
+  loading_value: ^0.0.3
   broody_video: ^0.0.5-dev.1
   image_fade: ^0.6.2
 

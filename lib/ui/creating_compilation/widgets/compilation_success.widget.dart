@@ -61,7 +61,9 @@ class CompilationSuccessWidget extends HookWidget {
                     ),
                     Positioned.fill(
                       child: InkWell(
-                        onTap: () => videoController.togglePlayback(),
+                        onDoubleTap: () => context.router.navigate(
+                          VideoFullScreenRoute(controller: videoController),
+                        ),
                       ),
                     ),
                     Positioned(
@@ -80,11 +82,14 @@ class CompilationSuccessWidget extends HookWidget {
                       right: Spacers.xs,
                       child: Hero(
                         tag: VideoFullScreenPage.fullscreenHeroTag,
-                        child: Material(
-                          color: Colors.transparent,
+                        child: Card(
+                          shape: const CircleBorder(),
+                          color: theme.colorScheme.secondary,
                           child: IconButton(
-                            splashRadius: Spacers.l,
-                            color: theme.colorScheme.surface,
+                            style: IconButton.styleFrom(
+                              foregroundColor: theme.colorScheme.onSecondary,
+                              visualDensity: VisualDensity.compact,
+                            ),
                             icon: const Icon(Icons.fullscreen_rounded),
                             onPressed: () => context.router.push(
                               VideoFullScreenRoute(controller: videoController),

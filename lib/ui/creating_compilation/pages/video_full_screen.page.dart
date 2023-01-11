@@ -1,5 +1,6 @@
 import 'package:broody/core/extensions/video_player_controller.x.dart';
 import 'package:broody/core/hook/use_theme.hook.dart';
+import 'package:broody/core/hook/use_wakelock.hook.dart';
 import 'package:broody/routing/router.dart';
 import 'package:broody/ui/creating_compilation/widgets/video_controls.widget.dart';
 import 'package:broody/ui/shared/interactive_viewer_plus/widgets/custom_dismissible.widget.dart';
@@ -22,6 +23,7 @@ class VideoFullScreenPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = useTheme();
     final timer = useAnimationController(duration: const Duration(seconds: 2))
       ..forward();
 
@@ -30,69 +32,81 @@ class VideoFullScreenPage extends HookConsumerWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        actions: [
-          Hero(
-            tag: fullscreenHeroTag,
-            child: AnimatedOpacity(
-              duration: kThemeAnimationDuration,
-              opacity: controlsVisible ? 1 : 0,
-              child: Material(
-                color: Colors.transparent,
-                child: IconButton(
-                  splashRadius: Spacers.l,
-                  onPressed: context.router.pop,
-                  color: useColorScheme().surface,
-                  icon: const Icon(Icons.fullscreen_exit_rounded),
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
       body: CustomDismissible(
         onDismissed: context.router.pop,
         child: GestureDetector(
-          onTap: controller.togglePlayback,
-          child: Listener(
-            onPointerDown: (_) => interacting.value = true,
-            onPointerCancel: (_) => _pointerUp(interacting, timer),
-            onPointerUp: (_) => _pointerUp(interacting, timer),
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                FittedBox(
-                  fit: BoxFit.cover,
+          onTap: () {
+            if (timer.value != 1) {
+              timer.stop();
+              timer.value = 1;
+            } else {
+              timer.forward(from: 0);
+            }
+          },
+          onDoubleTap: () => Navigator.pop(context),
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              FittedBox(
+                fit: BoxFit.cover,
+                child: Hero(
+                  tag: heroTag,
+                  createRectTween: linearRectTween,
+                  child: SizedBox(
+                    width: controller.value.size.width,
+                    height: controller.value.size.height,
+                    child: VideoPlayer(controller),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: Spacers.s,
+                right: Spacers.s,
+                child: SafeArea(
                   child: Hero(
-                    tag: heroTag,
-                    createRectTween: linearRectTween,
-                    child: SizedBox(
-                      width: controller.value.size.width,
-                      height: controller.value.size.height,
-                      child: VideoPlayer(controller),
+                    tag: fullscreenHeroTag,
+                    child: AnimatedOpacity(
+                      duration: kThemeAnimationDuration,
+                      opacity: controlsVisible ? 1 : 0,
+                      child: Card(
+                        color: theme.colorScheme.secondary,
+                        shape: const CircleBorder(),
+                        child: IconButton(
+                          onPressed: context.router.pop,
+                          style: IconButton.styleFrom(
+                            visualDensity: VisualDensity.compact,
+                            foregroundColor: theme.colorScheme.onSecondary,
+                          ),
+                          icon: const Icon(Icons.fullscreen_exit_rounded),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-                Positioned(
-                  bottom: Spacers.m,
-                  left: Spacers.m,
-                  right: Spacers.m,
-                  child: AnimatedOpacity(
-                    duration: kThemeAnimationDuration,
-                    opacity: controlsVisible ? 1 : 0,
-                    child: SafeArea(
-                      child: Hero(
-                        tag: controlsHeroTag,
+              ),
+              Positioned(
+                bottom: Spacers.m,
+                left: Spacers.m,
+                right: Spacers.m,
+                child: AnimatedOpacity(
+                  duration: kThemeAnimationDuration,
+                  opacity: controlsVisible ? 1 : 0,
+                  child: SafeArea(
+                    child: Hero(
+                      tag: controlsHeroTag,
+                      child: Listener(
+                        onPointerDown: (_) => interacting.value = true,
+                        onPointerCancel: (_) => _pointerUp(interacting, timer),
+                        onPointerUp: (_) => _pointerUp(interacting, timer),
                         child: VideoControls(
                           controller: controller,
                         ),
                       ),
                     ),
                   ),
-                )
-              ],
-            ),
+                ),
+              )
+            ],
           ),
         ),
       ),
@@ -100,7 +114,9 @@ class VideoFullScreenPage extends HookConsumerWidget {
   }
 
   void _pointerUp(
-      ValueNotifier<bool> interactingNotifier, AnimationController timer) {
+    ValueNotifier<bool> interactingNotifier,
+    AnimationController timer,
+  ) {
     timer.forward(from: 0);
     interactingNotifier.value = false;
   }

@@ -38,9 +38,10 @@ class GalleryClipRepository extends VideoGalleryRepository {
   @override
   Future<AssetPathEntity?> getFilteredAlbum(
           {required Duration minDuration, required DateTime date}) =>
-      ref
-          .read(galleryVideoDatasourceProvider)
-          .getFilteredAlbum(minDuration: minDuration, date: date);
+      ref.read(galleryVideoDatasourceProvider).getFilteredAlbum(
+            minDuration: minDuration,
+            date: date,
+          );
 
   @override
   Future<List<AssetEntity>> getVideos(
@@ -48,7 +49,7 @@ class GalleryClipRepository extends VideoGalleryRepository {
     final videos = await ref.read(galleryVideoDatasourceProvider).getVideos(
           pathEntity,
           page: 0,
-          perPage: pathEntity.assetCount,
+          perPage: await pathEntity.assetCountAsync,
         );
     return videos;
   }

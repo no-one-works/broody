@@ -321,12 +321,6 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
     final List<int>? bytes;
     if (entry.thumbnailBytes != null) {
       bytes = entry.thumbnailBytes!;
-    } else if (Platform.isIOS) {
-      bytes = await BroodyVideo.instance.getThumbnail(
-        sourceFile: File(entry.videoPath),
-        position: entry.startPoint,
-        quality: 10,
-      );
     } else {
       bytes = await VideoThumbnail.thumbnailData(
         video: entry.videoPath,

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:broody/service/repositories/project.repository.dart';
 import 'package:broody/ui/creating_compilation/state/create_compilation.state.dart';
+import 'package:broody_video/broody_video.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loading_value/loading_value.dart';
@@ -121,6 +122,9 @@ class CreateCompilationNotifier extends StateNotifier<CreateCompilationState> {
       monthOfYear: state.monthOfYear,
     );
     await for (final loadingValue in compilationProgress) {
+      if (mounted == false) {
+        return;
+      }
       state = s.copyWith(exportProgress: loadingValue);
       loadingValue.whenOrNull(
         data: (savedCompilation) async {
@@ -147,6 +151,9 @@ class CreateCompilationNotifier extends StateNotifier<CreateCompilationState> {
   @override
   void dispose() {
     final s = state;
+    if (s is CreateCompilationExporting) {
+      ref.read(projectRepositoryProvider).cancelCompilationCreation();
+    }
     if (s is CreateCompilationExportSuccess) {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
         s.videoController.dispose();

@@ -5,6 +5,7 @@ import 'package:broody/core/hook/use_l10n.hook.dart';
 import 'package:broody/core/hook/use_theme.hook.dart';
 import 'package:broody/routing/router.dart';
 import 'package:broody/service/providers/project/project.providers.dart';
+import 'package:broody/ui/shared/bouncy_pressable/bouncy_pressable.widget.dart';
 import 'package:broody/ui/theme/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -12,7 +13,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'entry.widget.dart';
+import 'entry_bubble.widget.dart';
 
 class MonthSliverGrid extends HookConsumerWidget {
   const MonthSliverGrid({
@@ -29,12 +30,15 @@ class MonthSliverGrid extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final monthOfYear = DateTime(dates.first.year, dates.first.month);
-    ref.listen<ProjectMonth?>(projectMonthCompleteProvider(dates.first),
-        (previous, next) {
+    ref.listen<AsyncValue<ProjectMonth?>>(projectMonthProvider(dates.first),
+        (previousAsync, nextAsync) {
+      final next = nextAsync.valueOrNull;
+      final previous = previousAsync?.valueOrNull;
       if (next != null &&
-          next.project == previous?.project &&
+          previous != null &&
+          next.project == previous.project &&
           next.complete &&
-          !(previous?.complete ?? true)) {
+          !previous.complete) {
         context.router.navigate(
           MonthCompleteInfoRoute(
             monthOfYear: monthOfYear,
@@ -48,7 +52,8 @@ class MonthSliverGrid extends HookConsumerWidget {
     final dateFormat = useDateFormat();
     final monthName = dateFormat.dateSymbols.MONTHS[monthOfYear.month - 1];
     final selectedProject = ref.watch(selectedProjectProvider)!;
-    final monthEnded = ref.watch(projectMonthCompleteProvider(dates.first));
+    final projectMonth =
+        ref.watch(projectMonthProvider(dates.first)).valueOrNull;
 
     return SliverStickyHeader.builder(
       builder: (context, state) => Stack(
@@ -88,8 +93,8 @@ class MonthSliverGrid extends HookConsumerWidget {
                               : textTheme.headline5,
                         ),
                       ),
-                      if (monthEnded != null && monthEnded.complete)
-                        GestureDetector(
+                      if (projectMonth != null && projectMonth.canCompile)
+                        BouncyPressable(
                           onTap: () {
                             context.router.navigate(
                               CreateCompilationRoute(
@@ -127,7 +132,7 @@ class MonthSliverGrid extends HookConsumerWidget {
           childAspectRatio: 1.0,
         ),
         delegate: SliverChildBuilderDelegate(
-          (context, index) => EntryWidget(
+          (context, index) => EntryBubbleWidget(
             date: dates[index],
             showThumbnail: showThumbnails,
           ),

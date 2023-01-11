@@ -31,7 +31,7 @@ class CompilationSuccessWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = useL10n();
-    final colorScheme = useColorScheme();
+    final theme = useTheme();
     return SafeArea(
       child: Column(
         children: [
@@ -49,8 +49,8 @@ class CompilationSuccessWidget extends HookWidget {
                       child: Card(
                         elevation: 24,
                         clipBehavior: Clip.hardEdge,
-                        color: colorScheme.secondary,
-                        shadowColor: colorScheme.shadow,
+                        color: theme.colorScheme.secondary,
+                        shadowColor: theme.colorScheme.shadow,
                         child: AspectRatio(
                           aspectRatio: width / height,
                           child: VideoPlayer(
@@ -61,7 +61,9 @@ class CompilationSuccessWidget extends HookWidget {
                     ),
                     Positioned.fill(
                       child: InkWell(
-                        onTap: () => videoController.togglePlayback(),
+                        onDoubleTap: () => context.router.navigate(
+                          VideoFullScreenRoute(controller: videoController),
+                        ),
                       ),
                     ),
                     Positioned(
@@ -80,11 +82,14 @@ class CompilationSuccessWidget extends HookWidget {
                       right: Spacers.xs,
                       child: Hero(
                         tag: VideoFullScreenPage.fullscreenHeroTag,
-                        child: Material(
-                          color: Colors.transparent,
+                        child: Card(
+                          shape: const CircleBorder(),
+                          color: theme.colorScheme.secondary,
                           child: IconButton(
-                            splashRadius: Spacers.l,
-                            color: colorScheme.surface,
+                            style: IconButton.styleFrom(
+                              foregroundColor: theme.colorScheme.onSecondary,
+                              visualDensity: VisualDensity.compact,
+                            ),
                             icon: const Icon(Icons.fullscreen_rounded),
                             onPressed: () => context.router.push(
                               VideoFullScreenRoute(controller: videoController),
@@ -105,15 +110,15 @@ class CompilationSuccessWidget extends HookWidget {
               IconButton(
                 onPressed: onSaveToGallery,
                 tooltip: l10n.saveToGallery,
-                color: colorScheme.primary,
+                color: theme.colorScheme.primary,
                 icon: const Icon(Icons.save_alt_rounded),
               ),
               hSpace(Spacers.l),
               IconButton(
                 onPressed: onShare,
                 tooltip: l10n.share,
-                color: colorScheme.primary,
-                icon: Platform.isIOS
+                color: theme.colorScheme.primary,
+                icon: theme.platform == TargetPlatform.iOS
                     ? const Icon(Icons.ios_share_rounded)
                     : const Icon(Icons.share_rounded),
               ),

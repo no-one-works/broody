@@ -53,6 +53,11 @@ abstract class ProjectRepository extends RepositoryBase {
     DateTime? monthOfYear,
   });
 
+  /// Attempts to cancel the creation of the current compilation.
+  ///
+  /// Does nothing if nothing is being generated.
+  Future<void> cancelCompilationCreation();
+
   bool compilationNeedsUpdate({
     required String projectUid,
     DateTime? monthOfYear,
@@ -257,6 +262,12 @@ class ProjectRepositoryImpl extends ProjectRepository {
   }
 
   @override
+  Future<void> cancelCompilationCreation() {
+    final compilationDatasource = ref.read(compilationDatasourceProvider);
+    return compilationDatasource.cancelCompilationCreation();
+  }
+
+  @override
   Future<AssetEntity?> saveCompilationInGallery({
     required Project project,
     DateTime? monthOfYear,
@@ -318,11 +329,18 @@ class ProjectRepositoryImpl extends ProjectRepository {
     if (compilation == null) {
       return true;
     }
-    final lastChange = entries.sortedBy((e) => e.changedWhen).last.changedWhen;
-    if (compilation.algorithmVersion < compilationAlgorithmVersion ||
-        lastChange.isAfter(compilation.created)) {
+    if (entries.length != compilation.usedEntries.length) {
       return true;
     }
+    for (final entry in entries) {
+      final oldEntry =
+          compilation.usedEntries.firstWhereOrNull((e) => e.uid == entry.uid);
+      if (oldEntry == null ||
+          oldEntry.changedWhen.isBefore(entry.changedWhen)) {
+        return true;
+      }
+    }
+
     return false;
   }
 

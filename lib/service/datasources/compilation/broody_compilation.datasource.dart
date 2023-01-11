@@ -79,6 +79,11 @@ class BroodyCompilationDatasource extends CompilationDatasource {
   }
 
   @override
+  Future<void> cancelCompilationCreation() {
+    return BroodyVideo.instance.cancelConcatVideos();
+  }
+
+  @override
   Future<void> clearCompilations(List<Directory> compilationDirectories) async {
     _box.clear();
     await Future.wait(

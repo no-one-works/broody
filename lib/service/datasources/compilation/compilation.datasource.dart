@@ -24,6 +24,8 @@ abstract class CompilationDatasource {
   Stream<LoadingValue<SavedCompilation?>> createCompilation(
       {required CreateCompilation createCompilation});
 
+  Future<void> cancelCompilationCreation();
+
   Future<void> clearCompilations(List<Directory> compilationDirectories);
 
   Future<bool> deleteCompilation({

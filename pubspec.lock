@@ -499,6 +499,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.2.0"
+  image_fade:
+    dependency: "direct main"
+    description:
+      name: image_fade
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.2"
   image_picker:
     dependency: "direct main"
     description:
@@ -575,7 +582,7 @@ packages:
       name: loading_value
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.2"
+    version: "0.0.3"
   logging:
     dependency: transitive
     description:
@@ -708,7 +715,7 @@ packages:
       name: photo_manager
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.4"
+    version: "2.5.2"
   platform:
     dependency: transitive
     description:

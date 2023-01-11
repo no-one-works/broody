@@ -100,6 +100,11 @@ class FFmpegCompilationDatasource extends CompilationDatasource {
   }
 
   @override
+  Future<void> cancelCompilationCreation() async {
+    //Nothing to do here, compilation creation is basically instant
+  }
+
+  @override
   Future<void> clearCompilations(List<Directory> compilationDirectories) async {
     _box.clear();
     await Future.wait(

@@ -21,16 +21,16 @@ final activeEntriesProvider =
 });
 
 final entryForDateProvider =
-    Provider.autoDispose.family<AsyncValue<SavedEntry?>, DateTime>((ref, date) {
-  final entries = ref.watch(activeEntriesProvider);
-
-  return entries.when(
-    data: (event) => AsyncValue.data(event.firstWhereOrNull(
-      (entry) => entry.timestamp.startOfDay() == date.startOfDay(),
-    )),
-    loading: () => const AsyncValue.loading(),
-    error: (e, s) => AsyncValue.error(e, s),
+    FutureProvider.autoDispose.family<SavedEntry?, DateTime>((ref, date) async {
+  final entries = ref.watch(
+    activeEntriesProvider.selectAsync(
+      (entries) => entries.firstWhereOrNull(
+        (entry) => entry.timestamp.startOfDay() == date.startOfDay(),
+      ),
+    ),
   );
+
+  return await entries;
 });
 
 final todaysEntriesProvider =

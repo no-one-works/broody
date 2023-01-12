@@ -6,7 +6,7 @@ part 'compilation.g.dart';
 
 const compilationAlgorithmVersion = 2;
 
-@freezed
+@Freezed(copyWith: false)
 class Compilation with _$Compilation {
   const Compilation._();
 

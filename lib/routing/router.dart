@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:broody/routing/route_guards/no_permissions.guard.dart';
 import 'package:broody/routing/route_guards/no_selected_project.guard.dart';
 import 'package:broody/routing/route_guards/outdated_entries.guard.dart';
+import 'package:broody/routing/route_guards/version.guard.dart';
 import 'package:broody/routing/router.gr.dart';
 import 'package:broody/ui/creating_compilation/create_compilation.page.dart';
 import 'package:broody/ui/creating_compilation/pages/video_full_screen.page.dart';
@@ -17,6 +18,7 @@ import 'package:broody/ui/theme/transitions.dart';
 import 'package:broody/ui/update_entries/update_entries.page.dart';
 import 'package:broody/ui/video_editor/video_editor.page.dart';
 import 'package:broody/ui/video_picker/video_picker.page.dart';
+import 'package:broody/ui/whats_new/whats_new.page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -37,7 +39,8 @@ export 'router.gr.dart';
         NoProjectsGuard,
         NoSelectedProjectGuard,
         NoPermissionsGuard,
-        OutdatedEntriesGuard
+        VersionGuard,
+        OutdatedEntriesGuard,
       ],
     ),
     AutoRoute(
@@ -114,6 +117,12 @@ export 'router.gr.dart';
       fullscreenDialog: true,
       opaque: false,
     ),
+    CustomRoute(
+      path: "/whats-new",
+      page: WhatsNewPage,
+      transitionsBuilder: fadeThroughTransitionTransparent,
+      fullscreenDialog: true,
+    ),
   ],
 )
 class $AppRouter extends AppRouter {
@@ -123,6 +132,7 @@ class $AppRouter extends AppRouter {
           noSelectedProjectGuard: NoSelectedProjectGuard(ref),
           noPermissionsGuard: NoPermissionsGuard(),
           outdatedEntriesGuard: OutdatedEntriesGuard(ref),
+          versionGuard: VersionGuard(ref),
         );
 }
 

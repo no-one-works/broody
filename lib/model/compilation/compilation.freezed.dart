@@ -138,167 +138,6 @@ mixin _$Compilation {
   }) =>
       throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $CompilationCopyWith<Compilation> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $CompilationCopyWith<$Res> {
-  factory $CompilationCopyWith(
-          Compilation value, $Res Function(Compilation) then) =
-      _$CompilationCopyWithImpl<$Res, Compilation>;
-  @useResult
-  $Res call(
-      {String uid,
-      String projectUid,
-      DateTime? monthOfYear,
-      List<SavedEntry> usedEntries,
-      double width,
-      double height,
-      DateTime created});
-}
-
-/// @nodoc
-class _$CompilationCopyWithImpl<$Res, $Val extends Compilation>
-    implements $CompilationCopyWith<$Res> {
-  _$CompilationCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? uid = null,
-    Object? projectUid = null,
-    Object? monthOfYear = freezed,
-    Object? usedEntries = null,
-    Object? width = null,
-    Object? height = null,
-    Object? created = null,
-  }) {
-    return _then(_value.copyWith(
-      uid: null == uid
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
-              as String,
-      projectUid: null == projectUid
-          ? _value.projectUid
-          : projectUid // ignore: cast_nullable_to_non_nullable
-              as String,
-      monthOfYear: freezed == monthOfYear
-          ? _value.monthOfYear
-          : monthOfYear // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      usedEntries: null == usedEntries
-          ? _value.usedEntries
-          : usedEntries // ignore: cast_nullable_to_non_nullable
-              as List<SavedEntry>,
-      width: null == width
-          ? _value.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as double,
-      height: null == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as double,
-      created: null == created
-          ? _value.created
-          : created // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$CreateCompilationCopyWith<$Res>
-    implements $CompilationCopyWith<$Res> {
-  factory _$$CreateCompilationCopyWith(
-          _$CreateCompilation value, $Res Function(_$CreateCompilation) then) =
-      __$$CreateCompilationCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String uid,
-      String projectUid,
-      String projectTitle,
-      DateTime? monthOfYear,
-      String destination,
-      List<SavedEntry> usedEntries,
-      double width,
-      double height,
-      String projectPath,
-      DateTime created});
-}
-
-/// @nodoc
-class __$$CreateCompilationCopyWithImpl<$Res>
-    extends _$CompilationCopyWithImpl<$Res, _$CreateCompilation>
-    implements _$$CreateCompilationCopyWith<$Res> {
-  __$$CreateCompilationCopyWithImpl(
-      _$CreateCompilation _value, $Res Function(_$CreateCompilation) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? uid = null,
-    Object? projectUid = null,
-    Object? projectTitle = null,
-    Object? monthOfYear = freezed,
-    Object? destination = null,
-    Object? usedEntries = null,
-    Object? width = null,
-    Object? height = null,
-    Object? projectPath = null,
-    Object? created = null,
-  }) {
-    return _then(_$CreateCompilation(
-      uid: null == uid
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
-              as String,
-      projectUid: null == projectUid
-          ? _value.projectUid
-          : projectUid // ignore: cast_nullable_to_non_nullable
-              as String,
-      projectTitle: null == projectTitle
-          ? _value.projectTitle
-          : projectTitle // ignore: cast_nullable_to_non_nullable
-              as String,
-      monthOfYear: freezed == monthOfYear
-          ? _value.monthOfYear
-          : monthOfYear // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      destination: null == destination
-          ? _value.destination
-          : destination // ignore: cast_nullable_to_non_nullable
-              as String,
-      usedEntries: null == usedEntries
-          ? _value._usedEntries
-          : usedEntries // ignore: cast_nullable_to_non_nullable
-              as List<SavedEntry>,
-      width: null == width
-          ? _value.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as double,
-      height: null == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as double,
-      projectPath: null == projectPath
-          ? _value.projectPath
-          : projectPath // ignore: cast_nullable_to_non_nullable
-              as String,
-      created: null == created
-          ? _value.created
-          : created // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ));
-  }
 }
 
 /// @nodoc
@@ -395,12 +234,6 @@ class _$CreateCompilation extends CreateCompilation {
       height,
       projectPath,
       created);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CreateCompilationCopyWith<_$CreateCompilation> get copyWith =>
-      __$$CreateCompilationCopyWithImpl<_$CreateCompilation>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -572,92 +405,6 @@ abstract class CreateCompilation extends Compilation {
   String get projectPath;
   @override
   DateTime get created;
-  @override
-  @JsonKey(ignore: true)
-  _$$CreateCompilationCopyWith<_$CreateCompilation> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SavedCompilationCopyWith<$Res>
-    implements $CompilationCopyWith<$Res> {
-  factory _$$SavedCompilationCopyWith(
-          _$SavedCompilation value, $Res Function(_$SavedCompilation) then) =
-      __$$SavedCompilationCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String uid,
-      String filename,
-      String projectUid,
-      DateTime? monthOfYear,
-      List<SavedEntry> usedEntries,
-      double width,
-      double height,
-      int algorithmVersion,
-      DateTime created});
-}
-
-/// @nodoc
-class __$$SavedCompilationCopyWithImpl<$Res>
-    extends _$CompilationCopyWithImpl<$Res, _$SavedCompilation>
-    implements _$$SavedCompilationCopyWith<$Res> {
-  __$$SavedCompilationCopyWithImpl(
-      _$SavedCompilation _value, $Res Function(_$SavedCompilation) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? uid = null,
-    Object? filename = null,
-    Object? projectUid = null,
-    Object? monthOfYear = freezed,
-    Object? usedEntries = null,
-    Object? width = null,
-    Object? height = null,
-    Object? algorithmVersion = null,
-    Object? created = null,
-  }) {
-    return _then(_$SavedCompilation(
-      uid: null == uid
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
-              as String,
-      filename: null == filename
-          ? _value.filename
-          : filename // ignore: cast_nullable_to_non_nullable
-              as String,
-      projectUid: null == projectUid
-          ? _value.projectUid
-          : projectUid // ignore: cast_nullable_to_non_nullable
-              as String,
-      monthOfYear: freezed == monthOfYear
-          ? _value.monthOfYear
-          : monthOfYear // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      usedEntries: null == usedEntries
-          ? _value._usedEntries
-          : usedEntries // ignore: cast_nullable_to_non_nullable
-              as List<SavedEntry>,
-      width: null == width
-          ? _value.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as double,
-      height: null == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as double,
-      algorithmVersion: null == algorithmVersion
-          ? _value.algorithmVersion
-          : algorithmVersion // ignore: cast_nullable_to_non_nullable
-              as int,
-      created: null == created
-          ? _value.created
-          : created // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ));
-  }
 }
 
 /// @nodoc
@@ -749,12 +496,6 @@ class _$SavedCompilation extends SavedCompilation {
       height,
       algorithmVersion,
       created);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SavedCompilationCopyWith<_$SavedCompilation> get copyWith =>
-      __$$SavedCompilationCopyWithImpl<_$SavedCompilation>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -924,8 +665,4 @@ abstract class SavedCompilation extends Compilation {
   int get algorithmVersion;
   @override
   DateTime get created;
-  @override
-  @JsonKey(ignore: true)
-  _$$SavedCompilationCopyWith<_$SavedCompilation> get copyWith =>
-      throw _privateConstructorUsedError;
 }

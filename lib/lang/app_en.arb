@@ -187,5 +187,6 @@
       }
     }
   },
-  "readOnlyModeDescription": "This project is in read-only mode. Update it's entries to make it editable again."
+  "readOnlyModeDescription": "This project is in read-only mode. Update it's entries to make it editable again.",
+  "whatsNew": "What's new"
 }

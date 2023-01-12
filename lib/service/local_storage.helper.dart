@@ -17,6 +17,7 @@ class LocalStorageHelper {
     //await Hive.deleteBoxFromDisk(compilationBoxKey);
     //await Hive.deleteBoxFromDisk(onboardingBoxKey);
     //await Hive.deleteBoxFromDisk(compilationBoxKey);
+    //await Hive.deleteBoxFromDisk(versionBoxKey);
     Hive.registerAdapter(ProjectAdapter());
     Hive.registerAdapter(EntryAdapter());
     Hive.registerAdapter(SavedCompilationAdapter());
@@ -27,6 +28,7 @@ class LocalStorageHelper {
       Hive.openBox<String>(activeProjectBoxKey),
       Hive.openBox<SavedCompilation>(compilationBoxKey),
       Hive.openBox<Onboarding>(onboardingBoxKey),
+      Hive.openBox<String>(versionBoxKey),
     ]);
     await Future.wait(Hive.box<Project>(projectBoxKey)
         .values

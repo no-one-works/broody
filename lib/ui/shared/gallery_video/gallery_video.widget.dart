@@ -25,13 +25,11 @@ class GalleryVideo extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final videoControllerAsync = loadVideo
-        ? ref.watch(
-            galleryVideoControllerProvider(assetEntity),
-          )
+        ? ref.watch(galleryVideoControllerProvider(assetEntity))
         : null;
     final thumbnailImageAsync =
         ref.watch(galleryVideoThumbnailProvider(assetEntity));
-    final videoController = videoControllerAsync?.asData?.value;
+    final videoController = videoControllerAsync?.valueOrNull;
     final spinner =
         showProgressIndicator && loadVideo && videoController == null;
     return Stack(

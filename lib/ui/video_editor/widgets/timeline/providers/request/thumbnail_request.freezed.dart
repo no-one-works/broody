@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'thumbnail_request.dart';
 
@@ -12,32 +12,7 @@ part of 'thumbnail_request.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ThumbnailRequestTearOff {
-  const _$ThumbnailRequestTearOff();
-
-  _ThumbnailRequest call(
-      {required String videoPath,
-      required Duration videoDuration,
-      required int thumbnailHeight,
-      required double aspectRatio,
-      required int thumbnailCount,
-      required int quality}) {
-    return _ThumbnailRequest(
-      videoPath: videoPath,
-      videoDuration: videoDuration,
-      thumbnailHeight: thumbnailHeight,
-      aspectRatio: aspectRatio,
-      thumbnailCount: thumbnailCount,
-      quality: quality,
-    );
-  }
-}
-
-/// @nodoc
-const $ThumbnailRequest = _$ThumbnailRequestTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ThumbnailRequest {
@@ -57,7 +32,8 @@ mixin _$ThumbnailRequest {
 abstract class $ThumbnailRequestCopyWith<$Res> {
   factory $ThumbnailRequestCopyWith(
           ThumbnailRequest value, $Res Function(ThumbnailRequest) then) =
-      _$ThumbnailRequestCopyWithImpl<$Res>;
+      _$ThumbnailRequestCopyWithImpl<$Res, ThumbnailRequest>;
+  @useResult
   $Res call(
       {String videoPath,
       Duration videoDuration,
@@ -68,59 +44,62 @@ abstract class $ThumbnailRequestCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ThumbnailRequestCopyWithImpl<$Res>
+class _$ThumbnailRequestCopyWithImpl<$Res, $Val extends ThumbnailRequest>
     implements $ThumbnailRequestCopyWith<$Res> {
   _$ThumbnailRequestCopyWithImpl(this._value, this._then);
 
-  final ThumbnailRequest _value;
   // ignore: unused_field
-  final $Res Function(ThumbnailRequest) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? videoPath = freezed,
-    Object? videoDuration = freezed,
-    Object? thumbnailHeight = freezed,
-    Object? aspectRatio = freezed,
-    Object? thumbnailCount = freezed,
-    Object? quality = freezed,
+    Object? videoPath = null,
+    Object? videoDuration = null,
+    Object? thumbnailHeight = null,
+    Object? aspectRatio = null,
+    Object? thumbnailCount = null,
+    Object? quality = null,
   }) {
     return _then(_value.copyWith(
-      videoPath: videoPath == freezed
+      videoPath: null == videoPath
           ? _value.videoPath
           : videoPath // ignore: cast_nullable_to_non_nullable
               as String,
-      videoDuration: videoDuration == freezed
+      videoDuration: null == videoDuration
           ? _value.videoDuration
           : videoDuration // ignore: cast_nullable_to_non_nullable
               as Duration,
-      thumbnailHeight: thumbnailHeight == freezed
+      thumbnailHeight: null == thumbnailHeight
           ? _value.thumbnailHeight
           : thumbnailHeight // ignore: cast_nullable_to_non_nullable
               as int,
-      aspectRatio: aspectRatio == freezed
+      aspectRatio: null == aspectRatio
           ? _value.aspectRatio
           : aspectRatio // ignore: cast_nullable_to_non_nullable
               as double,
-      thumbnailCount: thumbnailCount == freezed
+      thumbnailCount: null == thumbnailCount
           ? _value.thumbnailCount
           : thumbnailCount // ignore: cast_nullable_to_non_nullable
               as int,
-      quality: quality == freezed
+      quality: null == quality
           ? _value.quality
           : quality // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$ThumbnailRequestCopyWith<$Res>
+abstract class _$$_ThumbnailRequestCopyWith<$Res>
     implements $ThumbnailRequestCopyWith<$Res> {
-  factory _$ThumbnailRequestCopyWith(
-          _ThumbnailRequest value, $Res Function(_ThumbnailRequest) then) =
-      __$ThumbnailRequestCopyWithImpl<$Res>;
+  factory _$$_ThumbnailRequestCopyWith(
+          _$_ThumbnailRequest value, $Res Function(_$_ThumbnailRequest) then) =
+      __$$_ThumbnailRequestCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String videoPath,
       Duration videoDuration,
@@ -131,47 +110,45 @@ abstract class _$ThumbnailRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ThumbnailRequestCopyWithImpl<$Res>
-    extends _$ThumbnailRequestCopyWithImpl<$Res>
-    implements _$ThumbnailRequestCopyWith<$Res> {
-  __$ThumbnailRequestCopyWithImpl(
-      _ThumbnailRequest _value, $Res Function(_ThumbnailRequest) _then)
-      : super(_value, (v) => _then(v as _ThumbnailRequest));
+class __$$_ThumbnailRequestCopyWithImpl<$Res>
+    extends _$ThumbnailRequestCopyWithImpl<$Res, _$_ThumbnailRequest>
+    implements _$$_ThumbnailRequestCopyWith<$Res> {
+  __$$_ThumbnailRequestCopyWithImpl(
+      _$_ThumbnailRequest _value, $Res Function(_$_ThumbnailRequest) _then)
+      : super(_value, _then);
 
-  @override
-  _ThumbnailRequest get _value => super._value as _ThumbnailRequest;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? videoPath = freezed,
-    Object? videoDuration = freezed,
-    Object? thumbnailHeight = freezed,
-    Object? aspectRatio = freezed,
-    Object? thumbnailCount = freezed,
-    Object? quality = freezed,
+    Object? videoPath = null,
+    Object? videoDuration = null,
+    Object? thumbnailHeight = null,
+    Object? aspectRatio = null,
+    Object? thumbnailCount = null,
+    Object? quality = null,
   }) {
-    return _then(_ThumbnailRequest(
-      videoPath: videoPath == freezed
+    return _then(_$_ThumbnailRequest(
+      videoPath: null == videoPath
           ? _value.videoPath
           : videoPath // ignore: cast_nullable_to_non_nullable
               as String,
-      videoDuration: videoDuration == freezed
+      videoDuration: null == videoDuration
           ? _value.videoDuration
           : videoDuration // ignore: cast_nullable_to_non_nullable
               as Duration,
-      thumbnailHeight: thumbnailHeight == freezed
+      thumbnailHeight: null == thumbnailHeight
           ? _value.thumbnailHeight
           : thumbnailHeight // ignore: cast_nullable_to_non_nullable
               as int,
-      aspectRatio: aspectRatio == freezed
+      aspectRatio: null == aspectRatio
           ? _value.aspectRatio
           : aspectRatio // ignore: cast_nullable_to_non_nullable
               as double,
-      thumbnailCount: thumbnailCount == freezed
+      thumbnailCount: null == thumbnailCount
           ? _value.thumbnailCount
           : thumbnailCount // ignore: cast_nullable_to_non_nullable
               as int,
-      quality: quality == freezed
+      quality: null == quality
           ? _value.quality
           : quality // ignore: cast_nullable_to_non_nullable
               as int,
@@ -212,43 +189,39 @@ class _$_ThumbnailRequest implements _ThumbnailRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ThumbnailRequest &&
-            const DeepCollectionEquality().equals(other.videoPath, videoPath) &&
-            const DeepCollectionEquality()
-                .equals(other.videoDuration, videoDuration) &&
-            const DeepCollectionEquality()
-                .equals(other.thumbnailHeight, thumbnailHeight) &&
-            const DeepCollectionEquality()
-                .equals(other.aspectRatio, aspectRatio) &&
-            const DeepCollectionEquality()
-                .equals(other.thumbnailCount, thumbnailCount) &&
-            const DeepCollectionEquality().equals(other.quality, quality));
+            other is _$_ThumbnailRequest &&
+            (identical(other.videoPath, videoPath) ||
+                other.videoPath == videoPath) &&
+            (identical(other.videoDuration, videoDuration) ||
+                other.videoDuration == videoDuration) &&
+            (identical(other.thumbnailHeight, thumbnailHeight) ||
+                other.thumbnailHeight == thumbnailHeight) &&
+            (identical(other.aspectRatio, aspectRatio) ||
+                other.aspectRatio == aspectRatio) &&
+            (identical(other.thumbnailCount, thumbnailCount) ||
+                other.thumbnailCount == thumbnailCount) &&
+            (identical(other.quality, quality) || other.quality == quality));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(videoPath),
-      const DeepCollectionEquality().hash(videoDuration),
-      const DeepCollectionEquality().hash(thumbnailHeight),
-      const DeepCollectionEquality().hash(aspectRatio),
-      const DeepCollectionEquality().hash(thumbnailCount),
-      const DeepCollectionEquality().hash(quality));
+  int get hashCode => Object.hash(runtimeType, videoPath, videoDuration,
+      thumbnailHeight, aspectRatio, thumbnailCount, quality);
 
   @JsonKey(ignore: true)
   @override
-  _$ThumbnailRequestCopyWith<_ThumbnailRequest> get copyWith =>
-      __$ThumbnailRequestCopyWithImpl<_ThumbnailRequest>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_ThumbnailRequestCopyWith<_$_ThumbnailRequest> get copyWith =>
+      __$$_ThumbnailRequestCopyWithImpl<_$_ThumbnailRequest>(this, _$identity);
 }
 
 abstract class _ThumbnailRequest implements ThumbnailRequest {
   const factory _ThumbnailRequest(
-      {required String videoPath,
-      required Duration videoDuration,
-      required int thumbnailHeight,
-      required double aspectRatio,
-      required int thumbnailCount,
-      required int quality}) = _$_ThumbnailRequest;
+      {required final String videoPath,
+      required final Duration videoDuration,
+      required final int thumbnailHeight,
+      required final double aspectRatio,
+      required final int thumbnailCount,
+      required final int quality}) = _$_ThumbnailRequest;
 
   @override
   String get videoPath;
@@ -264,6 +237,6 @@ abstract class _ThumbnailRequest implements ThumbnailRequest {
   int get quality;
   @override
   @JsonKey(ignore: true)
-  _$ThumbnailRequestCopyWith<_ThumbnailRequest> get copyWith =>
+  _$$_ThumbnailRequestCopyWith<_$_ThumbnailRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,0 +1,3 @@
+dependency_overrides:
+    broody_video:
+      path: ../broody_video

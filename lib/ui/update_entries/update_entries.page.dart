@@ -1,7 +1,6 @@
 import 'package:broody/core/hook/use_l10n.hook.dart';
 import 'package:broody/core/hook/use_theme.hook.dart';
 import 'package:broody/core/hook/use_wakelock.hook.dart';
-import 'package:broody/model/common/loading_value/loading_value.dart';
 import 'package:broody/model/entry/entry.dart';
 import 'package:broody/model/project/project.dart';
 import 'package:broody/routing/router.dart';
@@ -15,6 +14,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:loading_value/loading_value.dart';
 
 class UpdateEntriesPage extends HookConsumerWidget {
   const UpdateEntriesPage({
@@ -104,8 +104,8 @@ class UpdateEntriesPage extends HookConsumerWidget {
                     duration: kThemeAnimationDuration,
                     child: process.value != null
                         ? LoadingValueProgressBar(
-                            loadingValue: progress.data ??
-                                const LoadingValue.loading(progress: 0),
+                            loadingValue:
+                                progress.data ?? const LoadingValue.loading(0),
                             color: colorScheme.primary,
                             description: l10n.updatingEntriesRemaining(
                                 outdatedEntries.value?.length ?? 0),

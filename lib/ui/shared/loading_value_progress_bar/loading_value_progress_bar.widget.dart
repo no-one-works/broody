@@ -1,7 +1,7 @@
-import 'package:broody/model/common/loading_value/loading_value.dart';
 import 'package:broody/ui/theme/spacing.dart';
 import 'package:broody/ui/theme/transitions.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_value/loading_value.dart';
 
 class ProgressBuilder extends StatelessWidget {
   const ProgressBuilder({
@@ -47,42 +47,48 @@ class LoadingValueProgressBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final actualColor = color ?? colorScheme.onBackground;
-    return Center(
-      child: AnimatedSwitcher(
-        duration: kThemeAnimationDuration,
-        transitionBuilder: switcherFadeThroughTransition,
-        child: loadingValue.when(
-          loading: (progress) => progress == 1
-              ? const Icon(Icons.check_circle_rounded)
-              : progress == 0
-                  ? CircularProgressIndicator.adaptive(
-                      valueColor: AlwaysStoppedAnimation(color),
-                    )
-                  : ProgressBuilder(
-                      progress: progress,
-                      builder: (context, value, child) => Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CircularProgressIndicator(
-                            value: value > 0 ? value : null,
-                            color: actualColor,
-                          ),
-                          if (child != null) vSpace(Spacers.s),
-                          if (child != null) child,
-                        ],
-                      ),
-                      child: description == null
-                          ? null
-                          : Text(
-                              description!,
-                              textAlign: TextAlign.center,
-                              style: DefaultTextStyle.of(context)
-                                  .style
-                                  .copyWith(color: actualColor),
+    return IconTheme(
+      data: IconTheme.of(context).copyWith(color: actualColor),
+      child: Center(
+        child: AnimatedSwitcher(
+          duration: kThemeAnimationDuration,
+          transitionBuilder: switcherFadeThroughTransition,
+          child: loadingValue.when(
+            loading: (progress) => progress == 1
+                ? const Icon(Icons.check_circle_rounded)
+                : progress == 0
+                    ? CircularProgressIndicator.adaptive(
+                        valueColor: AlwaysStoppedAnimation(actualColor),
+                      )
+                    : ProgressBuilder(
+                        progress: progress,
+                        builder: (context, value, child) => Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CircularProgressIndicator(
+                              value: value > 0 ? value : null,
+                              color: actualColor,
                             ),
-                    ),
-          data: (_) => const Icon(Icons.check_circle_rounded),
-          error: (_, __) => const Icon(Icons.error_rounded),
+                            if (child != null) vSpace(Spacers.s),
+                            if (child != null) child,
+                          ],
+                        ),
+                        child: description == null
+                            ? null
+                            : Text(
+                                description!,
+                                textAlign: TextAlign.center,
+                                style: DefaultTextStyle.of(context)
+                                    .style
+                                    .copyWith(color: actualColor),
+                              ),
+                      ),
+            data: (_) => const Icon(Icons.check_circle_rounded),
+            error: (_, __) => Icon(
+              Icons.error_rounded,
+              color: colorScheme.error,
+            ),
+          ),
         ),
       ),
     );

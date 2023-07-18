@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:broody/model/common/loading_value/loading_value.dart';
 import 'package:broody/model/entry/entry.dart';
 import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/service/providers/video/video_gallery.providers.dart';
@@ -11,6 +10,7 @@ import 'package:broody/ui/shared/providers/video_player_controller.provider.dart
 import 'package:broody/ui/video_editor/state/video_editor_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:loading_value/loading_value.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 
@@ -18,41 +18,40 @@ final videoEditorStateProvider = StateNotifierProvider.autoDispose
     .family<VideoEditorNotifier, VideoEditorState, AssetEntity>(
         (ref, assetEntity) {
   final size = ref.watch(assetEntitySizeProvider((assetEntity)));
-  final state = ref.watch(assetEntityFileProvider(assetEntity)).whenOrNull(
-            data: (file) => file == null
-                ? VideoEditorState.failedToLoad(assetEntity: assetEntity)
-                : ref
-                    .watch(loopingFileVideoControllerProvider(file.path))
-                    .whenOrNull(
-                        data: (videoController) => VideoEditorState.editing(
-                              assetEntity: assetEntity,
-                              videoController: videoController,
-                              entry: EditingEntry(
-                                projectId:
-                                    ref.watch(selectedProjectProvider)!.uid,
-                                duration:
-                                    ref.watch(projectClipDurationProvider)!,
-                                videoPath: file.path,
-                                assetEntityId: assetEntity.id,
-                                height: size.height.toInt(),
-                                width: size.width.toInt(),
-                                timestamp: assetEntity.createDateTime,
-                                startPoint: Duration.zero,
-                              ),
-                            )),
-          ) ??
+  final file = ref.watch(assetEntityFileProvider(assetEntity));
+  final state = file.whenOrNull(
+        data: (file) => file == null
+            ? VideoEditorState.failedToLoad(assetEntity: assetEntity)
+            : ref
+                .watch(loopingFileVideoControllerProvider(file.path))
+                .whenOrNull(
+                    data: (videoController) => VideoEditorState.editing(
+                          assetEntity: assetEntity,
+                          videoController: videoController,
+                          entry: EditingEntry(
+                            projectId: ref.watch(selectedProjectProvider)!.uid,
+                            duration: ref.watch(projectClipDurationProvider)!,
+                            videoPath: file.path,
+                            assetEntityId: assetEntity.id,
+                            height: size.height.toInt(),
+                            width: size.width.toInt(),
+                            timestamp: assetEntity.createDateTime,
+                            startPoint: Duration.zero,
+                          ),
+                        )),
+      ) ??
       VideoEditorState.loadingVideo(assetEntity: assetEntity);
 
-  return VideoEditorNotifier(ref.read, state);
+  return VideoEditorNotifier(ref, state);
 });
 
 class VideoEditorNotifier extends StateNotifier<VideoEditorState> {
-  VideoEditorNotifier(this.reader, VideoEditorState initialState)
+  VideoEditorNotifier(this.ref, VideoEditorState initialState)
       : super(initialState) {
     init();
   }
 
-  final Reader reader;
+  final Ref ref;
 
   Timer? _loopTimer;
 
@@ -70,11 +69,12 @@ class VideoEditorNotifier extends StateNotifier<VideoEditorState> {
     if (s is! VideoEditorEditing) return;
     s.videoController.setLooping(false);
     _loopTimer?.cancel();
-    final onboarding = reader(onboardingRepositoryProvider).onboardingConfig;
-    reader(onboardingRepositoryProvider)
+    final onboarding = ref.read(onboardingRepositoryProvider).onboardingConfig;
+    ref
+        .read(onboardingRepositoryProvider)
         .setOnboardingConfig(onboarding.copyWith(
-      knowsTimeline: true,
-    ));
+          knowsTimeline: true,
+        ));
     s.videoController.pause();
     state = s.copyWith(
       isPlaying: false,
@@ -142,10 +142,10 @@ class VideoEditorNotifier extends StateNotifier<VideoEditorState> {
 
     state = VideoEditorState.exporting(
       entry: newEntry,
-      exportProgress: const LoadingValue.loading(progress: 0),
+      exportProgress: const LoadingValue.loading(0),
       dismissProgress: state.dismissProgress,
     );
-    final repo = reader(entryRepositoryProvider);
+    final repo = ref.read(entryRepositoryProvider);
 
     final entryProgress = repo.saveEntry(entry: newEntry);
     await for (final loadingValue in entryProgress) {
@@ -183,6 +183,7 @@ class VideoEditorNotifier extends StateNotifier<VideoEditorState> {
   }
 
   void _videoControllerListener() {
+    if (!mounted) return;
     final s = state;
     if (s is! VideoEditorEditing) return;
     final videoPosition = s.videoController.value.position;

@@ -13,16 +13,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class MonthCompleteInfoPage extends HookConsumerWidget {
   const MonthCompleteInfoPage({
     Key? key,
-    required this.month,
+    required this.monthOfYear,
   }) : super(key: key);
 
-  final int month;
+  final DateTime monthOfYear;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = useL10n();
     final textTheme = useTextTheme();
-    final nameOfMonth = useDateFormat().dateSymbols.MONTHS[month - 1];
+    final nameOfMonth =
+        useDateFormat().dateSymbols.MONTHS[monthOfYear.month - 1];
     final colorScheme = useColorScheme();
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -61,11 +62,11 @@ class MonthCompleteInfoPage extends HookConsumerWidget {
               ),
               vSpace(Spacers.l),
               CompilationButton(
-                month: month,
+                monthOfYear: monthOfYear,
                 onPressed: () => context.router.replace(
                   CreateCompilationRoute(
                     projectUid: ref.read(selectedProjectProvider)!.uid,
-                    month: month,
+                    monthOfYear: monthOfYear,
                   ),
                 ),
               ),

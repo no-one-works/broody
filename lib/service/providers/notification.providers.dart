@@ -5,15 +5,14 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final scheduleNotificationProvider =
-    Provider.autoDispose.family<void, L10n>((ref, l10n) {
+    FutureProvider.autoDispose.family<void, L10n>((ref, l10n) async {
   final repo = ref.watch(notificationRepositoryProvider);
-  final projects = ref.watch(projectsProvider).value;
-  final todaysEntries = ref.watch(todaysEntriesProvider).value ?? [];
+  final projects = ref.watch(projectsProvider.future);
+  final todaysEntries = await ref.watch(todaysEntriesProvider.future);
   final projectsWithEntryToday = todaysEntries.map((e) => e.projectId).toList();
-  if (projects != null) {
-    repo.scheduleNotifications(
-        projects: projects,
-        projectsWithEntryToday: projectsWithEntryToday,
-        l10n: l10n);
-  }
+  repo.scheduleNotifications(
+    projects: await projects,
+    projectsWithEntryToday: projectsWithEntryToday,
+    l10n: l10n,
+  );
 });

@@ -13,7 +13,7 @@ extension DateTimeX on DateTime {
     final endDate = other.startOfDay();
     while (date.isBefore(endDate) || (inclusive && date.isSameDayAs(endDate))) {
       yield date;
-      date = date.add(const Duration(days: 1));
+      date = DateTime(date.year, date.month, date.day + 1);
     }
   }
 

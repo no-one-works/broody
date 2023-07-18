@@ -5,7 +5,6 @@ import 'dart:typed_data';
 import 'package:blurhash_dart/blurhash_dart.dart';
 import 'package:broody/core/extensions/blur_hash.x.dart';
 import 'package:broody/core/extensions/image.x.dart';
-import 'package:broody/model/common/loading_value/loading_value.dart';
 import 'package:broody/model/entry/entry.dart';
 import 'package:broody/model/project/project.dart';
 import 'package:broody/service/datasources/clip/clip.datasource.dart';
@@ -13,9 +12,11 @@ import 'package:broody/service/datasources/entry/entry.datasource.dart';
 import 'package:broody/service/providers/directory.provider.dart';
 import 'package:broody/service/repositories/project.repository.dart';
 import 'package:broody/service/repositories/repository.dart';
+import 'package:broody_video/broody_video.dart';
 import 'package:dartx/dartx_io.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_value/loading_value.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:share_plus/share_plus.dart';
@@ -39,6 +40,7 @@ abstract class IEntryRepository {
   Stream<List<SavedEntry>> watchEntriesForProject({required String projectId});
 
   Stream<List<SavedEntry>> watchOutdatedEntries({required String projectId});
+
   Future<void> shareEntry({required SavedEntry entry});
 
   SavedEntry? getEntry(String projectId, DateTime timestamp);
@@ -69,9 +71,10 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
   @override
   Stream<List<SavedEntry>> watchOutdatedEntries(
       {required String projectId}) async* {
+    final clipDatasource = ref.read(clipDatasourceProvider);
     await for (final entries in watchEntriesForProject(projectId: projectId)) {
       yield entries
-          .where((e) => e.exportVersion < entryAlgorithmVersion)
+          .where((e) => e.exportVersion != clipDatasource.algorithmVersion)
           .toList();
     }
   }
@@ -132,19 +135,19 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
     );
 
     await for (final loadingValue in process) {
-      if (loadingValue is Loading<File?>) {
-        yield LoadingValue.loading(progress: loadingValue.progress);
+      if (loadingValue is ValueLoading<File?>) {
+        yield LoadingValue.loading(loadingValue.progress);
       } else if (loadingValue is LoadingError<File?>) {
         yield LoadingValue.error(
-          error: loadingValue.error,
+          loadingValue.error,
           stackTrace: loadingValue.stackTrace,
         );
         return;
-      } else if (loadingValue is Data<File?>) {
+      } else if (loadingValue is LoadedData<File?>) {
         if (loadingValue.value == null) {
           debugPrint("Could not export entry successfully: $entry");
           yield LoadingValue.error(
-              error: "Could not export entry successfully: $entry");
+              "Could not export entry successfully: $entry");
           return;
         }
         final destinationFile = entriesDirectory.file(
@@ -153,11 +156,12 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
           debugPrint("Copying resulting clip to folder...");
           await loadingValue.value!.copy(destinationFile.path);
         } catch (e, s) {
-          yield LoadingValue.error(error: e, stackTrace: s);
+          yield LoadingValue.error(e, stackTrace: s);
           return;
         }
         final hash = await blurHash;
         final entryToSave = Entry.saved(
+          exportVersion: clipDatasource.algorithmVersion,
           changedWhen: DateTime.now(),
           projectId: entry.projectId,
           timestamp: entry.timestamp,
@@ -174,7 +178,7 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
         await ref
             .read(entryDatasourceProvider(entry.projectId))
             .setEntry(entryToSave);
-        yield LoadingValue.data(value: entryToSave);
+        yield LoadingValue.data(entryToSave);
         return;
       }
     }
@@ -200,30 +204,33 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
         ref.read(projectRepositoryProvider).getProject(entry.projectId);
 
     final needsCropping = _entryNeedsCropping(project: project!, entry: entry);
-    final process = ref.read(clipDatasourceProvider).createClip(
-          startPoint: entry.startPoint,
-          duration: entry.duration,
-          videoSource: originalFile,
-          resolution: project.resolution,
-          centerCropping: needsCropping
-              ? _calculateCropping(project: project, entry: entry)
-              : null,
-        );
+    final clipDatasource = ref.read(clipDatasourceProvider);
+    final process = clipDatasource.createClip(
+      startPoint: entry.startPoint,
+      duration: entry.duration,
+      videoSource: originalFile,
+      resolution: project.resolution,
+      centerCropping: needsCropping
+          ? _calculateCropping(project: project, entry: entry)
+          : null,
+    );
 
     await for (final loadingValue in process) {
-      if (loadingValue is Loading<File?>) {
-        yield LoadingValue.loading(progress: loadingValue.progress);
+      if (loadingValue is ValueLoading<File?>) {
+        yield LoadingValue.loading(loadingValue.progress);
       } else if (loadingValue is LoadingError<File?>) {
+        print(loadingValue);
         yield LoadingValue.error(
-          error: loadingValue.error,
+          loadingValue.error,
           stackTrace: loadingValue.stackTrace,
         );
         return;
-      } else if (loadingValue is Data<File?>) {
+      } else if (loadingValue is LoadedData<File?>) {
         if (loadingValue.value == null) {
           debugPrint("Could not update entry successfully: $entry");
           yield LoadingValue.error(
-              error: "Could not update entry successfully: $entry");
+            "Could not update entry successfully: $entry",
+          );
           return;
         }
         try {
@@ -231,18 +238,18 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
           final file = await getEntryClip(entry);
           await loadingValue.value!.copy(file!.path);
         } catch (e, s) {
-          yield LoadingValue.error(error: e, stackTrace: s);
+          yield LoadingValue.error(e, stackTrace: s);
           return;
         }
         final updatedEntry = entry.copyWith(
-          exportVersion: entryAlgorithmVersion,
+          exportVersion: clipDatasource.algorithmVersion,
           changedWhen: DateTime.now(),
         );
         debugPrint("Saving Updated Entry to Database...");
         await ref
             .read(entryDatasourceProvider(entry.projectId))
             .setEntry(updatedEntry);
-        yield LoadingValue.data(value: updatedEntry);
+        yield LoadingValue.data(updatedEntry);
         return;
       }
     }
@@ -257,7 +264,7 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
           "This entry can't be regenerated because its file wasn't found!");
     }
     final process = clipDatasource.createClip(
-      startPoint: null,
+      startPoint: Duration.zero,
       duration: entry.duration,
       videoSource: file,
       resolution: Size(entry.width.toDouble(), entry.height.toDouble()),
@@ -265,37 +272,38 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
     );
 
     await for (final loadingValue in process) {
-      if (loadingValue is Loading<File?>) {
-        yield LoadingValue.loading(progress: loadingValue.progress);
+      if (loadingValue is ValueLoading<File?>) {
+        yield LoadingValue.loading(loadingValue.progress);
       } else if (loadingValue is LoadingError<File?>) {
         yield LoadingValue.error(
-          error: loadingValue.error,
+          loadingValue.error,
           stackTrace: loadingValue.stackTrace,
         );
         return;
-      } else if (loadingValue is Data<File?>) {
+      } else if (loadingValue is LoadedData<File?>) {
         if (loadingValue.value == null) {
           debugPrint("Could not update entry successfully: $entry");
           yield LoadingValue.error(
-              error: "Could not update entry successfully: $entry");
+            "Could not update entry successfully: $entry",
+          );
           return;
         }
         try {
           debugPrint("Copying resulting clip to folder...");
           await loadingValue.value!.copy(file.path);
         } catch (e, s) {
-          yield LoadingValue.error(error: e, stackTrace: s);
+          yield LoadingValue.error(e, stackTrace: s);
           return;
         }
         final updatedEntry = entry.copyWith(
-          exportVersion: entryAlgorithmVersion,
+          exportVersion: clipDatasource.algorithmVersion,
           changedWhen: DateTime.now(),
         );
         debugPrint("Saving Updated Entry to Database...");
         await ref
             .read(entryDatasourceProvider(entry.projectId))
             .setEntry(updatedEntry);
-        yield LoadingValue.data(value: updatedEntry);
+        yield LoadingValue.data(updatedEntry);
         return;
       }
     }
@@ -310,15 +318,19 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
     EditingEntry entry,
     Directory directory,
   ) async {
-    final bytes = entry.thumbnailBytes ??
-        await VideoThumbnail.thumbnailData(
-          video: entry.videoPath,
-          timeMs: entry.startPoint.inMilliseconds,
-          imageFormat: ImageFormat.JPEG,
-          maxHeight: entry.height ~/ 2,
-          maxWidth: entry.width ~/ 2,
-          quality: 10,
-        );
+    final List<int>? bytes;
+    if (entry.thumbnailBytes != null) {
+      bytes = entry.thumbnailBytes!;
+    } else {
+      bytes = await VideoThumbnail.thumbnailData(
+        video: entry.videoPath,
+        timeMs: entry.startPoint.inMilliseconds,
+        imageFormat: ImageFormat.JPEG,
+        maxHeight: entry.height ~/ 2,
+        maxWidth: entry.width ~/ 2,
+        quality: 10,
+      );
+    }
     if (bytes == null) return null;
     File(directory.path + "/" + entry.uid + ".jpg").writeAsBytes(bytes);
     final img = await decodeImageOnIsolate(Uint8List.fromList(bytes));

@@ -4,19 +4,19 @@ import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class OutdatedEntriesGuard extends AutoRouteGuard {
-  OutdatedEntriesGuard(this._reader);
+  OutdatedEntriesGuard(this.ref);
 
-  final Reader _reader;
+  final Ref ref;
 
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) async {
-    final selectedProject = _reader(selectedProjectProvider);
+    final selectedProject = ref.read(selectedProjectProvider);
     if (selectedProject == null) {
       resolver.next(true);
       return;
     }
-    final outdatedEntries = await _reader(
-        projectOutdatedEntriesProvider(selectedProject.uid).future);
+    final outdatedEntries = await ref
+        .read(projectOutdatedEntriesProvider(selectedProject.uid).future);
     resolver.next(true);
     if (outdatedEntries.isNotEmpty) {
       router.push(

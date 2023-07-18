@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:broody/core/hook/use_theme.hook.dart';
 import 'package:broody/routing/router.dart';
 import 'package:broody/service/providers/entry.providers.dart';
@@ -12,12 +10,14 @@ import 'package:broody/ui/shared/providers/blob/request/blob_request.dart';
 import 'package:broody/ui/shared/providers/color/color.providers.dart';
 import 'package:broody/ui/shared/providers/color/request/color_scheme_request.dart';
 import 'package:broody/ui/theme/spacing.dart';
+import 'package:broody/ui/theme/transitions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:image_fade/image_fade.dart';
 
-class EntryWidget extends HookConsumerWidget {
-  const EntryWidget({
+class EntryBubbleWidget extends HookConsumerWidget {
+  const EntryBubbleWidget({
     Key? key,
     required this.date,
     required this.showThumbnail,
@@ -28,12 +28,22 @@ class EntryWidget extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final entry = ref.watch(entryForDateProvider(date)).value;
+    final entry = ref.watch(entryForDateProvider(date)).valueOrNull;
     final readOnly = ref.watch(selectedProjectReadOnlyProvider);
-    final thumbnailFile =
-        entry == null ? null : ref.watch(entryThumbnailProvider(entry)).value;
-    final hasVideos = ref.watch(dayHasVideosProvider(date));
-    final markVideos = hasVideos && entry == null;
+    final thumbnailFile = entry == null
+        ? null
+        : ref.watch(entryThumbnailProvider(entry)).valueOrNull;
+
+    final ImageProvider? blurHashImage =
+        entry != null ? BlurHashImage(entry.blurHash) : null;
+
+    final markVideos = entry == null &&
+        ref.watch(dayHasVideosProvider(date)).maybeWhen(
+              data: (hasVideos) => hasVideos,
+              orElse: () => false,
+            );
+
+    final theme = useTheme();
     final themeColorScheme = useColorScheme();
     final colorScheme = entry == null
         ? themeColorScheme
@@ -52,6 +62,7 @@ class EntryWidget extends HookConsumerWidget {
     );
     final blobData =
         ref.watch(blobProvider(BlobRequest(day: date.day, month: date.month)));
+
     return IgnorePointer(
       ignoring: showThumbnail,
       child: BouncyPressable(
@@ -66,7 +77,6 @@ class EntryWidget extends HookConsumerWidget {
                   projectId: entry.projectId,
                   date: date,
                 ),
-              //TODO find out if we want this
               if (entry == null && !readOnly)
                 VideoPickerRoute(
                   forDate: date,
@@ -105,26 +115,17 @@ class EntryWidget extends HookConsumerWidget {
                         ),
                       ),
                     ),
-                    if (entry != null && thumbnailFile != null)
+                    if (entry != null && blurHashImage != null) ...[
                       SizedBox.expand(
-                        key: const ValueKey(true),
-                        child: Image.file(
-                          thumbnailFile,
+                        child: ImageFade(
+                          syncDuration: Duration.zero,
+                          image: showThumbnail && thumbnailFile != null
+                              ? FileImage(thumbnailFile)
+                              : blurHashImage,
                           fit: BoxFit.cover,
                         ),
                       ),
-                    if (entry != null)
-                      AnimatedOpacity(
-                        duration: kThemeAnimationDuration,
-                        opacity: showThumbnail ? 0 : 1,
-                        child: SizedBox.expand(
-                          key: const ValueKey(false),
-                          child: Image(
-                            fit: BoxFit.fill,
-                            image: BlurHashImage(entry.blurHash),
-                          ),
-                        ),
-                      ),
+                    ],
                   ],
                 ),
               ),
@@ -135,9 +136,7 @@ class EntryWidget extends HookConsumerWidget {
                 duration: kThemeAnimationDuration * 2,
                 curve: Curves.ease,
                 decoration: BoxDecoration(
-                  color: (!markVideos || Platform.isIOS
-                          ? themeColorScheme.background
-                          : themeColorScheme.primary)
+                  color: themeColorScheme.background
                       .withOpacity(showThumbnail ? 0.6 : 1),
                   shape: BoxShape.circle,
                 ),
@@ -145,10 +144,10 @@ class EntryWidget extends HookConsumerWidget {
                     ? const EdgeInsets.all(Spacers.xxs)
                     : const EdgeInsets.all(Spacers.s),
                 padding: const EdgeInsets.all(Spacers.xxs),
-                child: Text(date.day.toString().padLeft(2, '0'),
-                    style: !markVideos || Platform.isIOS
-                        ? numberStyle
-                        : numberStyle.copyWith(color: colorScheme.onPrimary)),
+                child: Text(
+                  date.day.toString().padLeft(2, '0'),
+                  style: numberStyle,
+                ),
               ),
             ),
           ],

@@ -4,8 +4,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'entry.freezed.dart';
 part 'entry.g.dart';
 
-const int entryAlgorithmVersion = 5;
-
 @freezed
 class Entry with _$Entry {
   String get uid => day.toIso8601String();
@@ -27,7 +25,7 @@ class Entry with _$Entry {
   }) = EditingEntry;
 
   factory Entry.saved({
-    @Default(entryAlgorithmVersion) int exportVersion,
+    required int exportVersion,
     required DateTime timestamp,
     required DateTime changedWhen,
     required String projectId,

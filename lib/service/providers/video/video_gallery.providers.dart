@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:broody/core/extensions/image.x.dart';
-import 'package:broody/model/common/loading_value/loading_value.dart';
 import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/service/repositories/video_gallery.repository.dart';
 import 'package:collection/collection.dart';
@@ -10,6 +9,7 @@ import 'package:ffmpeg_kit_flutter_min_gpl/ffprobe_kit.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:loading_value/loading_value.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 final videosChangedProvider = StreamProvider.autoDispose<int>((ref) {
@@ -17,6 +17,7 @@ final videosChangedProvider = StreamProvider.autoDispose<int>((ref) {
   void changeNotify(MethodCall call) {
     final count = call.arguments["newCount"];
     if (count != call.arguments["oldCount"]) {
+      debugPrint("New Photo count: $count");
       controller.add(count);
     }
   }
@@ -33,7 +34,7 @@ final videosChangedProvider = StreamProvider.autoDispose<int>((ref) {
 
 final videoGalleryPermissionProvider =
     FutureProvider.autoDispose<bool>((ref) async {
-  final changes = ref.watch(videosChangedProvider);
+  ref.watch(videosChangedProvider);
   final permission = await PhotoManager.requestPermissionExtend();
   return permission.isAuth;
 });
@@ -52,26 +53,31 @@ final _albumProvider =
   );
 });
 
+final _albumAssetCountProvider =
+    FutureProvider.autoDispose.family<int, DateTime>((ref, date) async {
+  final album = await ref.watch(_albumProvider(date).future);
+  return (await album?.assetCountAsync) ?? 0;
+});
+
 final dayHasVideosProvider =
-    Provider.autoDispose.family<bool, DateTime>((ref, date) {
-  //TODO Check this regularly, iOS is just too fucking slow
-  if (Platform.isIOS) return true;
-  final album = ref.watch(_albumProvider(date));
-  return (album.asData?.value?.assetCount ?? 0) > 0;
+    FutureProvider.autoDispose.family<bool, DateTime>((ref, date) {
+  return ref
+      .watch(_albumAssetCountProvider(date).selectAsync((data) => data > 0));
 });
 
 final videosProvider = FutureProvider.autoDispose
     .family<List<AssetEntity>, DateTime>((ref, date) async {
+  ref.watch(videosChangedProvider);
   final repo = ref.watch(videoGalleryRepositoryProvider);
-  final album = await ref.watch(_albumProvider(date).future);
-  final activeProject = ref.watch(selectedProjectProvider);
-  if (album == null || activeProject == null) {
-    return [];
-  }
   ref.onDispose(() {
     debugPrint("Clearing Photo Cache");
     PhotoManager.clearFileCache();
   });
+  final activeProject = ref.watch(selectedProjectProvider);
+  final album = await ref.watch(_albumProvider(date).future);
+  if (album == null || activeProject == null) {
+    return [];
+  }
   return await repo.getVideos(pathEntity: album);
 });
 
@@ -85,15 +91,23 @@ final pickedVideoProvider = Provider.autoDispose
     .family<LoadingValue<File>, AssetEntity>((ref, assetEntity) {
   final asyncValue = ref.watch(_pickedVideoStreamProvider(assetEntity));
   return asyncValue.when(
-    data: (v) => v,
-    error: (e, s) => LoadingValue.error(error: e, stackTrace: s),
-    loading: () => const LoadingValue.loading(progress: 0),
+    data: (v) {
+      v.whenOrNull(data: (f) async {
+        // ! this is a bit of a workaround, but somehow needed to properly work with cloud videos on iOS
+        await Future.delayed(Duration(milliseconds: 500));
+        ref.invalidate(galleryVideoIsLocalProvider(assetEntity));
+        ref.invalidate(assetEntityFileProvider(assetEntity));
+      });
+      return v;
+    },
+    error: (e, s) => LoadingValue.error(e, stackTrace: s),
+    loading: () => const LoadingValue.loading(0),
   );
 });
 
 final galleryVideoIsLocalProvider =
     FutureProvider.autoDispose.family((ref, AssetEntity entity) async {
-  return await entity.isLocallyAvailable;
+  return await entity.isLocallyAvailable();
 });
 
 final assetEntityFileProvider =
@@ -101,6 +115,7 @@ final assetEntityFileProvider =
   (ref, AssetEntity entity) async {
     debugPrint("Obtaining Converted File");
     File? file = await entity.file;
+    debugPrint("File " + file.toString());
     if (file == null) {
       debugPrint("Fallback to originFile");
       file = await entity.originFile;

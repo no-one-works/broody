@@ -40,6 +40,7 @@ class GalleryVideoDatasource implements IGalleryVideoDatasource {
       //onlyAll: true,
       hasAll: true,
       filterOption: FilterOptionGroup(
+        //TODO look
         containsLivePhotos: false,
         orders: const [
           OrderOption(type: OrderOptionType.createDate, asc: false)
@@ -63,8 +64,9 @@ class GalleryVideoDatasource implements IGalleryVideoDatasource {
     AssetPathEntity pathEntity, {
     required int page,
     required int perPage,
-  }) {
-    return pathEntity.getAssetListPaged(page: page, size: perPage);
+  }) async {
+    if (perPage == 0) return [];
+    return await pathEntity.getAssetListPaged(page: page, size: perPage);
   }
 
   @override

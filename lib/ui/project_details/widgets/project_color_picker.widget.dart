@@ -29,7 +29,7 @@ class ProjectColorPicker extends HookConsumerWidget {
 
     useEffect(() {
       if (selected != null) return;
-      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
         onSelect?.call(colors[Random().nextInt(colors.length - 1)]);
       });
     }, [colors]);

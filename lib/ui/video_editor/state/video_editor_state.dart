@@ -1,4 +1,4 @@
-import 'package:broody/model/common/loading_value/loading_value.dart';
+import 'package:loading_value/loading_value.dart';
 import 'package:broody/model/entry/entry.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:photo_manager/photo_manager.dart';

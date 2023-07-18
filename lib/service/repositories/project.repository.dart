@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:broody/core/constants/clip_durations.dart';
 import 'package:broody/core/extensions/date_time.x.dart';
-import 'package:broody/model/common/loading_value/loading_value.dart';
 import 'package:broody/model/compilation/compilation.dart';
 import 'package:broody/model/entry/entry.dart';
 import 'package:broody/model/project/project.dart';
@@ -19,6 +18,7 @@ import 'package:collection/src/iterable_extensions.dart';
 import 'package:dartx/dartx.dart' show IterableExcept;
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:loading_value/loading_value.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 abstract class ProjectRepository extends RepositoryBase {
@@ -46,31 +46,41 @@ abstract class ProjectRepository extends RepositoryBase {
 
   Project get newProject;
 
+  Future<void> deleteAllCompilations();
+
   Stream<LoadingValue<SavedCompilation?>> createCompilation({
     required String projectUid,
-    int? month,
+    DateTime? monthOfYear,
   });
+
+  /// Attempts to cancel the creation of the current compilation.
+  ///
+  /// Does nothing if nothing is being generated.
+  Future<void> cancelCompilationCreation();
 
   bool compilationNeedsUpdate({
     required String projectUid,
-    int? month,
+    DateTime? monthOfYear,
   });
 
   SavedCompilation? getCompilationForProject({
     required String projectUid,
-    int? month,
+    DateTime? monthOfYear,
   });
 
   Future<AssetEntity?> saveCompilationInGallery({
     required Project project,
-    int? month,
+    DateTime? monthOfYear,
   });
 
   Future<File> getFileForCompilation(SavedCompilation compilation);
 }
 
-final projectRepositoryProvider =
-    Provider<ProjectRepository>((ref) => ProjectRepositoryImpl(ref));
+final projectRepositoryProvider = Provider<ProjectRepository>((ref) {
+  final repo = ProjectRepositoryImpl(ref);
+  repo.deleteAllCompilations();
+  return repo;
+});
 
 class ProjectRepositoryImpl extends ProjectRepository {
   ProjectRepositoryImpl(ProviderRef ref) : super(ref);
@@ -135,6 +145,7 @@ class ProjectRepositoryImpl extends ProjectRepository {
     } else {
       final lostDates = old.startDate
           .getDaysUntil(old.endDate)
+          .map((d) => d.startOfDay())
           .except(project.startDate.getDaysUntil(project.endDate));
       final entries =
           await ref.read(projectEntriesProvider(project.uid).future);
@@ -149,6 +160,7 @@ class ProjectRepositoryImpl extends ProjectRepository {
   @override
   Stream<LoadingValue<List<SavedEntry>>> updateProjectEntries(
       Project project) async* {
+    print(project.resolution);
     final outdated =
         await ref.read(projectOutdatedEntriesProvider(project.uid).future);
     final updated = <SavedEntry>[];
@@ -158,14 +170,14 @@ class ProjectRepositoryImpl extends ProjectRepository {
       final process =
           ref.read(entryRepositoryProvider).updateEntryVersion(entry: entry);
       await for (final loadingValue in process) {
-        if (loadingValue is Loading<SavedEntry?>) {
+        if (loadingValue is ValueLoading<SavedEntry?>) {
           final progress =
               (updated.length + failed.length + loadingValue.progress) /
                   outdated.length;
-          yield LoadingValue.loading(progress: progress);
+          yield LoadingValue.loading(progress);
         } else if (loadingValue is LoadingError<SavedEntry?>) {
           failed.add(entry);
-        } else if (loadingValue is Data<SavedEntry?>) {
+        } else if (loadingValue is LoadedData<SavedEntry?>) {
           if (loadingValue.value == null) {
             failed.add(entry);
             continue;
@@ -176,9 +188,9 @@ class ProjectRepositoryImpl extends ProjectRepository {
     }
     if (failed.isNotEmpty) {
       yield LoadingValue.error(
-          error: Exception("${failed.length} entries failed to export!"));
+          Exception("${failed.length} entries failed to export!"));
     } else {
-      yield LoadingValue.data(value: updated);
+      yield LoadingValue.data(updated);
     }
   }
 
@@ -193,16 +205,25 @@ class ProjectRepositoryImpl extends ProjectRepository {
       );
 
   @override
+  Future<void> deleteAllCompilations() async {
+    final compilationDatasource = ref.read(compilationDatasourceProvider);
+    debugPrint("Deleted all compilations");
+    final dirs = await Future.wait(projects
+        .map((e) => ref.read(compilationDirectoryProvider(e.uid).future)));
+    await compilationDatasource.clearCompilations(dirs);
+  }
+
+  @override
   Stream<LoadingValue<SavedCompilation?>> createCompilation({
     required String projectUid,
-    int? month,
+    DateTime? monthOfYear,
   }) async* {
     final project = getProject(projectUid);
     if (project == null) {
-      yield const LoadingValue.data(value: null);
+      yield const LoadingValue.data(null);
       return;
     }
-    yield const LoadingValue.loading(progress: 0);
+    yield const LoadingValue.loading(0);
     final compilationDatasource = ref.read(compilationDatasourceProvider);
     final entriesForProject =
         await ref.read(projectEntriesProvider(projectUid).future);
@@ -212,7 +233,9 @@ class ProjectRepositoryImpl extends ProjectRepository {
         await ref.read(compilationDirectoryProvider(projectUid).future);
 
     final entries = entriesForProject
-        .where((e) => month == null || e.day.month == month)
+        .where((e) =>
+            monthOfYear == null ||
+            e.day.month == monthOfYear.month && e.day.year == monthOfYear.year)
         .toList();
 
     debugPrint("CREATING COMPILATION");
@@ -220,7 +243,7 @@ class ProjectRepositoryImpl extends ProjectRepository {
     final createCompilation = CreateCompilation(
       uid: ref.read(uidProvider),
       projectTitle: project.title,
-      month: month,
+      monthOfYear: monthOfYear,
       destination: compilationDir.path,
       projectUid: projectUid,
       usedEntries: entries,
@@ -239,11 +262,19 @@ class ProjectRepositoryImpl extends ProjectRepository {
   }
 
   @override
-  Future<AssetEntity?> saveCompilationInGallery(
-      {required Project project, int? month}) async {
+  Future<void> cancelCompilationCreation() {
+    final compilationDatasource = ref.read(compilationDatasourceProvider);
+    return compilationDatasource.cancelCompilationCreation();
+  }
+
+  @override
+  Future<AssetEntity?> saveCompilationInGallery({
+    required Project project,
+    DateTime? monthOfYear,
+  }) async {
     final compilation = getCompilationForProject(
       projectUid: project.uid,
-      month: month,
+      monthOfYear: monthOfYear,
     );
     if (compilation == null) {
       throw Exception(
@@ -273,7 +304,7 @@ class ProjectRepositoryImpl extends ProjectRepository {
   @override
   bool compilationNeedsUpdate({
     required String projectUid,
-    int? month,
+    DateTime? monthOfYear,
   }) {
     final project = getProject(projectUid);
     if (project == null) {
@@ -282,12 +313,15 @@ class ProjectRepositoryImpl extends ProjectRepository {
     final compilationDatasource = ref.read(compilationDatasourceProvider);
     final compilation = compilationDatasource.getCompilationForProject(
       projectUid: projectUid,
-      month: month,
+      monthOfYear: monthOfYear,
     );
 
     final entryRepo = ref.read(entryRepositoryProvider);
     final entries = entryRepo.getEntriesForProject(projectId: projectUid).where(
-          (e) => month == null || e.day.month == month,
+          (e) =>
+              monthOfYear == null ||
+              e.day.month == monthOfYear.month &&
+                  e.day.year == monthOfYear.year,
         );
     if (entries.isEmpty) {
       return false;
@@ -295,11 +329,18 @@ class ProjectRepositoryImpl extends ProjectRepository {
     if (compilation == null) {
       return true;
     }
-    final lastChange = entries.sortedBy((e) => e.changedWhen).last.changedWhen;
-    if (compilation.algorithmVersion < compilationAlgorithmVersion ||
-        lastChange.isAfter(compilation.created)) {
+    if (entries.length != compilation.usedEntries.length) {
       return true;
     }
+    for (final entry in entries) {
+      final oldEntry =
+          compilation.usedEntries.firstWhereOrNull((e) => e.uid == entry.uid);
+      if (oldEntry == null ||
+          oldEntry.changedWhen.isBefore(entry.changedWhen)) {
+        return true;
+      }
+    }
+
     return false;
   }
 
@@ -313,12 +354,12 @@ class ProjectRepositoryImpl extends ProjectRepository {
   @override
   SavedCompilation? getCompilationForProject({
     required String projectUid,
-    int? month,
+    DateTime? monthOfYear,
   }) {
     final datasource = ref.read(compilationDatasourceProvider);
     return datasource.getCompilationForProject(
       projectUid: projectUid,
-      month: month,
+      monthOfYear: monthOfYear,
     );
   }
 }

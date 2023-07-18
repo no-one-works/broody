@@ -4,13 +4,13 @@ import 'package:broody/service/repositories/project.repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class NoProjectsGuard extends AutoRouteGuard {
-  NoProjectsGuard(this._reader);
+  NoProjectsGuard(this.ref);
 
-  final Reader _reader;
+  final Ref ref;
 
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) async {
-    final projects = _reader(projectRepositoryProvider).projects;
+    final projects = ref.read(projectRepositoryProvider).projects;
     if (projects.isEmpty) {
       resolver.next(false);
       await router.push(

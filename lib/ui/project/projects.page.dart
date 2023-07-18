@@ -6,7 +6,6 @@ import 'package:broody/ui/project/widgets/projects_list.dart';
 import 'package:broody/ui/shared/dialogs/about_dialog.dart';
 import 'package:broody/ui/theme/spacing.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProjectsPage extends HookConsumerWidget {
@@ -40,7 +39,7 @@ class ProjectsPage extends HookConsumerWidget {
               floating: true,
               actions: [
                 IconButton(
-                    onPressed: () => showLicenseDialog(context),
+                    onPressed: () => showLicenseDialog(context, ref),
                     icon: const Icon(Icons.info_outline_rounded))
               ],
             ),

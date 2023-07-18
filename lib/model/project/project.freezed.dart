@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'project.dart';
 
@@ -12,54 +12,11 @@ part of 'project.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Project _$ProjectFromJson(Map<String, dynamic> json) {
   return _Project.fromJson(json);
 }
-
-/// @nodoc
-class _$ProjectTearOff {
-  const _$ProjectTearOff();
-
-  _Project call(
-      {required String uid,
-      String title = "",
-      required DateTime startDate,
-      required DateTime endDate,
-      required Duration entryDuration,
-      required String? thumbnailPath,
-      required DateTime? notificationTime,
-      @SizeConverter() Size landScapeResolution = resolution1080Landscape,
-      bool portrait = true,
-      int? color,
-      dynamic isHardcoreMode = false,
-      List<String> compilationAssetIds = const [],
-      String? exportedPath}) {
-    return _Project(
-      uid: uid,
-      title: title,
-      startDate: startDate,
-      endDate: endDate,
-      entryDuration: entryDuration,
-      thumbnailPath: thumbnailPath,
-      notificationTime: notificationTime,
-      landScapeResolution: landScapeResolution,
-      portrait: portrait,
-      color: color,
-      isHardcoreMode: isHardcoreMode,
-      compilationAssetIds: compilationAssetIds,
-      exportedPath: exportedPath,
-    );
-  }
-
-  Project fromJson(Map<String, Object?> json) {
-    return Project.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Project = _$ProjectTearOff();
 
 /// @nodoc
 mixin _$Project {
@@ -86,7 +43,8 @@ mixin _$Project {
 /// @nodoc
 abstract class $ProjectCopyWith<$Res> {
   factory $ProjectCopyWith(Project value, $Res Function(Project) then) =
-      _$ProjectCopyWithImpl<$Res>;
+      _$ProjectCopyWithImpl<$Res, Project>;
+  @useResult
   $Res call(
       {String uid,
       String title,
@@ -104,91 +62,96 @@ abstract class $ProjectCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProjectCopyWithImpl<$Res> implements $ProjectCopyWith<$Res> {
+class _$ProjectCopyWithImpl<$Res, $Val extends Project>
+    implements $ProjectCopyWith<$Res> {
   _$ProjectCopyWithImpl(this._value, this._then);
 
-  final Project _value;
   // ignore: unused_field
-  final $Res Function(Project) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? uid = freezed,
-    Object? title = freezed,
-    Object? startDate = freezed,
-    Object? endDate = freezed,
-    Object? entryDuration = freezed,
+    Object? uid = null,
+    Object? title = null,
+    Object? startDate = null,
+    Object? endDate = null,
+    Object? entryDuration = null,
     Object? thumbnailPath = freezed,
     Object? notificationTime = freezed,
-    Object? landScapeResolution = freezed,
-    Object? portrait = freezed,
+    Object? landScapeResolution = null,
+    Object? portrait = null,
     Object? color = freezed,
     Object? isHardcoreMode = freezed,
-    Object? compilationAssetIds = freezed,
+    Object? compilationAssetIds = null,
     Object? exportedPath = freezed,
   }) {
     return _then(_value.copyWith(
-      uid: uid == freezed
+      uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      startDate: startDate == freezed
+      startDate: null == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      endDate: endDate == freezed
+      endDate: null == endDate
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      entryDuration: entryDuration == freezed
+      entryDuration: null == entryDuration
           ? _value.entryDuration
           : entryDuration // ignore: cast_nullable_to_non_nullable
               as Duration,
-      thumbnailPath: thumbnailPath == freezed
+      thumbnailPath: freezed == thumbnailPath
           ? _value.thumbnailPath
           : thumbnailPath // ignore: cast_nullable_to_non_nullable
               as String?,
-      notificationTime: notificationTime == freezed
+      notificationTime: freezed == notificationTime
           ? _value.notificationTime
           : notificationTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      landScapeResolution: landScapeResolution == freezed
+      landScapeResolution: null == landScapeResolution
           ? _value.landScapeResolution
           : landScapeResolution // ignore: cast_nullable_to_non_nullable
               as Size,
-      portrait: portrait == freezed
+      portrait: null == portrait
           ? _value.portrait
           : portrait // ignore: cast_nullable_to_non_nullable
               as bool,
-      color: color == freezed
+      color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as int?,
-      isHardcoreMode: isHardcoreMode == freezed
+      isHardcoreMode: freezed == isHardcoreMode
           ? _value.isHardcoreMode
           : isHardcoreMode // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      compilationAssetIds: compilationAssetIds == freezed
+      compilationAssetIds: null == compilationAssetIds
           ? _value.compilationAssetIds
           : compilationAssetIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      exportedPath: exportedPath == freezed
+      exportedPath: freezed == exportedPath
           ? _value.exportedPath
           : exportedPath // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
-  factory _$ProjectCopyWith(_Project value, $Res Function(_Project) then) =
-      __$ProjectCopyWithImpl<$Res>;
+abstract class _$$_ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
+  factory _$$_ProjectCopyWith(
+          _$_Project value, $Res Function(_$_Project) then) =
+      __$$_ProjectCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String uid,
       String title,
@@ -206,78 +169,77 @@ abstract class _$ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$ProjectCopyWithImpl<$Res> extends _$ProjectCopyWithImpl<$Res>
-    implements _$ProjectCopyWith<$Res> {
-  __$ProjectCopyWithImpl(_Project _value, $Res Function(_Project) _then)
-      : super(_value, (v) => _then(v as _Project));
+class __$$_ProjectCopyWithImpl<$Res>
+    extends _$ProjectCopyWithImpl<$Res, _$_Project>
+    implements _$$_ProjectCopyWith<$Res> {
+  __$$_ProjectCopyWithImpl(_$_Project _value, $Res Function(_$_Project) _then)
+      : super(_value, _then);
 
-  @override
-  _Project get _value => super._value as _Project;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? uid = freezed,
-    Object? title = freezed,
-    Object? startDate = freezed,
-    Object? endDate = freezed,
-    Object? entryDuration = freezed,
+    Object? uid = null,
+    Object? title = null,
+    Object? startDate = null,
+    Object? endDate = null,
+    Object? entryDuration = null,
     Object? thumbnailPath = freezed,
     Object? notificationTime = freezed,
-    Object? landScapeResolution = freezed,
-    Object? portrait = freezed,
+    Object? landScapeResolution = null,
+    Object? portrait = null,
     Object? color = freezed,
     Object? isHardcoreMode = freezed,
-    Object? compilationAssetIds = freezed,
+    Object? compilationAssetIds = null,
     Object? exportedPath = freezed,
   }) {
-    return _then(_Project(
-      uid: uid == freezed
+    return _then(_$_Project(
+      uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      startDate: startDate == freezed
+      startDate: null == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      endDate: endDate == freezed
+      endDate: null == endDate
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      entryDuration: entryDuration == freezed
+      entryDuration: null == entryDuration
           ? _value.entryDuration
           : entryDuration // ignore: cast_nullable_to_non_nullable
               as Duration,
-      thumbnailPath: thumbnailPath == freezed
+      thumbnailPath: freezed == thumbnailPath
           ? _value.thumbnailPath
           : thumbnailPath // ignore: cast_nullable_to_non_nullable
               as String?,
-      notificationTime: notificationTime == freezed
+      notificationTime: freezed == notificationTime
           ? _value.notificationTime
           : notificationTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      landScapeResolution: landScapeResolution == freezed
+      landScapeResolution: null == landScapeResolution
           ? _value.landScapeResolution
           : landScapeResolution // ignore: cast_nullable_to_non_nullable
               as Size,
-      portrait: portrait == freezed
+      portrait: null == portrait
           ? _value.portrait
           : portrait // ignore: cast_nullable_to_non_nullable
               as bool,
-      color: color == freezed
+      color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as int?,
       isHardcoreMode:
-          isHardcoreMode == freezed ? _value.isHardcoreMode : isHardcoreMode,
-      compilationAssetIds: compilationAssetIds == freezed
-          ? _value.compilationAssetIds
+          freezed == isHardcoreMode ? _value.isHardcoreMode! : isHardcoreMode,
+      compilationAssetIds: null == compilationAssetIds
+          ? _value._compilationAssetIds
           : compilationAssetIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      exportedPath: exportedPath == freezed
+      exportedPath: freezed == exportedPath
           ? _value.exportedPath
           : exportedPath // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -300,17 +262,18 @@ class _$_Project extends _Project {
       this.portrait = true,
       this.color,
       this.isHardcoreMode = false,
-      this.compilationAssetIds = const [],
+      final List<String> compilationAssetIds = const [],
       this.exportedPath})
-      : super._();
+      : _compilationAssetIds = compilationAssetIds,
+        super._();
 
   factory _$_Project.fromJson(Map<String, dynamic> json) =>
       _$$_ProjectFromJson(json);
 
   @override
   final String uid;
-  @JsonKey()
   @override
+  @JsonKey()
   final String title;
   @override
   final DateTime startDate;
@@ -322,21 +285,28 @@ class _$_Project extends _Project {
   final String? thumbnailPath;
   @override
   final DateTime? notificationTime;
-  @JsonKey()
   @override
+  @JsonKey()
   @SizeConverter()
   final Size landScapeResolution;
-  @JsonKey()
   @override
+  @JsonKey()
   final bool portrait;
   @override
   final int? color;
-  @JsonKey()
   @override
+  @JsonKey()
   final dynamic isHardcoreMode;
-  @JsonKey()
+  final List<String> _compilationAssetIds;
   @override
-  final List<String> compilationAssetIds;
+  @JsonKey()
+  List<String> get compilationAssetIds {
+    if (_compilationAssetIds is EqualUnmodifiableListView)
+      return _compilationAssetIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_compilationAssetIds);
+  }
+
   @override
   final String? exportedPath;
 
@@ -349,72 +319,78 @@ class _$_Project extends _Project {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Project &&
-            const DeepCollectionEquality().equals(other.uid, uid) &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.startDate, startDate) &&
-            const DeepCollectionEquality().equals(other.endDate, endDate) &&
-            const DeepCollectionEquality()
-                .equals(other.entryDuration, entryDuration) &&
-            const DeepCollectionEquality()
-                .equals(other.thumbnailPath, thumbnailPath) &&
-            const DeepCollectionEquality()
-                .equals(other.notificationTime, notificationTime) &&
-            const DeepCollectionEquality()
-                .equals(other.landScapeResolution, landScapeResolution) &&
-            const DeepCollectionEquality().equals(other.portrait, portrait) &&
-            const DeepCollectionEquality().equals(other.color, color) &&
+            other is _$_Project &&
+            (identical(other.uid, uid) || other.uid == uid) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.entryDuration, entryDuration) ||
+                other.entryDuration == entryDuration) &&
+            (identical(other.thumbnailPath, thumbnailPath) ||
+                other.thumbnailPath == thumbnailPath) &&
+            (identical(other.notificationTime, notificationTime) ||
+                other.notificationTime == notificationTime) &&
+            (identical(other.landScapeResolution, landScapeResolution) ||
+                other.landScapeResolution == landScapeResolution) &&
+            (identical(other.portrait, portrait) ||
+                other.portrait == portrait) &&
+            (identical(other.color, color) || other.color == color) &&
             const DeepCollectionEquality()
                 .equals(other.isHardcoreMode, isHardcoreMode) &&
             const DeepCollectionEquality()
-                .equals(other.compilationAssetIds, compilationAssetIds) &&
-            const DeepCollectionEquality()
-                .equals(other.exportedPath, exportedPath));
+                .equals(other._compilationAssetIds, _compilationAssetIds) &&
+            (identical(other.exportedPath, exportedPath) ||
+                other.exportedPath == exportedPath));
   }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(uid),
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(startDate),
-      const DeepCollectionEquality().hash(endDate),
-      const DeepCollectionEquality().hash(entryDuration),
-      const DeepCollectionEquality().hash(thumbnailPath),
-      const DeepCollectionEquality().hash(notificationTime),
-      const DeepCollectionEquality().hash(landScapeResolution),
-      const DeepCollectionEquality().hash(portrait),
-      const DeepCollectionEquality().hash(color),
-      const DeepCollectionEquality().hash(isHardcoreMode),
-      const DeepCollectionEquality().hash(compilationAssetIds),
-      const DeepCollectionEquality().hash(exportedPath));
 
   @JsonKey(ignore: true)
   @override
-  _$ProjectCopyWith<_Project> get copyWith =>
-      __$ProjectCopyWithImpl<_Project>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      uid,
+      title,
+      startDate,
+      endDate,
+      entryDuration,
+      thumbnailPath,
+      notificationTime,
+      landScapeResolution,
+      portrait,
+      color,
+      const DeepCollectionEquality().hash(isHardcoreMode),
+      const DeepCollectionEquality().hash(_compilationAssetIds),
+      exportedPath);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ProjectCopyWith<_$_Project> get copyWith =>
+      __$$_ProjectCopyWithImpl<_$_Project>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProjectToJson(this);
+    return _$$_ProjectToJson(
+      this,
+    );
   }
 }
 
 abstract class _Project extends Project {
   factory _Project(
-      {required String uid,
-      String title,
-      required DateTime startDate,
-      required DateTime endDate,
-      required Duration entryDuration,
-      required String? thumbnailPath,
-      required DateTime? notificationTime,
-      @SizeConverter() Size landScapeResolution,
-      bool portrait,
-      int? color,
-      dynamic isHardcoreMode,
-      List<String> compilationAssetIds,
-      String? exportedPath}) = _$_Project;
+      {required final String uid,
+      final String title,
+      required final DateTime startDate,
+      required final DateTime endDate,
+      required final Duration entryDuration,
+      required final String? thumbnailPath,
+      required final DateTime? notificationTime,
+      @SizeConverter() final Size landScapeResolution,
+      final bool portrait,
+      final int? color,
+      final dynamic isHardcoreMode,
+      final List<String> compilationAssetIds,
+      final String? exportedPath}) = _$_Project;
   _Project._() : super._();
 
   factory _Project.fromJson(Map<String, dynamic> json) = _$_Project.fromJson;
@@ -448,6 +424,6 @@ abstract class _Project extends Project {
   String? get exportedPath;
   @override
   @JsonKey(ignore: true)
-  _$ProjectCopyWith<_Project> get copyWith =>
+  _$$_ProjectCopyWith<_$_Project> get copyWith =>
       throw _privateConstructorUsedError;
 }

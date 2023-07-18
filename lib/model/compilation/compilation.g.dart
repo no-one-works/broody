@@ -11,7 +11,9 @@ _$CreateCompilation _$$CreateCompilationFromJson(Map<String, dynamic> json) =>
       uid: json['uid'] as String,
       projectUid: json['projectUid'] as String,
       projectTitle: json['projectTitle'] as String,
-      month: json['month'] as int?,
+      monthOfYear: json['monthOfYear'] == null
+          ? null
+          : DateTime.parse(json['monthOfYear'] as String),
       destination: json['destination'] as String,
       usedEntries: (json['usedEntries'] as List<dynamic>)
           .map((e) => SavedEntry.fromJson(e as Map<String, dynamic>))
@@ -28,7 +30,7 @@ Map<String, dynamic> _$$CreateCompilationToJson(_$CreateCompilation instance) =>
       'uid': instance.uid,
       'projectUid': instance.projectUid,
       'projectTitle': instance.projectTitle,
-      'month': instance.month,
+      'monthOfYear': instance.monthOfYear?.toIso8601String(),
       'destination': instance.destination,
       'usedEntries': instance.usedEntries.map((e) => e.toJson()).toList(),
       'width': instance.width,
@@ -43,7 +45,9 @@ _$SavedCompilation _$$SavedCompilationFromJson(Map<String, dynamic> json) =>
       uid: json['uid'] as String,
       filename: json['filename'] as String,
       projectUid: json['projectUid'] as String,
-      month: json['month'] as int?,
+      monthOfYear: json['monthOfYear'] == null
+          ? null
+          : DateTime.parse(json['monthOfYear'] as String),
       usedEntries: (json['usedEntries'] as List<dynamic>)
           .map((e) => SavedEntry.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -60,7 +64,7 @@ Map<String, dynamic> _$$SavedCompilationToJson(_$SavedCompilation instance) =>
       'uid': instance.uid,
       'filename': instance.filename,
       'projectUid': instance.projectUid,
-      'month': instance.month,
+      'monthOfYear': instance.monthOfYear?.toIso8601String(),
       'usedEntries': instance.usedEntries.map((e) => e.toJson()).toList(),
       'width': instance.width,
       'height': instance.height,

@@ -75,8 +75,7 @@ class ProjectList extends HookConsumerWidget {
       },
       itemBuilder: (context, animation, item, i) {
         final entries =
-            ref.watch(projectEntriesProvider(projects[i].uid)).asData?.value ??
-                [];
+            ref.watch(projectEntriesProvider(item.uid)).asData?.value ?? [];
         final blurHash = entries.isNotEmpty
             ? entries.last.blurHash
             : "K6Pj42jE.A_3t7t7*0o#Dg";
@@ -88,7 +87,7 @@ class ProjectList extends HookConsumerWidget {
             project: item,
             blurHash: blurHash,
             onTap: () {
-              ref.read(selectedProjectProvider.notifier).state = projects[i];
+              ref.read(selectedProjectProvider.notifier).state = item;
               return context.router.replaceAll([const HomeRoute()]);
             },
           ),

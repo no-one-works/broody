@@ -4,24 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:photo_manager/photo_manager.dart';
 
-final galleryVideoControllerProviderOld =
-    FutureProvider.autoDispose.family((ref, AssetEntity entity) async {
-  final isLocallyAvailable = await entity.isLocallyAvailable;
-  if (!isLocallyAvailable) {
-    return null;
-  }
-  final file = await ref.watch(assetEntityFileProvider(entity).future);
-  if (file == null) {
-    throw Exception("Couldn't retrieve file for video!");
-  }
-  final videoController =
-      await ref.watch(loopingFileVideoControllerProvider(file.path).future);
-  return videoController;
-});
-
 final galleryVideoControllerProvider =
     FutureProvider.autoDispose.family((ref, AssetEntity entity) async {
-  final isLocallyAvailable = await entity.isLocallyAvailable;
+  final isLocallyAvailable =
+      await ref.watch(galleryVideoIsLocalProvider(entity).future);
   if (!isLocallyAvailable) {
     return null;
   }

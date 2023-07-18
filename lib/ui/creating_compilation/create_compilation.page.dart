@@ -7,23 +7,22 @@ import 'package:broody/ui/creating_compilation/state/create_compilation.state.da
 import 'package:broody/ui/creating_compilation/widgets/compilation_success.widget.dart';
 import 'package:broody/ui/shared/loading_value_progress_bar/loading_value_progress_bar.widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CreateCompilationPage extends HookConsumerWidget {
   CreateCompilationPage({
     required this.projectUid,
-    this.month,
+    this.monthOfYear,
     Key? key,
   }) : super(key: key);
 
   final String projectUid;
-  final int? month;
+  final DateTime? monthOfYear;
 
   late final CreateCompilationState _initialState =
       CreateCompilationState.prepareExport(
     projectUid: projectUid,
-    month: month,
+    monthOfYear: monthOfYear,
   );
 
   @override
@@ -35,15 +34,14 @@ class CreateCompilationPage extends HookConsumerWidget {
     final projectTitle = ref.watch(projectTitleProvider);
     final colorScheme = useColorScheme();
 
-    useWakelock();
+    useWakelock(endWhenCovered: false);
     return Scaffold(
       backgroundColor: colorScheme.secondaryContainer,
       appBar: AppBar(
         foregroundColor: colorScheme.secondary,
-        title: Text(state.month == null
+        title: Text(state.monthOfYear == null
             ? projectTitle
-            : l10n.monthCompilation(
-                projectTitle, DateTime(1970, state.month!))),
+            : l10n.monthCompilation(projectTitle, monthOfYear!)),
       ),
       body: AnimatedSwitcher(
         duration: kThemeAnimationDuration,
@@ -51,6 +49,7 @@ class CreateCompilationPage extends HookConsumerWidget {
           exporting: (state) => LoadingValueProgressBar(
             loadingValue: state.exportProgress,
             color: colorScheme.secondary,
+            description: l10n.creatingCompilation,
           ),
           exportSuccess: (state) => CompilationSuccessWidget(
             key: const ValueKey(CreateCompilationExportSuccess),

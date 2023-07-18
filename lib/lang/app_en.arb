@@ -16,7 +16,7 @@
   "keep": "Keep",
   "continueBtn": "Continue",
   "record": "Record",
-  "storageRequestInfo" : "We will ask you for gallery access so that you can add videos",
+  "storageRequestInfo": "We will ask you for gallery access so that you can add videos",
   "learnMore": "Learn More",
   "onboardingTitle": "Welcome to Broody",
   "onboardingLine1": "Your daily video diary.",
@@ -134,6 +134,7 @@
   },
   "notifications": "Notifications",
   "saveToGallery": "Save to Gallery",
+  "creatingCompilation": "Creating your compilation...",
   "saveToGallerySuccess": "Saved compilation to gallery!",
   "saveToGalleryFailed": "Couldn't save compilation to gallery!",
   "videoOrientation": "Video Orientation",
@@ -177,7 +178,7 @@
   },
   "outdatedEntriesOk": "Update Entries",
   "outdatedEntriesCancel": "Open in Read-Only Mode",
-  "outdatedEntriesRunningDescription": "This could take a while. Please don't close the app until this process is finished!",
+  "outdatedEntriesRunningDescription": "This could take a while. Please don't close the app until this process is finished! We might need to request some of your original files from your cloud storage, so please make sure you're connected to the internet.",
   "updatingEntriesRemaining": "Updating Entries...\n{count} remain",
   "@updatingEntriesRemaining": {
     "placeholders": {
@@ -186,5 +187,6 @@
       }
     }
   },
-  "readOnlyModeDescription": "This project is in read-only mode. Update it's entries to make it editable again."
+  "readOnlyModeDescription": "This project is in read-only mode. Update it's entries to make it editable again.",
+  "whatsNew": "What's new"
 }

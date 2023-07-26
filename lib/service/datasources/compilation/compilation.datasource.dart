@@ -7,7 +7,7 @@ import 'package:broody/model/compilation/compilation.dart';
 import 'package:broody/service/datasources/compilation/broody_compilation.datasource.dart';
 import 'package:hive/hive.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:loading_value/loading_value.dart';
+import 'package:process_value/process_value.dart';
 
 abstract class CompilationDatasource {
   List<SavedCompilation> get compilations;
@@ -21,7 +21,7 @@ abstract class CompilationDatasource {
     DateTime? monthOfYear,
   });
 
-  Stream<LoadingValue<SavedCompilation?>> createCompilation(
+  Stream<ProcessValue<SavedCompilation?>> createCompilation(
       {required CreateCompilation createCompilation});
 
   Future<void> cancelCompilationCreation();

@@ -23,7 +23,7 @@ mixin _$CreateCompilationState {
     required TResult Function(String projectUid, DateTime? monthOfYear)
         prepareExport,
     required TResult Function(String projectUid, DateTime? monthOfYear,
-            LoadingValue<dynamic> exportProgress)
+            ProcessValue<dynamic> exportProgress)
         exporting,
     required TResult Function(
             String projectUid,
@@ -40,7 +40,7 @@ mixin _$CreateCompilationState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String projectUid, DateTime? monthOfYear)? prepareExport,
     TResult? Function(String projectUid, DateTime? monthOfYear,
-            LoadingValue<dynamic> exportProgress)?
+            ProcessValue<dynamic> exportProgress)?
         exporting,
     TResult? Function(
             String projectUid,
@@ -56,7 +56,7 @@ mixin _$CreateCompilationState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String projectUid, DateTime? monthOfYear)? prepareExport,
     TResult Function(String projectUid, DateTime? monthOfYear,
-            LoadingValue<dynamic> exportProgress)?
+            ProcessValue<dynamic> exportProgress)?
         exporting,
     TResult Function(
             String projectUid,
@@ -226,7 +226,7 @@ class _$CreateCompilationPrepareExport
     required TResult Function(String projectUid, DateTime? monthOfYear)
         prepareExport,
     required TResult Function(String projectUid, DateTime? monthOfYear,
-            LoadingValue<dynamic> exportProgress)
+            ProcessValue<dynamic> exportProgress)
         exporting,
     required TResult Function(
             String projectUid,
@@ -246,7 +246,7 @@ class _$CreateCompilationPrepareExport
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String projectUid, DateTime? monthOfYear)? prepareExport,
     TResult? Function(String projectUid, DateTime? monthOfYear,
-            LoadingValue<dynamic> exportProgress)?
+            ProcessValue<dynamic> exportProgress)?
         exporting,
     TResult? Function(
             String projectUid,
@@ -265,7 +265,7 @@ class _$CreateCompilationPrepareExport
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String projectUid, DateTime? monthOfYear)? prepareExport,
     TResult Function(String projectUid, DateTime? monthOfYear,
-            LoadingValue<dynamic> exportProgress)?
+            ProcessValue<dynamic> exportProgress)?
         exporting,
     TResult Function(
             String projectUid,
@@ -351,7 +351,7 @@ abstract class _$$CreateCompilationExportingCopyWith<$Res>
   $Res call(
       {String projectUid,
       DateTime? monthOfYear,
-      LoadingValue<dynamic> exportProgress});
+      ProcessValue<dynamic> exportProgress});
 }
 
 /// @nodoc
@@ -383,7 +383,7 @@ class __$$CreateCompilationExportingCopyWithImpl<$Res>
       exportProgress: null == exportProgress
           ? _value.exportProgress
           : exportProgress // ignore: cast_nullable_to_non_nullable
-              as LoadingValue<dynamic>,
+              as ProcessValue<dynamic>,
     ));
   }
 }
@@ -401,7 +401,7 @@ class _$CreateCompilationExporting implements CreateCompilationExporting {
   @override
   final DateTime? monthOfYear;
   @override
-  final LoadingValue<dynamic> exportProgress;
+  final ProcessValue<dynamic> exportProgress;
 
   @override
   String toString() {
@@ -438,7 +438,7 @@ class _$CreateCompilationExporting implements CreateCompilationExporting {
     required TResult Function(String projectUid, DateTime? monthOfYear)
         prepareExport,
     required TResult Function(String projectUid, DateTime? monthOfYear,
-            LoadingValue<dynamic> exportProgress)
+            ProcessValue<dynamic> exportProgress)
         exporting,
     required TResult Function(
             String projectUid,
@@ -458,7 +458,7 @@ class _$CreateCompilationExporting implements CreateCompilationExporting {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String projectUid, DateTime? monthOfYear)? prepareExport,
     TResult? Function(String projectUid, DateTime? monthOfYear,
-            LoadingValue<dynamic> exportProgress)?
+            ProcessValue<dynamic> exportProgress)?
         exporting,
     TResult? Function(
             String projectUid,
@@ -477,7 +477,7 @@ class _$CreateCompilationExporting implements CreateCompilationExporting {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String projectUid, DateTime? monthOfYear)? prepareExport,
     TResult Function(String projectUid, DateTime? monthOfYear,
-            LoadingValue<dynamic> exportProgress)?
+            ProcessValue<dynamic> exportProgress)?
         exporting,
     TResult Function(
             String projectUid,
@@ -539,14 +539,14 @@ abstract class CreateCompilationExporting implements CreateCompilationState {
   const factory CreateCompilationExporting(
           {required final String projectUid,
           required final DateTime? monthOfYear,
-          required final LoadingValue<dynamic> exportProgress}) =
+          required final ProcessValue<dynamic> exportProgress}) =
       _$CreateCompilationExporting;
 
   @override
   String get projectUid;
   @override
   DateTime? get monthOfYear;
-  LoadingValue<dynamic> get exportProgress;
+  ProcessValue<dynamic> get exportProgress;
   @override
   @JsonKey(ignore: true)
   _$$CreateCompilationExportingCopyWith<_$CreateCompilationExporting>
@@ -674,7 +674,7 @@ class _$CreateCompilationExportSuccess
     required TResult Function(String projectUid, DateTime? monthOfYear)
         prepareExport,
     required TResult Function(String projectUid, DateTime? monthOfYear,
-            LoadingValue<dynamic> exportProgress)
+            ProcessValue<dynamic> exportProgress)
         exporting,
     required TResult Function(
             String projectUid,
@@ -695,7 +695,7 @@ class _$CreateCompilationExportSuccess
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String projectUid, DateTime? monthOfYear)? prepareExport,
     TResult? Function(String projectUid, DateTime? monthOfYear,
-            LoadingValue<dynamic> exportProgress)?
+            ProcessValue<dynamic> exportProgress)?
         exporting,
     TResult? Function(
             String projectUid,
@@ -715,7 +715,7 @@ class _$CreateCompilationExportSuccess
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String projectUid, DateTime? monthOfYear)? prepareExport,
     TResult Function(String projectUid, DateTime? monthOfYear,
-            LoadingValue<dynamic> exportProgress)?
+            ProcessValue<dynamic> exportProgress)?
         exporting,
     TResult Function(
             String projectUid,
@@ -881,7 +881,7 @@ class _$CreateCompilationExportFailed implements CreateCompilationExportFailed {
     required TResult Function(String projectUid, DateTime? monthOfYear)
         prepareExport,
     required TResult Function(String projectUid, DateTime? monthOfYear,
-            LoadingValue<dynamic> exportProgress)
+            ProcessValue<dynamic> exportProgress)
         exporting,
     required TResult Function(
             String projectUid,
@@ -901,7 +901,7 @@ class _$CreateCompilationExportFailed implements CreateCompilationExportFailed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String projectUid, DateTime? monthOfYear)? prepareExport,
     TResult? Function(String projectUid, DateTime? monthOfYear,
-            LoadingValue<dynamic> exportProgress)?
+            ProcessValue<dynamic> exportProgress)?
         exporting,
     TResult? Function(
             String projectUid,
@@ -920,7 +920,7 @@ class _$CreateCompilationExportFailed implements CreateCompilationExportFailed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String projectUid, DateTime? monthOfYear)? prepareExport,
     TResult Function(String projectUid, DateTime? monthOfYear,
-            LoadingValue<dynamic> exportProgress)?
+            ProcessValue<dynamic> exportProgress)?
         exporting,
     TResult Function(
             String projectUid,

@@ -4,9 +4,11 @@ import 'dart:ui';
 
 import 'package:broody/core/constants/video_resolutions.dart';
 import 'package:broody/service/datasources/clip/clip.datasource.dart';
-import 'package:broody_video/broody_video.dart';
+import 'package:dartx/dartx_io.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:video_transcode/video_transcode.dart';
 import 'package:flutter/foundation.dart';
-import 'package:loading_value/loading_value.dart';
+import 'package:process_value/process_value.dart';
 
 class BroodyClipDatasource extends ClipDatasource {
   @override
@@ -16,10 +18,11 @@ class BroodyClipDatasource extends ClipDatasource {
   String get fileFormat => ".mp4";
 
   @override
-  Stream<LoadingValue<File?>> createClip({
+  Stream<ProcessValue<File?>> createClip({
     required Duration startPoint,
     required Duration duration,
     required File videoSource,
+    required File videoDestination,
     required Size resolution,
     bool highQuality = false,
     Size? centerCropping,
@@ -31,19 +34,19 @@ class BroodyClipDatasource extends ClipDatasource {
       throw UnimplementedError("Only 1080p supported so far");
     }
 
-    final process = BroodyVideo.instance.processClip(
-      sourceFile: videoSource,
+    final process = VideoTranscode.instance.processClip(
+      source: videoSource,
+      target: videoDestination,
       start: startPoint,
       duration: duration,
-      targetSize: resolution,
+      targetSize: (
+        width: resolution.width.toInt(),
+        height: resolution.height.toInt()
+      ),
     );
 
-    await for (final p in process) {
-      yield p.when(
-        data: (data) => LoadingValue.data(data?.file),
-        error: (e, s) => LoadingValue.error(e, stackTrace: s),
-        loading: (p) => LoadingValue.loading(p),
-      );
+    await for (final p in process.updates) {
+      yield p.whenData((value) => value?.file);
     }
   }
 

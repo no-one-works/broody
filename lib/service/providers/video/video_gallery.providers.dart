@@ -9,7 +9,7 @@ import 'package:ffmpeg_kit_flutter_min_gpl/ffprobe_kit.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:loading_value/loading_value.dart';
+import 'package:process_value/process_value.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 final videosChangedProvider = StreamProvider.autoDispose<int>((ref) {
@@ -82,26 +82,25 @@ final videosProvider = FutureProvider.autoDispose
 });
 
 final _pickedVideoStreamProvider = StreamProvider.autoDispose
-    .family<LoadingValue<File>, AssetEntity>((ref, assetEntity) {
+    .family<ProcessValue<File>, AssetEntity>((ref, assetEntity) {
   final repo = ref.watch(videoGalleryRepositoryProvider);
   return repo.pickVideo(assetEntity);
 });
 
 final pickedVideoProvider = Provider.autoDispose
-    .family<LoadingValue<File>, AssetEntity>((ref, assetEntity) {
+    .family<ProcessValue<File>, AssetEntity>((ref, assetEntity) {
   final asyncValue = ref.watch(_pickedVideoStreamProvider(assetEntity));
   return asyncValue.when(
     data: (v) {
-      v.whenOrNull(data: (f) async {
-        // ! this is a bit of a workaround, but somehow needed to properly work with cloud videos on iOS
+      v.whenDataAsync((value) async {
         await Future.delayed(Duration(milliseconds: 500));
         ref.invalidate(galleryVideoIsLocalProvider(assetEntity));
         ref.invalidate(assetEntityFileProvider(assetEntity));
       });
       return v;
     },
-    error: (e, s) => LoadingValue.error(e, stackTrace: s),
-    loading: () => const LoadingValue.loading(0),
+    error: (e, s) => ProcessValue.error(e, stackTrace: s),
+    loading: () => const ProcessValue.loading(0),
   );
 });
 

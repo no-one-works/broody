@@ -4,17 +4,18 @@ import 'dart:io';
 import 'package:broody/service/datasources/clip/broody_clip.datasource.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:loading_value/loading_value.dart';
+import 'package:process_value/process_value.dart';
 
 abstract class ClipDatasource {
   int get algorithmVersion;
 
   String get fileFormat;
 
-  Stream<LoadingValue<File?>> createClip({
+  Stream<ProcessValue<File?>> createClip({
     required Duration startPoint,
     required Duration duration,
     required File videoSource,
+    required File videoDestination,
     required Size resolution,
     bool highQuality = false,
     Size? centerCropping,

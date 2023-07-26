@@ -9,7 +9,7 @@ import 'package:broody/ui/shared/loading_value_progress_bar/loading_value_progre
 import 'package:broody/ui/theme/transitions.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:loading_value/loading_value.dart';
+import 'package:process_value/process_value.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 class LoadingFromCloudPage extends HookConsumerWidget {
@@ -24,14 +24,16 @@ class LoadingFromCloudPage extends HookConsumerWidget {
     final l10n = useL10n();
     final colorScheme = useColorScheme();
     final pickedVideoAsync = ref.watch(pickedVideoProvider(assetEntity));
-    ref.listen<LoadingValue<File>>(pickedVideoProvider(assetEntity),
+    ref.listen<ProcessValue<File>>(pickedVideoProvider(assetEntity),
         (prev, next) {
-      next.whenOrNull(
-        data: (file) {
+      switch (next) {
+        case ProcessData():
           context.router.replace(VideoEditorRoute(assetEntity: assetEntity));
-        },
-        error: (_, __) => context.router.pop(),
-      );
+        case ProcessError():
+          context.router.pop();
+        case ProcessLoading():
+          break;
+      }
     });
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -53,7 +55,7 @@ class LoadingFromCloudPage extends HookConsumerWidget {
             ),
             Center(
               child: LoadingValueProgressBar(
-                loadingValue: pickedVideoAsync,
+                processValue: pickedVideoAsync,
                 description: l10n.downloadingVideo,
                 color: colorScheme.onSurface,
               ),

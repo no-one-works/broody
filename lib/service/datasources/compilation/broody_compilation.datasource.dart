@@ -4,12 +4,13 @@ import 'dart:io';
 import 'package:broody/core/constants/box_keys.dart';
 import 'package:broody/core/extensions/hive_box.x.dart';
 import 'package:broody/model/compilation/compilation.dart';
-import 'package:broody_video/broody_video.dart';
+
 import 'package:collection/collection.dart';
 import 'package:dartx/dartx_io.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
-import 'package:loading_value/loading_value.dart';
+import 'package:process_value/process_value.dart';
+import 'package:video_transcode/video_transcode.dart';
 
 import 'compilation.datasource.dart';
 
@@ -23,64 +24,61 @@ class BroodyCompilationDatasource extends CompilationDatasource {
   @override
   Stream<List<SavedCompilation>> get compilations$ => _box.watchValues();
 
+  TranscodeProcess? _process;
+
   @override
   FutureOr<void> setCompilation(SavedCompilation compilation) {
     _box.put(compilation.uid, compilation);
   }
 
   @override
-  Stream<LoadingValue<SavedCompilation?>> createCompilation(
+  Stream<ProcessValue<SavedCompilation?>> createCompilation(
       {required CreateCompilation createCompilation}) async* {
     final dir = Directory(createCompilation.destination);
     if (!await dir.exists()) {
       await dir.create(recursive: true);
     }
-    final outputPath = "${dir.path}/${createCompilation.filename}.mp4";
-    final videoPaths = createCompilation.usedEntries
+    final sources = createCompilation.usedEntries
         .map((e) => "${createCompilation.projectPath}/${e.clipFileName}")
+        .map(File.new)
         .toList();
-    print(outputPath);
-    final process = BroodyVideo.instance
-        .concatVideos(sourcePaths: videoPaths, destination: File(outputPath));
+    final target = File("${dir.path}/${createCompilation.filename}.mp4");
+    print(target);
+    final process = VideoTranscode.instance.concatVideos(
+      sources: sources,
+      target: target,
+    );
+    _process = process;
 
-    LoadingValue<MediaInfo?> loadingFile = LoadingValue.loading(0);
-    await for (final p in process) {
-      loadingFile = p;
-      if (loadingFile is LoadedData<MediaInfo?>) {
-        break;
-      } else if (loadingFile is ValueLoading<MediaInfo?>) {
-        yield LoadingValue.loading(loadingFile.progress);
-      } else if (loadingFile is LoadingError<MediaInfo?>) {
-        yield LoadingValue.error(loadingFile.error,
-            stackTrace: loadingFile.stackTrace);
-      }
+    await for (final p in process.updates) {
+      yield p.whenData((mediaInfo) {
+        final file = mediaInfo?.file;
+        print(mediaInfo?.toJson());
+        file?.setLastModified(DateTime.now());
+        final savedCompilation = file == null
+            ? null
+            : SavedCompilation(
+                uid: createCompilation.uid,
+                filename: file.name,
+                projectUid: createCompilation.projectUid,
+                monthOfYear: createCompilation.monthOfYear,
+                usedEntries: createCompilation.usedEntries,
+                created: DateTime.now(),
+                width: createCompilation.width,
+                height: createCompilation.height,
+              );
+
+        if (savedCompilation != null) {
+          setCompilation(savedCompilation);
+        }
+        return savedCompilation;
+      });
     }
-    final mediaInfo = loadingFile.whenOrNull(data: (mediaInfo) => mediaInfo);
-    final file = mediaInfo?.file;
-    print(mediaInfo?.toJson());
-    await file?.setLastModified(DateTime.now());
-    final savedCompilation = file == null
-        ? null
-        : SavedCompilation(
-            uid: createCompilation.uid,
-            filename: file.name,
-            projectUid: createCompilation.projectUid,
-            monthOfYear: createCompilation.monthOfYear,
-            usedEntries: createCompilation.usedEntries,
-            created: DateTime.now(),
-            width: createCompilation.width,
-            height: createCompilation.height,
-          );
-
-    if (savedCompilation != null) {
-      setCompilation(savedCompilation);
-    } else {}
-    yield LoadingValue.data(savedCompilation);
   }
 
   @override
-  Future<void> cancelCompilationCreation() {
-    return BroodyVideo.instance.cancelConcatVideos();
+  Future<void> cancelCompilationCreation() async {
+    if (_process?.isRunning == true) await _process?.cancel();
   }
 
   @override

@@ -10,7 +10,7 @@ import 'package:broody/ui/shared/providers/video_player_controller.provider.dart
 import 'package:broody/ui/video_editor/state/video_editor_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:loading_value/loading_value.dart';
+import 'package:process_value/process_value.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 
@@ -142,14 +142,14 @@ class VideoEditorNotifier extends StateNotifier<VideoEditorState> {
 
     state = VideoEditorState.exporting(
       entry: newEntry,
-      exportProgress: const LoadingValue.loading(0),
+      exportProgress: const ProcessValue.loading(0),
       dismissProgress: state.dismissProgress,
     );
     final repo = ref.read(entryRepositoryProvider);
 
     final entryProgress = repo.saveEntry(entry: newEntry);
     await for (final loadingValue in entryProgress) {
-      if (loadingValue is LoadingError) {
+      if (loadingValue is ProcessError) {
         debugPrint(loadingValue.toString());
       }
       state = VideoEditorState.exporting(

@@ -20,6 +20,10 @@ ThemeData getTheme(ColorScheme colorScheme, TextTheme textTheme) =>
         ),
         centerTitle: false,
       ),
+      dividerTheme: DividerThemeData(
+        color: colorScheme.onSurface.withOpacity(.02),
+        thickness: 1,
+      ),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),

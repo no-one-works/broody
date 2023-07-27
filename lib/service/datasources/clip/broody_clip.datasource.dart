@@ -26,6 +26,7 @@ class BroodyClipDatasource extends ClipDatasource {
     required Size resolution,
     bool highQuality = false,
     Size? centerCropping,
+    bool overwrite = false,
   }) async* {
     if (resolution != resolution1080Landscape &&
         resolution !=
@@ -33,7 +34,13 @@ class BroodyClipDatasource extends ClipDatasource {
                 resolution1080Landscape.width)) {
       throw UnimplementedError("Only 1080p supported so far");
     }
-
+    if (await videoDestination.exists()) {
+      if (overwrite) {
+        await videoDestination.delete();
+      } else {
+        throw ArgumentError("File already exists and overwrite is false");
+      }
+    }
     final process = VideoTranscode.instance.processClip(
       source: videoSource,
       target: videoDestination,
@@ -46,6 +53,10 @@ class BroodyClipDatasource extends ClipDatasource {
     );
 
     await for (final p in process.updates) {
+      if (p case ProcessError(:final error, :final stackTrace)) {
+        debugPrint("Error: $error");
+        debugPrintStack(stackTrace: stackTrace);
+      }
       yield p.whenData((value) => value?.file);
     }
   }

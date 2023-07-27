@@ -10,7 +10,6 @@ import 'package:broody/ui/shared/providers/blob/request/blob_request.dart';
 import 'package:broody/ui/shared/providers/color/color.providers.dart';
 import 'package:broody/ui/shared/providers/color/request/color_scheme_request.dart';
 import 'package:broody/ui/theme/spacing.dart';
-import 'package:broody/ui/theme/transitions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -43,7 +42,6 @@ class EntryBubbleWidget extends HookConsumerWidget {
               orElse: () => false,
             );
 
-    final theme = useTheme();
     final themeColorScheme = useColorScheme();
     final colorScheme = entry == null
         ? themeColorScheme
@@ -57,7 +55,7 @@ class EntryBubbleWidget extends HookConsumerWidget {
             ),
           );
     final textTheme = useTextTheme();
-    final numberStyle = textTheme.button!.copyWith(
+    final numberStyle = textTheme.labelLarge!.copyWith(
       color: colorScheme.secondary,
     );
     final blobData =

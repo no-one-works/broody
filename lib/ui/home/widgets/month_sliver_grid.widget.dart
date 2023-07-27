@@ -8,8 +8,6 @@ import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/ui/shared/bouncy_pressable/bouncy_pressable.widget.dart';
 import 'package:broody/ui/theme/spacing.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

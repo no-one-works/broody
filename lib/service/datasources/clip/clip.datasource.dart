@@ -19,6 +19,7 @@ abstract class ClipDatasource {
     required Size resolution,
     bool highQuality = false,
     Size? centerCropping,
+    bool overwrite = false,
   });
 
   Future<bool> deleteClip({required File file});

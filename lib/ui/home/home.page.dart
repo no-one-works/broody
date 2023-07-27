@@ -105,7 +105,7 @@ class HomePage extends HookConsumerWidget {
                     ),
                   if (dates.isNotEmpty)
                     SliverToBoxAdapter(
-                      child: vSpace(Spacers.x4l),
+                      child: vSpace(Spacers.x5l),
                     )
                 ],
               ),

@@ -31,23 +31,23 @@ dependencies:
   uuid: ^3.0.6
 
   # UI
-  google_fonts: ^3.0.1
+  google_fonts: ^5.1.0
   auto_route: ^5.0.4
   animations: ^2.0.3
   flutter_sticky_header:
     git:
       url: https://github.com/UnderKoen/flutter_sticky_header
-  image_picker: 0.8.4+6
+  image_picker: ^1.0.1
   path_provider: ^2.0.11
-  implicitly_animated_reorderable_list: ^0.4.2
+  
   duration: ^3.0.11
   video_player: ^2.4.5
   ffmpeg_kit_flutter_min_gpl: ^4.5.1
   photo_manager: ^2.5.2
   sliver_tools: ^0.2.7
   blur: ^3.1.0
-  adaptive_dialog: ^1.7.0
-  dartx: ^1.1.0
+  adaptive_dialog: ^1.9.0
+  dartx: ^1.2.0
   flutter_blurhash: ^0.7.0
   blurhash_dart: ^1.1.0
   video_thumbnail: ^0.5.2
@@ -59,10 +59,12 @@ dependencies:
   auto_size_text: ^3.0.0
   package_info: ^2.0.2
   wakelock: ^0.6.2
+  version: ^3.0.2
+  image_fade: ^0.6.2
+  
   process_value: ^0.1.0
   video_transcode: ^0.1.0
-  image_fade: ^0.6.2
-  version: ^3.0.2
+  animated_list_plus: ^0.5.0
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +75,7 @@ dev_dependencies:
   auto_route_generator: ^5.0.3
   build_runner: ^2.2.0
   flutter_launcher_icons: ^0.9.3
+  flutter_lints: ^2.0.2
 
 # flutter pub run flutter_launcher_icons:main
 flutter_icons:

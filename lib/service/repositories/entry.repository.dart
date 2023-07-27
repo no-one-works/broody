@@ -136,6 +136,7 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
       centerCropping: needsCropping
           ? _calculateCropping(project: project, entry: entry)
           : null,
+      overwrite: true,
     );
 
     await for (final processValue in process) {
@@ -191,6 +192,7 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
     final process = clipDatasource.createClip(
       videoSource: originalFile,
       videoDestination: (await getEntryClip(entry))!,
+      overwrite: true,
       startPoint: entry.startPoint,
       duration: entry.duration,
       resolution: project.resolution,
@@ -246,7 +248,6 @@ class EntryRepository extends RepositoryBase implements IEntryRepository {
             .read(entryDatasourceProvider(entry.projectId))
             .setEntry(updatedEntry);
         // Delete temporary file
-        await source.delete();
         return updatedEntry;
       });
     }

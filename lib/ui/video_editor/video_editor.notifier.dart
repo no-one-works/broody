@@ -120,7 +120,7 @@ class VideoEditorNotifier extends StateNotifier<VideoEditorState> {
   }
 
   Future<void> saveClip() async {
-    await _saveClip().forEach((element) {});
+    await _saveClip().last;
   }
 
   Stream<void> _saveClip() async* {

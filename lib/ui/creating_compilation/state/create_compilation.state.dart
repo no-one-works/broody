@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:broody/model/compilation/compilation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:loading_value/loading_value.dart';
+import 'package:process_value/process_value.dart';
 import 'package:video_player/video_player.dart';
 
 part 'create_compilation.state.freezed.dart';
@@ -17,7 +17,7 @@ class CreateCompilationState with _$CreateCompilationState {
   const factory CreateCompilationState.exporting({
     required String projectUid,
     required DateTime? monthOfYear,
-    required LoadingValue exportProgress,
+    required ProcessValue exportProgress,
   }) = CreateCompilationExporting;
 
   const factory CreateCompilationState.exportSuccess({

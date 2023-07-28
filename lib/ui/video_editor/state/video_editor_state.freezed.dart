@@ -33,7 +33,7 @@ mixin _$VideoEditorState {
             bool previewing)
         editing,
     required TResult Function(EditingEntry entry,
-            LoadingValue<dynamic> exportProgress, double dismissProgress)
+            ProcessValue<dynamic> exportProgress, double dismissProgress)
         exporting,
     required TResult Function(SavedEntry entry, double dismissProgress)
         exportingSuccess,
@@ -54,7 +54,7 @@ mixin _$VideoEditorState {
             double dismissProgress,
             bool previewing)?
         editing,
-    TResult? Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
+    TResult? Function(EditingEntry entry, ProcessValue<dynamic> exportProgress,
             double dismissProgress)?
         exporting,
     TResult? Function(SavedEntry entry, double dismissProgress)?
@@ -76,7 +76,7 @@ mixin _$VideoEditorState {
             double dismissProgress,
             bool previewing)?
         editing,
-    TResult Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
+    TResult Function(EditingEntry entry, ProcessValue<dynamic> exportProgress,
             double dismissProgress)?
         exporting,
     TResult Function(SavedEntry entry, double dismissProgress)?
@@ -245,7 +245,7 @@ class _$VideoEditorLoadingVideo implements VideoEditorLoadingVideo {
             bool previewing)
         editing,
     required TResult Function(EditingEntry entry,
-            LoadingValue<dynamic> exportProgress, double dismissProgress)
+            ProcessValue<dynamic> exportProgress, double dismissProgress)
         exporting,
     required TResult Function(SavedEntry entry, double dismissProgress)
         exportingSuccess,
@@ -269,7 +269,7 @@ class _$VideoEditorLoadingVideo implements VideoEditorLoadingVideo {
             double dismissProgress,
             bool previewing)?
         editing,
-    TResult? Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
+    TResult? Function(EditingEntry entry, ProcessValue<dynamic> exportProgress,
             double dismissProgress)?
         exporting,
     TResult? Function(SavedEntry entry, double dismissProgress)?
@@ -294,7 +294,7 @@ class _$VideoEditorLoadingVideo implements VideoEditorLoadingVideo {
             double dismissProgress,
             bool previewing)?
         editing,
-    TResult Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
+    TResult Function(EditingEntry entry, ProcessValue<dynamic> exportProgress,
             double dismissProgress)?
         exporting,
     TResult Function(SavedEntry entry, double dismissProgress)?
@@ -456,7 +456,7 @@ class _$VideoEditorFailedToLoad implements VideoEditorFailedToLoad {
             bool previewing)
         editing,
     required TResult Function(EditingEntry entry,
-            LoadingValue<dynamic> exportProgress, double dismissProgress)
+            ProcessValue<dynamic> exportProgress, double dismissProgress)
         exporting,
     required TResult Function(SavedEntry entry, double dismissProgress)
         exportingSuccess,
@@ -480,7 +480,7 @@ class _$VideoEditorFailedToLoad implements VideoEditorFailedToLoad {
             double dismissProgress,
             bool previewing)?
         editing,
-    TResult? Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
+    TResult? Function(EditingEntry entry, ProcessValue<dynamic> exportProgress,
             double dismissProgress)?
         exporting,
     TResult? Function(SavedEntry entry, double dismissProgress)?
@@ -505,7 +505,7 @@ class _$VideoEditorFailedToLoad implements VideoEditorFailedToLoad {
             double dismissProgress,
             bool previewing)?
         editing,
-    TResult Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
+    TResult Function(EditingEntry entry, ProcessValue<dynamic> exportProgress,
             double dismissProgress)?
         exporting,
     TResult Function(SavedEntry entry, double dismissProgress)?
@@ -735,7 +735,7 @@ class _$VideoEditorEditing implements VideoEditorEditing {
             bool previewing)
         editing,
     required TResult Function(EditingEntry entry,
-            LoadingValue<dynamic> exportProgress, double dismissProgress)
+            ProcessValue<dynamic> exportProgress, double dismissProgress)
         exporting,
     required TResult Function(SavedEntry entry, double dismissProgress)
         exportingSuccess,
@@ -760,7 +760,7 @@ class _$VideoEditorEditing implements VideoEditorEditing {
             double dismissProgress,
             bool previewing)?
         editing,
-    TResult? Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
+    TResult? Function(EditingEntry entry, ProcessValue<dynamic> exportProgress,
             double dismissProgress)?
         exporting,
     TResult? Function(SavedEntry entry, double dismissProgress)?
@@ -786,7 +786,7 @@ class _$VideoEditorEditing implements VideoEditorEditing {
             double dismissProgress,
             bool previewing)?
         editing,
-    TResult Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
+    TResult Function(EditingEntry entry, ProcessValue<dynamic> exportProgress,
             double dismissProgress)?
         exporting,
     TResult Function(SavedEntry entry, double dismissProgress)?
@@ -876,7 +876,7 @@ abstract class _$$VideoEditorExportingCopyWith<$Res>
   @useResult
   $Res call(
       {EditingEntry entry,
-      LoadingValue<dynamic> exportProgress,
+      ProcessValue<dynamic> exportProgress,
       double dismissProgress});
 }
 
@@ -903,7 +903,7 @@ class __$$VideoEditorExportingCopyWithImpl<$Res>
       exportProgress: null == exportProgress
           ? _value.exportProgress
           : exportProgress // ignore: cast_nullable_to_non_nullable
-              as LoadingValue<dynamic>,
+              as ProcessValue<dynamic>,
       dismissProgress: null == dismissProgress
           ? _value.dismissProgress
           : dismissProgress // ignore: cast_nullable_to_non_nullable
@@ -923,7 +923,7 @@ class _$VideoEditorExporting implements VideoEditorExporting {
   @override
   final EditingEntry entry;
   @override
-  final LoadingValue<dynamic> exportProgress;
+  final ProcessValue<dynamic> exportProgress;
   @override
   @JsonKey()
   final double dismissProgress;
@@ -976,7 +976,7 @@ class _$VideoEditorExporting implements VideoEditorExporting {
             bool previewing)
         editing,
     required TResult Function(EditingEntry entry,
-            LoadingValue<dynamic> exportProgress, double dismissProgress)
+            ProcessValue<dynamic> exportProgress, double dismissProgress)
         exporting,
     required TResult Function(SavedEntry entry, double dismissProgress)
         exportingSuccess,
@@ -1000,7 +1000,7 @@ class _$VideoEditorExporting implements VideoEditorExporting {
             double dismissProgress,
             bool previewing)?
         editing,
-    TResult? Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
+    TResult? Function(EditingEntry entry, ProcessValue<dynamic> exportProgress,
             double dismissProgress)?
         exporting,
     TResult? Function(SavedEntry entry, double dismissProgress)?
@@ -1025,7 +1025,7 @@ class _$VideoEditorExporting implements VideoEditorExporting {
             double dismissProgress,
             bool previewing)?
         editing,
-    TResult Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
+    TResult Function(EditingEntry entry, ProcessValue<dynamic> exportProgress,
             double dismissProgress)?
         exporting,
     TResult Function(SavedEntry entry, double dismissProgress)?
@@ -1083,11 +1083,11 @@ class _$VideoEditorExporting implements VideoEditorExporting {
 abstract class VideoEditorExporting implements VideoEditorState {
   const factory VideoEditorExporting(
       {required final EditingEntry entry,
-      required final LoadingValue<dynamic> exportProgress,
+      required final ProcessValue<dynamic> exportProgress,
       final double dismissProgress}) = _$VideoEditorExporting;
 
   EditingEntry get entry;
-  LoadingValue<dynamic> get exportProgress;
+  ProcessValue<dynamic> get exportProgress;
   @override
   double get dismissProgress;
   @override
@@ -1191,7 +1191,7 @@ class _$VideoEditorExportingSuccess implements VideoEditorExportingSuccess {
             bool previewing)
         editing,
     required TResult Function(EditingEntry entry,
-            LoadingValue<dynamic> exportProgress, double dismissProgress)
+            ProcessValue<dynamic> exportProgress, double dismissProgress)
         exporting,
     required TResult Function(SavedEntry entry, double dismissProgress)
         exportingSuccess,
@@ -1215,7 +1215,7 @@ class _$VideoEditorExportingSuccess implements VideoEditorExportingSuccess {
             double dismissProgress,
             bool previewing)?
         editing,
-    TResult? Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
+    TResult? Function(EditingEntry entry, ProcessValue<dynamic> exportProgress,
             double dismissProgress)?
         exporting,
     TResult? Function(SavedEntry entry, double dismissProgress)?
@@ -1240,7 +1240,7 @@ class _$VideoEditorExportingSuccess implements VideoEditorExportingSuccess {
             double dismissProgress,
             bool previewing)?
         editing,
-    TResult Function(EditingEntry entry, LoadingValue<dynamic> exportProgress,
+    TResult Function(EditingEntry entry, ProcessValue<dynamic> exportProgress,
             double dismissProgress)?
         exporting,
     TResult Function(SavedEntry entry, double dismissProgress)?

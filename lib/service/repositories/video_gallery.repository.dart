@@ -4,7 +4,7 @@ import 'package:broody/service/datasources/video/gallery_video.datasource.dart';
 import 'package:broody/service/repositories/repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:loading_value/loading_value.dart';
+import 'package:process_value/process_value.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:riverpod/src/provider.dart';
 
@@ -22,7 +22,7 @@ abstract class VideoGalleryRepository extends RepositoryBase {
 
   Future<AssetEntity?> recordVideo();
 
-  Stream<LoadingValue<File>> pickVideo(AssetEntity entity);
+  Stream<ProcessValue<File>> pickVideo(AssetEntity entity);
 
   Future<void> deleteVideo(AssetEntity entity);
 }
@@ -69,12 +69,12 @@ class GalleryClipRepository extends VideoGalleryRepository {
   }
 
   @override
-  Stream<LoadingValue<File>> pickVideo(AssetEntity entity) async* {
+  Stream<ProcessValue<File>> pickVideo(AssetEntity entity) async* {
     final isLocal = await entity.isLocallyAvailable();
     if (isLocal) {
       final file = await entity.file;
       if (file != null) {
-        yield LoadingValue.data(file);
+        yield ProcessValue.data(file);
         return;
       }
     }
@@ -84,13 +84,13 @@ class GalleryClipRepository extends VideoGalleryRepository {
       if (progressValue.state == PMRequestState.success) {
         break;
       }
-      yield LoadingValue.loading(progressValue.progress);
+      yield ProcessValue.loading(progressValue.progress);
     }
     final file = await fileAsync;
     if (file == null) {
       throw Exception("Failed to load video!");
     }
-    yield LoadingValue.data(file);
+    yield ProcessValue.data(file);
     return;
   }
 

@@ -23,7 +23,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:loading_value/loading_value.dart';
+import 'package:process_value/process_value.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 class VideoEditorPage extends HookConsumerWidget {
@@ -45,9 +45,9 @@ class VideoEditorPage extends HookConsumerWidget {
     final mounted = useIsMounted();
     ref.listen(videoEditorStateProvider(assetEntity), (prev, next) async {
       if (next is VideoEditorExporting) {
-        if (next.exportProgress is LoadedData) {
+        if (next.exportProgress is ProcessData) {
           context.router.navigate(const HomeRoute());
-        } else if (next.exportProgress is LoadingError) {
+        } else if (next.exportProgress is ProcessError) {
           await Future.delayed(const Duration(seconds: 1));
           context.router.pop();
         }
@@ -122,9 +122,10 @@ class VideoEditorPage extends HookConsumerWidget {
                     ),
                     exporting: (state) => ProgressBuilder(
                       duration: kThemeAnimationDuration * 2,
-                      progress:
-                          state.exportProgress.whenOrNull(loading: (p) => p) ??
-                              0,
+                      progress: switch (state.exportProgress) {
+                        ProcessLoading(:final progress) => progress,
+                        _ => 0,
+                      },
                       builder: (context, value, child) => Hero(
                         tag: state.entry.day,
                         createRectTween: linearRectTween,
@@ -185,7 +186,7 @@ class VideoEditorPage extends HookConsumerWidget {
                   duration: kThemeAnimationDuration * 2,
                   child: state.maybeMap(
                     exporting: (state) => LoadingValueProgressBar(
-                      loadingValue: state.exportProgress,
+                      processValue: state.exportProgress,
                       color: colorScheme.inversePrimary,
                     ),
                     loadingVideo: (_) => const Center(

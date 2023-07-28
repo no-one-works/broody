@@ -9,7 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_native_timezone/flutter_native_timezone.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -28,32 +28,30 @@ class NotificationRepository {
   Future<bool> _init() async {
     try {
       tz.initializeTimeZones();
-      final currentTimeZone = await FlutterNativeTimezone.getLocalTimezone();
-      tz.setLocalLocation(tz.getLocation(currentTimeZone));
+      tz.setLocalLocation(
+        tz.getLocation(await FlutterTimezone.getLocalTimezone()),
+      );
       // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
           FlutterLocalNotificationsPlugin();
       const AndroidInitializationSettings initializationSettingsAndroid =
           AndroidInitializationSettings('app_icon');
-      final IOSInitializationSettings initializationSettingsIOS =
-          IOSInitializationSettings(
+      final DarwinInitializationSettings initializationSettingsIOS =
+          DarwinInitializationSettings(
         requestSoundPermission: false,
         requestBadgePermission: false,
         requestAlertPermission: false,
         onDidReceiveLocalNotification: onDidReceiveLocalNotification,
       );
-      const MacOSInitializationSettings initializationSettingsMacOS =
-          MacOSInitializationSettings(
-              requestAlertPermission: false,
-              requestBadgePermission: false,
-              requestSoundPermission: false);
+
       final InitializationSettings initializationSettings =
           InitializationSettings(
-              android: initializationSettingsAndroid,
-              iOS: initializationSettingsIOS,
-              macOS: initializationSettingsMacOS);
+        android: initializationSettingsAndroid,
+        iOS: initializationSettingsIOS,
+        macOS: initializationSettingsIOS,
+      );
       await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-          onSelectNotification: onSelectNotification);
+          onDidReceiveNotificationResponse: onSelectNotification);
 
       print("Notification Repo Initialized!");
       return true;
@@ -68,7 +66,7 @@ class NotificationRepository {
     // display a dialog with the notification details, tap ok to go to another page
   }
 
-  void onSelectNotification(String? payload) {}
+  void onSelectNotification(NotificationResponse? payload) {}
 
   Future<bool> ensurePermission() async {
     debugPrint("Checking Notification Permission...");
@@ -184,21 +182,22 @@ class NotificationRepository {
     final time = tz.TZDateTime.from(notification.dateTime, tz.local);
     debugPrint("Scheduling $id for $time");
     await flutterLocalNotificationsPlugin.zonedSchedule(
-        id,
-        notification.title,
-        notification.body,
-        time,
-        const NotificationDetails(
-            android: AndroidNotificationDetails(
-              'Broody',
-              'Broody',
-            ),
-            iOS: IOSNotificationDetails(
-              presentAlert: true,
-            )),
-        androidAllowWhileIdle: true,
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime);
+      id,
+      notification.title,
+      notification.body,
+      time,
+      const NotificationDetails(
+        android: AndroidNotificationDetails(
+          'Broody',
+          'Broody',
+        ),
+        iOS: DarwinNotificationDetails(
+          presentAlert: true,
+        ),
+      ),
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+    );
   }
 
   Future<void> cancelAll() async {

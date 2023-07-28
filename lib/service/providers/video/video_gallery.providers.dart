@@ -5,12 +5,12 @@ import 'package:broody/core/extensions/image.x.dart';
 import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/service/repositories/video_gallery.repository.dart';
 import 'package:collection/collection.dart';
-import 'package:ffmpeg_kit_flutter_min_gpl/ffprobe_kit.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:process_value/process_value.dart';
 import 'package:photo_manager/photo_manager.dart';
+import 'package:video_transcode/video_transcode.dart';
 
 final videosChangedProvider = StreamProvider.autoDispose<int>((ref) {
   final StreamController<int> controller = StreamController();
@@ -130,18 +130,15 @@ final assetEntityVideoSizeProvider =
   if (file == null) {
     return projectResolution;
   }
-  final session = await FFprobeKit.getMediaInformation(file.path);
-  final information = session.getMediaInformation();
+  final info = await VideoTranscode.instance.getMediaInfo(file);
 
-  if (information == null) {
+  if (info == null) {
     return projectResolution;
   }
-  final stream = information
-      .getStreams()
-      .firstWhereOrNull((s) => s.getWidth() != null && s.getHeight() != null);
-  final width = stream?.getWidth() ?? projectResolution.width;
-  final height = stream?.getHeight() ?? projectResolution.height;
-  return Size(width.toDouble(), height.toDouble());
+  return Size(
+    info.frameSize.width.toDouble(),
+    info.frameSize.height.toDouble(),
+  );
 });
 
 final assetEntitySizeProvider =

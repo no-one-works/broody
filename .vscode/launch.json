@@ -7,17 +7,20 @@
         {
             "name": "broody",
             "request": "launch",
+            "cwd": "apps/broody",
             "type": "dart"
         },
         {
             "name": "broody (profile mode)",
             "request": "launch",
+            "cwd": "apps/broody",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
             "name": "broody (release mode)",
             "request": "launch",
+            "cwd": "apps/broody",
             "type": "dart",
             "flutterMode": "release"
         }

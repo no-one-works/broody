@@ -85,7 +85,7 @@ class ChangelogItemWidget extends HookConsumerWidget {
               vSpace(Spacers.xxs),
               DefaultTextStyle(
                 style: theme.textTheme.bodyMedium!.copyWith(
-                  color: theme.colorScheme.onBackground.withOpacity(0.7),
+                  color: theme.colorScheme.onSurface.withOpacity(0.7),
                 ),
                 textAlign: TextAlign.start,
                 child: explainer,

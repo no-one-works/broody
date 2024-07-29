@@ -5,7 +5,6 @@ import 'package:broody/service/repositories/project.repository.dart';
 import 'package:broody/ui/project_details/state/project_details.state.dart';
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final projectDetailsStateProvider = StateNotifierProvider.autoDispose

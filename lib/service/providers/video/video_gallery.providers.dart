@@ -4,11 +4,9 @@ import 'dart:io';
 import 'package:broody/core/extensions/image.x.dart';
 import 'package:broody/service/providers/project/project.providers.dart';
 import 'package:broody/service/repositories/video_gallery.repository.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:process_value/process_value.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:video_transcode/video_transcode.dart';
 

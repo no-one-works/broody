@@ -65,7 +65,7 @@ class HomePage extends HookConsumerWidget {
     return Stack(
       children: [
         Scaffold(
-          backgroundColor: colorScheme.background,
+          backgroundColor: colorScheme.surface,
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
           floatingActionButton:

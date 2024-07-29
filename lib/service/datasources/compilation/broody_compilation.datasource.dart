@@ -9,7 +9,6 @@ import 'package:collection/collection.dart';
 import 'package:dartx/dartx_io.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
-import 'package:process_value/process_value.dart';
 import 'package:video_transcode/video_transcode.dart';
 
 import 'compilation.datasource.dart';

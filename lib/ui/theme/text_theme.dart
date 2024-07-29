@@ -5,15 +5,15 @@ import 'package:google_fonts/google_fonts.dart';
 TextTheme get broodyTextTheme => displayTextTheme.copyWith(
       //headline3: bodyTextTheme.headline3,
       //headline4: bodyTextTheme.headline4,
-      headline5: bodyTextTheme.headline5,
-      headline6: bodyTextTheme.headline6,
-      bodyText1: bodyTextTheme.bodyText1,
-      bodyText2: bodyTextTheme.bodyText2,
-      button: bodyTextTheme.button,
-      overline: bodyTextTheme.overline,
-      caption: bodyTextTheme.caption,
-      subtitle1: bodyTextTheme.subtitle1,
-      subtitle2: bodyTextTheme.subtitle2,
+      headlineSmall: bodyTextTheme.headlineSmall,
+      titleLarge: bodyTextTheme.titleLarge,
+      bodyLarge: bodyTextTheme.bodyLarge,
+      bodyMedium: bodyTextTheme.bodyMedium,
+      labelLarge: bodyTextTheme.labelLarge,
+      labelSmall: bodyTextTheme.labelSmall,
+      bodySmall: bodyTextTheme.bodySmall,
+      titleMedium: bodyTextTheme.titleMedium,
+      titleSmall: bodyTextTheme.titleSmall,
     );
 
 TextTheme displayTextTheme = GoogleFonts.lexendDecaTextTheme();

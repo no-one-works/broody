@@ -6,7 +6,6 @@ import 'package:broody/ui/shared/bouncy_pressable/bouncy_pressable.widget.dart';
 import 'package:broody/ui/shared/compilation_button/compilation_button.widget.dart';
 import 'package:broody/ui/theme/spacing.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProjectCompletedInfo extends HookConsumerWidget {

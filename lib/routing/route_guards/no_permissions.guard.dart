@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:broody/routing/router.dart';
 import 'package:photo_manager/photo_manager.dart';
 

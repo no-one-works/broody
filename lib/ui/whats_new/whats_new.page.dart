@@ -64,7 +64,7 @@ class WhatsNewPage extends HookConsumerWidget {
                     children: [
                       Text(
                         l10n.continueBtn,
-                        style: theme.textTheme.button!
+                        style: theme.textTheme.labelLarge!
                             .copyWith(color: theme.colorScheme.onPrimary),
                       ),
                     ],

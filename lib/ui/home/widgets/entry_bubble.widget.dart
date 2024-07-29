@@ -134,7 +134,7 @@ class EntryBubbleWidget extends HookConsumerWidget {
                 duration: kThemeAnimationDuration * 2,
                 curve: Curves.ease,
                 decoration: BoxDecoration(
-                  color: themeColorScheme.background
+                  color: themeColorScheme.surface
                       .withOpacity(showThumbnail ? 0.6 : 1),
                   shape: BoxShape.circle,
                 ),

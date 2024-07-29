@@ -6,7 +6,6 @@ ThemeData getTheme(ColorScheme colorScheme, TextTheme textTheme) =>
       colorScheme: colorScheme,
       textTheme: textTheme,
     ).copyWith(
-      useMaterial3: true,
       shadowColor: colorScheme.shadow,
       appBarTheme: AppBarTheme(
         color: Colors.transparent,

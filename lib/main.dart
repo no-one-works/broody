@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:broody/routing/router.dart';
 import 'package:broody/service/local_storage.helper.dart';
 import 'package:broody/ui/shared/providers/color/color.providers.dart';

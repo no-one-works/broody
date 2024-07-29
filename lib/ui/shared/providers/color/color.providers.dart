@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:broody/core/extensions/image.x.dart';
 import 'package:broody/core/extensions/scheme.x.dart';
 import 'package:broody/service/providers/project/project.providers.dart';
@@ -32,7 +30,8 @@ final _assetEntityPaletteProvider = FutureProvider.autoDispose
   final thumb =
       await ref.watch(galleryVideoThumbnailProvider(assetEntity).future);
   final img = await decodeImageOnIsolate(thumb.bytes);
-  final quantized = await QuantizerCelebi().quantize(img!.data, 128);
+  final quantized =
+      await QuantizerCelebi().quantize(img!.data!.getBytes().toList(), 128);
   final ranked = Score.score(quantized.colorToCount);
   return CorePalette.fromList(ranked);
 });
@@ -48,9 +47,9 @@ final appThemeProvider =
       : ref.watch(colorSchemeProvider(
           ProjectColorSchemeRequest(project: project, brightness: brightness)));
   final textTheme = broodyTextTheme.apply(
-    bodyColor: colorScheme.onBackground,
-    displayColor: colorScheme.onBackground,
-    decorationColor: colorScheme.onBackground,
+    bodyColor: colorScheme.onSurface,
+    displayColor: colorScheme.onSurface,
+    decorationColor: colorScheme.onSurface,
   );
   return getTheme(colorScheme, textTheme);
 });

@@ -69,7 +69,7 @@ class OnboardingPage extends HookConsumerWidget {
           ],
         ),
       ),
-      backgroundColor: colorScheme.background,
+      backgroundColor: colorScheme.surface,
       body: videoController.value == null
           ? const SizedBox()
           : TweenAnimationBuilder<double>(
@@ -141,7 +141,7 @@ class OnboardingPage extends HookConsumerWidget {
                                     "welcome",
                                     maxLines: 1,
                                     group: autoSizeGroup,
-                                    style: textTheme.headline1?.copyWith(
+                                    style: textTheme.displayLarge?.copyWith(
                                         height: 1, color: Colors.white),
                                     textAlign: TextAlign.start,
                                   ),
@@ -149,7 +149,7 @@ class OnboardingPage extends HookConsumerWidget {
                                     "to",
                                     maxLines: 1,
                                     group: autoSizeGroup,
-                                    style: textTheme.headline1?.copyWith(
+                                    style: textTheme.displayLarge?.copyWith(
                                         height: 1, color: Colors.white),
                                     textAlign: TextAlign.start,
                                   ),
@@ -157,7 +157,7 @@ class OnboardingPage extends HookConsumerWidget {
                                     "Broody",
                                     maxLines: 1,
                                     group: autoSizeGroup,
-                                    style: textTheme.headline1?.copyWith(
+                                    style: textTheme.displayLarge?.copyWith(
                                         fontWeight: FontWeight.w600,
                                         height: 1,
                                         color: Colors.white),
@@ -179,7 +179,7 @@ class OnboardingPage extends HookConsumerWidget {
                               builder: _appearBuilder,
                               child: Text(
                                 l10n.onboardingLine1,
-                                style: textTheme.headline6
+                                style: textTheme.titleLarge
                                     ?.copyWith(color: Colors.white70),
                               ),
                             ),
@@ -195,7 +195,7 @@ class OnboardingPage extends HookConsumerWidget {
                               builder: _appearBuilder,
                               child: Text(
                                 l10n.onboardingLine2,
-                                style: textTheme.headline6
+                                style: textTheme.titleLarge
                                     ?.copyWith(color: Colors.white70),
                               ),
                             ),

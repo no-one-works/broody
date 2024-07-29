@@ -1,6 +1,5 @@
 import 'package:animated_list_plus/animated_list_plus.dart';
 import 'package:animated_list_plus/transitions.dart';
-import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:broody/core/hook/use_l10n.hook.dart';
 import 'package:broody/core/hook/use_theme.hook.dart';
 import 'package:broody/model/project/project.dart';
@@ -29,7 +28,7 @@ class ProjectList extends HookConsumerWidget {
     final endedProjects =
         projects.where((p) => ref.read(projectHasEndedProvider(p))).toList();
     return DefaultTextStyle(
-      style: textTheme.button!.copyWith(color: colorScheme.secondary),
+      style: textTheme.labelLarge!.copyWith(color: colorScheme.secondary),
       child: MultiSliver(
         children: [
           if (activeProjects.isNotEmpty)

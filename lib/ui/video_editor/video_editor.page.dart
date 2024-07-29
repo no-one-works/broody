@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 
 import 'package:blur/blur.dart';
 import 'package:broody/core/hook/use_l10n.hook.dart';
@@ -65,7 +64,7 @@ class VideoEditorPage extends HookConsumerWidget {
 
     return Scaffold(
       backgroundColor:
-          colorScheme.background.withOpacity(1 - state.dismissProgress),
+          colorScheme.surface.withOpacity(1 - state.dismissProgress),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: AnimatedOpacity(
@@ -105,7 +104,7 @@ class VideoEditorPage extends HookConsumerWidget {
                       tag: assetEntity.id,
                       createRectTween: linearRectTween,
                       child: Material(
-                        color: colorScheme.background,
+                        color: colorScheme.surface,
                         elevation: 24,
                         child: VideoAndThumbnail(
                           size: Size(
@@ -167,7 +166,7 @@ class VideoEditorPage extends HookConsumerWidget {
                         assetEntity: assetEntity,
                         overlayColor: state.maybeMap(
                           loadingVideo: (_) =>
-                              colorScheme.background.withOpacity(0.6),
+                              colorScheme.surface.withOpacity(0.6),
                           failedToLoad: (_) =>
                               colorScheme.errorContainer.withOpacity(0.7),
                           orElse: () => Colors.transparent,
@@ -204,7 +203,7 @@ class VideoEditorPage extends HookConsumerWidget {
                           vSpace(Spacers.xs),
                           Text(
                             l10n.loadingVideoFailed,
-                            style: textTheme.subtitle1
+                            style: textTheme.titleMedium
                                 ?.copyWith(color: colorScheme.onErrorContainer),
                           ),
                         ],
@@ -237,7 +236,7 @@ class VideoEditorPage extends HookConsumerWidget {
                               ),
                               child: Text(
                                 l10n.save.toUpperCase(),
-                                style: textTheme.subtitle1?.copyWith(
+                                style: textTheme.titleMedium?.copyWith(
                                   color: Colors.black,
                                 ),
                               ),

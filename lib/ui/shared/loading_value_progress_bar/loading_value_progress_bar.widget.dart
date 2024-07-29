@@ -46,7 +46,7 @@ class LoadingValueProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final actualColor = color ?? colorScheme.onBackground;
+    final actualColor = color ?? colorScheme.onSurface;
     return IconTheme(
       data: IconTheme.of(context).copyWith(color: actualColor),
       child: Center(

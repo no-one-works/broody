@@ -76,7 +76,7 @@ class UpdateEntriesPage extends HookConsumerWidget {
                       hSpace(Spacers.s),
                       Text(
                         l10n.outdatedEntriesTitle,
-                        style: textTheme.headline5!.copyWith(
+                        style: textTheme.headlineSmall!.copyWith(
                           color: colorScheme.onPrimaryContainer,
                         ),
                       ),
@@ -94,7 +94,7 @@ class UpdateEntriesPage extends HookConsumerWidget {
                                 outdatedEntries.value?.length ?? 0)
                             : l10n.outdatedEntriesRunningDescription,
                         key: ValueKey(process.value == null),
-                        style: textTheme.subtitle2!.copyWith(
+                        style: textTheme.titleSmall!.copyWith(
                           color: colorScheme.onPrimaryContainer,
                         ),
                       ),

@@ -1,4 +1,3 @@
-import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:broody/core/hook/use_l10n.hook.dart';
 import 'package:broody/core/hook/use_theme.hook.dart';
 import 'package:broody/model/project/project.dart';
@@ -67,7 +66,7 @@ class ProjectListTile extends HookConsumerWidget {
       ),
       contentPadding: const EdgeInsets.symmetric(horizontal: Spacers.l),
       title: Text(project.title,
-          style: textTheme.subtitle1!.copyWith(
+          style: textTheme.titleMedium!.copyWith(
             fontWeight: selected ? FontWeight.w700 : null,
           )),
       subtitle: IconTheme(
@@ -83,8 +82,8 @@ class ProjectListTile extends HookConsumerWidget {
                 hSpace(Spacers.xxs),
                 Text(
                   dateFormat.format(project.startDate),
-                  style: textTheme.bodyText2?.copyWith(
-                    color: colorScheme.onBackground.withOpacity(0.6),
+                  style: textTheme.bodyMedium?.copyWith(
+                    color: colorScheme.onSurface.withOpacity(0.6),
                   ),
                 ),
               ],
@@ -96,8 +95,8 @@ class ProjectListTile extends HookConsumerWidget {
                 hSpace(Spacers.xxs),
                 Text(
                   dateFormat.format(project.endDate),
-                  style: textTheme.bodyText2?.copyWith(
-                    color: colorScheme.onBackground.withOpacity(0.6),
+                  style: textTheme.bodyMedium?.copyWith(
+                    color: colorScheme.onSurface.withOpacity(0.6),
                   ),
                 ),
               ],
@@ -109,8 +108,8 @@ class ProjectListTile extends HookConsumerWidget {
                 hSpace(Spacers.xxs),
                 Text(
                   "$entryCount/${project.numberOfClips}",
-                  style: textTheme.bodyText2?.copyWith(
-                    color: colorScheme.onBackground.withOpacity(0.6),
+                  style: textTheme.bodyMedium?.copyWith(
+                    color: colorScheme.onSurface.withOpacity(0.6),
                   ),
                 ),
               ],

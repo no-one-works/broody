@@ -1,6 +1,4 @@
-import 'package:broody/core/extensions/video_player_controller.x.dart';
 import 'package:broody/core/hook/use_theme.hook.dart';
-import 'package:broody/core/hook/use_wakelock.hook.dart';
 import 'package:broody/routing/router.dart';
 import 'package:broody/ui/creating_compilation/widgets/video_controls.widget.dart';
 import 'package:broody/ui/shared/interactive_viewer_plus/widgets/custom_dismissible.widget.dart';

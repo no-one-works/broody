@@ -1,13 +1,10 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:broody/routing/router.dart';
 import 'package:broody/service/providers/version.provider.dart';
 import 'package:broody/ui/shared/app_icon/app_icon.widget.dart';
 import 'package:broody/ui/whats_new/widgets/changelog_items.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:package_info/package_info.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:version/version.dart';
 
 void showLicenseDialog(
   BuildContext context,

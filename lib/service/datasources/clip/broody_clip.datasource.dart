@@ -4,11 +4,8 @@ import 'dart:ui';
 
 import 'package:broody/core/constants/video_resolutions.dart';
 import 'package:broody/service/datasources/clip/clip.datasource.dart';
-import 'package:dartx/dartx_io.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:video_transcode/video_transcode.dart';
 import 'package:flutter/foundation.dart';
-import 'package:process_value/process_value.dart';
 
 class BroodyClipDatasource extends ClipDatasource {
   @override

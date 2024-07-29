@@ -96,7 +96,7 @@ class NoPermissionInfoPage extends HookConsumerWidget {
                       hSpace(Spacers.s),
                       Text(
                         l10n.missingPermissionDialogTitle,
-                        style: textTheme.headline5!.copyWith(
+                        style: textTheme.headlineSmall!.copyWith(
                           color: colorScheme.onErrorContainer,
                         ),
                       ),
@@ -105,7 +105,7 @@ class NoPermissionInfoPage extends HookConsumerWidget {
                   vSpace(Spacers.s),
                   Text(
                     l10n.missingGalleryPermissionPageContent,
-                    style: textTheme.subtitle2!.copyWith(
+                    style: textTheme.titleSmall!.copyWith(
                       color: colorScheme.onErrorContainer,
                     ),
                   ),

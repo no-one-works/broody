@@ -66,7 +66,7 @@ class VideoControls extends HookWidget {
               padding: const EdgeInsets.symmetric(horizontal: Spacers.xxs),
               child: Text(
                 value.position.toString().substring(2, 7),
-                style: useTextTheme().button!.copyWith(
+                style: useTextTheme().labelLarge!.copyWith(
                       color: colorScheme.onSecondary,
                     ),
               ),

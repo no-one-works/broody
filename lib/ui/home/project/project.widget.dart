@@ -63,14 +63,14 @@ class ProjectWidget extends HookConsumerWidget {
                               children: [
                                 Text(
                                   project.title,
-                                  style: textTheme.headline6,
+                                  style: textTheme.titleLarge,
                                 ),
                                 Text(
                                   DateFormat.yMMMd(l10n.localeName)
                                       .add_jm()
                                       .format(project.startDate),
-                                  style: textTheme.button?.copyWith(
-                                    color: colorScheme.onBackground,
+                                  style: textTheme.labelLarge?.copyWith(
+                                    color: colorScheme.onSurface,
                                   ),
                                 ),
                               ],

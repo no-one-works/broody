@@ -102,7 +102,7 @@ class VideoPickerPage extends HookConsumerWidget {
         ],
       ),
       extendBodyBehindAppBar: true,
-      backgroundColor: colorScheme.background,
+      backgroundColor: colorScheme.surface,
       body: videos.maybeWhen(
         data: (entities) => entities.isEmpty
             ? Center(

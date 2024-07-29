@@ -32,6 +32,7 @@ class ProjectColorPicker extends HookConsumerWidget {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
         onSelect?.call(colors[Random().nextInt(colors.length - 1)]);
       });
+      return null;
     }, [colors]);
     return LayoutBuilder(
       builder: (context, constraints) => HookBuilder(
@@ -53,6 +54,7 @@ class ProjectColorPicker extends HookConsumerWidget {
               duration: kThemeAnimationDuration,
               curve: Curves.ease,
             );
+            return null;
           }, [scrollController, selected, scrollController.hasClients]);
 
           return SizedBox(

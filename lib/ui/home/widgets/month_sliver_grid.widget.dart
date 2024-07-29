@@ -61,10 +61,10 @@ class MonthSliverGrid extends HookConsumerWidget {
                 ? Blur(
                     blur: state.isPinned ? 24 : 0,
                     child: const SizedBox.expand(),
-                    blurColor: colorScheme.background,
+                    blurColor: colorScheme.surface,
                   )
                 : Container(
-                    color: colorScheme.background,
+                    color: colorScheme.surface,
                   ),
           ),
           Column(
@@ -87,8 +87,8 @@ class MonthSliverGrid extends HookConsumerWidget {
                         child: Text(
                           monthName,
                           style: Platform.isIOS
-                              ? textTheme.headline6
-                              : textTheme.headline5,
+                              ? textTheme.titleLarge
+                              : textTheme.headlineSmall,
                         ),
                       ),
                       if (projectMonth != null && projectMonth.canCompile)

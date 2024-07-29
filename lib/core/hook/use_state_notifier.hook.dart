@@ -39,7 +39,7 @@ class _ListenableStateHook<T> extends HookState<T, _StateNotifierHook<T>> {
   @override
   T build(BuildContext context) => _currentState;
 
-  void _listener(state) {
+  void _listener(T state) {
     setState(() {
       _currentState = state;
     });

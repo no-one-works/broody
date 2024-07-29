@@ -46,7 +46,9 @@ class SavedCompilationAdapter extends TypeAdapter<SavedCompilation> {
 
   @override
   SavedCompilation read(BinaryReader reader) {
-    return SavedCompilation.fromJson(jsonDecode(reader.readString()));
+    return SavedCompilation.fromJson(
+      jsonDecode(reader.readString()) as Map<String, dynamic>,
+    );
   }
 
   @override

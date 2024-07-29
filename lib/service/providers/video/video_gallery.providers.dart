@@ -13,14 +13,14 @@ import 'package:video_transcode/video_transcode.dart';
 final videosChangedProvider = StreamProvider.autoDispose<int>((ref) {
   final StreamController<int> controller = StreamController();
   void changeNotify(MethodCall call) {
-    final count = call.arguments["newCount"];
-    if (count != call.arguments["oldCount"]) {
+    final count = call.arguments["newCount"] as int;
+    if (count != call.arguments["oldCount"] as int) {
       debugPrint("New Photo count: $count");
       controller.add(count);
     }
   }
 
-  PhotoManager.addChangeCallback((call) => changeNotify(call));
+  PhotoManager.addChangeCallback(changeNotify);
   PhotoManager.startChangeNotify();
   ref.onDispose(() {
     PhotoManager.removeChangeCallback(changeNotify);

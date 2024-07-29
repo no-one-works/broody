@@ -76,9 +76,10 @@ class ProjectDatasourceImpl implements IProjectDatasource {
   Stream<Project?> get activeProject$ => _activeProjectBox
       .watch(key: activeProjectBoxKey)
       .switchMap(
-        (event) => event.value == null
-            ? Stream.value(null)
-            : watchProject(event.value),
+        (event) => switch (event.value) {
+          final String uid => watchProject(uid),
+          _ => Stream.value(null),
+        },
       )
       .startWith(activeProject);
 
@@ -98,7 +99,9 @@ class ProjectAdapter extends TypeAdapter<Project> {
 
   @override
   Project read(BinaryReader reader) {
-    return Project.fromJson(jsonDecode(reader.readString()));
+    return Project.fromJson(
+      jsonDecode(reader.readString()) as Map<String, dynamic>,
+    );
   }
 
   @override

@@ -45,7 +45,9 @@ class OnboardingAdapter extends TypeAdapter<Onboarding> {
 
   @override
   Onboarding read(BinaryReader reader) {
-    return Onboarding.fromJson(jsonDecode(reader.readString()));
+    return Onboarding.fromJson(
+      jsonDecode(reader.readString()) as Map<String, dynamic>,
+    );
   }
 
   @override

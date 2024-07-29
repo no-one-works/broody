@@ -1,1 +1,6 @@
 include: package:lintervention/analysis_options.yaml
+
+linter:
+  rules:
+    public_member_api_docs: false
+    unnecessary_await_in_return: false

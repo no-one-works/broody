@@ -957,6 +957,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.5.1"
+  rivership:
+    dependency: "direct main"
+    description:
+      name: rivership
+      sha256: ac135905c3085c62ff5b1d5af143d3919b70f364d66265e8ad468447a5f88d56
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.1"
   rxdart:
     dependency: "direct main"
     description:

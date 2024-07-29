@@ -182,7 +182,7 @@ class Timeline extends HookConsumerWidget {
                               state.entry.startPoint
                                   .toString()
                                   .substring(2, 10),
-                              style: textTheme.subtitle2!
+                              style: textTheme.titleSmall!
                                   .copyWith(color: colorScheme.onSurface),
                             ),
                           ),

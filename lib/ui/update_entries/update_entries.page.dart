@@ -14,7 +14,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:loading_value/loading_value.dart';
+import 'package:process_value/process_value.dart';
 
 class UpdateEntriesPage extends HookConsumerWidget {
   const UpdateEntriesPage({
@@ -32,16 +32,17 @@ class UpdateEntriesPage extends HookConsumerWidget {
     final outdatedEntries =
         ref.watch(projectOutdatedEntriesProvider(project.uid));
 
-    final process = useState<Stream<LoadingValue<List<SavedEntry?>>>?>(null);
+    final process = useState<Stream<ProcessValue<List<SavedEntry?>>>?>(null);
     final progress = useStream(process.value);
     final value = progress.data;
-    useValueChanged<LoadingValue<List<SavedEntry?>>?, void>(value, (_, __) {
-      progress.data?.mapOrNull(
-          data: (_) => context.router.replaceAll([const HomeRoute()]),
-          error: (_) async {
-            await Future.delayed(const Duration(seconds: 2));
-            process.value = null;
-          });
+    useValueChanged<ProcessValue<List<SavedEntry?>>?, void>(value,
+        (_, __) async {
+      if (value is ProcessData) {
+        context.router.replace(const HomeRoute());
+      } else if (value is ProcessError) {
+        await Future.delayed(const Duration(seconds: 2));
+        context.router.pop();
+      }
     });
 
     return Scaffold(
@@ -75,7 +76,7 @@ class UpdateEntriesPage extends HookConsumerWidget {
                       hSpace(Spacers.s),
                       Text(
                         l10n.outdatedEntriesTitle,
-                        style: textTheme.headline5!.copyWith(
+                        style: textTheme.headlineSmall!.copyWith(
                           color: colorScheme.onPrimaryContainer,
                         ),
                       ),
@@ -93,7 +94,7 @@ class UpdateEntriesPage extends HookConsumerWidget {
                                 outdatedEntries.value?.length ?? 0)
                             : l10n.outdatedEntriesRunningDescription,
                         key: ValueKey(process.value == null),
-                        style: textTheme.subtitle2!.copyWith(
+                        style: textTheme.titleSmall!.copyWith(
                           color: colorScheme.onPrimaryContainer,
                         ),
                       ),
@@ -104,8 +105,8 @@ class UpdateEntriesPage extends HookConsumerWidget {
                     duration: kThemeAnimationDuration,
                     child: process.value != null
                         ? LoadingValueProgressBar(
-                            loadingValue:
-                                progress.data ?? const LoadingValue.loading(0),
+                            processValue:
+                                progress.data ?? const ProcessValue.loading(0),
                             color: colorScheme.primary,
                             description: l10n.updatingEntriesRemaining(
                                 outdatedEntries.value?.length ?? 0),

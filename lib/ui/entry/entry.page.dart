@@ -48,6 +48,7 @@ class EntryPage extends HookConsumerWidget {
             pageController.positions.isNotEmpty ? pageController.page! : 0.0;
       });
       page.value = dates.indexWhere((d) => date == d).toDouble();
+      return null;
     }, [pageController]);
 
     final currentEntry = entries.whenOrNull(
@@ -68,7 +69,7 @@ class EntryPage extends HookConsumerWidget {
     final colorScheme = entryColorScheme ?? theme.colorScheme;
 
     final entryIsDark =
-        (currentEntry?.color?.toColor() ?? colorScheme.background).isDark();
+        (currentEntry?.color?.toColor() ?? colorScheme.surface).isDark();
     final foregroundColor = entryIsDark == (theme.brightness == Brightness.dark)
         ? colorScheme.primary
         : colorScheme.inversePrimary;

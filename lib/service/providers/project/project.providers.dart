@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:broody/core/constants/blob_params.dart';
 import 'package:broody/core/extensions/date_time.x.dart';
 import 'package:broody/model/entry/entry.dart';
 import 'package:broody/model/project/project.dart';
@@ -8,7 +7,6 @@ import 'package:broody/service/providers/project/active_project.notifier.dart';
 import 'package:broody/service/repositories/entry.repository.dart';
 import 'package:broody/service/repositories/project.repository.dart';
 import 'package:collection/collection.dart';
-import 'package:dartx/dartx.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final projectsProvider = StreamProvider.autoDispose(

@@ -1,3 +1,5 @@
 dependency_overrides:
-    broody_video:
-      path: ../broody_video
+    video_transcode:
+      path: ../../packages/video_transcode/video_transcode 
+    process_value: 
+      path: ../../packages/process_value

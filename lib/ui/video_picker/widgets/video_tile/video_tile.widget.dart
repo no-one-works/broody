@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:broody/core/hook/use_l10n.hook.dart';
 import 'package:broody/core/hook/use_theme.hook.dart';
@@ -58,7 +57,7 @@ class VideoTile extends HookConsumerWidget {
                 opacity: opacity,
                 child: Text(
                   dateFormat.format(assetEntity.createDateTime),
-                  style: textTheme.headline6,
+                  style: textTheme.titleLarge,
                 ),
               ),
             ),
@@ -75,7 +74,7 @@ class VideoTile extends HookConsumerWidget {
                       animationDuration: Duration.zero,
                       elevation: 24 - distanceFromCenterAbs * 24,
                       shadowColor: colorScheme.shadow,
-                      color: colorScheme.background,
+                      color: colorScheme.surface,
                       clipBehavior: Clip.antiAlias,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(4),
@@ -139,7 +138,7 @@ class VideoTile extends HookConsumerWidget {
                                       .split('.')
                                       .first
                                       .substring(2),
-                                  style: textTheme.subtitle2!
+                                  style: textTheme.titleSmall!
                                       .copyWith(color: Colors.white),
                                 ),
                               ),

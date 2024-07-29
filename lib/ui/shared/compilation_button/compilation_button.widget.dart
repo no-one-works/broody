@@ -39,7 +39,7 @@ class CompilationButton extends HookWidget {
             hSpace(Spacers.s),
             Text(
               l10n.exportCompilation,
-              style: textTheme.button!.copyWith(color: colorScheme.onSecondary),
+              style: textTheme.labelLarge!.copyWith(color: colorScheme.onSecondary),
             ),
           ],
         ),

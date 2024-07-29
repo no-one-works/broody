@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 Tween<double> get tween01 => Tween(begin: 0, end: 1);
 
@@ -72,7 +71,7 @@ Widget fadeThroughTransition(BuildContext context, Animation<double> animation,
     animation: animation,
     secondaryAnimation: secondaryAnimation,
     child: child,
-    fillColor: Theme.of(context).colorScheme.background,
+    fillColor: Theme.of(context).colorScheme.surface,
   );
 }
 

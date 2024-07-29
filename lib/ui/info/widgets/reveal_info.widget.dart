@@ -42,7 +42,7 @@ class RevealInfo extends HookConsumerWidget {
                 behavior: HitTestBehavior.translucent,
                 onPointerDown: (_) =>
                     ref.read(onboardingRepositoryProvider).setOnboardingConfig(
-                          config!.copyWith(
+                          config.copyWith(
                             knowsTwoFingerSwipe: true,
                           ),
                         ),
@@ -53,7 +53,7 @@ class RevealInfo extends HookConsumerWidget {
                       children: [
                         Container().frosted(
                           blur: Spacers.l,
-                          frostColor: colorScheme.background,
+                          frostColor: colorScheme.surface,
                         ),
                         Center(
                           child: Padding(
@@ -93,14 +93,14 @@ class RevealInfo extends HookConsumerWidget {
                                     hSpace(Spacers.xxs),
                                     Text(
                                       l10n.tip,
-                                      style: theme.textTheme.headline5,
+                                      style: theme.textTheme.headlineSmall,
                                     ),
                                   ],
                                 ),
                                 vSpace(Spacers.s),
                                 Text(
                                   l10n.revealTipText,
-                                  style: theme.textTheme.subtitle2,
+                                  style: theme.textTheme.titleSmall,
                                 ),
                               ],
                             ),

@@ -65,7 +65,7 @@ class HomePage extends HookConsumerWidget {
     return Stack(
       children: [
         Scaffold(
-          backgroundColor: colorScheme.background,
+          backgroundColor: colorScheme.surface,
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
           floatingActionButton:
@@ -105,7 +105,7 @@ class HomePage extends HookConsumerWidget {
                     ),
                   if (dates.isNotEmpty)
                     SliverToBoxAdapter(
-                      child: vSpace(Spacers.x4l),
+                      child: vSpace(Spacers.x5l),
                     )
                 ],
               ),

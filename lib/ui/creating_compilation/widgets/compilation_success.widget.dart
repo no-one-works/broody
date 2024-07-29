@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:broody/core/extensions/video_player_controller.x.dart';
 import 'package:broody/core/hook/use_l10n.hook.dart';
 import 'package:broody/core/hook/use_theme.hook.dart';
 import 'package:broody/routing/router.dart';

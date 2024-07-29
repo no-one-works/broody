@@ -76,7 +76,9 @@ class EntryAdapter extends TypeAdapter<SavedEntry> {
 
   @override
   SavedEntry read(BinaryReader reader) {
-    return SavedEntry.fromJson(jsonDecode(reader.readString()));
+    return SavedEntry.fromJson(
+      jsonDecode(reader.readString()) as Map<String, dynamic>,
+    );
   }
 
   @override

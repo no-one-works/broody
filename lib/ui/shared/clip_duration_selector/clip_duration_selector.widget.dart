@@ -29,6 +29,7 @@ class ClipDurationSelector extends HookConsumerWidget {
       animationController.reset();
       animationController.duration = selected;
       animationController.repeat();
+      return null;
     }, [animationController, selected]);
 
     final progressTween = Tween(
@@ -42,7 +43,7 @@ class ClipDurationSelector extends HookConsumerWidget {
     final progress = useAnimation(progressTween);
     return CupertinoSlidingSegmentedControl<Duration>(
         groupValue: selected,
-        thumbColor: colorScheme.background,
+        thumbColor: colorScheme.surface,
         children: {
           laplaceLimitDuration: _buildItem(
               context,
@@ -81,8 +82,8 @@ class ClipDurationSelector extends HookConsumerWidget {
           child: LinearProgressIndicator(
             minHeight: Spacers.xxs,
             backgroundColor:
-                isSelected ? colorScheme.background : Colors.transparent,
-            color: isSelected ? colorScheme.primaryVariant : Colors.transparent,
+                isSelected ? colorScheme.surface : Colors.transparent,
+            color: isSelected ? colorScheme.primaryContainer : Colors.transparent,
             value: isSelected ? progress : 1,
           ),
         ),

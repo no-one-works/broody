@@ -18,7 +18,7 @@ import 'package:collection/src/iterable_extensions.dart';
 import 'package:dartx/dartx.dart' show IterableExcept;
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:loading_value/loading_value.dart';
+import 'package:process_value/process_value.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 abstract class ProjectRepository extends RepositoryBase {
@@ -36,7 +36,7 @@ abstract class ProjectRepository extends RepositoryBase {
 
   FutureOr<void> setProject(Project project);
 
-  Stream<LoadingValue<List<SavedEntry>>> updateProjectEntries(Project project);
+  Stream<ProcessValue<List<SavedEntry>>> updateProjectEntries(Project project);
 
   void deleteProject(Project project);
 
@@ -48,7 +48,7 @@ abstract class ProjectRepository extends RepositoryBase {
 
   Future<void> deleteAllCompilations();
 
-  Stream<LoadingValue<SavedCompilation?>> createCompilation({
+  Stream<ProcessValue<SavedCompilation?>> createCompilation({
     required String projectUid,
     DateTime? monthOfYear,
   });
@@ -158,7 +158,7 @@ class ProjectRepositoryImpl extends ProjectRepository {
   }
 
   @override
-  Stream<LoadingValue<List<SavedEntry>>> updateProjectEntries(
+  Stream<ProcessValue<List<SavedEntry>>> updateProjectEntries(
       Project project) async* {
     print(project.resolution);
     final outdated =
@@ -169,28 +169,27 @@ class ProjectRepositoryImpl extends ProjectRepository {
     for (final entry in outdated) {
       final process =
           ref.read(entryRepositoryProvider).updateEntryVersion(entry: entry);
-      await for (final loadingValue in process) {
-        if (loadingValue is ValueLoading<SavedEntry?>) {
-          final progress =
-              (updated.length + failed.length + loadingValue.progress) /
-                  outdated.length;
-          yield LoadingValue.loading(progress);
-        } else if (loadingValue is LoadingError<SavedEntry?>) {
-          failed.add(entry);
-        } else if (loadingValue is LoadedData<SavedEntry?>) {
-          if (loadingValue.value == null) {
+      await for (final processValue in process) {
+        switch (processValue) {
+          case ProcessLoading(:final progress):
+            yield ProcessValue.loading(
+              (updated.length + failed.length + progress) / outdated.length,
+            );
+          case ProcessError():
+          case ProcessData(value: null):
             failed.add(entry);
             continue;
-          }
-          updated.add(loadingValue.value!);
+          case ProcessData(value: final updatedEntry?):
+            updated.add(updatedEntry);
+            continue;
         }
       }
     }
     if (failed.isNotEmpty) {
-      yield LoadingValue.error(
+      yield ProcessValue.error(
           Exception("${failed.length} entries failed to export!"));
     } else {
-      yield LoadingValue.data(updated);
+      yield ProcessValue.data(updated);
     }
   }
 
@@ -214,16 +213,16 @@ class ProjectRepositoryImpl extends ProjectRepository {
   }
 
   @override
-  Stream<LoadingValue<SavedCompilation?>> createCompilation({
+  Stream<ProcessValue<SavedCompilation?>> createCompilation({
     required String projectUid,
     DateTime? monthOfYear,
   }) async* {
     final project = getProject(projectUid);
     if (project == null) {
-      yield const LoadingValue.data(null);
+      yield const ProcessValue.data(null);
       return;
     }
-    yield const LoadingValue.loading(0);
+    yield const ProcessValue.loading(0);
     final compilationDatasource = ref.read(compilationDatasourceProvider);
     final entriesForProject =
         await ref.read(projectEntriesProvider(projectUid).future);
@@ -256,8 +255,8 @@ class ProjectRepositoryImpl extends ProjectRepository {
       createCompilation: createCompilation,
     );
 
-    await for (final loadingValue in progress) {
-      yield loadingValue;
+    await for (final ProcessValue in progress) {
+      yield ProcessValue;
     }
   }
 

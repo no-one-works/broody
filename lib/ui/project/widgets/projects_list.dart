@@ -1,4 +1,5 @@
-import 'package:auto_route/src/router/auto_router_x.dart';
+import 'package:animated_list_plus/animated_list_plus.dart';
+import 'package:animated_list_plus/transitions.dart';
 import 'package:broody/core/hook/use_l10n.hook.dart';
 import 'package:broody/core/hook/use_theme.hook.dart';
 import 'package:broody/model/project/project.dart';
@@ -8,8 +9,6 @@ import 'package:broody/ui/project/widgets/project_list_tile.dart';
 import 'package:broody/ui/theme/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
-import 'package:implicitly_animated_reorderable_list/transitions.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 class ProjectList extends HookConsumerWidget {
@@ -29,7 +28,7 @@ class ProjectList extends HookConsumerWidget {
     final endedProjects =
         projects.where((p) => ref.read(projectHasEndedProvider(p))).toList();
     return DefaultTextStyle(
-      style: textTheme.button!.copyWith(color: colorScheme.secondary),
+      style: textTheme.labelLarge!.copyWith(color: colorScheme.secondary),
       child: MultiSliver(
         children: [
           if (activeProjects.isNotEmpty)

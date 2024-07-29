@@ -6,7 +6,6 @@ ThemeData getTheme(ColorScheme colorScheme, TextTheme textTheme) =>
       colorScheme: colorScheme,
       textTheme: textTheme,
     ).copyWith(
-      useMaterial3: true,
       shadowColor: colorScheme.shadow,
       appBarTheme: AppBarTheme(
         color: Colors.transparent,
@@ -19,6 +18,10 @@ ThemeData getTheme(ColorScheme colorScheme, TextTheme textTheme) =>
           color: colorScheme.secondary,
         ),
         centerTitle: false,
+      ),
+      dividerTheme: DividerThemeData(
+        color: colorScheme.onSurface.withOpacity(.02),
+        thickness: 1,
       ),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(

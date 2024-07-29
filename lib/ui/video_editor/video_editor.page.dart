@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 
 import 'package:blur/blur.dart';
 import 'package:broody/core/hook/use_l10n.hook.dart';
@@ -23,7 +22,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:loading_value/loading_value.dart';
+import 'package:process_value/process_value.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 class VideoEditorPage extends HookConsumerWidget {
@@ -45,9 +44,9 @@ class VideoEditorPage extends HookConsumerWidget {
     final mounted = useIsMounted();
     ref.listen(videoEditorStateProvider(assetEntity), (prev, next) async {
       if (next is VideoEditorExporting) {
-        if (next.exportProgress is LoadedData) {
+        if (next.exportProgress is ProcessData) {
           context.router.navigate(const HomeRoute());
-        } else if (next.exportProgress is LoadingError) {
+        } else if (next.exportProgress is ProcessError) {
           await Future.delayed(const Duration(seconds: 1));
           context.router.pop();
         }
@@ -65,7 +64,7 @@ class VideoEditorPage extends HookConsumerWidget {
 
     return Scaffold(
       backgroundColor:
-          colorScheme.background.withOpacity(1 - state.dismissProgress),
+          colorScheme.surface.withOpacity(1 - state.dismissProgress),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: AnimatedOpacity(
@@ -105,7 +104,7 @@ class VideoEditorPage extends HookConsumerWidget {
                       tag: assetEntity.id,
                       createRectTween: linearRectTween,
                       child: Material(
-                        color: colorScheme.background,
+                        color: colorScheme.surface,
                         elevation: 24,
                         child: VideoAndThumbnail(
                           size: Size(
@@ -122,9 +121,10 @@ class VideoEditorPage extends HookConsumerWidget {
                     ),
                     exporting: (state) => ProgressBuilder(
                       duration: kThemeAnimationDuration * 2,
-                      progress:
-                          state.exportProgress.whenOrNull(loading: (p) => p) ??
-                              0,
+                      progress: switch (state.exportProgress) {
+                        ProcessLoading(:final progress) => progress,
+                        _ => 0,
+                      },
                       builder: (context, value, child) => Hero(
                         tag: state.entry.day,
                         createRectTween: linearRectTween,
@@ -166,7 +166,7 @@ class VideoEditorPage extends HookConsumerWidget {
                         assetEntity: assetEntity,
                         overlayColor: state.maybeMap(
                           loadingVideo: (_) =>
-                              colorScheme.background.withOpacity(0.6),
+                              colorScheme.surface.withOpacity(0.6),
                           failedToLoad: (_) =>
                               colorScheme.errorContainer.withOpacity(0.7),
                           orElse: () => Colors.transparent,
@@ -185,7 +185,7 @@ class VideoEditorPage extends HookConsumerWidget {
                   duration: kThemeAnimationDuration * 2,
                   child: state.maybeMap(
                     exporting: (state) => LoadingValueProgressBar(
-                      loadingValue: state.exportProgress,
+                      processValue: state.exportProgress,
                       color: colorScheme.inversePrimary,
                     ),
                     loadingVideo: (_) => const Center(
@@ -203,7 +203,7 @@ class VideoEditorPage extends HookConsumerWidget {
                           vSpace(Spacers.xs),
                           Text(
                             l10n.loadingVideoFailed,
-                            style: textTheme.subtitle1
+                            style: textTheme.titleMedium
                                 ?.copyWith(color: colorScheme.onErrorContainer),
                           ),
                         ],
@@ -236,7 +236,7 @@ class VideoEditorPage extends HookConsumerWidget {
                               ),
                               child: Text(
                                 l10n.save.toUpperCase(),
-                                style: textTheme.subtitle1?.copyWith(
+                                style: textTheme.titleMedium?.copyWith(
                                   color: Colors.black,
                                 ),
                               ),

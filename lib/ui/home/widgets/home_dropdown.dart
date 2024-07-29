@@ -19,7 +19,7 @@ class HomeDropdown extends HookConsumerWidget {
     return PopupMenuButton(
       icon: const Icon(Icons.more_vert_rounded),
       padding: EdgeInsets.zero,
-      color: colorScheme.surface,
+      shadowColor: Colors.transparent,
       itemBuilder: (context) => [
         PopupMenuItem(
           onTap: () => context.router.navigate(const ProjectsRoute()),

@@ -19,7 +19,7 @@ class ProjectsPage extends HookConsumerWidget {
     final projects = ref.watch(projectsProvider).asData?.value ?? [];
 
     return Scaffold(
-      backgroundColor: colorScheme.background,
+      backgroundColor: colorScheme.surface,
       floatingActionButton: FloatingActionButton.extended(
         heroTag: null,
         onPressed: () => context.router.push(ProjectDetailsRoute()),
@@ -32,9 +32,9 @@ class ProjectsPage extends HookConsumerWidget {
             SliverAppBar(
               title: Text(
                 l10n.myProjects,
-                style: textTheme.headline4,
+                style: textTheme.headlineMedium,
               ),
-              backgroundColor: colorScheme.background,
+              backgroundColor: colorScheme.surface,
               leadingWidth: Spacers.x2l,
               floating: true,
               actions: [

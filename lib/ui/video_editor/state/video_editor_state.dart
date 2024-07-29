@@ -1,4 +1,4 @@
-import 'package:loading_value/loading_value.dart';
+import 'package:process_value/process_value.dart';
 import 'package:broody/model/entry/entry.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:photo_manager/photo_manager.dart';
@@ -30,7 +30,7 @@ class VideoEditorState with _$VideoEditorState {
 
   const factory VideoEditorState.exporting({
     required EditingEntry entry,
-    required LoadingValue exportProgress,
+    required ProcessValue exportProgress,
     @Default(0.0) double dismissProgress,
   }) = VideoEditorExporting;
 

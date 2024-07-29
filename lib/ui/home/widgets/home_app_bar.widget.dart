@@ -29,7 +29,7 @@ class HomeAppBar extends HookWidget {
       ],
       title: AutoSizeText(
         title,
-        style: textTheme.headline4,
+        style: textTheme.headlineMedium,
         maxLines: 1,
         minFontSize: 20,
       ),
@@ -43,10 +43,10 @@ class HomeAppBar extends HookWidget {
               ],
             ).frosted(
               blur: 24,
-              frostColor: colorScheme.background,
+              frostColor: colorScheme.surface,
             )
           : Container(
-              color: colorScheme.background,
+              color: colorScheme.surface,
             ),
       leadingWidth: Spacers.x2l,
       floating: !Platform.isIOS,

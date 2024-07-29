@@ -1,5 +1,4 @@
 import 'package:blur/blur.dart';
-import 'package:broody/core/hook/use_l10n.hook.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:video_player/video_player.dart';
@@ -24,7 +23,6 @@ class VideoAndThumbnail extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = useL10n();
     return FittedBox(
       fit: fit,
       alignment: Alignment.center,

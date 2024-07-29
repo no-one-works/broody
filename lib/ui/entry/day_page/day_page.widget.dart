@@ -70,6 +70,7 @@ class DayPage extends HookConsumerWidget {
       if (videoController != null) {
         videoController.setVolume(Curves.easeIn.transform(videoVolume));
       }
+      return null;
     }, [videoController, videoVolume]);
 
     final entryColorScheme = entry == null
@@ -100,7 +101,7 @@ class DayPage extends HookConsumerWidget {
               padding: const EdgeInsets.only(left: Spacers.xl),
               child: AnimatedDefaultTextStyle(
                 duration: kThemeAnimationDuration,
-                style: textTheme.headline3!.copyWith(color: textColor),
+                style: textTheme.displaySmall!.copyWith(color: textColor),
                 child: Transform.translate(
                   offset: Offset(pageOffset * -Spacers.x4l, 0),
                   child: Text(

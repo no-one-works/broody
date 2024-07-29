@@ -1,4 +1,3 @@
-import 'package:flutter/rendering.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'blob_request.freezed.dart';

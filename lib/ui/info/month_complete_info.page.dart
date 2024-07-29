@@ -51,14 +51,14 @@ class MonthCompleteInfoPage extends HookConsumerWidget {
                   hSpace(Spacers.s),
                   Text(
                     l10n.monthComplete(nameOfMonth),
-                    style: textTheme.headline5,
+                    style: textTheme.headlineSmall,
                   ),
                 ],
               ),
               vSpace(Spacers.s),
               Text(
                 l10n.monthCompleteText,
-                style: textTheme.subtitle2,
+                style: textTheme.titleSmall,
               ),
               vSpace(Spacers.l),
               CompilationButton(
@@ -83,7 +83,7 @@ class MonthCompleteInfoPage extends HookConsumerWidget {
       ),
     ).frosted(
       blur: Spacers.x2l,
-      frostColor: colorScheme.background,
+      frostColor: colorScheme.surface,
     );
   }
 }

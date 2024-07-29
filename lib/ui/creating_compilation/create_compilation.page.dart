@@ -47,7 +47,7 @@ class CreateCompilationPage extends HookConsumerWidget {
         duration: kThemeAnimationDuration,
         child: state.map(
           exporting: (state) => LoadingValueProgressBar(
-            loadingValue: state.exportProgress,
+            processValue: state.exportProgress,
             color: colorScheme.secondary,
             description: l10n.creatingCompilation,
           ),

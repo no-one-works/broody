@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:broody/service/repositories/project.repository.dart';
 import 'package:broody/ui/creating_compilation/state/create_compilation.state.dart';
-import 'package:broody_video/broody_video.dart';
+import 'package:video_transcode/video_transcode.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:loading_value/loading_value.dart';
+import 'package:process_value/process_value.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:video_player/video_player.dart';
 
@@ -33,7 +33,7 @@ class CreateCompilationNotifier extends StateNotifier<CreateCompilationState> {
       state = CreateCompilationState.exporting(
         projectUid: state.projectUid,
         monthOfYear: state.monthOfYear,
-        exportProgress: const LoadingValue.loading(0),
+        exportProgress: const ProcessValue.loading(0),
       );
       _saveCompilation();
     } else {
@@ -126,25 +126,23 @@ class CreateCompilationNotifier extends StateNotifier<CreateCompilationState> {
         return;
       }
       state = s.copyWith(exportProgress: loadingValue);
-      loadingValue.whenOrNull(
-        data: (savedCompilation) async {
-          if (savedCompilation != null) {
-            final file = await repo.getFileForCompilation(savedCompilation);
-            state = CreateCompilationState.exportSuccess(
-              projectUid: state.projectUid,
-              monthOfYear: state.monthOfYear,
-              savedCompilation: savedCompilation,
-              file: file,
-              videoController: await _createPlayerController(file),
-            );
-          } else {
-            state = CreateCompilationState.exportFailed(
-              projectUid: state.projectUid,
-              monthOfYear: state.monthOfYear,
-            );
-          }
-        },
-      );
+      if (loadingValue case ProcessData(value: final savedCompilation)) {
+        if (savedCompilation != null) {
+          final file = await repo.getFileForCompilation(savedCompilation);
+          state = CreateCompilationState.exportSuccess(
+            projectUid: state.projectUid,
+            monthOfYear: state.monthOfYear,
+            savedCompilation: savedCompilation,
+            file: file,
+            videoController: await _createPlayerController(file),
+          );
+        } else {
+          state = CreateCompilationState.exportFailed(
+            projectUid: state.projectUid,
+            monthOfYear: state.monthOfYear,
+          );
+        }
+      }
     }
   }
 

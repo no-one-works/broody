@@ -22,7 +22,7 @@ class VideoOrientationPicker extends HookConsumerWidget {
 
     return CupertinoSlidingSegmentedControl<bool>(
         groupValue: selected,
-        thumbColor: colorScheme.background,
+        thumbColor: colorScheme.surface,
         children: {
           true: _buildItem(
             context,
@@ -54,7 +54,7 @@ class VideoOrientationPicker extends HookConsumerWidget {
             child: Icon(
               iconData,
               color:
-                  isSelected ? colorScheme.primary : colorScheme.onBackground,
+                  isSelected ? colorScheme.primary : colorScheme.onSurface,
             )),
         hSpace(Spacers.s),
         Text(name),
